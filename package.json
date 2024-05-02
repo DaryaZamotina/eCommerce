@@ -11,8 +11,16 @@
     "webpack-cli": "^5.1.4"
   },
   "scripts": {
+    "lint": "eslint ./",
     "prepare": "husky",
+    "ci:format": "prettier --check src/**/*.{ts,tsx,scss,css,json}",
     "format": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
     "build": "webpack --config webpack.config.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run ci:format",
+      "pre-push": "npm run lint && npm run format"
+    }
   }
 }

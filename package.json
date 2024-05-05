@@ -1,0 +1,26 @@
+{
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.29.1",
+    "husky": "^9.0.11",
+    "prettier": "3.2.5",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.4.4",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "scripts": {
+    "lint": "eslint ./",
+    "prepare": "husky",
+    "ci:format": "prettier --check src/**/*.{ts,tsx,scss,css,json}",
+    "format": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
+    "build": "webpack --config webpack.config.js"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run ci:format",
+      "pre-push": "npm run lint && npm run format"
+    }
+  }
+}

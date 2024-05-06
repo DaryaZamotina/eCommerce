@@ -43,7 +43,7 @@ npm run ci:format
 npm run format
 ```
 
-### To run unit tests:
+### To run unit tests using Vitest:
 ```
 npm run test
 ```

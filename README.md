@@ -16,6 +16,18 @@ Our goal is to create a user-friendly online shopping platform that offers a var
 ## Deployment
 The application is in progress. Deployment will be available soon.
 
+## Development Setup
+### To install the dependencies:
+With [node.js](https://nodejs.org/en) & [npm](https://www.npmjs.com/) installed, clone the repository and run  
+```
+npm install
+```
+
+### To build the project using Webpack:
+```
+npm run build
+```
+
 ## Team Members
 | Developers | Mentors |
 | ---------- | ------- |

@@ -9,7 +9,6 @@
 - [ ] Tests
 - [ ] Other (*please indicate below*)
 
-
 ## Brief description 
 
 ## Screenshots (*if necessary*)

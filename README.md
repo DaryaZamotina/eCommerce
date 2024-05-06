@@ -28,6 +28,26 @@ npm install
 npm run build
 ```
 
+### To run ESLint for linting:
+```
+npm run lint
+```
+
+### To check code formatting using Prettier:
+```
+npm run ci:format
+```
+
+### To automatically format code files using Prettier:
+```
+npm run format
+```
+
+### To run unit tests using Vitest:
+```
+npm run test
+```
+
 ## Team Members
 | Developers | Mentors |
 | ---------- | ------- |

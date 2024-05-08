@@ -1,6 +1,6 @@
-const testPreCommit = {
-  div: 1,
-  listMessages: 1,
-  listMessagess: 1,
-  chatBody: 1,
-};
+import RegistrationForm from "./pages/Registration/registrationForm";
+
+if (localStorage.getItem("isLogined") === null) {
+  const registrationFormDiv = new RegistrationForm();
+  registrationFormDiv.createRegistrationForm();
+}

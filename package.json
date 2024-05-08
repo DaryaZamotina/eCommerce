@@ -18,11 +18,5 @@
     "format": "prettier --write src/**/*.{ts,tsx,scss,css,json}",
     "build": "webpack --config webpack.config.js",
     "test": "vitest"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run ci:format",
-      "pre-push": "npm run lint && npm run format && npm run test"
-    }
   }
 }

@@ -1,9 +1,9 @@
 export default [
   {
-    conteiner: {
+    container: {
       tag: "div",
-      class: "registrationForm__conteiner_email",
-      id: "registrationForm__conteiner_email",
+      class: "registrationForm__container_email",
+      id: "registrationForm__container_email",
       id_parent: "registrationForm",
       text_content: "",
     },
@@ -11,7 +11,7 @@ export default [
       tag: "label",
       class: "registrationForm__label_email",
       id: "registrationForm__label_email",
-      id_parent: "registrationForm__conteiner_email",
+      id_parent: "registrationForm__container_email",
       text_content: "Mail",
       attributes: {
         for: "email",
@@ -21,7 +21,7 @@ export default [
       tag: "input",
       class: "registrationForm__input_email",
       id: "registrationForm__input_email",
-      id_parent: "registrationForm__conteiner_email",
+      id_parent: "registrationForm__container_email",
       text_content: "",
       attributes: {
         type: "email",
@@ -30,10 +30,10 @@ export default [
     },
   },
   {
-    conteiner: {
+    container: {
       tag: "div",
-      class: "registrationForm__conteiner_password",
-      id: "registrationForm__conteiner_password",
+      class: "registrationForm__container_password",
+      id: "registrationForm__container_password",
       id_parent: "registrationForm",
       text_content: "",
     },
@@ -41,7 +41,7 @@ export default [
       tag: "label",
       class: "registrationForm__label_password",
       id: "registrationForm__label_password",
-      id_parent: "registrationForm__conteiner_password",
+      id_parent: "registrationForm__container_password",
       text_content: "Password",
       attributes: {
         for: "password",
@@ -51,7 +51,7 @@ export default [
       tag: "input",
       class: "registrationForm__input_password",
       id: "registrationForm__input_password",
-      id_parent: "registrationForm__conteiner_password",
+      id_parent: "registrationForm__container_password",
       text_content: "",
       attributes: {
         type: "password",
@@ -60,10 +60,10 @@ export default [
     },
   },
   {
-    conteiner: {
+    container: {
       tag: "div",
-      class: "registrationForm__conteiner_first_name",
-      id: "registrationForm__conteiner_first_name",
+      class: "registrationForm__container_first_name",
+      id: "registrationForm__container_first_name",
       id_parent: "registrationForm",
       text_content: "",
     },
@@ -71,7 +71,7 @@ export default [
       tag: "label",
       class: "registrationForm__label_first_name",
       id: "registrationForm__label_first_name",
-      id_parent: "registrationForm__conteiner_first_name",
+      id_parent: "registrationForm__container_first_name",
       text_content: "First name",
       attributes: {
         for: "text",
@@ -81,7 +81,7 @@ export default [
       tag: "input",
       class: "registrationForm__input_first_name",
       id: "registrationForm__input_first_name",
-      id_parent: "registrationForm__conteiner_first_name",
+      id_parent: "registrationForm__container_first_name",
       text_content: "",
       attributes: {
         type: "text",
@@ -90,10 +90,10 @@ export default [
     },
   },
   {
-    conteiner: {
+    container: {
       tag: "giv",
-      class: "registrationForm__conteiner_second_name",
-      id: "registrationForm__conteiner_second_name",
+      class: "registrationForm__container_second_name",
+      id: "registrationForm__container_second_name",
       id_parent: "registrationForm",
       text_content: "",
     },
@@ -101,7 +101,7 @@ export default [
       tag: "label",
       class: "registrationForm__label_second_name",
       id: "registrationForm__label_second_name",
-      id_parent: "registrationForm__conteiner_second_name",
+      id_parent: "registrationForm__container_second_name",
       text_content: "Second name",
       attributes: {
         for: "text",
@@ -111,7 +111,7 @@ export default [
       tag: "input",
       class: "registrationForm__input_second_name",
       id: "registrationForm__input_second_name",
-      id_parent: "registrationForm__conteiner_second_name",
+      id_parent: "registrationForm__container_second_name",
       text_content: "",
       attributes: {
         type: "text",

@@ -1,5 +1,5 @@
 export type InputsType = {
-  conteiner: {
+  container: {
     [key: string]: string;
   };
   label: {

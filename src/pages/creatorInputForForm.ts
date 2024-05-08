@@ -11,11 +11,11 @@ export default class CreateInputForForm {
   public createAndAppend() {
     this.arrImput.forEach((element) => {
       const containerImput = new TagCreator(
-        element.conteiner.tag,
-        element.conteiner.class,
-        element.conteiner.id,
-        element.conteiner.id_parent,
-        element.conteiner.text_content,
+        element.container.tag,
+        element.container.class,
+        element.container.id,
+        element.container.id_parent,
+        element.container.text_content,
       );
       containerImput.createAndAppend();
 

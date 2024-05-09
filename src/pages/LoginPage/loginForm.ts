@@ -5,9 +5,9 @@ interface APIclient {
     clientSecret: string,
 
     getKeyOfClient: () => string,
-
-    getToken: () => string
 }
+
+const api = 'https://auth.us-east-2.aws.commercetools.com/oauth/token';
 
 export const testAPIclient: APIclient = {
     clientID: "4hGzQciW9_bymQYQVIueryeN",
@@ -16,39 +16,32 @@ export const testAPIclient: APIclient = {
     getKeyOfClient(): string {
         return btoa(`${this.clientID}:${this.clientSecret}`);
     },
-    
-    getToken(): string {
-        let accessToken: string;
-
-        fetch(`https://auth.us-east-2.aws.commercetools.com/oauth/token`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded',
-                'Authorization': `Basic ${testAPIclient.getKeyOfClient()}`,
-            },
-            body: new URLSearchParams({
-                'grant_type': 'client_credentials',
-                'client_id': `${this.clientID}`,
-                'client_secret': `${this.clientSecret}`,
-                'scope': `manage_customers:${projectKey}`
-            })
-        })
-        .then((response) => {
-            return response.json();
-        })
-        .then((data) => {
-            let tokenData = JSON.stringify(data);
-            accessToken = data.access_token;
-            console.log("token = " + tokenData);
-            console.log("access_token = " + accessToken);
-        })  
-        .catch((error) => {
-            console.log("error = " + error);
-        });
-
-        return accessToken;
-    }
 }
+
+async function getData(url: string) {
+    const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': `Basic ${testAPIclient.getKeyOfClient()}`,
+        },
+        body: new URLSearchParams({
+            'grant_type': 'client_credentials',
+            'client_id': testAPIclient.clientID,
+            'client_secret': testAPIclient.clientSecret,
+            'scope': `manage_customers:${projectKey}`
+        })
+    });
+    const resp = await response.json();
+    return JSON.stringify(resp);
+}
+
+getData(api)  
+    .then(output => {
+    localStorage.setItem("token", output);
+    return output;
+    })
+    .catch(err => console.log(err))
 /*
 fetch(`https://api.us-east-2.aws.commercetools.com
 /jffecommerce/api-clients/4hGzQciW9_bymQYQVIueryeN`, {

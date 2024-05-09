@@ -18,7 +18,7 @@ export const testAPIclient: APIclient = {
     },
 }
 
-async function getData(url: string) {
+async function getDataToken(url: string) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -36,12 +36,13 @@ async function getData(url: string) {
     return JSON.stringify(resp);
 }
 
-getData(api)  
+getDataToken(api)  
     .then(output => {
     localStorage.setItem("token", output);
     return output;
     })
     .catch(err => console.log(err))
+
 /*
 fetch(`https://api.us-east-2.aws.commercetools.com
 /jffecommerce/api-clients/4hGzQciW9_bymQYQVIueryeN`, {

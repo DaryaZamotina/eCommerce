@@ -8,11 +8,12 @@ if (localStorage.getItem("isLogined") === null) {
 
 const keyOfAPICluent = testAPIclient.getKeyOfClient();
 
-const tokenAuthorization = localStorage.getItem("token");
-const jsonToken = JSON.parse(tokenAuthorization);
-const accessToken = jsonToken.access_token;
+export function getAccessToken() {
+  const tokenAuthorization = localStorage.getItem("token");
+  const jsonToken = JSON.parse(tokenAuthorization);
+  const accessToken = jsonToken.access_token; 
+  return accessToken;
+}
 
 console.log("keyOfAPICluent = " + keyOfAPICluent);
-
-localStorage.clear();
-console.log("accessToken 2 = " + accessToken);
+console.log("accessToken = " + getAccessToken() );

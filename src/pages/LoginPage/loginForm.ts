@@ -1,3 +1,9 @@
+import {getEmaillUser} from "../../index";
+import {getPasswordlUser} from "../../index";
+
+export const userEmail = getEmaillUser();
+export const userPassword = getPasswordlUser();
+
 const   projectKey: string = "jffecommerce";
 
 interface APIclient {

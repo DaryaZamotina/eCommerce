@@ -91,7 +91,7 @@ export default [
   },
   {
     container: {
-      tag: "giv",
+      tag: "div",
       class: "registrationForm__container_second_name",
       id: "registrationForm__container_second_name",
       id_parent: "registrationForm",
@@ -116,6 +116,35 @@ export default [
       attributes: {
         type: "text",
         placeholder: "Second name",
+      },
+    },
+  },
+  {
+    container: {
+      tag: "div",
+      class: "registrationForm__container_date",
+      id: "registrationForm__container_date",
+      id_parent: "registrationForm",
+      text_content: "",
+    },
+    label: {
+      tag: "label",
+      class: "registrationForm__label_date",
+      id: "registrationForm__label_date",
+      id_parent: "registrationForm__container_date",
+      text_content: "Date",
+      attributes: {
+        for: "text",
+      },
+    },
+    input: {
+      tag: "input",
+      class: "registrationForm__input_date",
+      id: "registrationForm__input_date",
+      id_parent: "registrationForm__container_date",
+      text_content: "",
+      attributes: {
+        type: "date",
       },
     },
   },

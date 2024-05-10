@@ -1,6 +1,7 @@
 import TagCreator from "../../module/tagCreator";
 import CreateInputForForm from "../creatorInputForForm";
 import InputsForFormRegistration from "../../Helpers/Inputs/InputsForFormRegistration";
+import "../../../public/assets/css/body.css";
 
 export default class RegistrationForm {
   constructor() {}

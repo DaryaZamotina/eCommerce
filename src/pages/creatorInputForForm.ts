@@ -1,5 +1,6 @@
 import TagCreator from "../module/tagCreator";
 import { InputsType } from "../Helpers/Inputs/TypeInputs";
+import validateEmail from "../Helpers/Inputs/validateEmail";
 
 export default class CreateInputForForm {
   private arrImput: InputsType[];
@@ -44,6 +45,17 @@ export default class CreateInputForForm {
       for (let key in element.input.attributes) {
         input.addAttribute(`${key}`, element.input.attributes[key]);
       }
+
+      if (element.input.attributes.type === "email") {
+        this.validateEmail(element.input.id);
+      }
+    });
+  }
+
+  private validateEmail(id: string) {
+    const inputEmail = document.getElementById(id) as HTMLInputElement;
+    inputEmail.addEventListener("input", () => {
+      console.log(validateEmail(inputEmail.value));
     });
   }
 }

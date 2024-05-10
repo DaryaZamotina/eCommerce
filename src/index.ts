@@ -31,7 +31,7 @@ export function getPasswordlUser() {
   return password;
 }
 
-console.log("keyOfAPICluent = " + keyOfAPICluent);
+console.log("keyOfAPIClient = " + keyOfAPICluent);
 console.log("accessToken = " + accessTokenForAuth );
 console.log("userEmail = " + userEmail );
 console.log("userPassword = " + userPassword );

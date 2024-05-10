@@ -54,10 +54,10 @@ getDataToken(api)
 const urlToEcommForRegistration = "https://api.us-east-2.aws.commercetools.com/jffecommerce/customers";
 
 let formDataOfNewUser = JSON.stringify({
-        "email" : "test7@test.com",
-        "firstName" : "test7",
-        "lastName" : "test7",
-        "password" : "test7"
+        "email" : "test8@test.com",
+        "firstName" : "test8",
+        "lastName" : "test8",
+        "password" : "test8"
   })
 
 console.log(JSON.stringify(formDataOfNewUser));
@@ -78,6 +78,10 @@ export async function sendNewUserInfo(url: string) {
 sendNewUserInfo(urlToEcommForRegistration)  
     .then(output => {
     localStorage.setItem("newUser", output);
+    let outputObj = JSON.parse(output);
+    if (outputObj.statusCode == 400) {
+        console.log("message about error: " + outputObj.message);
+    }
     return output;
     })
     .catch(err => console.log(err))

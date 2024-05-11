@@ -1,10 +1,10 @@
-import {getEmaillUser} from "../../index";
+/*import {getEmaillUser} from "../../index";
 import {getPasswordlUser} from "../../index";
 
 export const userEmail = getEmaillUser();
-export const userPassword = getPasswordlUser();
+export const userPassword = getPasswordlUser(); */
 
-const   projectKey: string = "jffecommerce";
+export const projectKey: string = "jffecommerce";
 
 interface APIclient {
     clientID: string,
@@ -23,6 +23,8 @@ export const testAPIclient: APIclient = {
         return btoa(`${this.clientID}:${this.clientSecret}`);
     },
 }
+
+export function receiveAccessToken() {
 
 async function getDataToken(url: string) {
     const response = await fetch(url, {
@@ -48,3 +50,5 @@ getDataToken(api)
     return output;
     })
     .catch(err => console.log(err))
+
+}

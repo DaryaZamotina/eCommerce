@@ -9,7 +9,7 @@ if (localStorage.getItem("isLogined") === null) {
   registrationFormDiv.createRegistrationForm();
 }
 
-const keyOfAPICluent = testAPIclient.getKeyOfClient();
+const keyOfAPIClient = testAPIclient.getKeyOfClient();
 
 export function getAccessToken() {
   const tokenAuthorization = localStorage.getItem("token");
@@ -31,7 +31,7 @@ export function getPasswordlUser() {
   return password;
 }
 
-console.log("keyOfAPIClient = " + keyOfAPICluent);
+console.log("keyOfAPIClient = " + keyOfAPIClient);
 console.log("accessToken = " + accessTokenForAuth );
 console.log("userEmail = " + userEmail );
 console.log("userPassword = " + userPassword );

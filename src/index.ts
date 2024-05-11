@@ -3,11 +3,24 @@ import {testAPIclient} from "./pages/LoginPage/loginForm"
 import {accessTokenForAuth} from "./pages/LoginPage/loginAuthentification"
 import {userEmail} from "./pages/LoginPage/loginForm"
 import {userPassword} from "./pages/LoginPage/loginForm"
+import LoginForm from "./pages/LoginPage/loginFormButtons";
 
+/*
 if (localStorage.getItem("isLogined") === null) {
   const registrationFormDiv = new RegistrationForm();
   registrationFormDiv.createRegistrationForm();
+} 
+
+if (localStorage.getItem("token")) {
+  const loginFormDiv = new LoginForm();
+  loginFormDiv.createRegistrationForm();
 }
+*/
+if (localStorage.getItem("isLogined") === null) {
+  const loginFormDiv = new LoginForm();
+  loginFormDiv.createRegistrationForm();
+} 
+
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
 

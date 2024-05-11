@@ -48,20 +48,3 @@ getDataToken(api)
     return output;
     })
     .catch(err => console.log(err))
-
-/*
-fetch(`https://api.us-east-2.aws.commercetools.com
-/jffecommerce/api-clients/4hGzQciW9_bymQYQVIueryeN`, {
-    method: "GET",
-  })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-        console.log("data" + data);
-        console.log("access_token" + JSON.stringify(data));
-    })  
-    .catch((error) => {
-        console.log(error);
-    });
-*/

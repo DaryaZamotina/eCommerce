@@ -54,10 +54,10 @@ getDataToken(api)
 const urlToEcommForRegistration = "https://api.us-east-2.aws.commercetools.com/jffecommerce/customers";
 
 let formDataOfNewUser = JSON.stringify({
-        "email" : "test8@test.com",
-        "firstName" : "test8",
-        "lastName" : "test8",
-        "password" : "test8"
+        "email" : "test9@test.com",
+        "firstName" : "test9",
+        "lastName" : "test9",
+        "password" : "test9"
   })
 
 console.log(JSON.stringify(formDataOfNewUser));

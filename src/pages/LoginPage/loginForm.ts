@@ -26,7 +26,7 @@ export const testAPIclient: APIclient = {
 
 export function receiveAccessToken() {
 
-async function getDataToken(url: string) {
+  async function getDataToken(url: string) {
     const response = await fetch(url, {
         method: 'POST',
         headers: {
@@ -44,9 +44,10 @@ async function getDataToken(url: string) {
     return JSON.stringify(resp);
 }
 
-getDataToken(api)  
+  getDataToken(api)  
     .then(output => {
     localStorage.setItem("token", output);
+    console.log(output);
     return output;
     })
     .catch(err => console.log(err))

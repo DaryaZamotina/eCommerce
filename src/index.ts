@@ -1,6 +1,6 @@
 import RegistrationForm from "./pages/Registration/registrationForm";
 import {testAPIclient} from "./pages/LoginPage/loginForm"
-import {accessTokenForAuth} from "./pages/LoginPage/loginAuthentification"
+//import {accessTokenForAuth} from "./pages/LoginPage/loginAuthentification"
 //import {userEmail} from "./pages/LoginPage/loginForm"
 //import {userPassword} from "./pages/LoginPage/loginForm"
 import LoginForm from "./pages/LoginPage/loginFormButtons";
@@ -24,9 +24,10 @@ if (localStorage.getItem("isLogined") === null) {
 } 
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
-const receiveAccessTokenFromEcomm = receiveAccessToken();
+//const receiveAccessTokenFromEcomm = receiveAccessToken();
 
 export function getAccessToken() {
+  const receiveAccessTokenFromEcomm = receiveAccessToken();
   const tokenAuthorization = localStorage.getItem("token");
   const jsonToken = JSON.parse(tokenAuthorization);
   const accessToken = jsonToken.access_token; 
@@ -48,7 +49,7 @@ export function getPasswordlUser() {
 */
 
 console.log("keyOfAPIClient = " + keyOfAPIClient);
-console.log("accessToken = " + accessTokenForAuth );
+//console.log("accessToken = " + accessTokenForAuth );
 // console.log("userEmail = " + userEmail );
 // console.log("userPassword = " + userPassword );
 
@@ -70,5 +71,7 @@ const buttonLogin = document.getElementById("buttonLogin");
 if (localStorage.getItem("email") && localStorage.getItem("password")) {
   console.log(localStorage.getItem("email"));
   console.log(localStorage.getItem("password"));
-  buttonLogin.addEventListener("click", sendDataToEComm);
+  buttonLogin.addEventListener("click", function() {
+    sendDataToEComm();
+  });
 }

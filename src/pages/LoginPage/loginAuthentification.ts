@@ -2,10 +2,12 @@ import { getAccessToken } from "../../index";
 import {projectKey} from "./loginForm"
 import LoginForm from "./loginFormButtons";
 import { testAPIclient } from "./loginForm";
+import { receiveAccessToken } from "./loginForm";
+
 //import {inputLoginEmail, inputLoginPassword} from "./loginFormButtons"
 
-export const accessTokenForAuth = getAccessToken();
-console.log("accessTokenForAuth" + accessTokenForAuth);
+//const accessTokenForAuth = getAccessToken();
+//console.log("accessTokenForAuth" + accessTokenForAuth);
 
 const emailLogin: string = localStorage.getItem("email");
 console.log(emailLogin);
@@ -39,6 +41,10 @@ getUserInfo(urlForUser)
 const linkForChecking: string = "https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token"; 
 
 export function sendDataToEComm(){
+    receiveAccessToken();
+    const accessTokenForAuth = getAccessToken();
+    console.log("accessTokenForAuth" + accessTokenForAuth);
+
         async function checkPasswordFlowForUser (url: string) {
             const response = await fetch(url, {
                 method: 'POST',

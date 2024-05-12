@@ -1,6 +1,5 @@
 import {testAPIclient} from "./loginGetToken"
 import { sendDataToEComm } from "./loginAuthentification";
-import RegistrationForm from "../../pages/Registration/registrationForm";
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
 console.log("keyOfAPIClient = " + keyOfAPIClient);
@@ -29,17 +28,4 @@ export function sendLoginPasswordToLocalStorage() {
             sendDataToEComm();
         }
     });
-}
-export function moveToRegistration() {
-    const buttonRegistration = document.getElementById("buttonRegistration");
-
-    buttonRegistration.addEventListener("click", function() {
-        const loginFormDiv = document.getElementById("loginForm");
-        loginFormDiv.remove();
-        buttonRegistration.remove();
-        const buttonLogin = document.getElementById("buttonLogin");
-        buttonLogin.remove();
-        const registrationFormDiv = new RegistrationForm();
-        registrationFormDiv.createRegistrationForm();
-});
 }

@@ -31,5 +31,13 @@ export default class LoginForm {
       buttonRegistration.textContent = "Go to Registration";
 
       body.append(buttonRegistration);
+
+      const buttonToMainPage: HTMLButtonElement = document.createElement('button');
+      buttonToMainPage.className = 'buttonToMainPage';
+      buttonToMainPage.id = 'buttonToMainPage';
+      buttonToMainPage.textContent = "Home";
+
+      body.append(buttonToMainPage);
+
     }
   }

@@ -1,5 +1,6 @@
 import {projectKey} from "./loginGetToken"
 import { testAPIclient } from "./loginGetToken";
+import { directMoveToMainPage } from "../../pages/LoginPage/buttonsToRegToHome";
 
 const linkForChecking: string = "https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token"; 
 
@@ -36,10 +37,18 @@ export function sendDataToEComm(){
             localStorage.setItem("access_token_for_user", infoJSON.access_token);
             localStorage.setItem("refresh_token_for_user", infoJSON.refresh_token);
 
-            if (infoJSON.statusCode == 400) {
+           if (infoJSON.statusCode == 400) {
                 const error: string = infoJSON.message;
+                console.log("error = " + error);
                 const messageAboutError: HTMLElement = document.getElementById("messageAboutError");
-                messageAboutError.textContent = infoJSON.message;
+                messageAboutError.textContent = "Sorry, try again with the right mail and/or password or go to Registration";
+            }
+
+            if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined') {
+                const loginFormDiv = document.getElementById("loginForm");
+                loginFormDiv.remove();
+                console.log("aaa!");
+                directMoveToMainPage();
             }
 
             return info;

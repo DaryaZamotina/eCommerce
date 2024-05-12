@@ -18,18 +18,16 @@ export function moveToMainPage() {
     const buttonToMainPage = document.getElementById("buttonToMainPage");
 
     buttonToMainPage.addEventListener("click", function() {
-        const loginFormDiv = document.getElementById("loginForm");
-        loginFormDiv.remove();
-        const body = document.getElementById("body");
-        body.textContent = "MAIN PAGE";
+        directMoveToMainPage()
 });
 }
 
 export function directMoveToMainPage() {
     const body = document.getElementById("body");
+    body.innerHTML = "";
     body.textContent = "MAIN PAGE";
     
-    const buttonLogin = document.getElementById("buttonLogin");
+   /* const buttonLogin = document.getElementById("buttonLogin");
     buttonLogin.remove();
     
     const loginFormDiv = document.getElementById("loginForm");
@@ -39,5 +37,5 @@ export function directMoveToMainPage() {
     buttonRegistration.remove();
 
     const buttonToMainPage = document.getElementById("buttonToMainPage");
-    buttonToMainPage.remove();
+    buttonToMainPage.remove(); */
 }

@@ -18,12 +18,13 @@ export function sendLoginPasswordToLocalStorage() {
     });
 
     const buttonLogin = document.getElementById("buttonLogin");
-    if (localStorage.getItem("email") && localStorage.getItem("password")) {
-        console.log(localStorage.getItem("email"));
-        console.log(localStorage.getItem("password"));
-        buttonLogin.addEventListener("click", function() {
-            console.log("put button");
+
+    buttonLogin.addEventListener("click", function() {
+        console.log("put button");
+        if (localStorage.getItem("email") && localStorage.getItem("password")) {
+            console.log(localStorage.getItem("email"));
+            console.log(localStorage.getItem("password"));
             sendDataToEComm();
-        });
-    }
+        }
+    });
 }

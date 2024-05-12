@@ -1,6 +1,7 @@
 import {projectKey} from "./loginGetToken"
 import { testAPIclient } from "./loginGetToken";
 import { directMoveToMainPage } from "../../pages/LoginPage/buttonsToRegToHome";
+import {receiveAccessToken } from "../../pages/LoginPage/loginGetToken";
 
 const linkForChecking: string = "https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token"; 
 
@@ -47,10 +48,10 @@ export function sendDataToEComm(){
             if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined') {
                 const loginFormDiv = document.getElementById("loginForm");
                 loginFormDiv.remove();
-                console.log("aaa!");
                 directMoveToMainPage();
-            }
 
+                receiveAccessToken();
+            }
             return info;
             })
             .catch(err => console.log(err));

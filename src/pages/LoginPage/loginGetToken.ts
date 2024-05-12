@@ -18,7 +18,7 @@ export const testAPIclient: APIclient = {
     },
 }
 
-function receiveAccessToken() {
+export function receiveAccessToken() {
 
   async function getDataToken(url: string) {
     const response = await fetch(url, {
@@ -41,16 +41,19 @@ function receiveAccessToken() {
   getDataToken(api)  
     .then(output => {
     localStorage.setItem("token", output);
+    const jsonToken = JSON.parse(output);
+    const accessToken = jsonToken.access_token; 
+    localStorage.setItem("access_token_auth", accessToken);
+    console.log("accessToken for authentification = " + accessToken);
     return output;
     })
     .catch(err => console.log(err))
-    
 }
 
-export function getAccessToken() {
+/*export function getAccessToken() {
     receiveAccessToken();
     const tokenAuthorization = localStorage.getItem("token");
     const jsonToken = JSON.parse(tokenAuthorization);
     const accessToken = jsonToken.access_token; 
     return accessToken
-  }
+  } */

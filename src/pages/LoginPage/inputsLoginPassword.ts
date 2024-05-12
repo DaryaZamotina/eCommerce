@@ -1,6 +1,6 @@
-import {testAPIclient} from "./loginGetToken"
+import { testAPIclient } from "./loginGetToken"
 import { sendDataToEComm } from "./loginAuthentification";
-//import { directMoveToMainPage } from "../../pages/LoginPage/buttonsToRegToHome";
+//import { getAccessToken } from "../../pages/LoginPage/loginGetToken";
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
 console.log("keyOfAPIClient = " + keyOfAPIClient);
@@ -25,18 +25,11 @@ export function sendLoginPasswordToLocalStorage() {
     const buttonLogin = document.getElementById("buttonLogin");
 
     buttonLogin.addEventListener("click", function() {
-        console.log("put button");
 
         if (localStorage.getItem("email") && localStorage.getItem("password")) {
-            console.log(localStorage.getItem("email"));
-            console.log(localStorage.getItem("password"));
+            console.log("email = " + localStorage.getItem("email"));
+            console.log("password = " + localStorage.getItem("password"));
             sendDataToEComm();
-
-          /*  if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined') {
-                const loginFormDiv = document.getElementById("loginForm");
-                loginFormDiv.remove();
-                directMoveToMainPage();
-            } */
         }
     });
 }

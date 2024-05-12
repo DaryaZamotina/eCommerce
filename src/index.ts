@@ -1,6 +1,7 @@
 import RegistrationForm from "./pages/Registration/registrationForm";
 import LoginForm from "./pages/LoginPage/loginFormButtons";
 import { sendLoginPasswordToLocalStorage } from "./pages/LoginPage/inputsLoginPassword";
+import { moveToRegistration } from "./pages/LoginPage/inputsLoginPassword";
 
 /*
 if (localStorage.getItem("isLogined") === null) {
@@ -13,4 +14,10 @@ if (localStorage.getItem("isLogined") === null) {
   const loginFormDiv = new LoginForm();
   loginFormDiv.createLoginForm();
   sendLoginPasswordToLocalStorage();
+  moveToRegistration();
 } 
+
+if (localStorage.getItem("access_token_for_user")) {
+  const registrationFormDiv = new RegistrationForm();
+  registrationFormDiv.createRegistrationForm();
+}

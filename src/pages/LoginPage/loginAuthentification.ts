@@ -6,9 +6,7 @@ const linkForChecking: string = "https://auth.us-east-2.aws.commercetools.com/oa
 export function sendDataToEComm(){
 
     const emailLogin: string = localStorage.getItem("email");
-    console.log(emailLogin);
-    const passwordLogin: string = localStorage.getItem("password");
-    console.log(passwordLogin);
+    const passwordLogin: string = localStorage.getItem("password"); 
 
         async function checkPasswordFlowForUser (url: string) {
             const response = await fetch(url, {
@@ -31,6 +29,7 @@ export function sendDataToEComm(){
         checkPasswordFlowForUser(linkForChecking)  
             .then(info => {
             localStorage.setItem("userLogin", info);
+            
             const infoJSON = JSON.parse(info);
             console.log("access_token_for_user = " + infoJSON.access_token);
             console.log("refresh_token_for_user = " + infoJSON.refresh_token);

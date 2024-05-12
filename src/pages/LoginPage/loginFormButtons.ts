@@ -2,7 +2,6 @@ import TagCreator from "../../module/tagCreator";
 import CreateInputForForm from "../creatorInputForForm";
 import InputsForFormLogin from "../../Helpers/Inputs/InputsForFormLogin";
 
-
 export default class LoginForm {
     constructor() {}
   
@@ -25,5 +24,12 @@ export default class LoginForm {
       
       const body = document.getElementById("body");
       body.append(buttonLogin);
+
+      const buttonRegistration: HTMLButtonElement = document.createElement('button');
+      buttonRegistration.className = 'buttonRegistration';
+      buttonRegistration.id = 'buttonRegistration';
+      buttonRegistration.textContent = "Go to Registration";
+
+      body.append(buttonRegistration);
     }
   }

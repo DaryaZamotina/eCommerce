@@ -24,3 +24,20 @@ export function moveToMainPage() {
         body.textContent = "MAIN PAGE";
 });
 }
+
+export function directMoveToMainPage() {
+    const body = document.getElementById("body");
+    body.textContent = "MAIN PAGE";
+    
+    const buttonLogin = document.getElementById("buttonLogin");
+    buttonLogin.remove();
+    
+    const loginFormDiv = document.getElementById("loginForm");
+    loginFormDiv.remove();
+
+    const buttonRegistration = document.getElementById("buttonRegistration");
+    buttonRegistration.remove();
+
+    const buttonToMainPage = document.getElementById("buttonToMainPage");
+    buttonToMainPage.remove();
+}

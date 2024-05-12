@@ -35,6 +35,13 @@ export function sendDataToEComm(){
             console.log("refresh_token_for_user = " + infoJSON.refresh_token);
             localStorage.setItem("access_token_for_user", infoJSON.access_token);
             localStorage.setItem("refresh_token_for_user", infoJSON.refresh_token);
+
+            if (infoJSON.statusCode == 400) {
+                const error: string = infoJSON.message;
+                const messageAboutError: HTMLElement = document.getElementById("messageAboutError");
+                messageAboutError.textContent = infoJSON.message;
+            }
+
             return info;
             })
             .catch(err => console.log(err));

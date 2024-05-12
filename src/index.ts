@@ -3,6 +3,7 @@ import LoginForm from "./pages/LoginPage/loginFormButtons";
 import { sendLoginPasswordToLocalStorage } from "./pages/LoginPage/inputsLoginPassword";
 import { moveToRegistration } from "./pages/LoginPage/buttonsToRegToHome";
 import { moveToMainPage } from "./pages/LoginPage/buttonsToRegToHome";
+import { directMoveToMainPage } from "./pages/LoginPage/buttonsToRegToHome";
 
 /*
 if (localStorage.getItem("isLogined") === null) {
@@ -19,7 +20,6 @@ if (localStorage.getItem("isLogined") === null) {
   moveToMainPage();
 } 
 
-if (localStorage.getItem("access_token_for_user")) {
-  const registrationFormDiv = new RegistrationForm();
-  registrationFormDiv.createRegistrationForm();
+if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined') {
+  directMoveToMainPage();
 }

@@ -39,5 +39,11 @@ export default class LoginForm {
 
       body.append(buttonToMainPage);
 
+      const messageAboutError: HTMLDivElement = document.createElement('div');
+      messageAboutError.className = 'messageAboutError';
+      messageAboutError.id = 'messageAboutError';
+      messageAboutError.textContent = "";
+
+      body.append(messageAboutError);
     }
   }

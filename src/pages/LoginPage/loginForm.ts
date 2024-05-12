@@ -7,7 +7,7 @@ export default class LoginForm {
   
     public createLoginForm() {
       const loginForm = new TagCreator(
-        "from",
+        "form",
         "loginForm",
         "loginForm",
         "body",

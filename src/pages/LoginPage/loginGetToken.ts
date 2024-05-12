@@ -1,9 +1,3 @@
-/*import {getEmaillUser} from "../../index";
-import {getPasswordlUser} from "../../index";
-
-export const userEmail = getEmaillUser();
-export const userPassword = getPasswordlUser(); */
-
 export const projectKey: string = "jffecommerce";
 
 interface APIclient {
@@ -24,7 +18,7 @@ export const testAPIclient: APIclient = {
     },
 }
 
-export function receiveAccessToken() {
+function receiveAccessToken() {
 
   async function getDataToken(url: string) {
     const response = await fetch(url, {
@@ -47,9 +41,16 @@ export function receiveAccessToken() {
   getDataToken(api)  
     .then(output => {
     localStorage.setItem("token", output);
-    console.log(output);
     return output;
     })
     .catch(err => console.log(err))
-
+    
 }
+
+export function getAccessToken() {
+    receiveAccessToken();
+    const tokenAuthorization = localStorage.getItem("token");
+    const jsonToken = JSON.parse(tokenAuthorization);
+    const accessToken = jsonToken.access_token; 
+    return accessToken
+  }

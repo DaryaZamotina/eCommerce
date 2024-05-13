@@ -49,6 +49,7 @@ export default class CreateInputForForm {
         input.addAttribute(`${key}`, element.input.attributes[key]);
       }
 
+
       const errorDiv = new TagCreator(
         "div",
         "registrationForm__error",
@@ -70,6 +71,9 @@ export default class CreateInputForForm {
         element.input.id === "registrationForm__input_second_name"
       ) {
         this.validateName(element.input.id);
+      }
+      if (element.input.attributes.type === "email") {
+        this.validateEmail(element.input.id);
       }
     });
   }

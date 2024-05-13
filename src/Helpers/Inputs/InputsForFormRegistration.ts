@@ -92,6 +92,7 @@ export default [
   {
     container: {
       tag: "div",
+
       class: "registrationForm__container",
       id: "registrationForm__container_second_name",
       id_parent: "registrationForm",
@@ -122,6 +123,7 @@ export default [
   {
     container: {
       tag: "div",
+
       class: "registrationForm__container",
       id: "registrationForm__container_date",
       id_parent: "registrationForm",
@@ -129,6 +131,7 @@ export default [
     },
     label: {
       tag: "label",
+
       class: "registrationForm__label",
       id: "registrationForm__label_date",
       id_parent: "registrationForm__container_date",

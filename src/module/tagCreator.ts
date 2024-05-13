@@ -35,15 +35,7 @@ export default class TagCreator {
     document.getElementById(`${this.id}`)!.remove();
   }
 
-  // public createReturnAndAppend(child?: boolean) {
-  //   const element = this.createAndReturn();
-  //   if (child) {
-  //     document.getElementById(`${this.childId}`)!.prepend(element);
-  //   } else {
-  //     document.getElementById(`${this.childId}`)!.appendChild(element);
-  //   }    return element;
-  // }
-  
+  // был нужен такой метод, так как getElementById вызывал ошибки, вместо элемента был null
   public createAndReturn() {
     const element = document.createElement(`${this.tag}`);
     element.textContent = this.text || "";

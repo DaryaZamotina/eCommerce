@@ -17,5 +17,9 @@ export default class RegistrationForm {
 
     const inputs = new CreateInputForForm(InputsForFormRegistration);
     inputs.createAndAppend();
+    
+    // можно подумать о return form, чтобы контейнер формы передавать в роутер и там создавать экземпляр RegistrationForm.
+    // form.createAndReturn();
+    // return form;
   }
 }

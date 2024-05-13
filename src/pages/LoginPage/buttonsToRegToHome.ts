@@ -6,9 +6,10 @@ export function moveToRegistration() {
     buttonRegistration.addEventListener("click", function() {
         const loginFormDiv = document.getElementById("loginForm");
         loginFormDiv.remove();
-        buttonRegistration.remove();
-        const buttonLogin = document.getElementById("buttonLogin");
-        buttonLogin.remove();
+
+        const buttonsWrapper = document.getElementById("buttonsWrapper");
+        buttonsWrapper.remove();
+
         const registrationFormDiv = new RegistrationForm();
         registrationFormDiv.createRegistrationForm();
     });

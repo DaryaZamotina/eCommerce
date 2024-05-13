@@ -13,37 +13,50 @@ export default class LoginForm {
         "body",
       );
       loginForm.createAndAppend();
-  
+
+      const buttonsWrapper = new TagCreator(
+        "form",
+        "buttonsWrapper",
+        "buttonsWrapper",
+        "body",
+      );
+      buttonsWrapper.createAndAppend();
+
       const inputs = new CreateInputForForm(InputsForFormLogin);
       inputs.createAndAppend();
 
-      const buttonLogin: HTMLButtonElement = document.createElement('button');
-      buttonLogin.className = 'buttonLogin';
-      buttonLogin.id = 'buttonLogin';
-      buttonLogin.textContent = "Login";
-      
-      const body = document.getElementById("body");
-      body.append(buttonLogin);
+      const buttonLogin = new TagCreator(
+        "button",
+        "buttonLogin",
+        "buttonLogin",
+        "buttonsWrapper",
+        "Login"
+      )
+      buttonLogin.createAndAppend();
 
-      const buttonRegistration: HTMLButtonElement = document.createElement('button');
-      buttonRegistration.className = 'buttonRegistration';
-      buttonRegistration.id = 'buttonRegistration';
-      buttonRegistration.textContent = "Go to Registration";
+      const buttonRegistration = new TagCreator(
+        "button",
+        "buttonRegistration",
+        "buttonRegistration",
+        "buttonsWrapper",
+        "Go to Registration"
+      )
+      buttonRegistration.createAndAppend();
+      const buttonToMainPage = new TagCreator(
+        "button",
+        "buttonToMainPage",
+        "buttonToMainPage",
+        "buttonsWrapper",
+        "Home"
+      )
+      buttonToMainPage.createAndAppend();
 
-      body.append(buttonRegistration);
-
-      const buttonToMainPage: HTMLButtonElement = document.createElement('button');
-      buttonToMainPage.className = 'buttonToMainPage';
-      buttonToMainPage.id = 'buttonToMainPage';
-      buttonToMainPage.textContent = "Home";
-
-      body.append(buttonToMainPage);
-
-      const messageAboutError: HTMLDivElement = document.createElement('div');
-      messageAboutError.className = 'messageAboutError';
-      messageAboutError.id = 'messageAboutError';
-      messageAboutError.textContent = "";
-
-      body.append(messageAboutError);
+      const messageAboutError = new TagCreator(
+        "div",
+        "messageAboutError",
+        "messageAboutError",
+        "buttonsWrapper"
+      )
+      messageAboutError.createAndAppend();
     }
   }

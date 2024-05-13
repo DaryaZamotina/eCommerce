@@ -49,11 +49,3 @@ export function receiveAccessToken() {
     })
     .catch(err => console.log(err))
 }
-
-/*export function getAccessToken() {
-    receiveAccessToken();
-    const tokenAuthorization = localStorage.getItem("token");
-    const jsonToken = JSON.parse(tokenAuthorization);
-    const accessToken = jsonToken.access_token; 
-    return accessToken
-  } */

@@ -1,6 +1,5 @@
 import { testAPIclient } from "./loginGetToken"
 import { sendDataToEComm } from "./loginAuthentification";
-//import { getAccessToken } from "../../pages/LoginPage/loginGetToken";
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
 console.log("keyOfAPIClient = " + keyOfAPIClient);
@@ -25,7 +24,7 @@ export function sendLoginPasswordToLocalStorage() {
     const buttonLogin = document.getElementById("buttonLogin");
 
     buttonLogin.addEventListener("click", function() {
-
+    console.log("aaa!");
         if (localStorage.getItem("email") && localStorage.getItem("password")) {
             console.log("email = " + localStorage.getItem("email"));
             console.log("password = " + localStorage.getItem("password"));

@@ -1,5 +1,6 @@
 import { testAPIclient } from "./loginGetToken"
 import { sendDataToEComm } from "./loginAuthentification";
+import LoginForm from "../../pages/LoginPage/loginForm";
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
 console.log("keyOfAPIClient = " + keyOfAPIClient);
@@ -21,14 +22,14 @@ export function sendLoginPasswordToLocalStorage() {
      localStorage.setItem('password', inputLoginPassword.value);
     }); 
 
-    const buttonLogin = document.getElementById("buttonLogin");
-
+    const buttonLogin = <HTMLButtonElement>document.querySelector(".buttonLogin");
+    
     buttonLogin.addEventListener("click", function() {
-    console.log("aaa!");
+        buttonLogin.style.backgroundColor  = "red";
         if (localStorage.getItem("email") && localStorage.getItem("password")) {
             console.log("email = " + localStorage.getItem("email"));
             console.log("password = " + localStorage.getItem("password"));
             sendDataToEComm();
         }
-    });
+    }); 
 }

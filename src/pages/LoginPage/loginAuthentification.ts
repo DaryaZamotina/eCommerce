@@ -48,6 +48,10 @@ export function sendDataToEComm(){
             if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined') {
                 const loginFormDiv = document.getElementById("loginForm");
                 loginFormDiv.remove();
+
+                const buttonsWrapper = document.getElementById("buttonsWrapper");
+                buttonsWrapper.remove();
+                
                 directMoveToMainPage();
 
                 receiveAccessToken();

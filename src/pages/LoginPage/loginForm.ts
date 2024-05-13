@@ -25,14 +25,22 @@ export default class LoginForm {
       const inputs = new CreateInputForForm(InputsForFormLogin);
       inputs.createAndAppend();
 
-      const buttonLogin = new TagCreator(
+      /*const buttonLogin = new TagCreator(
         "button",
         "buttonLogin",
         "buttonLogin",
         "buttonsWrapper",
         "Login"
       )
-      buttonLogin.createAndAppend();
+      buttonLogin.createAndAppend(); */
+
+      const buttonLogin: HTMLButtonElement = document.createElement('button');
+      buttonLogin.className = 'buttonLogin';
+      buttonLogin.id = 'buttonLogin';
+      buttonLogin.textContent = "Login";
+
+      const body = document.getElementById("body");
+      body.append(buttonLogin);
 
       const buttonRegistration = new TagCreator(
         "button",
@@ -42,6 +50,7 @@ export default class LoginForm {
         "Go to Registration"
       )
       buttonRegistration.createAndAppend();
+
       const buttonToMainPage = new TagCreator(
         "button",
         "buttonToMainPage",
@@ -55,7 +64,8 @@ export default class LoginForm {
         "div",
         "messageAboutError",
         "messageAboutError",
-        "buttonsWrapper"
+        "buttonsWrapper",
+        ""
       )
       messageAboutError.createAndAppend();
     }

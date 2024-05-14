@@ -12,12 +12,9 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
 }
-input {
-    font-family: "Montserrat", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-input::placeholder {
+input,
+select,
+input::placeholder  {
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;

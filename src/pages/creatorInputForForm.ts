@@ -114,6 +114,7 @@ export default class CreateInputForForm {
     }
   }
 
+
   private addInputValidator(
     id: string,
     validationFunction: (value: string) => boolean,

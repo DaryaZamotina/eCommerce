@@ -1,4 +1,4 @@
-import TagCreator from "../../module/tagCreator";
+import TagCreator from '../../module/tagCreator';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -51,26 +51,26 @@ export default class HeaderView {
 
   private createNameOfShop() {
     const tagCreator = new TagCreator(
-      "h1",
-      "header__logo",
-      "headerLogo",
-      "header",
-      "JOY.M",
+      'h1',
+      'header__logo',
+      'headerLogo',
+      'header',
+      'JOY.M',
     );
     this.nameOfShop = tagCreator.createAndReturn();
     // I don't understand how to setup css
-    this.nameOfShop.style.display = "inline-block";
+    this.nameOfShop.style.display = 'inline-block';
     // this.nameOfShop.style.marginRight = "20%";
     return this.nameOfShop;
   }
 
   private createSignUpButton() {
     const tagCreator = new TagCreator(
-      "button",
-      "sign-up-button",
-      "signUpButton",
-      "header",
-      "SIGN UP",
+      'button',
+      'sign-up-button',
+      'signUpButton',
+      'header',
+      'SIGN UP',
     );
     this.signUpButton = tagCreator.createAndReturn();
     return this.signUpButton;
@@ -78,11 +78,11 @@ export default class HeaderView {
 
   private createSignInButton() {
     const tagCreator = new TagCreator(
-      "button",
-      "sign-in-button",
-      "signInButton",
-      "header",
-      "SIGN IN",
+      'button',
+      'sign-in-button',
+      'signInButton',
+      'header',
+      'SIGN IN',
     );
     this.signInButton = tagCreator.createAndReturn();
     return this.signInButton;
@@ -90,11 +90,11 @@ export default class HeaderView {
 
   private createToCartButton() {
     const tagCreator = new TagCreator(
-      "button",
-      "to-cart-button",
-      "toCartButton",
-      "header",
-      "TO CART",
+      'button',
+      'to-cart-button',
+      'toCartButton',
+      'header',
+      'TO CART',
     );
     this.toCartButton = tagCreator.createAndReturn();
     return this.toCartButton;
@@ -102,11 +102,11 @@ export default class HeaderView {
 
   private createUserProfileButton() {
     const tagCreator = new TagCreator(
-      "button",
-      "user-profile-button",
-      "userProfileButton",
-      "header",
-      "PROFILE",
+      'button',
+      'user-profile-button',
+      'userProfileButton',
+      'header',
+      'PROFILE',
     );
     this.userProfileButton = tagCreator.createAndReturn();
     return this.userProfileButton;
@@ -114,18 +114,18 @@ export default class HeaderView {
 
   private createLogoutButton() {
     const tagCreator = new TagCreator(
-      "button",
-      "logout-button",
-      "logoutButton",
-      "header",
-      "LOGOUT",
+      'button',
+      'logout-button',
+      'logoutButton',
+      'header',
+      'LOGOUT',
     );
     this.logoutButton = tagCreator.createAndReturn();
     return this.logoutButton;
   }
 
   private createHeader() {
-    const tagCreator = new TagCreator("header", "header", "header", "body");
+    const tagCreator = new TagCreator('header', 'header', 'header', 'body');
     this.header = tagCreator.createAndReturn();
     this.header.append(
       this.getNameOfShop(),

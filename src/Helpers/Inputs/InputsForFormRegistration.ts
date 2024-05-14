@@ -2,17 +2,17 @@ export default [
   {
     container: {
       tag: "div",
-      class: "registrationForm__container_email",
+      class: "registrationForm__container",
       id: "registrationForm__container_email",
       id_parent: "registrationForm",
       text_content: "",
     },
     label: {
       tag: "label",
-      class: "registrationForm__label_email",
+      class: "registrationForm__label",
       id: "registrationForm__label_email",
       id_parent: "registrationForm__container_email",
-      text_content: "Mail",
+      text_content: "E-mail",
       attributes: {
         for: "email",
       },
@@ -32,14 +32,14 @@ export default [
   {
     container: {
       tag: "div",
-      class: "registrationForm__container_password",
+      class: "registrationForm__container",
       id: "registrationForm__container_password",
       id_parent: "registrationForm",
       text_content: "",
     },
     label: {
       tag: "label",
-      class: "registrationForm__label_password",
+      class: "registrationForm__label",
       id: "registrationForm__label_password",
       id_parent: "registrationForm__container_password",
       text_content: "Password",
@@ -55,21 +55,21 @@ export default [
       text_content: "",
       attributes: {
         type: "password",
-        placeholder: "password",
+        placeholder: "Password",
       },
     },
   },
   {
     container: {
       tag: "div",
-      class: "registrationForm__container_first_name",
+      class: "registrationForm__container",
       id: "registrationForm__container_first_name",
       id_parent: "registrationForm",
       text_content: "",
     },
     label: {
       tag: "label",
-      class: "registrationForm__label_first_name",
+      class: "registrationForm__label",
       id: "registrationForm__label_first_name",
       id_parent: "registrationForm__container_first_name",
       text_content: "First name",
@@ -92,14 +92,14 @@ export default [
   {
     container: {
       tag: "div",
-      class: "registrationForm__container_second_name",
+      class: "registrationForm__container",
       id: "registrationForm__container_second_name",
       id_parent: "registrationForm",
       text_content: "",
     },
     label: {
       tag: "label",
-      class: "registrationForm__label_second_name",
+      class: "registrationForm__label",
       id: "registrationForm__label_second_name",
       id_parent: "registrationForm__container_second_name",
       text_content: "Second name",
@@ -122,14 +122,14 @@ export default [
   {
     container: {
       tag: "div",
-      class: "registrationForm__container_date",
+      class: "registrationForm__container",
       id: "registrationForm__container_date",
       id_parent: "registrationForm",
       text_content: "",
     },
     label: {
       tag: "label",
-      class: "registrationForm__label_date",
+      class: "registrationForm__label",
       id: "registrationForm__label_date",
       id_parent: "registrationForm__container_date",
       text_content: "Date",
@@ -145,6 +145,97 @@ export default [
       text_content: "",
       attributes: {
         type: "date",
+        max: "2012-12-21",
+      },
+    },
+  },
+  {
+    container: {
+      tag: "div",
+      class: "registrationForm__container",
+      id: "registrationForm__container_city",
+      id_parent: "registrationForm",
+      text_content: "",
+    },
+    label: {
+      tag: "label",
+      class: "registrationForm__label",
+      id: "registrationForm__label_city",
+      id_parent: "registrationForm__container_city",
+      text_content: "City",
+      attributes: {
+        for: "text",
+      },
+    },
+    input: {
+      tag: "input",
+      class: "registrationForm__input_city",
+      id: "registrationForm__input_city",
+      id_parent: "registrationForm__container_city",
+      text_content: "",
+      attributes: {
+        type: "text",
+        placeholder: "City",
+      },
+    },
+  },
+  {
+    container: {
+      tag: "div",
+      class: "registrationForm__container",
+      id: "registrationForm__container_street",
+      id_parent: "registrationForm",
+      text_content: "",
+    },
+    label: {
+      tag: "label",
+      class: "registrationForm__label",
+      id: "registrationForm__label_street",
+      id_parent: "registrationForm__container_street",
+      text_content: "Street",
+      attributes: {
+        for: "text",
+      },
+    },
+    input: {
+      tag: "input",
+      class: "registrationForm__input_street",
+      id: "registrationForm__input_street",
+      id_parent: "registrationForm__container_street",
+      text_content: "",
+      attributes: {
+        type: "text",
+        placeholder: "Street",
+      },
+    },
+  },
+  {
+    container: {
+      tag: "div",
+      class: "registrationForm__container",
+      id: "registrationForm__container_postcode",
+      id_parent: "registrationForm",
+      text_content: "",
+    },
+    label: {
+      tag: "label",
+      class: "registrationForm__label",
+      id: "registrationForm__label_postcode",
+      id_parent: "registrationForm__container_postcode",
+      text_content: "Postcode",
+      attributes: {
+        for: "text",
+      },
+    },
+    input: {
+      tag: "input",
+      class: "registrationForm__input_postcode",
+      id: "registrationForm__input_postcode",
+      id_parent: "registrationForm__container_postcode",
+      text_content: "",
+      attributes: {
+        type: "text",
+        placeholder: "Postcode",
       },
     },
   },

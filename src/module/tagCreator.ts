@@ -15,7 +15,7 @@ export default class TagCreator {
 
   public createAndAppend(child?: boolean) {
     const tag = document.createElement(`${this.tag}`);
-    tag.textContent = this.text || "";
+    tag.textContent = this.text || '';
     tag.className = this.className;
     tag.id = this.id;
     if (child) {
@@ -38,7 +38,7 @@ export default class TagCreator {
   // был нужен такой метод, так как getElementById вызывал ошибки, вместо элемента был null
   public createAndReturn() {
     const element = document.createElement(`${this.tag}`);
-    element.textContent = this.text || "";
+    element.textContent = this.text || '';
     element.className = this.className;
     element.id = this.id;
     console.log(element);

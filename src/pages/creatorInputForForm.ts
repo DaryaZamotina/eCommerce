@@ -10,9 +10,23 @@ import errorMessages from "../Helpers/Inputs/errorMessages";
 
 export default class CreateInputForForm {
   private arrImput: InputsType[];
+  private form: string;
+  private arrValidReg: boolean[];
 
-  constructor(arrImput: InputsType[]) {
+  constructor(arrImput: InputsType[], form?: string) {
     this.arrImput = arrImput;
+    this.form = form;
+    this.arrValidReg = [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+    ];
   }
 
   public createAndAppend() {
@@ -61,67 +75,174 @@ export default class CreateInputForForm {
       errorDiv.createAndAppend();
 
       if (element.input.attributes.type === "email") {
-        this.addInputValidator(element.input.id, validateEmail, 0);
+        this.addInputValidator(element.input.id, validateEmail, 0, 0);
       }
 
       if (element.input.attributes.type === "password") {
-        this.addInputValidator(element.input.id, validatePassword, 1);
+        this.addInputValidator(element.input.id, validatePassword, 1, 1);
       }
 
-      if (
-        element.input.id === "registrationForm__input_first_name" ||
-        element.input.id === "registrationForm__input_second_name" ||
-        element.input.id === "registrationForm__input_city"
-      ) {
-        this.addInputValidator(element.input.id, validateName, 2);
+      if (element.input.id === "registrationForm__input_first_name") {
+        this.addInputValidator(element.input.id, validateName, 2, 2);
+      }
+
+      if (element.input.id === "registrationForm__input_second_name") {
+        this.addInputValidator(element.input.id, validateName, 2, 3);
+      }
+
+      if (element.input.id === "registrationForm__input_city") {
+        this.addInputValidator(element.input.id, validateName, 2, 4);
       }
 
       if (element.input.id === "registrationForm__input_street") {
-        this.addInputValidator(element.input.id, validateStreet, 3);
+        this.addInputValidator(element.input.id, validateStreet, 3, 5);
       }
 
       if (element.input.id === "registrationForm__input_postcode") {
-        this.addInputValidator(element.input.id, validatePostcode, 4);
+        this.addInputValidator(element.input.id, validatePostcode, 4, 6);
       }
 
-      if (element.input.attributes.type === 'date') {
-        this.addInputValidator(element.input.id, validateAge, 5);
+      if (element.input.attributes.type === "date") {
+        this.addInputValidator(element.input.id, validateAge, 5, 7);
         this.createSelectCountry();
       }
     });
+
+    if (this.form === "reg") {
+      this.createButton("Register");
+      this.createLinc("Already have an account?", "Sing in");
+    }
   }
 
-  private addInputValidator(id: string, validationFunction: (value: string) => boolean, errorMessageIndex: number) {
+  private addInputValidator(
+    id: string,
+    validationFunction: (value: string) => boolean,
+    errorMessageIndex: number,
+    validationIndex: number,
+  ) {
     const input = document.getElementById(id) as HTMLInputElement;
-    const errorElement = document.getElementById(`err__${id}`) as HTMLDivElement;
-  
+    const errorElement = document.getElementById(
+      `err__${id}`,
+    ) as HTMLDivElement;
+
     input.addEventListener("input", () => {
       if (!validationFunction(input.value)) {
         input.classList.add("active");
         errorElement.textContent = errorMessages[errorMessageIndex];
+        this.arrValidReg[validationIndex] = false;
       } else {
         input.classList.remove("active");
         errorElement.textContent = "";
+        this.arrValidReg[validationIndex] = true;
       }
+      this.checkButton(this.arrValidReg);
     });
   }
 
   private createSelectCountry() {
-    const container = new TagCreator('div', 'registrationForm__container', 'registrationForm__container_country', 'registrationForm');
+    const container = new TagCreator(
+      "div",
+      "registrationForm__container",
+      "registrationForm__container_country",
+      "registrationForm",
+    );
     container.createAndAppend();
 
-    const containerLabel = new TagCreator('div', "registrationForm__label", "registrationForm__label_country", 'registrationForm__container_country', 'Country');
+    const containerLabel = new TagCreator(
+      "div",
+      "registrationForm__label",
+      "registrationForm__label_country",
+      "registrationForm__container_country",
+      "Country",
+    );
     containerLabel.createAndAppend();
-    
-    const select = new TagCreator('select', 'selectCountry', 'selectCountry', 'registrationForm__container_country');
+
+    const select = new TagCreator(
+      "select",
+      "selectCountry",
+      "selectCountry",
+      "registrationForm__container_country",
+    );
     select.createAndAppend();
 
-    const option1 = new TagCreator('option', 'option', 'option1', 'selectCountry', 'Russia');
+    const option1 = new TagCreator(
+      "option",
+      "option",
+      "option1",
+      "selectCountry",
+      "Russia",
+    );
     option1.createAndAppend();
-    option1.addAttribute('value', 'Russia');
+    option1.addAttribute("value", "Russia");
 
-    const option2 = new TagCreator('option', 'option', 'option2', 'selectCountry', 'Belarus');
+    const option2 = new TagCreator(
+      "option",
+      "option",
+      "option2",
+      "selectCountry",
+      "Belarus",
+    );
     option2.createAndAppend();
-    option2.addAttribute('value', 'Belarus');
+    option2.addAttribute("value", "Belarus");
+  }
+
+  private createButton(textContent: string) {
+    const button = new TagCreator(
+      "button",
+      "registrationForm__button disabled",
+      "registrationForm__button",
+      "registrationForm",
+      textContent,
+    );
+    button.createAndAppend();
+    button.addAttribute("disabled", "disabled");
+  }
+
+  private checkButton(arr: boolean[]) {
+    const button = document.getElementById(
+      "registrationForm__button",
+    ) as HTMLButtonElement;
+    let sum = 0;
+    arr.forEach((element, index) => {
+      if (element) {
+        sum += 1;
+      }
+      if (sum === 8) {
+        button.removeAttribute("disabled");
+        button.classList.remove("disabled");
+      } else {
+        button.setAttribute("disabled", "disabled");
+        button.classList.add("disabled");
+      }
+    });
+  }
+
+  private createLinc(textContentTitle: string, textContentLinc: string) {
+    const lincContainer = new TagCreator(
+      "div",
+      "registrationForm__container_linc",
+      "registrationForm__container_linc",
+      "registrationForm",
+    );
+    lincContainer.createAndAppend();
+
+    const lincTitle = new TagCreator(
+      "div",
+      "registrationForm__title_linc",
+      "registrationForm__title_linc",
+      "registrationForm__container_linc",
+      textContentTitle,
+    );
+    lincTitle.createAndAppend();
+
+    const linc = new TagCreator(
+      "a",
+      "registrationForm__linc",
+      "registrationForm__linc",
+      "registrationForm__container_linc",
+      textContentLinc,
+    );
+    linc.createAndAppend();
+    linc.addAttribute("href", "#");
   }
 }

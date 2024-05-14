@@ -8,8 +8,8 @@ export default function validateName(name: string) {
     num = true;
   }
   if (length && num) {
-    return true
+    return true;
   } else {
-    return false
+    return false;
   }
 }

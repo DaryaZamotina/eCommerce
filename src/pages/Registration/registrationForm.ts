@@ -4,6 +4,7 @@ import InputsForFormRegistration from '../../Helpers/Inputs/InputsForFormRegistr
 import '../../../public/assets/css/body.css';
 import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
+import "../../../public/assets/css/registrationForm.css";
 
 export default class RegistrationForm {
   constructor() {}
@@ -16,6 +17,15 @@ export default class RegistrationForm {
       'body',
     );
     form.createAndAppend();
+
+    const formTitle = new TagCreator(
+      "div",
+      "formTitle",
+      "formTitle",
+      "registrationForm",
+      "Registration",
+    );
+    formTitle.createAndAppend();
 
     const inputs = new CreateInputForForm(InputsForFormRegistration);
     inputs.createAndAppend();

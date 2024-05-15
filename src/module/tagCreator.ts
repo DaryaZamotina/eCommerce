@@ -15,7 +15,7 @@ export default class TagCreator {
 
   public createAndAppend(child?: boolean) {
     const tag = document.createElement(`${this.tag}`);
-    tag.textContent = this.text || "";
+    tag.textContent = this.text || '';
     tag.className = this.className;
     tag.id = this.id;
     if (child) {

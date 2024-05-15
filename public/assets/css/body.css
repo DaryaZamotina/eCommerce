@@ -9,3 +9,7 @@ body {
     flex-direction: column;
     position: relative;
 }
+
+.appContainer {
+    max-width: 1920px;
+}

@@ -1,5 +1,5 @@
 import TagCreator from '../../module/tagCreator';
-import RegistrationForm from '../../pages/Registration/registrationForm';
+import '../../../public/assets/css/header.css';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -59,9 +59,6 @@ export default class HeaderView {
       'JOY.M',
     );
     this.nameOfShop = tagCreator.createAndReturn();
-    // I don't understand how to setup css
-    this.nameOfShop.style.display = 'inline-block';
-    // this.nameOfShop.style.marginRight = "20%";
     return this.nameOfShop;
   }
 
@@ -122,15 +119,6 @@ export default class HeaderView {
       'LOGOUT',
     );
     this.logoutButton = tagCreator.createAndReturn();
-
-    //---------Из добавленного нового для роутинга добавлено вот это в файле router.ts на главную страницу
-
-    this.logoutButton.addEventListener('click', function () {
-      const registrationFormDiv = new RegistrationForm();
-      registrationFormDiv.createRegistrationForm();
-      history.pushState({ page: 2 }, 'title 2', '?new_registration');
-    });
-    //---------------------------------------------
     return this.logoutButton;
   }
 

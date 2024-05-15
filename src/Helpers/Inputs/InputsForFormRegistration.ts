@@ -24,8 +24,9 @@ export default [
       id_parent: 'registrationForm__container_email',
       text_content: '',
       attributes: {
-        type: 'email',
-        placeholder: 'example@email.com',
+        type: "email",
+        placeholder: "example@email.com",
+        autocomplete: "disabled",
       },
     },
   },
@@ -56,6 +57,7 @@ export default [
       attributes: {
         type: "password",
         placeholder: "Password",
+        autocomplete: "disabled",
       },
     },
   },
@@ -84,8 +86,9 @@ export default [
       id_parent: 'registrationForm__container_first_name',
       text_content: '',
       attributes: {
-        type: 'text',
-        placeholder: 'First name',
+        type: "text",
+        placeholder: "First name",
+        autocomplete: "disabled",
       },
     },
   },
@@ -114,8 +117,9 @@ export default [
       id_parent: 'registrationForm__container_second_name',
       text_content: '',
       attributes: {
-        type: 'text',
-        placeholder: 'Second name',
+        type: "text",
+        placeholder: "Second name",
+        autocomplete: "disabled",
       },
     },
   },
@@ -145,7 +149,7 @@ export default [
       text_content: '',
       attributes: {
         type: "date",
-        max: "2012-12-21",
+        autocomplete: "disabled",
       },
     },
   },
@@ -176,6 +180,7 @@ export default [
       attributes: {
         type: "text",
         placeholder: "City",
+        autocomplete: "disabled",
       },
     },
   },
@@ -206,6 +211,7 @@ export default [
       attributes: {
         type: "text",
         placeholder: "Street",
+        autocomplete: "disabled",
       },
     },
   },
@@ -236,6 +242,7 @@ export default [
       attributes: {
         type: "text",
         placeholder: "Postcode",
+        autocomplete: "disabled",
       },
     },
   },

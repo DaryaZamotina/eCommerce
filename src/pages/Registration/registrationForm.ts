@@ -5,6 +5,7 @@ import '../../../public/assets/css/body.css';
 import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import "../../../public/assets/css/registrationForm.css";
+import "../../../public/assets/css/button.css";
 
 export default class RegistrationForm {
   constructor() {}
@@ -27,7 +28,7 @@ export default class RegistrationForm {
     );
     formTitle.createAndAppend();
 
-    const inputs = new CreateInputForForm(InputsForFormRegistration);
+    const inputs = new CreateInputForForm(InputsForFormRegistration, "reg");
     inputs.createAndAppend();
 
     const buttonToSendRegDataToServer: HTMLButtonElement =

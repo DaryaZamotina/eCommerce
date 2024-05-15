@@ -4,7 +4,8 @@ export default function validateAge(ade: string): boolean {
   const age = currentDate.getFullYear() - birthdate.getFullYear();
   if (
     currentDate.getMonth() < birthdate.getMonth() ||
-    (currentDate.getMonth() === birthdate.getMonth() && currentDate.getDate() < birthdate.getDate())
+    (currentDate.getMonth() === birthdate.getMonth() &&
+      currentDate.getDate() < birthdate.getDate())
   ) {
     return age - 1 >= 12;
   } else {

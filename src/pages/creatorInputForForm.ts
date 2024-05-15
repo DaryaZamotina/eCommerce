@@ -171,20 +171,20 @@ export default class CreateInputForForm {
       "option",
       "option1",
       "selectCountry",
-      "Russia",
+      "US",
     );
     option1.createAndAppend();
-    option1.addAttribute("value", "Russia");
+    option1.addAttribute("value", "US");
 
     const option2 = new TagCreator(
       "option",
       "option",
       "option2",
       "selectCountry",
-      "Belarus",
+      "UK",
     );
     option2.createAndAppend();
-    option2.addAttribute("value", "Belarus");
+    option2.addAttribute("value", "UK");
   }
 
   private createButton(textContent: string) {

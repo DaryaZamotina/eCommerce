@@ -31,15 +31,7 @@ export default class RegistrationForm {
     const inputs = new CreateInputForForm(InputsForFormRegistration, "reg");
     inputs.createAndAppend();
 
-    const buttonToSendRegDataToServer: HTMLButtonElement =
-      document.createElement('button');
-    buttonToSendRegDataToServer.className = 'buttonToSendRegDataToServer';
-    buttonToSendRegDataToServer.id = 'buttonToSendRegDataToServer';
-    buttonToSendRegDataToServer.textContent = 'Send Data to Ecomm';
-    buttonToSendRegDataToServer.type = 'button';
-
-    const body = document.getElementById('body');
-    body.append(buttonToSendRegDataToServer);
+    const buttonToSendRegDataToServer = document.getElementById('registrationForm__button') as HTMLButtonElement;
 
     buttonToSendRegDataToServer.addEventListener('click', function () {
       const tokenForAuth = localStorage.getItem('access_token_auth');

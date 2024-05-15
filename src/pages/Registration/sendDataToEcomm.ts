@@ -1,16 +1,13 @@
 import '../../../public/assets/css/body.css';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
+import getDataUser from './getDataUser';
 
 export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
     'https://api.us-east-2.aws.commercetools.com/jffecommerce/customers';
 
-  let formDataOfNewUser = JSON.stringify({
-    email: 'test12@test.com',
-    firstName: 'test12',
-    lastName: 'test12',
-    password: 'test12',
-  });
+  console.log(getDataUser());
+  const formDataOfNewUser = JSON.stringify(getDataUser());
 
   async function sendNewUserInfo(url: string) {
     const response = await fetch(url, {
@@ -29,7 +26,7 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
     .then((output) => {
       localStorage.setItem('newUser', output);
       let outputObj = JSON.parse(output);
-      if (outputObj.statusCode == 400) {
+      if (outputObj.statusCode == 400 || 200) {
         console.log('message about error: ' + outputObj.message);
       }
       return output;

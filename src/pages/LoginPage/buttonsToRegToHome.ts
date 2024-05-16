@@ -12,7 +12,7 @@ export function moveToRegistration() {
     const buttonsWrapper = document.getElementById('buttonsWrapper');
     buttonsWrapper.remove();
 
-    const registrationFormDiv = new RegistrationForm();
+    const registrationFormDiv = new RegistrationForm('body', 'reg');
     registrationFormDiv.createRegistrationForm();
     receiveAccessToken();
   });

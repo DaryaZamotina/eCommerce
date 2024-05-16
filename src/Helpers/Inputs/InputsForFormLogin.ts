@@ -2,14 +2,14 @@ export default [
   {
     container: {
       tag: 'div',
-      class: 'loginForm__container_email',
+      class: 'loginForm__container',
       id: 'loginForm__container_email',
       id_parent: 'loginForm',
       text_content: '',
     },
     label: {
       tag: 'label',
-      class: 'loginForm__label_email',
+      class: 'loginForm__label',
       id: 'loginForm__label_email',
       id_parent: 'loginForm__container_email',
       text_content: 'Mail',
@@ -32,14 +32,14 @@ export default [
   {
     container: {
       tag: 'div',
-      class: 'loginForm__container_password',
+      class: 'loginForm__container',
       id: 'loginForm__container_password',
       id_parent: 'loginForm',
       text_content: '',
     },
     label: {
       tag: 'label',
-      class: 'loginForm__label_password',
+      class: 'loginForm__label',
       id: 'loginForm__label_password',
       id_parent: 'loginForm__container_password',
       text_content: 'Password',

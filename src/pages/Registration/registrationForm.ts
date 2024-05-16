@@ -8,7 +8,13 @@ import "../../../public/assets/css/registrationForm.css";
 import "../../../public/assets/css/button.css";
 
 export default class RegistrationForm {
-  constructor() {}
+  private id: string;
+  private form: string;
+
+  constructor(id: string, form: string) {
+    this.form = form;
+    this.id = id;
+  }
 
   public createRegistrationForm() {
     const form = new TagCreator(
@@ -28,7 +34,7 @@ export default class RegistrationForm {
     );
     formTitle.createAndAppend();
 
-    const inputs = new CreateInputForForm(InputsForFormRegistration, "reg");
+    const inputs = new CreateInputForForm(InputsForFormRegistration, this.form);
     inputs.createAndAppend();
 
     const buttonToSendRegDataToServer = document.getElementById('registrationForm__button') as HTMLButtonElement;

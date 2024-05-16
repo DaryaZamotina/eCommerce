@@ -26,10 +26,10 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
     .then((output) => {
       localStorage.setItem('newUser', output);
       let outputObj = JSON.parse(output);
-      if (outputObj.statusCode == 400 || 200) {
-        console.log('message about error: ' + outputObj.message);
+      if (outputObj.statusCode == 400) {
+        console.log('message about error: ' + outputObj.message + 1);
       }
       return output;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err + 2));
 }

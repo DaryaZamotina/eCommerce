@@ -21,7 +21,7 @@ export default class RegistrationForm {
       'from',
       'registrationForm',
       'registrationForm',
-      'body',
+      this.id,
     );
     form.createAndAppend();
 

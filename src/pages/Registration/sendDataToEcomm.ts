@@ -31,5 +31,5 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       }
       return output;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => console.log(err + 2));
 }

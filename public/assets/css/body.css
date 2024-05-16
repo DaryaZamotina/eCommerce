@@ -12,6 +12,7 @@ body {
     font-optical-sizing: auto;
     font-style: normal;
 }
+
 input,
 select,
 input::placeholder,
@@ -26,4 +27,8 @@ button  {
     src: url("../fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype");
     font-style: normal;
     font-weight: normal;
+}
+
+.appContainer {
+    max-width: 1920px;
 }

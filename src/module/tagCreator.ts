@@ -34,4 +34,14 @@ export default class TagCreator {
   public removeElement() {
     document.getElementById(`${this.id}`)!.remove();
   }
+
+  // был нужен такой метод, так как getElementById вызывал ошибки, вместо элемента был null
+  public createAndReturn() {
+    const element = document.createElement(`${this.tag}`);
+    element.textContent = this.text || '';
+    element.className = this.className;
+    element.id = this.id;
+    console.log(element);
+    return element;
+  }
 }

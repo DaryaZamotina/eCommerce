@@ -9,8 +9,10 @@ import "../../../public/assets/css/button.css";
 
 export default class RegistrationForm {
   private id: string;
+  private form: string;
 
-  constructor(id: string) {
+  constructor(id: string, form: string) {
+    this.form = form;
     this.id = id;
   }
 
@@ -32,7 +34,7 @@ export default class RegistrationForm {
     );
     formTitle.createAndAppend();
 
-    const inputs = new CreateInputForForm(InputsForFormRegistration, "reg");
+    const inputs = new CreateInputForForm(InputsForFormRegistration, this.form);
     inputs.createAndAppend();
 
     const buttonToSendRegDataToServer = document.getElementById('registrationForm__button') as HTMLButtonElement;
@@ -43,3 +45,4 @@ export default class RegistrationForm {
     });
   }
 }
+

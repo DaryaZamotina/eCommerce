@@ -10,6 +10,9 @@ export default class LoginForm {
     const loginForm = new TagCreator('form', 'loginForm', 'loginForm', 'body');
     loginForm.createAndAppend();
 
+    const loginFormTitle = new TagCreator('div', 'loginFormTitle', 'loginFormTitle', 'loginForm', 'Log In');
+    loginFormTitle.createAndAppend();
+
     const buttonsWrapper = new TagCreator(
       'form',
       'buttonsWrapper',
@@ -18,7 +21,7 @@ export default class LoginForm {
     );
     buttonsWrapper.createAndAppend();
 
-    const inputs = new CreateInputForForm(InputsForFormLogin);
+    const inputs = new CreateInputForForm(InputsForFormLogin, 'log');
     inputs.createAndAppend();
 
     /*const buttonLogin = new TagCreator(
@@ -30,13 +33,13 @@ export default class LoginForm {
       )
       buttonLogin.createAndAppend(); */
 
-    const buttonLogin: HTMLButtonElement = document.createElement('button');
-    buttonLogin.className = 'buttonLogin';
-    buttonLogin.id = 'buttonLogin';
-    buttonLogin.textContent = 'Login';
+    // const buttonLogin: HTMLButtonElement = document.createElement('button');
+    // buttonLogin.className = 'buttonLogin';
+    // buttonLogin.id = 'buttonLogin';
+    // buttonLogin.textContent = 'Login';
 
-    const body = document.getElementById('body');
-    body.append(buttonLogin);
+    // const body = document.getElementById('body');
+    // body.append(buttonLogin);
 
     const buttonRegistration = new TagCreator(
       'button',

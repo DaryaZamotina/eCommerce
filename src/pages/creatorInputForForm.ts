@@ -12,8 +12,9 @@ export default class CreateInputForForm {
   private arrImput: InputsType[];
   private form: string;
   private arrValidReg: boolean[];
+  private arrValidLog: boolean[];
 
-  constructor(arrImput: InputsType[], form?: string) {
+  constructor(arrImput: InputsType[], form: string) {
     this.arrImput = arrImput;
     this.form = form;
     this.arrValidReg = [
@@ -25,8 +26,11 @@ export default class CreateInputForForm {
       false,
       false,
       false,
-      false,
     ];
+    this.arrValidLog = [
+      false,
+      false,
+    ]
   }
 
   public createAndAppend() {
@@ -75,35 +79,45 @@ export default class CreateInputForForm {
       errorDiv.createAndAppend();
 
       if (element.input.attributes.type === "email") {
-        this.addInputValidator(element.input.id, validateEmail, 0, 0);
+        if (this.form === 'reg') {
+          this.addInputValidator(element.input.id, validateEmail, 0, 0, this.arrValidReg);
+        }
+        if (this.form === 'log') {
+          this.addInputValidator(element.input.id, validateEmail, 0, 0, this.arrValidLog);
+        }
       }
-
+      
       if (element.input.attributes.type === "password") {
-        this.addInputValidator(element.input.id, validatePassword, 1, 1);
+        if (this.form === 'reg') {
+          this.addInputValidator(element.input.id, validatePassword, 1, 1, this.arrValidReg);
+        }
+        if (this.form === 'log') {
+          this.addInputValidator(element.input.id, validatePassword, 1, 1, this.arrValidLog);
+        }
       }
 
       if (element.input.id === "registrationForm__input_first_name") {
-        this.addInputValidator(element.input.id, validateName, 2, 2);
+        this.addInputValidator(element.input.id, validateName, 2, 2, this.arrValidReg);
       }
 
       if (element.input.id === "registrationForm__input_second_name") {
-        this.addInputValidator(element.input.id, validateName, 2, 3);
+        this.addInputValidator(element.input.id, validateName, 2, 3, this.arrValidReg);
       }
 
       if (element.input.id === "registrationForm__input_city") {
-        this.addInputValidator(element.input.id, validateName, 2, 4);
+        this.addInputValidator(element.input.id, validateName, 2, 4, this.arrValidReg);
       }
 
       if (element.input.id === "registrationForm__input_street") {
-        this.addInputValidator(element.input.id, validateStreet, 3, 5);
+        this.addInputValidator(element.input.id, validateStreet, 3, 5, this.arrValidReg);
       }
 
       if (element.input.id === "registrationForm__input_postcode") {
-        this.addInputValidator(element.input.id, validatePostcode, 4, 6);
+        this.addInputValidator(element.input.id, validatePostcode, 4, 6, this.arrValidReg);
       }
 
       if (element.input.attributes.type === "date") {
-        this.addInputValidator(element.input.id, validateAge, 5, 7);
+        this.addInputValidator(element.input.id, validateAge, 5, 7, this.arrValidReg);
         this.createSelectCountry();
       }
     });
@@ -112,14 +126,19 @@ export default class CreateInputForForm {
       this.createButton("Register");
       this.createLinc("Already have an account?", "Sing in");
     }
-  }
 
+    if (this.form === "log") {
+      this.createButton("Log In");
+      this.createLinc("Don't have an account?", "Register");
+    }
+  }
 
   private addInputValidator(
     id: string,
     validationFunction: (value: string) => boolean,
     errorMessageIndex: number,
     validationIndex: number,
+    arr: boolean[]
   ) {
     const input = document.getElementById(id) as HTMLInputElement;
     const errorElement = document.getElementById(
@@ -130,13 +149,18 @@ export default class CreateInputForForm {
       if (!validationFunction(input.value)) {
         input.classList.add("active");
         errorElement.textContent = errorMessages[errorMessageIndex];
-        this.arrValidReg[validationIndex] = false;
+        arr[validationIndex] = false;
       } else {
         input.classList.remove("active");
         errorElement.textContent = "";
-        this.arrValidReg[validationIndex] = true;
+        arr[validationIndex] = true;
       }
-      this.checkButton(this.arrValidReg);
+      if (this.form === 'reg') {
+        this.checkButton(arr);
+      }
+      if (this.form === 'log') {
+        this.checkButton(arr);
+      }
     });
   }
 
@@ -188,27 +212,50 @@ export default class CreateInputForForm {
   }
 
   private createButton(textContent: string) {
-    const button = new TagCreator(
-      "button",
-      "registrationForm__button disabled",
-      "registrationForm__button",
-      "registrationForm",
-      textContent,
-    );
-    button.createAndAppend();
-    button.addAttribute("disabled", "disabled");
+    if (this.form === 'reg') {
+      const button = new TagCreator(
+        "button",
+        "registrationForm__button disabled",
+        "registrationForm__button",
+        "registrationForm",
+        textContent,
+      )
+      button.createAndAppend();
+      button.addAttribute("disabled", "disabled");
+    }
+    if (this.form === 'log') {
+      const button = new TagCreator(
+        "button",
+        "buttonLogin disabled",
+        "buttonLogin",
+        "loginForm",
+        textContent,
+      )
+      button.createAndAppend();
+      button.addAttribute("disabled", "disabled");
+    }
   }
 
   private checkButton(arr: boolean[]) {
-    const button = document.getElementById(
-      "registrationForm__button",
-    ) as HTMLButtonElement;
+    let button: HTMLButtonElement;
+    if (this.form === 'reg') {
+      button = document.getElementById(
+        "registrationForm__button",
+      ) as HTMLButtonElement;
+    }
+    if (this.form === 'log') {
+      button = document.getElementById(
+        "buttonLogin",
+      ) as HTMLButtonElement;
+      console.log(9);
+    }
     let sum = 0;
-    arr.forEach((element, index) => {
+    arr.forEach((element) => {
       if (element) {
         sum += 1;
       }
-      if (sum === 8) {
+      if (sum === arr.length) {
+        console.log(1);
         button.removeAttribute("disabled");
         button.classList.remove("disabled");
       } else {
@@ -219,28 +266,36 @@ export default class CreateInputForForm {
   }
 
   private createLinc(textContentTitle: string, textContentLinc: string) {
+    let nameForm: string;
+    if (this.form === 'reg') {
+      nameForm = 'registrationForm';
+    }
+    if (this.form === 'log') {
+      nameForm = 'loginForm'
+    }
+    
     const lincContainer = new TagCreator(
       "div",
-      "registrationForm__container_linc",
-      "registrationForm__container_linc",
-      "registrationForm",
+      `${nameForm}__container_linc`,
+      `${nameForm}__container_linc`,
+      nameForm,
     );
     lincContainer.createAndAppend();
-
+    
     const lincTitle = new TagCreator(
       "div",
-      "registrationForm__title_linc",
-      "registrationForm__title_linc",
-      "registrationForm__container_linc",
+      `${nameForm}__title_linc`,
+      `${nameForm}__title_linc`,
+      `${nameForm}__container_linc`,
       textContentTitle,
     );
     lincTitle.createAndAppend();
 
     const linc = new TagCreator(
       "a",
-      "registrationForm__linc",
-      "registrationForm__linc",
-      "registrationForm__container_linc",
+      `${nameForm}__linc`,
+      `${nameForm}__linc`,
+      `${nameForm}__container_linc`,
       textContentLinc,
     );
     linc.createAndAppend();

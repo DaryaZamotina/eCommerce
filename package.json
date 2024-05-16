@@ -17,8 +17,8 @@
     "lint": "eslint ./",
     "prepare": "husky",
     "ci:format": "prettier --check src/**/*.{ts,tsx,scss,css,json}",
-    "format": "prettier --write 'src/**/*.{ts,tsx,scss,css,json}'",
     "prettier-format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,json}' --config ./.prettierrc",
+    "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,json}'",
     "build": "webpack --config webpack.config.js",
     "test": "vitest"
   }

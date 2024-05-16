@@ -8,14 +8,18 @@ import "../../../public/assets/css/registrationForm.css";
 import "../../../public/assets/css/button.css";
 
 export default class RegistrationForm {
-  constructor() {}
+  private id: string;
+
+  constructor(id: string) {
+    this.id = id;
+  }
 
   public createRegistrationForm() {
     const form = new TagCreator(
       'from',
       'registrationForm',
       'registrationForm',
-      'body',
+      this.id,
     );
     form.createAndAppend();
 

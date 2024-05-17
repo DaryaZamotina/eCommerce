@@ -36,10 +36,11 @@ body.append(appContainer.getAppContainer());
 //   pageContainer.getPageContainer().innerHTML = '';
 // }
 
-// if (localStorage.getItem('isLogined') === null) {
-//   const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
-//   registrationFormDiv.createRegistrationForm();
-// }
+/*
+if (localStorage.getItem('isLogined') === null) {
+  const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
+  registrationFormDiv.createRegistrationForm();
+} 
 
 if (localStorage.getItem('isLogined') === null) {
   const loginFormDiv = new LoginForm('pageContainer', 'log');
@@ -47,7 +48,7 @@ if (localStorage.getItem('isLogined') === null) {
   sendLoginPasswordToLocalStorage();
   moveToRegistration();
   moveToMainPage();
-}
+} */
 
 if (
   localStorage.getItem('access_token_for_user') &&

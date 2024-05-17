@@ -1,5 +1,11 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/header.css';
+import LoginForm from '../../pages/LoginPage/loginForm';
+import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
+import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
+import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
+import RegistrationForm from '../../pages/Registration/registrationForm';
+import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -75,6 +81,16 @@ export default class HeaderView {
     );
     this.signUpLink = tagCreator.createAndReturn();
     this.signUpLink.setAttribute('href', '#');
+
+    this.signUpLink.addEventListener('click', function () {
+      const pageContainer = document.getElementById('pageContainer');
+      pageContainer.innerHTML = '';
+
+      const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
+      registrationFormDiv.createRegistrationForm();
+      receiveAccessToken();
+    });
+
     return this.signUpLink;
   }
 
@@ -88,6 +104,20 @@ export default class HeaderView {
     );
     this.signInLink = tagCreator.createAndReturn();
     this.signInLink.setAttribute('href', '#');
+
+    this.signInLink.addEventListener('click', function () {
+      const pageContainer = document.getElementById('pageContainer');
+      pageContainer.innerHTML = '';
+
+      if (!localStorage.getItem('access_token_for_user')) {
+        const loginFormDiv = new LoginForm('pageContainer', 'log');
+        loginFormDiv.createLoginForm();
+        sendLoginPasswordToLocalStorage();
+        moveToRegistration();
+        moveToMainPage();
+      }
+    });
+
     return this.signInLink;
   }
 
@@ -127,9 +157,10 @@ export default class HeaderView {
     );
     this.logoutLink = tagCreator.createAndReturn();
     this.logoutLink.setAttribute('href', '#');
-    this.logoutLink.addEventListener("click", function() {
+
+    this.logoutLink.addEventListener('click', function () {
       localStorage.clear();
-    })
+    });
 
     return this.logoutLink;
   }

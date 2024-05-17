@@ -3,6 +3,7 @@ import { testAPIclient } from './loginGetToken';
 import { directMoveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import '../../../public/assets/css/body.css';
+import HomePage from '../../pages/Home/homePage';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -55,10 +56,11 @@ export function sendDataToEComm() {
         const loginFormDiv = document.getElementById('loginForm');
         loginFormDiv.remove();
 
-        const buttonsWrapper = document.getElementById('buttonsWrapper');
-        buttonsWrapper.remove();
+        const pageContainer = document.getElementById("pageContainer");
+        const homePage = new HomePage();
+        pageContainer.append(homePage.getHomePage());
 
-        directMoveToMainPage();
+       // directMoveToMainPage();
 
         receiveAccessToken();
       }

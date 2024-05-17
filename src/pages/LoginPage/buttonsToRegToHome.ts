@@ -9,10 +9,7 @@ export function moveToRegistration() {
     const loginFormDiv = document.getElementById('loginForm');
     loginFormDiv.remove();
 
-    const buttonsWrapper = document.getElementById('buttonsWrapper');
-    buttonsWrapper.remove();
-
-    const registrationFormDiv = new RegistrationForm('body', 'reg');
+    const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
     registrationFormDiv.createRegistrationForm();
     receiveAccessToken();
   });
@@ -22,12 +19,16 @@ export function moveToMainPage() {
   const buttonToMainPage = document.getElementById('buttonToMainPage');
 
   buttonToMainPage.addEventListener('click', function () {
-    directMoveToMainPage();
+    const loginFormDiv = document.getElementById('loginForm');
+    loginFormDiv.remove();
   });
 }
 
 export function directMoveToMainPage() {
-  const body = document.getElementById('body');
+  const loginFormDiv = document.getElementById('loginForm');
+  loginFormDiv.remove();
+  
+  /*const body = document.getElementById('body');
   body.innerHTML = '';
-  body.textContent = 'MAIN PAGE';
+  body.textContent = 'MAIN PAGE'; */
 }

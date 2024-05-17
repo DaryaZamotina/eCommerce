@@ -6,6 +6,7 @@ import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import '../../../public/assets/css/registrationForm.css';
 import '../../../public/assets/css/button.css';
+import { puButtonSendDataToEcomm } from './buttonSendData';
 
 export default class RegistrationForm {
   private id: string;
@@ -36,7 +37,8 @@ export default class RegistrationForm {
 
     const inputs = new CreateInputForForm(InputsForFormRegistration, this.form);
     inputs.createAndAppend();
-
+    puButtonSendDataToEcomm();
+/*
     const buttonToSendRegDataToServer = document.getElementById(
       'registrationForm__button',
     ) as HTMLButtonElement;
@@ -44,6 +46,6 @@ export default class RegistrationForm {
     buttonToSendRegDataToServer.addEventListener('click', function () {
       const tokenForAuth = localStorage.getItem('access_token_auth');
       forwardRegDatatoServer(tokenForAuth);
-    });
+    });*/
   }
 }

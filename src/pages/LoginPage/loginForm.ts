@@ -2,12 +2,19 @@ import TagCreator from '../../module/tagCreator';
 import CreateInputForForm from '../creatorInputForForm';
 import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
+import '../../../public/assets/css/button.css';
 
 export default class LoginForm {
-  constructor() {}
+  private id: string;
+  private form: string;
+
+  constructor(id: string, form: string) {
+    this.form = form;
+    this.id = id;
+  }
 
   public createLoginForm() {
-    const loginForm = new TagCreator('form', 'loginForm', 'loginForm', 'body');
+    const loginForm = new TagCreator('form', 'loginForm', 'loginForm', this.id);
     loginForm.createAndAppend();
 
     const loginFormTitle = new TagCreator(
@@ -23,7 +30,7 @@ export default class LoginForm {
       'form',
       'buttonsWrapper',
       'buttonsWrapper',
-      'body',
+      'loginForm',
     );
     buttonsWrapper.createAndAppend();
 

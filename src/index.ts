@@ -33,13 +33,14 @@ pageContainer.getPageContainer().append(homePage.getHomePage());
 // если вписать nonFoundPage сюда, то блок отобразится вслед за homePage, но если вписать эту строку в конце файла, то nonFoundPage НЕ отобразится после формы регистрации.
 pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());
 
+/*
 if (localStorage.getItem('isLogined') === null) {
   const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
   registrationFormDiv.createRegistrationForm();
-}
+} */
 
 if (localStorage.getItem('isLogined') === null) {
-  const loginFormDiv = new LoginForm();
+  const loginFormDiv = new LoginForm('pageContainer', 'form');
   loginFormDiv.createLoginForm();
   sendLoginPasswordToLocalStorage();
   moveToRegistration();

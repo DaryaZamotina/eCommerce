@@ -5,8 +5,7 @@ import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLog
 import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
 import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import RegistrationForm from '../../pages/Registration/registrationForm';
-import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken'; 
-
+import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -83,9 +82,9 @@ export default class HeaderView {
     this.signUpLink = tagCreator.createAndReturn();
 
     this.signUpLink.addEventListener('click', function () {
-      const pageContainer = document.getElementById("pageContainer");
-      pageContainer.innerHTML = "";
-  
+      const pageContainer = document.getElementById('pageContainer');
+      pageContainer.innerHTML = '';
+
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
       receiveAccessToken();
@@ -105,9 +104,8 @@ export default class HeaderView {
     this.signInLink = tagCreator.createAndReturn();
 
     this.signInLink.addEventListener('click', function () {
-      
-      const pageContainer = document.getElementById("pageContainer");
-      pageContainer.innerHTML = "";
+      const pageContainer = document.getElementById('pageContainer');
+      pageContainer.innerHTML = '';
 
       if (!localStorage.getItem('access_token_for_user')) {
         const loginFormDiv = new LoginForm('pageContainer', 'log');

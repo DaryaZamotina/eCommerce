@@ -37,7 +37,7 @@ export default class LoginForm {
     const inputs = new CreateInputForForm(InputsForFormLogin, 'log');
     inputs.createAndAppend();
 
-    const buttonRegistration = new TagCreator(
+    /*const buttonRegistration = new TagCreator(
       'button',
       'buttonRegistration',
       'buttonRegistration',
@@ -53,7 +53,7 @@ export default class LoginForm {
       'buttonsWrapper',
       'Home',
     );
-    buttonToMainPage.createAndAppend();
+    buttonToMainPage.createAndAppend(); */
 
     const messageAboutError = new TagCreator(
       'div',
@@ -61,7 +61,7 @@ export default class LoginForm {
       'messageAboutError',
       'buttonsWrapper',
       '',
-    );
+    ); 
     messageAboutError.createAndAppend();
   }
 }

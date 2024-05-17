@@ -122,6 +122,10 @@ export default class HeaderView {
       'logout',
     );
     this.logoutLink = tagCreator.createAndReturn();
+    this.logoutLink.addEventListener("click", function() {
+      localStorage.clear();
+    })
+
     return this.logoutLink;
   }
 

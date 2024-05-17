@@ -61,7 +61,7 @@ export default class LoginForm {
       'messageAboutError',
       'buttonsWrapper',
       '',
-    ); 
+    );
     messageAboutError.createAndAppend();
   }
 }

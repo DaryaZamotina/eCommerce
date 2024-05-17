@@ -56,11 +56,11 @@ export function sendDataToEComm() {
         const loginFormDiv = document.getElementById('loginForm');
         loginFormDiv.remove();
 
-        const pageContainer = document.getElementById("pageContainer");
+        const pageContainer = document.getElementById('pageContainer');
         const homePage = new HomePage();
         pageContainer.append(homePage.getHomePage());
 
-       // directMoveToMainPage();
+        // directMoveToMainPage();
 
         receiveAccessToken();
       }

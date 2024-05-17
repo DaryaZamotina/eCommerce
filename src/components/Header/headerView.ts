@@ -6,13 +6,16 @@ import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
 import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import RegistrationForm from '../../pages/Registration/registrationForm';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
+import HomePage from '../../pages/Home/homePage'; 
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
 
+  private signInLink: HTMLElement;
+
   private signUpLink: HTMLElement;
 
-  private signInLink: HTMLElement;
+  private homeLink: HTMLElement;
 
   private toCartLink: HTMLElement;
 
@@ -26,6 +29,7 @@ export default class HeaderView {
 
   constructor() {
     this.nameOfShop = this.createNameOfShop();
+    this.homeLink = this.createHomeLink();
     this.signUpLink = this.createSignUpLink();
     this.signInLink = this.createSignInLink();
     this.toCartLink = this.createToCartLink();
@@ -41,6 +45,10 @@ export default class HeaderView {
 
   public getNameOfShop(): HTMLElement {
     return this.nameOfShop;
+  }
+
+  public getHomeLink(): HTMLElement {
+    return this.homeLink;
   }
 
   public getSignUpLink(): HTMLElement {
@@ -69,6 +77,26 @@ export default class HeaderView {
     );
     this.nameOfShop = tagCreator.createAndReturn();
     return this.nameOfShop;
+  }
+
+  private createHomeLink() {
+    const tagCreator = new TagCreator(
+      'a',
+      'homelink',
+      'homeLink',
+      '',
+      'HOME',
+    );
+    this.homeLink = tagCreator.createAndReturn();
+
+    this.homeLink.addEventListener('click', function () {
+      const pageContainer = document.getElementById('pageContainer');
+      pageContainer.innerHTML = "";
+        const homePage = new HomePage();
+        pageContainer.append(homePage.getHomePage());
+    });
+
+    return this.homeLink;
   }
 
   private createSignUpLink() {
@@ -168,6 +196,7 @@ export default class HeaderView {
     this.headerWrapper = tagCreator.createAndReturn();
     this.headerWrapper.append(
       this.getNameOfShop(),
+      this.getHomeLink(),
       this.getSignUpLink(),
       this.getSignInLink(),
       this.createToCartLink(),

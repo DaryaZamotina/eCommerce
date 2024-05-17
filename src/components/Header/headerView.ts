@@ -6,7 +6,7 @@ import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
 import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import RegistrationForm from '../../pages/Registration/registrationForm';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
-import HomePage from '../../pages/Home/homePage'; 
+import HomePage from '../../pages/Home/homePage';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -80,20 +80,14 @@ export default class HeaderView {
   }
 
   private createHomeLink() {
-    const tagCreator = new TagCreator(
-      'a',
-      'homelink',
-      'homeLink',
-      '',
-      'HOME',
-    );
+    const tagCreator = new TagCreator('a', 'homelink', 'homeLink', '', 'HOME');
     this.homeLink = tagCreator.createAndReturn();
 
     this.homeLink.addEventListener('click', function () {
       const pageContainer = document.getElementById('pageContainer');
-      pageContainer.innerHTML = "";
-        const homePage = new HomePage();
-        pageContainer.append(homePage.getHomePage());
+      pageContainer.innerHTML = '';
+      const homePage = new HomePage();
+      pageContainer.append(homePage.getHomePage());
     });
 
     return this.homeLink;

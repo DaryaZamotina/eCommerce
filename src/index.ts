@@ -40,7 +40,7 @@ if (localStorage.getItem('isLogined') === null) {
 } */
 
 if (localStorage.getItem('isLogined') === null) {
-  const loginFormDiv = new LoginForm('pageContainer', 'form');
+  const loginFormDiv = new LoginForm('pageContainer', 'log');
   loginFormDiv.createLoginForm();
   sendLoginPasswordToLocalStorage();
   moveToRegistration();

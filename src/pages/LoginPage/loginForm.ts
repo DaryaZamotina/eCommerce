@@ -37,23 +37,6 @@ export default class LoginForm {
     const inputs = new CreateInputForForm(InputsForFormLogin, 'log');
     inputs.createAndAppend();
 
-    /*const buttonLogin = new TagCreator(
-        "button",
-        "buttonLogin",
-        "buttonLogin",
-        "buttonsWrapper",
-        "Login"
-      )
-      buttonLogin.createAndAppend(); */
-
-    // const buttonLogin: HTMLButtonElement = document.createElement('button');
-    // buttonLogin.className = 'buttonLogin';
-    // buttonLogin.id = 'buttonLogin';
-    // buttonLogin.textContent = 'Login';
-
-    // const body = document.getElementById('body');
-    // body.append(buttonLogin);
-
     const buttonRegistration = new TagCreator(
       'button',
       'buttonRegistration',

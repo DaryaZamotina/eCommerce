@@ -19,16 +19,11 @@ export function moveToMainPage() {
   const buttonToMainPage = document.getElementById('buttonToMainPage');
 
   buttonToMainPage.addEventListener('click', function () {
-    const loginFormDiv = document.getElementById('loginForm');
-    loginFormDiv.remove();
+    directMoveToMainPage()
   });
 }
 
 export function directMoveToMainPage() {
   const loginFormDiv = document.getElementById('loginForm');
   loginFormDiv.remove();
-  
-  /*const body = document.getElementById('body');
-  body.innerHTML = '';
-  body.textContent = 'MAIN PAGE'; */
 }

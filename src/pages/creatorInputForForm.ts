@@ -10,11 +10,11 @@ import errorMessages from "../Helpers/Inputs/errorMessages";
 
 export default class CreateInputForForm {
   private arrImput: InputsType[];
-  private form: string;
+  private form: 'log' | 'reg';
   private arrValidReg: boolean[];
   private arrValidLog: boolean[];
 
-  constructor(arrImput: InputsType[], form: string) {
+  constructor(arrImput: InputsType[], form: 'log' | 'reg') {
     this.arrImput = arrImput;
     this.form = form;
     this.arrValidReg = [
@@ -205,10 +205,20 @@ export default class CreateInputForForm {
       "option",
       "option2",
       "selectCountry",
-      "UK",
+      "Germany",
     );
     option2.createAndAppend();
-    option2.addAttribute("value", "UK");
+    option2.addAttribute("value", "Germany");
+
+    const option3 = new TagCreator(
+      "option",
+      "option",
+      "option2",
+      "selectCountry",
+      "France",
+    );
+    option3.createAndAppend();
+    option3.addAttribute("value", "France");
   }
 
   private createButton(textContent: string) {

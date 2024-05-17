@@ -3,22 +3,21 @@ import PageContainer from './components/PageContainer/pageContainer';
 import HeaderView from './components/Header/headerView';
 import FooterView from './components/Footer/footerView';
 
-const { body } = document;
-const appContainer = new AppContainer();
-const pageContainer = new PageContainer();
-const header = new HeaderView();
-const footer = new FooterView();
+// const { body } = document;
+// const appContainer = new AppContainer();
+// const pageContainer = new PageContainer();
+// const header = new HeaderView();
+// const footer = new FooterView();
 
-appContainer
-  .getAppContainer()
-  .append(
-    header.getHeaderElement(),
-    pageContainer.getPageContainer(),
-    footer.getFooterElement(),
-  );
-body.append(appContainer.getAppContainer());
+// appContainer
+//   .getAppContainer()
+//   .append(
+//     header.getHeaderElement(),
+//     pageContainer.getPageContainer(),
+//     footer.getFooterElement(),
+//   );
+// body.append(appContainer.getAppContainer());
 
-/* 
 // то, что было в ветке release/login-registration-main перед слиянием
 import RegistrationForm from './pages/Registration/registrationForm';
 import LoginForm from './pages/LoginPage/loginForm';
@@ -47,4 +46,3 @@ if (
 ) {
   directMoveToMainPage();
 }
-*/

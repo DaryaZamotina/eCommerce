@@ -102,6 +102,7 @@ export default class HeaderView {
       'sign up',
     );
     this.signUpLink = tagCreator.createAndReturn();
+    this.signUpLink.setAttribute('href', '#');
 
     this.signUpLink.addEventListener('click', function () {
       const pageContainer = document.getElementById('pageContainer');
@@ -124,6 +125,7 @@ export default class HeaderView {
       'sign in',
     );
     this.signInLink = tagCreator.createAndReturn();
+    this.signInLink.setAttribute('href', '#');
 
     this.signInLink.addEventListener('click', function () {
       const pageContainer = document.getElementById('pageContainer');
@@ -150,6 +152,7 @@ export default class HeaderView {
       'to cart',
     );
     this.toCartLink = tagCreator.createAndReturn();
+    this.toCartLink.setAttribute('href', '#');
     return this.toCartLink;
   }
 
@@ -162,6 +165,7 @@ export default class HeaderView {
       'profile',
     );
     this.userProfileLink = tagCreator.createAndReturn();
+    this.userProfileLink.setAttribute('href', '#');
     return this.userProfileLink;
   }
 
@@ -174,6 +178,8 @@ export default class HeaderView {
       'logout',
     );
     this.logoutLink = tagCreator.createAndReturn();
+    this.logoutLink.setAttribute('href', '#');
+
     this.logoutLink.addEventListener('click', function () {
       localStorage.clear();
     });

@@ -19,7 +19,7 @@ export function moveToMainPage() {
   const buttonToMainPage = document.getElementById('buttonToMainPage');
 
   buttonToMainPage.addEventListener('click', function () {
-    directMoveToMainPage()
+    directMoveToMainPage();
   });
 }
 

@@ -25,10 +25,10 @@ export default class TagCreator {
     }
   }
 
-  public addAttribute(attribute: string, vaule: string) {
+  public addAttribute(attribute: string, value: string) {
     document
       .getElementById(`${this.id}`)!
-      .setAttribute(`${attribute}`, `${vaule}`);
+      .setAttribute(`${attribute}`, `${value}`);
   }
 
   public removeElement() {

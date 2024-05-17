@@ -26,18 +26,20 @@ appContainer
     pageContainer.getPageContainer(),
     footer.getFooterElement(),
   );
-body.append(appContainer.getAppContainer());
 
 pageContainer.getPageContainer().append(homePage.getHomePage());
 
-// если вписать nonFoundPage сюда, то блок отобразится вслед за homePage, но если вписать эту строку в конце файла, то nonFoundPage НЕ отобразится после формы регистрации.
-pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());
+body.append(appContainer.getAppContainer());
 
-/*
-if (localStorage.getItem('isLogined') === null) {
-  const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
-  registrationFormDiv.createRegistrationForm();
-} */
+// чтобы не искать отдельно loginForm или отдельно RegistrationForm для того, чтобы удалить их, думаю, лучше будет использовать одну такую функцию
+// function clearPageContainer() {
+//   pageContainer.getPageContainer().innerHTML = '';
+// }
+
+// if (localStorage.getItem('isLogined') === null) {
+//   const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
+//   registrationFormDiv.createRegistrationForm();
+// }
 
 if (localStorage.getItem('isLogined') === null) {
   const loginFormDiv = new LoginForm('pageContainer', 'log');
@@ -54,5 +56,5 @@ if (
   directMoveToMainPage();
 }
 
-// если вписать nonFoundPage сюда в конце файла, то nonFoundPage НЕ отобразится после формы регистрации. Почему так?
+// так добавляется notFoundPage
 // pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());

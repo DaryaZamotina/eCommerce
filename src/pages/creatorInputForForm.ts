@@ -172,12 +172,12 @@ export default class CreateInputForForm {
 
     if (this.form === 'reg') {
       this.createButton('Register');
-      this.createLinc('Already have an account?', 'Sing in');
+      this.createLink('Already have an account?', 'Sign in');
     }
 
     if (this.form === 'log') {
       this.createButton('Log In');
-      this.createLinc("Don't have an account?", 'Register');
+      this.createLink("Don't have an account?", 'Register');
     }
   }
 
@@ -311,7 +311,7 @@ export default class CreateInputForForm {
     });
   }
 
-  private createLinc(textContentTitle: string, textContentLinc: string) {
+  private createLink(textContentTitle: string, textContentLink: string) {
     let nameForm: string;
     if (this.form === 'reg') {
       nameForm = 'registrationForm';
@@ -320,31 +320,31 @@ export default class CreateInputForForm {
       nameForm = 'loginForm';
     }
 
-    const lincContainer = new TagCreator(
+    const linkContainer = new TagCreator(
       'div',
-      `${nameForm}__container_linc`,
-      `${nameForm}__container_linc`,
+      `${nameForm}__container_link`,
+      `${nameForm}__container_link`,
       nameForm,
     );
-    lincContainer.createAndAppend();
+    linkContainer.createAndAppend();
 
-    const lincTitle = new TagCreator(
+    const linkTitle = new TagCreator(
       'div',
-      `${nameForm}__title_linc`,
-      `${nameForm}__title_linc`,
-      `${nameForm}__container_linc`,
+      `${nameForm}__title_link`,
+      `${nameForm}__title_link`,
+      `${nameForm}__container_link`,
       textContentTitle,
     );
-    lincTitle.createAndAppend();
+    linkTitle.createAndAppend();
 
-    const linc = new TagCreator(
+    const link = new TagCreator(
       'a',
-      `${nameForm}__linc`,
-      `${nameForm}__linc`,
-      `${nameForm}__container_linc`,
-      textContentLinc,
+      `${nameForm}__link`,
+      `${nameForm}__link`,
+      `${nameForm}__container_link`,
+      textContentLink,
     );
-    linc.createAndAppend();
-    linc.addAttribute('href', '#');
+    link.createAndAppend();
+    link.addAttribute('href', '#');
   }
 }

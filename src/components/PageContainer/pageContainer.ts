@@ -5,7 +5,6 @@ export default class PageContainer {
   pageContainer: HTMLElement;
 
   constructor() {
-
     this.pageContainer = this.createPageContainer();
   }
 

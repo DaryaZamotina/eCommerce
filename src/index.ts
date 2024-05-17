@@ -29,13 +29,14 @@ appContainer
 body.append(appContainer.getAppContainer());
 
 pageContainer.getPageContainer().append(homePage.getHomePage());
-// если вписать nonFoundPage сюда, то блок отобразится вслед за homePage, но если вписать эту строку в конце, то nonFoundPage НЕ отобразится после формы регистрации
+
+// если вписать nonFoundPage сюда, то блок отобразится вслед за homePage, но если вписать эту строку в конце файла, то nonFoundPage НЕ отобразится после формы регистрации.
 pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());
 
-if (localStorage.getItem("isLogined") === null) {
+if (localStorage.getItem('isLogined') === null) {
   const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
   registrationFormDiv.createRegistrationForm();
-} 
+}
 
 if (localStorage.getItem('isLogined') === null) {
   const loginFormDiv = new LoginForm();
@@ -53,4 +54,4 @@ if (
 }
 
 // если вписать nonFoundPage сюда в конце файла, то nonFoundPage НЕ отобразится после формы регистрации. Почему так?
-pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());
+// pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());

@@ -1,12 +1,12 @@
-import TagCreator from "../module/tagCreator";
-import { InputsType } from "../Helpers/Inputs/TypeInputs";
-import validateEmail from "../Helpers/Inputs/validateEmail";
-import validatePassword from "../Helpers/Inputs/validatePassword";
-import validateName from "../Helpers/Inputs/validateName";
-import validateStreet from "../Helpers/Inputs/validateStreet";
-import validatePostcode from "../Helpers/Inputs/validatePostcode";
-import validateAge from "../Helpers/Inputs/validateAge";
-import errorMessages from "../Helpers/Inputs/errorMessages";
+import TagCreator from '../module/tagCreator';
+import { InputsType } from '../Helpers/Inputs/TypeInputs';
+import validateEmail from '../Helpers/Inputs/validateEmail';
+import validatePassword from '../Helpers/Inputs/validatePassword';
+import validateName from '../Helpers/Inputs/validateName';
+import validateStreet from '../Helpers/Inputs/validateStreet';
+import validatePostcode from '../Helpers/Inputs/validatePostcode';
+import validateAge from '../Helpers/Inputs/validateAge';
+import errorMessages from '../Helpers/Inputs/errorMessages';
 
 export default class CreateInputForForm {
   private arrImput: InputsType[];
@@ -17,20 +17,8 @@ export default class CreateInputForForm {
   constructor(arrImput: InputsType[], form: string) {
     this.arrImput = arrImput;
     this.form = form;
-    this.arrValidReg = [
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-      false,
-    ];
-    this.arrValidLog = [
-      false,
-      false,
-    ]
+    this.arrValidReg = [false, false, false, false, false, false, false, false];
+    this.arrValidLog = [false, false];
   }
 
   public createAndAppend() {
@@ -71,65 +59,125 @@ export default class CreateInputForForm {
       }
 
       const errorDiv = new TagCreator(
-        "div",
-        "registrationForm__error",
+        'div',
+        'registrationForm__error',
         `err__${element.input.id}`,
         element.container.id,
       );
       errorDiv.createAndAppend();
 
-      if (element.input.attributes.type === "email") {
+      if (element.input.attributes.type === 'email') {
         if (this.form === 'reg') {
-          this.addInputValidator(element.input.id, validateEmail, 0, 0, this.arrValidReg);
+          this.addInputValidator(
+            element.input.id,
+            validateEmail,
+            0,
+            0,
+            this.arrValidReg,
+          );
         }
         if (this.form === 'log') {
-          this.addInputValidator(element.input.id, validateEmail, 0, 0, this.arrValidLog);
+          this.addInputValidator(
+            element.input.id,
+            validateEmail,
+            0,
+            0,
+            this.arrValidLog,
+          );
         }
       }
-      
-      if (element.input.attributes.type === "password") {
+
+      if (element.input.attributes.type === 'password') {
         if (this.form === 'reg') {
-          this.addInputValidator(element.input.id, validatePassword, 1, 1, this.arrValidReg);
+          this.addInputValidator(
+            element.input.id,
+            validatePassword,
+            1,
+            1,
+            this.arrValidReg,
+          );
         }
         if (this.form === 'log') {
-          this.addInputValidator(element.input.id, validatePassword, 1, 1, this.arrValidLog);
+          this.addInputValidator(
+            element.input.id,
+            validatePassword,
+            1,
+            1,
+            this.arrValidLog,
+          );
         }
       }
 
-      if (element.input.id === "registrationForm__input_first_name") {
-        this.addInputValidator(element.input.id, validateName, 2, 2, this.arrValidReg);
+      if (element.input.id === 'registrationForm__input_first_name') {
+        this.addInputValidator(
+          element.input.id,
+          validateName,
+          2,
+          2,
+          this.arrValidReg,
+        );
       }
 
-      if (element.input.id === "registrationForm__input_second_name") {
-        this.addInputValidator(element.input.id, validateName, 2, 3, this.arrValidReg);
+      if (element.input.id === 'registrationForm__input_second_name') {
+        this.addInputValidator(
+          element.input.id,
+          validateName,
+          2,
+          3,
+          this.arrValidReg,
+        );
       }
 
-      if (element.input.id === "registrationForm__input_city") {
-        this.addInputValidator(element.input.id, validateName, 2, 4, this.arrValidReg);
+      if (element.input.id === 'registrationForm__input_city') {
+        this.addInputValidator(
+          element.input.id,
+          validateName,
+          2,
+          4,
+          this.arrValidReg,
+        );
       }
 
-      if (element.input.id === "registrationForm__input_street") {
-        this.addInputValidator(element.input.id, validateStreet, 3, 5, this.arrValidReg);
+      if (element.input.id === 'registrationForm__input_street') {
+        this.addInputValidator(
+          element.input.id,
+          validateStreet,
+          3,
+          5,
+          this.arrValidReg,
+        );
       }
 
-      if (element.input.id === "registrationForm__input_postcode") {
-        this.addInputValidator(element.input.id, validatePostcode, 4, 6, this.arrValidReg);
+      if (element.input.id === 'registrationForm__input_postcode') {
+        this.addInputValidator(
+          element.input.id,
+          validatePostcode,
+          4,
+          6,
+          this.arrValidReg,
+        );
       }
 
-      if (element.input.attributes.type === "date") {
-        this.addInputValidator(element.input.id, validateAge, 5, 7, this.arrValidReg);
+      if (element.input.attributes.type === 'date') {
+        this.addInputValidator(
+          element.input.id,
+          validateAge,
+          5,
+          7,
+          this.arrValidReg,
+        );
         this.createSelectCountry();
       }
     });
 
-    if (this.form === "reg") {
-      this.createButton("Register");
-      this.createLinc("Already have an account?", "Sing in");
+    if (this.form === 'reg') {
+      this.createButton('Register');
+      this.createLinc('Already have an account?', 'Sing in');
     }
 
-    if (this.form === "log") {
-      this.createButton("Log In");
-      this.createLinc("Don't have an account?", "Register");
+    if (this.form === 'log') {
+      this.createButton('Log In');
+      this.createLinc("Don't have an account?", 'Register');
     }
   }
 
@@ -138,21 +186,21 @@ export default class CreateInputForForm {
     validationFunction: (value: string) => boolean,
     errorMessageIndex: number,
     validationIndex: number,
-    arr: boolean[]
+    arr: boolean[],
   ) {
     const input = document.getElementById(id) as HTMLInputElement;
     const errorElement = document.getElementById(
       `err__${id}`,
     ) as HTMLDivElement;
 
-    input.addEventListener("input", () => {
+    input.addEventListener('input', () => {
       if (!validationFunction(input.value)) {
-        input.classList.add("active");
+        input.classList.add('active');
         errorElement.textContent = errorMessages[errorMessageIndex];
         arr[validationIndex] = false;
       } else {
-        input.classList.remove("active");
-        errorElement.textContent = "";
+        input.classList.remove('active');
+        errorElement.textContent = '';
         arr[validationIndex] = true;
       }
       if (this.form === 'reg') {
@@ -166,73 +214,73 @@ export default class CreateInputForForm {
 
   private createSelectCountry() {
     const container = new TagCreator(
-      "div",
-      "registrationForm__container",
-      "registrationForm__container_country",
-      "registrationForm",
+      'div',
+      'registrationForm__container',
+      'registrationForm__container_country',
+      'registrationForm',
     );
     container.createAndAppend();
 
     const containerLabel = new TagCreator(
-      "div",
-      "registrationForm__label",
-      "registrationForm__label_country",
-      "registrationForm__container_country",
-      "Country",
+      'div',
+      'registrationForm__label',
+      'registrationForm__label_country',
+      'registrationForm__container_country',
+      'Country',
     );
     containerLabel.createAndAppend();
 
     const select = new TagCreator(
-      "select",
-      "selectCountry",
-      "selectCountry",
-      "registrationForm__container_country",
+      'select',
+      'selectCountry',
+      'selectCountry',
+      'registrationForm__container_country',
     );
     select.createAndAppend();
 
     const option1 = new TagCreator(
-      "option",
-      "option",
-      "option1",
-      "selectCountry",
-      "US",
+      'option',
+      'option',
+      'option1',
+      'selectCountry',
+      'US',
     );
     option1.createAndAppend();
-    option1.addAttribute("value", "US");
+    option1.addAttribute('value', 'US');
 
     const option2 = new TagCreator(
-      "option",
-      "option",
-      "option2",
-      "selectCountry",
-      "UK",
+      'option',
+      'option',
+      'option2',
+      'selectCountry',
+      'UK',
     );
     option2.createAndAppend();
-    option2.addAttribute("value", "UK");
+    option2.addAttribute('value', 'UK');
   }
 
   private createButton(textContent: string) {
     if (this.form === 'reg') {
       const button = new TagCreator(
-        "button",
-        "registrationForm__button disabled",
-        "registrationForm__button",
-        "registrationForm",
+        'button',
+        'registrationForm__button disabled',
+        'registrationForm__button',
+        'registrationForm',
         textContent,
-      )
+      );
       button.createAndAppend();
-      button.addAttribute("disabled", "disabled");
+      button.addAttribute('disabled', 'disabled');
     }
     if (this.form === 'log') {
       const button = new TagCreator(
-        "button",
-        "buttonLogin disabled",
-        "buttonLogin",
-        "loginForm",
+        'button',
+        'buttonLogin disabled',
+        'buttonLogin',
+        'loginForm',
         textContent,
-      )
+      );
       button.createAndAppend();
-      button.addAttribute("disabled", "disabled");
+      button.addAttribute('disabled', 'disabled');
     }
   }
 
@@ -240,13 +288,11 @@ export default class CreateInputForForm {
     let button: HTMLButtonElement;
     if (this.form === 'reg') {
       button = document.getElementById(
-        "registrationForm__button",
+        'registrationForm__button',
       ) as HTMLButtonElement;
     }
     if (this.form === 'log') {
-      button = document.getElementById(
-        "buttonLogin",
-      ) as HTMLButtonElement;
+      button = document.getElementById('buttonLogin') as HTMLButtonElement;
       console.log(9);
     }
     let sum = 0;
@@ -256,11 +302,11 @@ export default class CreateInputForForm {
       }
       if (sum === arr.length) {
         console.log(1);
-        button.removeAttribute("disabled");
-        button.classList.remove("disabled");
+        button.removeAttribute('disabled');
+        button.classList.remove('disabled');
       } else {
-        button.setAttribute("disabled", "disabled");
-        button.classList.add("disabled");
+        button.setAttribute('disabled', 'disabled');
+        button.classList.add('disabled');
       }
     });
   }
@@ -271,19 +317,19 @@ export default class CreateInputForForm {
       nameForm = 'registrationForm';
     }
     if (this.form === 'log') {
-      nameForm = 'loginForm'
+      nameForm = 'loginForm';
     }
-    
+
     const lincContainer = new TagCreator(
-      "div",
+      'div',
       `${nameForm}__container_linc`,
       `${nameForm}__container_linc`,
       nameForm,
     );
     lincContainer.createAndAppend();
-    
+
     const lincTitle = new TagCreator(
-      "div",
+      'div',
       `${nameForm}__title_linc`,
       `${nameForm}__title_linc`,
       `${nameForm}__container_linc`,
@@ -292,13 +338,13 @@ export default class CreateInputForForm {
     lincTitle.createAndAppend();
 
     const linc = new TagCreator(
-      "a",
+      'a',
       `${nameForm}__linc`,
       `${nameForm}__linc`,
       `${nameForm}__container_linc`,
       textContentLinc,
     );
     linc.createAndAppend();
-    linc.addAttribute("href", "#");
+    linc.addAttribute('href', '#');
   }
 }

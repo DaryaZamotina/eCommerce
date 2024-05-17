@@ -43,6 +43,6 @@ button  {
     width: 100vw;
     max-width: 1920px;
     height: fit-content;
-    min-height: 100vh;
+    min-height: calc(100vh - 40px);
     padding-top: 100px;
 }

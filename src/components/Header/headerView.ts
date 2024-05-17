@@ -126,7 +126,11 @@ export default class HeaderView {
   }
 
   private createHeaderWrapper() {
-    const tagCreator = new TagCreator('section', 'header-wrapper', 'headerWrapper');
+    const tagCreator = new TagCreator(
+      'section',
+      'header-wrapper',
+      'headerWrapper',
+    );
     this.headerWrapper = tagCreator.createAndReturn();
     this.headerWrapper.append(
       this.getNameOfShop(),
@@ -142,9 +146,7 @@ export default class HeaderView {
   private createHeader() {
     const tagCreator = new TagCreator('header', 'header', 'header');
     this.header = tagCreator.createAndReturn();
-    this.header.append(
-      this.createHeaderWrapper(),
-    );
+    this.header.append(this.createHeaderWrapper());
     return this.header;
   }
 }

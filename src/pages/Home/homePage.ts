@@ -32,11 +32,7 @@ export default class HomePage {
   }
 
   private createHomePage() {
-    const homePageTagCreator = new TagCreator(
-      'div',
-      'home-page',
-      'homePage',
-    );
+    const homePageTagCreator = new TagCreator('div', 'home-page', 'homePage');
     this.homePage = homePageTagCreator.createAndReturn();
     this.homePage.append(this.getSection());
     return this.homePage;

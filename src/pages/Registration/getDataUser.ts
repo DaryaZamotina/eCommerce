@@ -10,8 +10,8 @@ export default function getDataUser() {
     dateOfBirth: arrInputs[4].value,
     addresses: [
       {
-        key: "address1",
-        title: "Mrs.",
+        key: 'address1',
+        title: 'Mrs.',
         firstName: arrInputs[2].value,
         lastName: arrInputs[3].value,
         streetName: arrInputs[6].value,
@@ -21,5 +21,5 @@ export default function getDataUser() {
         email: arrInputs[0].value,
       },
     ],
-  }
+  };
 }

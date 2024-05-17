@@ -34,7 +34,11 @@ export default class FooterView {
     return this.infoRss;
   }
   private createFooterWrapper() {
-    const tagCreator = new TagCreator('section', 'footer-wrapper', 'footerWrapper');
+    const tagCreator = new TagCreator(
+      'section',
+      'footer-wrapper',
+      'footerWrapper',
+    );
     this.footerWrapper = tagCreator.createAndReturn();
     this.footerWrapper.append(this.createInfoRss());
     return this.footerWrapper;

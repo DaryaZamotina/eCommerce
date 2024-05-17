@@ -4,25 +4,28 @@ import '../../../public/assets/css/header.css';
 export default class HeaderView {
   private nameOfShop: HTMLElement;
 
-  private signUpButton: HTMLElement;
+  private signUpLink: HTMLElement;
 
-  private signInButton: HTMLElement;
+  private signInLink: HTMLElement;
 
-  private toCartButton: HTMLElement;
+  private toCartLink: HTMLElement;
 
-  private userProfileButton: HTMLElement;
+  private userProfileLink: HTMLElement;
 
-  private logoutButton: HTMLElement;
+  private logoutLink: HTMLElement;
+
+  private headerWrapper: HTMLElement;
 
   private header: HTMLElement;
 
   constructor() {
     this.nameOfShop = this.createNameOfShop();
-    this.signUpButton = this.createSignUpButton();
-    this.signInButton = this.createSignInButton();
-    this.toCartButton = this.createToCartButton();
-    this.userProfileButton = this.createUserProfileButton();
-    this.logoutButton = this.createLogoutButton();
+    this.signUpLink = this.createSignUpLink();
+    this.signInLink = this.createSignInLink();
+    this.toCartLink = this.createToCartLink();
+    this.userProfileLink = this.createUserProfileLink();
+    this.logoutLink = this.createLogoutLink();
+    this.headerWrapper = this.createHeaderWrapper();
     this.header = this.createHeader();
   }
 
@@ -34,20 +37,20 @@ export default class HeaderView {
     return this.nameOfShop;
   }
 
-  public getSignUpButton(): HTMLElement {
-    return this.signUpButton;
+  public getSignUpLink(): HTMLElement {
+    return this.signUpLink;
   }
 
-  public getSignInButton(): HTMLElement {
-    return this.signInButton;
+  public getSignInLink(): HTMLElement {
+    return this.signInLink;
   }
 
-  public getUserProfileButton(): HTMLElement {
-    return this.userProfileButton;
+  public getUserProfileLink(): HTMLElement {
+    return this.userProfileLink;
   }
 
-  public getLogoutButton() {
-    return this.logoutButton;
+  public getLogoutLink() {
+    return this.logoutLink;
   }
 
   private createNameOfShop() {
@@ -55,83 +58,92 @@ export default class HeaderView {
       'h1',
       'header__logo',
       'headerLogo',
-      'header',
+      '',
       'JOY.M',
     );
     this.nameOfShop = tagCreator.createAndReturn();
     return this.nameOfShop;
   }
 
-  private createSignUpButton() {
+  private createSignUpLink() {
     const tagCreator = new TagCreator(
-      'button',
-      'sign-up-button',
-      'signUpButton',
-      'header',
-      'SIGN UP',
+      'a',
+      'sign-up-link',
+      'signUpLink',
+      '',
+      'sign up',
     );
-    this.signUpButton = tagCreator.createAndReturn();
-    return this.signUpButton;
+    this.signUpLink = tagCreator.createAndReturn();
+    return this.signUpLink;
   }
 
-  private createSignInButton() {
+  private createSignInLink() {
     const tagCreator = new TagCreator(
-      'button',
-      'sign-in-button',
-      'signInButton',
-      'header',
-      'SIGN IN',
+      'a',
+      'sign-in-link',
+      'signInLink',
+      '',
+      'sign in',
     );
-    this.signInButton = tagCreator.createAndReturn();
-    return this.signInButton;
+    this.signInLink = tagCreator.createAndReturn();
+    return this.signInLink;
   }
 
-  private createToCartButton() {
+  private createToCartLink() {
     const tagCreator = new TagCreator(
-      'button',
-      'to-cart-button',
-      'toCartButton',
-      'header',
-      'TO CART',
+      'a',
+      'to-cart-link',
+      'toCartLink',
+      '',
+      'to cart',
     );
-    this.toCartButton = tagCreator.createAndReturn();
-    return this.toCartButton;
+    this.toCartLink = tagCreator.createAndReturn();
+    return this.toCartLink;
   }
 
-  private createUserProfileButton() {
+  private createUserProfileLink() {
     const tagCreator = new TagCreator(
-      'button',
-      'user-profile-button',
-      'userProfileButton',
-      'header',
-      'PROFILE',
+      'a',
+      'user-profile-link',
+      'userProfileLink',
+      '',
+      'profile',
     );
-    this.userProfileButton = tagCreator.createAndReturn();
-    return this.userProfileButton;
+    this.userProfileLink = tagCreator.createAndReturn();
+    return this.userProfileLink;
   }
 
-  private createLogoutButton() {
+  private createLogoutLink() {
     const tagCreator = new TagCreator(
-      'button',
-      'logout-button',
-      'logoutButton',
-      'header',
-      'LOGOUT',
+      'a',
+      'logout-link',
+      'logoutLink',
+      '',
+      'logout',
     );
-    this.logoutButton = tagCreator.createAndReturn();
-    return this.logoutButton;
+    this.logoutLink = tagCreator.createAndReturn();
+    return this.logoutLink;
+  }
+
+  private createHeaderWrapper() {
+    const tagCreator = new TagCreator('section', 'header-wrapper', 'headerWrapper');
+    this.headerWrapper = tagCreator.createAndReturn();
+    this.headerWrapper.append(
+      this.getNameOfShop(),
+      this.getSignUpLink(),
+      this.getSignInLink(),
+      this.createToCartLink(),
+      this.createUserProfileLink(),
+      this.createLogoutLink(),
+    );
+    return this.headerWrapper;
   }
 
   private createHeader() {
-    const tagCreator = new TagCreator('header', 'header', 'header', 'body');
+    const tagCreator = new TagCreator('header', 'header', 'header');
     this.header = tagCreator.createAndReturn();
     this.header.append(
-      this.getNameOfShop(),
-      this.getSignUpButton(),
-      this.getSignInButton(),
-      this.createToCartButton(),
-      this.createUserProfileButton(),
-      this.createLogoutButton(),
+      this.createHeaderWrapper(),
     );
     return this.header;
   }

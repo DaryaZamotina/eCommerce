@@ -1,4 +1,5 @@
 import TagCreator from '../../module/tagCreator';
+import '../../../public/assets/css/body.css';
 
 export default class AppContainer {
   appContainer: HTMLElement;
@@ -16,7 +17,6 @@ export default class AppContainer {
       'div',
       'app-container',
       'appContainer',
-      'body',
     );
     this.appContainer = appContainerTagCreator.createAndReturn();
     return this.appContainer;

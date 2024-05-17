@@ -1,0 +1,14 @@
+@import url("root-variables.css");
+
+.footer {
+  width: 100%;
+  background-color: var(--main-dark-color);
+  color: var(--main-light-color);
+}
+
+.footer-wrapper {
+  max-width: 1920px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}

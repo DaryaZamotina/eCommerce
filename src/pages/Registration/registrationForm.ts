@@ -18,7 +18,7 @@ export default class RegistrationForm {
 
   public createRegistrationForm() {
     const form = new TagCreator(
-      'from',
+      'form',
       'registrationForm',
       'registrationForm',
       this.id,

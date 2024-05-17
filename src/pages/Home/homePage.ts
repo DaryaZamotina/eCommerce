@@ -1,4 +1,5 @@
 import TagCreator from '../../module/tagCreator';
+import '../../../public/assets/css/homePage.css';
 
 export default class HomePage {
   section: HTMLElement;
@@ -23,7 +24,7 @@ export default class HomePage {
       'section',
       'home__section1',
       'homeSection',
-      'homePage',
+      '',
       'Home Page Content Will Be Here',
     );
     this.section = tagCreator.createAndReturn();
@@ -35,7 +36,6 @@ export default class HomePage {
       'div',
       'home-page',
       'homePage',
-      'pageContainer',
     );
     this.homePage = homePageTagCreator.createAndReturn();
     this.homePage.append(this.getSection());

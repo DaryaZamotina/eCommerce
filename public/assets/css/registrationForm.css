@@ -3,10 +3,10 @@
     width: 60%;
     min-width: 320px;
     max-width: 700px;
-    height: 80%;
+    margin: 40px auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 }
 
@@ -62,8 +62,8 @@
     padding-bottom: 1.5rem;
 }
 
-.registrationForm__container_linc,
-.loginForm__container_linc {
+.registrationForm__container_link,
+.loginForm__container_link {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -72,18 +72,18 @@
     margin: 1rem;
 }
 
-.registrationForm__title_linc,
-.loginForm__title_linc {
+.registrationForm__title_link,
+.loginForm__title_link {
     margin-right: 0.5rem;
 }
 
-.registrationForm__linc,
-.registrationForm__linc:link,
-.registrationForm__linc:visited,
-.registrationForm__linc:active,
-.loginForm__linc,
-.loginForm__linc:link,
-.loginForm__linc:visited,
-.loginForm__linc:active {
+.registrationForm__link,
+.registrationForm__link:link,
+.registrationForm__link:visited,
+.registrationForm__link:active,
+.loginForm__link,
+.loginForm__link:link,
+.loginForm__link:visited,
+.loginForm__link:active {
     color: #2b3b33;
 }

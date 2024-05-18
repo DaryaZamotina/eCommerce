@@ -4,8 +4,8 @@ import InputsForFormRegistration from '../../Helpers/Inputs/InputsForFormRegistr
 import '../../../public/assets/css/body.css';
 import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
-import "../../../public/assets/css/registrationForm.css";
-import "../../../public/assets/css/button.css";
+import '../../../public/assets/css/registrationForm.css';
+import '../../../public/assets/css/button.css';
 
 export default class RegistrationForm {
   private id: string;
@@ -18,7 +18,7 @@ export default class RegistrationForm {
 
   public createRegistrationForm() {
     const form = new TagCreator(
-      'from',
+      'form',
       'registrationForm',
       'registrationForm',
       this.id,
@@ -26,18 +26,20 @@ export default class RegistrationForm {
     form.createAndAppend();
 
     const formTitle = new TagCreator(
-      "div",
-      "formTitle",
-      "formTitle",
-      "registrationForm",
-      "Registration",
+      'div',
+      'formTitle',
+      'formTitle',
+      'registrationForm',
+      'Registration',
     );
     formTitle.createAndAppend();
 
     const inputs = new CreateInputForForm(InputsForFormRegistration, this.form);
     inputs.createAndAppend();
 
-    const buttonToSendRegDataToServer = document.getElementById('registrationForm__button') as HTMLButtonElement;
+    const buttonToSendRegDataToServer = document.getElementById(
+      'registrationForm__button',
+    ) as HTMLButtonElement;
 
     buttonToSendRegDataToServer.addEventListener('click', function () {
       const tokenForAuth = localStorage.getItem('access_token_auth');
@@ -45,4 +47,3 @@ export default class RegistrationForm {
     });
   }
 }
-

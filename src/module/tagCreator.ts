@@ -3,7 +3,7 @@ export default class TagCreator {
     public tag: string,
     public className: string,
     public id: string,
-    public childId: string,
+    public childId?: string,
     public text?: string,
   ) {
     this.className = className;
@@ -25,17 +25,16 @@ export default class TagCreator {
     }
   }
 
-  public addAttribute(attribute: string, vaule: string) {
+  public addAttribute(attribute: string, value: string) {
     document
       .getElementById(`${this.id}`)!
-      .setAttribute(`${attribute}`, `${vaule}`);
+      .setAttribute(`${attribute}`, `${value}`);
   }
 
   public removeElement() {
     document.getElementById(`${this.id}`)!.remove();
   }
 
-  // был нужен такой метод, так как getElementById вызывал ошибки, вместо элемента был null
   public createAndReturn() {
     const element = document.createElement(`${this.tag}`);
     element.textContent = this.text || '';

@@ -1,0 +1,8 @@
+.not-found-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 40px;
+  background-color: rgba(1, 79, 7, 0.345);
+}

@@ -1,6 +1,11 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    margin: 0 auto;
-    width: 100vw;
+    width: 100%;
     min-width: 320px;
     min-height: 100vh;
     display: flex;
@@ -30,6 +35,19 @@ button  {
     font-weight: normal;
 }
 
-.appContainer {
+.app-container {
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.page-container {
+    width: 100%;
     max-width: 1920px;
+    height: fit-content;
+    min-height: calc(100vh - 40px);
+    padding-top: 100px;
 }

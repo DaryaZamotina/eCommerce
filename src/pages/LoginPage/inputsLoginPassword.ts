@@ -30,7 +30,6 @@ export function sendLoginPasswordToLocalStorage() {
   const buttonLogin = <HTMLButtonElement>document.querySelector('.buttonLogin');
 
   buttonLogin.addEventListener('click', function () {
-    event.preventDefault();
     if (localStorage.getItem('email') && localStorage.getItem('password')) {
       console.log('email = ' + localStorage.getItem('email'));
       console.log('password = ' + localStorage.getItem('password'));

@@ -246,4 +246,97 @@ export default [
       },
     },
   },
+  {
+    container: {
+      tag: 'div',
+      class: 'registrationForm__container',
+      id: 'registrationForm__container_city_option',
+      id_parent: 'registrationForm',
+      text_content: '',
+    },
+    label: {
+      tag: 'label',
+      class: 'registrationForm__label',
+      id: 'registrationForm__label_city_option',
+      id_parent: 'registrationForm__container_city_option',
+      text_content: 'City',
+      attributes: {
+        for: 'text',
+      },
+    },
+    input: {
+      tag: 'input',
+      class: 'registrationForm__input_city',
+      id: 'registrationForm__input_city_option',
+      id_parent: 'registrationForm__container_city_option',
+      text_content: '',
+      attributes: {
+        type: 'text',
+        placeholder: 'City',
+        autocomplete: 'disabled',
+      },
+    },
+  },
+  {
+    container: {
+      tag: 'div',
+      class: 'registrationForm__container',
+      id: 'registrationForm__container_street_option',
+      id_parent: 'registrationForm',
+      text_content: '',
+    },
+    label: {
+      tag: 'label',
+      class: 'registrationForm__label',
+      id: 'registrationForm__label_street_option',
+      id_parent: 'registrationForm__container_street_option',
+      text_content: 'Street',
+      attributes: {
+        for: 'text',
+      },
+    },
+    input: {
+      tag: 'input',
+      class: 'registrationForm__input_street',
+      id: 'registrationForm__input_street_option',
+      id_parent: 'registrationForm__container_street_option',
+      text_content: '',
+      attributes: {
+        type: 'text',
+        placeholder: 'Street',
+        autocomplete: 'disabled',
+      },
+    },
+  },
+  {
+    container: {
+      tag: 'div',
+      class: 'registrationForm__container',
+      id: 'registrationForm__container_postcode_option',
+      id_parent: 'registrationForm',
+      text_content: '',
+    },
+    label: {
+      tag: 'label',
+      class: 'registrationForm__label',
+      id: 'registrationForm__label_postcode_option',
+      id_parent: 'registrationForm__container_postcode_option',
+      text_content: 'Postcode',
+      attributes: {
+        for: 'text',
+      },
+    },
+    input: {
+      tag: 'input',
+      class: 'registrationForm__input_postcode',
+      id: 'registrationForm__input_postcode_option',
+      id_parent: 'registrationForm__container_postcode_option',
+      text_content: '',
+      attributes: {
+        type: 'text',
+        placeholder: 'Postcode',
+        autocomplete: 'disabled',
+      },
+    },
+  },
 ];

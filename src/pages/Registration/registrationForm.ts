@@ -9,9 +9,9 @@ import '../../../public/assets/css/button.css';
 
 export default class RegistrationForm {
   private id: string;
-  private form: string;
+  private form: 'log' | 'reg';
 
-  constructor(id: string, form: string) {
+  constructor(id: string, form: 'log' | 'reg') {
     this.form = form;
     this.id = id;
   }

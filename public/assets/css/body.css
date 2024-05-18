@@ -7,7 +7,7 @@
 body {
     width: 100%;
     min-width: 320px;
-    height: 100dvh;
+    min-height: 100dvh;
     position: relative;
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;

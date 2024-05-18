@@ -26,11 +26,10 @@ import { moveToRegistration } from './pages/LoginPage/buttonsToRegToHome';
 import { moveToMainPage } from './pages/LoginPage/buttonsToRegToHome';
 import { directMoveToMainPage } from './pages/LoginPage/buttonsToRegToHome';
 
-
 // if (localStorage.getItem("isLogined") === null) {
 //   const registrationFormDiv = new RegistrationForm();
 //   registrationFormDiv.createRegistrationForm();
-// } 
+// }
 
 if (localStorage.getItem('isLogined') === null) {
   const loginFormDiv = new LoginForm();

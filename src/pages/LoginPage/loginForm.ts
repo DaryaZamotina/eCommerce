@@ -10,7 +10,13 @@ export default class LoginForm {
     const loginForm = new TagCreator('form', 'loginForm', 'loginForm', 'body');
     loginForm.createAndAppend();
 
-    const loginFormTitle = new TagCreator('div', 'loginFormTitle', 'loginFormTitle', 'loginForm', 'Log In');
+    const loginFormTitle = new TagCreator(
+      'div',
+      'loginFormTitle',
+      'loginFormTitle',
+      'loginForm',
+      'Log In',
+    );
     loginFormTitle.createAndAppend();
 
     const buttonsWrapper = new TagCreator(

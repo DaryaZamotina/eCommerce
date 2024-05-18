@@ -213,7 +213,7 @@ export default class CreateInputForForm {
     if (this.form === 'reg') {
       this.disabledAddressOption();
       this.createButton('Register');
-      this.createLink('Already have an account?', 'Sing in');
+      this.createLink('Already have an account?', 'Sign in');
     }
 
     if (this.form === 'log') {

@@ -5,9 +5,6 @@ export default class PageContainer {
   pageContainer: HTMLElement;
 
   constructor() {
-    this.homePage = new HomePage();
-    this.registrationForm = new RegistrationForm('page-container', 'reg');
-    this.nonFoundPage = new NonFoundPage();
     this.pageContainer = this.createPageContainer();
   }
 

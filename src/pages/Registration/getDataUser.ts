@@ -73,5 +73,4 @@ type UserObj = {
   shippingAddresses: number[];
   defaultBillingAddress?: number;
   billingAddresses: number[];
-
 }

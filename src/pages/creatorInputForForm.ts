@@ -380,7 +380,7 @@ export default class CreateInputForForm {
     
   }
 
-  private createLinc(textContentTitle: string, textContentLinc: string) {
+  private createLink(textContentTitle: string, textContentLink: string) {
     let nameForm: string;
     if (this.form === 'reg') {
       nameForm = 'registrationForm';
@@ -404,7 +404,7 @@ export default class CreateInputForForm {
       `${nameForm}__container_linc`,
       textContentTitle,
     );
-    lincTitle.createAndAppend();
+    linkTitle.createAndAppend();
 
     const linc = new TagCreator(
       'a',

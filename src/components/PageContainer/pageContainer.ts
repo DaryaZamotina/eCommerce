@@ -1,15 +1,7 @@
 import TagCreator from '../../module/tagCreator';
-import HomePage from '../../pages/Home/homePage';
-import RegistrationForm from '../../pages/Registration/registrationForm';
-import NonFoundPage from '../../pages/NonFoundPage/nonFoundPage';
+import '../../../public/assets/css/body.css';
 
 export default class PageContainer {
-  homePage: HomePage;
-
-  registrationForm: RegistrationForm;
-
-  nonFoundPage: NonFoundPage;
-
   pageContainer: HTMLElement;
 
   constructor() {
@@ -25,13 +17,11 @@ export default class PageContainer {
 
   private createPageContainer() {
     const pageContainerTagCreator = new TagCreator(
-      'div',
+      'main',
       'page-container',
       'pageContainer',
-      'appContainer',
     );
     this.pageContainer = pageContainerTagCreator.createAndReturn();
-    this.pageContainer.append(this.homePage.getHomePage());
     return this.pageContainer;
   }
 }

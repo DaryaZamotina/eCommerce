@@ -2,12 +2,19 @@ import TagCreator from '../../module/tagCreator';
 import CreateInputForForm from '../creatorInputForForm';
 import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
+import '../../../public/assets/css/button.css';
 
 export default class LoginForm {
-  constructor() {}
+  private id: string;
+  private form: string;
+
+  constructor(id: string, form: string) {
+    this.form = form;
+    this.id = id;
+  }
 
   public createLoginForm() {
-    const loginForm = new TagCreator('form', 'loginForm', 'loginForm', 'body');
+    const loginForm = new TagCreator('form', 'loginForm', 'loginForm', this.id);
     loginForm.createAndAppend();
 
     const loginFormTitle = new TagCreator(
@@ -23,31 +30,14 @@ export default class LoginForm {
       'form',
       'buttonsWrapper',
       'buttonsWrapper',
-      'body',
+      'loginForm',
     );
     buttonsWrapper.createAndAppend();
 
     const inputs = new CreateInputForForm(InputsForFormLogin, 'log');
     inputs.createAndAppend();
 
-    /*const buttonLogin = new TagCreator(
-        "button",
-        "buttonLogin",
-        "buttonLogin",
-        "buttonsWrapper",
-        "Login"
-      )
-      buttonLogin.createAndAppend(); */
-
-    // const buttonLogin: HTMLButtonElement = document.createElement('button');
-    // buttonLogin.className = 'buttonLogin';
-    // buttonLogin.id = 'buttonLogin';
-    // buttonLogin.textContent = 'Login';
-
-    // const body = document.getElementById('body');
-    // body.append(buttonLogin);
-
-    const buttonRegistration = new TagCreator(
+    /*const buttonRegistration = new TagCreator(
       'button',
       'buttonRegistration',
       'buttonRegistration',
@@ -63,7 +53,7 @@ export default class LoginForm {
       'buttonsWrapper',
       'Home',
     );
-    buttonToMainPage.createAndAppend();
+    buttonToMainPage.createAndAppend(); */
 
     const messageAboutError = new TagCreator(
       'div',

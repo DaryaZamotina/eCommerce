@@ -1,7 +1,9 @@
 export default function getDataUser() {
   const arrInputs = document.querySelectorAll('input');
   const country = document.getElementById('selectCountry') as HTMLSelectElement;
-  const country_option = document.getElementById('selectCountry_option') as HTMLSelectElement;
+  const country_option = document.getElementById(
+    'selectCountry_option',
+  ) as HTMLSelectElement;
   console.log(arrInputs[4].value);
   let obj: UserObj = {
     email: arrInputs[0].value,
@@ -25,11 +27,15 @@ export default function getDataUser() {
     shippingAddresses: [0],
     billingAddresses: [0],
   };
-  const shippingAddressDefault = document.getElementById('radioButtonOne') as HTMLDivElement;
+  const shippingAddressDefault = document.getElementById(
+    'radioButtonOne',
+  ) as HTMLDivElement;
   if (shippingAddressDefault.className === 'radioButton active') {
     obj.defaultShippingAddress = 0;
   }
-  const billingAddress = document.getElementById('radioButtonTwo') as HTMLDivElement;
+  const billingAddress = document.getElementById(
+    'radioButtonTwo',
+  ) as HTMLDivElement;
   if (billingAddress.className === 'radioButton') {
     const newAddress = {
       key: 'address',
@@ -41,10 +47,12 @@ export default function getDataUser() {
       city: arrInputs[8].value,
       country: country.value,
       email: arrInputs[0].value,
-    }
+    };
     obj.addresses.push(newAddress);
     obj.billingAddresses[0] = 1;
-    const billingAddressDefault = document.getElementById('radioButtonThree') as HTMLDivElement;
+    const billingAddressDefault = document.getElementById(
+      'radioButtonThree',
+    ) as HTMLDivElement;
     if (billingAddressDefault.className === 'radioButton active') {
       obj.defaultBillingAddress = 1;
     }
@@ -73,5 +81,4 @@ type UserObj = {
   shippingAddresses: number[];
   defaultBillingAddress?: number;
   billingAddresses: number[];
-
-}
+};

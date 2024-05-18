@@ -213,12 +213,12 @@ export default class CreateInputForForm {
     if (this.form === 'reg') {
       this.disabledAddressOption();
       this.createButton('Register');
-      this.createLinc('Already have an account?', 'Sing in');
+      this.createLink('Already have an account?', 'Sing in');
     }
 
     if (this.form === 'log') {
       this.createButton('Log In');
-      this.createLinc("Don't have an account?", 'Register');
+      this.createLink("Don't have an account?", 'Register');
     }
   }
 
@@ -377,10 +377,9 @@ export default class CreateInputForForm {
         button.classList.add('disabled');
       }
     });
-    
   }
 
-  private createLinc(textContentTitle: string, textContentLinc: string) {
+  private createLink(textContentTitle: string, textContentLink: string) {
     let nameForm: string;
     if (this.form === 'reg') {
       nameForm = 'registrationForm';
@@ -389,54 +388,85 @@ export default class CreateInputForForm {
       nameForm = 'loginForm';
     }
 
-    const lincContainer = new TagCreator(
+    const linkContainer = new TagCreator(
       'div',
-      `${nameForm}__container_linc`,
-      `${nameForm}__container_linc`,
+      `${nameForm}__container_link`,
+      `${nameForm}__container_link`,
       nameForm,
     );
-    lincContainer.createAndAppend();
+    linkContainer.createAndAppend();
 
-    const lincTitle = new TagCreator(
+    const linkTitle = new TagCreator(
       'div',
-      `${nameForm}__title_linc`,
-      `${nameForm}__title_linc`,
-      `${nameForm}__container_linc`,
+      `${nameForm}__title_link`,
+      `${nameForm}__title_link`,
+      `${nameForm}__container_link`,
       textContentTitle,
     );
-    lincTitle.createAndAppend();
+    linkTitle.createAndAppend();
 
-    const linc = new TagCreator(
+    const link = new TagCreator(
       'a',
-      `${nameForm}__linc`,
-      `${nameForm}__linc`,
-      `${nameForm}__container_linc`,
-      textContentLinc,
+      `${nameForm}__link`,
+      `${nameForm}__link`,
+      `${nameForm}__container_link`,
+      textContentLink,
     );
-    linc.createAndAppend();
-    linc.addAttribute('href', '#');
+    link.createAndAppend();
+    link.addAttribute('href', '#');
   }
 
   private createShippingBillingLine(id: string) {
-    const shippingBillingLine = new TagCreator('div', id, id, 'registrationForm', `${id} address`);
+    const shippingBillingLine = new TagCreator(
+      'div',
+      id,
+      id,
+      'registrationForm',
+      `${id} address`,
+    );
     shippingBillingLine.createAndAppend();
   }
 
   private createRadioButton(id: string, textContent: string) {
-    const containerRadioButton = new TagCreator('div', 'containerRadioButton', `containerRadioButton${id}`, 'registrationForm');
+    const containerRadioButton = new TagCreator(
+      'div',
+      'containerRadioButton',
+      `containerRadioButton${id}`,
+      'registrationForm',
+    );
     containerRadioButton.createAndAppend();
 
-    const radioButton = new TagCreator('div', 'radioButton active', `radioButton${id}`, `containerRadioButton${id}`);
+    const radioButton = new TagCreator(
+      'div',
+      'radioButton active',
+      `radioButton${id}`,
+      `containerRadioButton${id}`,
+    );
     radioButton.createAndAppend();
 
-    const radioSwitch = new TagCreator('div', 'radioSwitch active', `radioSwitch${id}`, `radioButton${id}`);
+    const radioSwitch = new TagCreator(
+      'div',
+      'radioSwitch active',
+      `radioSwitch${id}`,
+      `radioButton${id}`,
+    );
     radioSwitch.createAndAppend();
 
-    const redioTitle = new TagCreator('div', 'redioTitle', `redioTitle${id}`, `containerRadioButton${id}`, textContent);
+    const redioTitle = new TagCreator(
+      'div',
+      'redioTitle',
+      `redioTitle${id}`,
+      `containerRadioButton${id}`,
+      textContent,
+    );
     redioTitle.createAndAppend();
 
-    const radioButtonClick = document.getElementById(`radioButton${id}`) as HTMLDivElement;
-    const radioSwitchClick = document.getElementById(`radioSwitch${id}`) as HTMLDivElement;
+    const radioButtonClick = document.getElementById(
+      `radioButton${id}`,
+    ) as HTMLDivElement;
+    const radioSwitchClick = document.getElementById(
+      `radioSwitch${id}`,
+    ) as HTMLDivElement;
 
     radioButtonClick.addEventListener('click', () => {
       this.optionAddress = !this.optionAddress;
@@ -449,10 +479,12 @@ export default class CreateInputForForm {
         // } else {
         //   this.arrValidReg = [false, false, false, false, false, false, false, false];
         // }
-        const input = document.getElementById('registrationForm__input_email') as HTMLInputElement;
+        const input = document.getElementById(
+          'registrationForm__input_email',
+        ) as HTMLInputElement;
         const event = new Event('input', {
           bubbles: true,
-          cancelable: true
+          cancelable: true,
         });
         input.dispatchEvent(event);
       }
@@ -461,11 +493,21 @@ export default class CreateInputForForm {
 
   private disabledAddressOption() {
     const billing = document.getElementById('Billing') as HTMLDivElement;
-    const country = document.getElementById('registrationForm__container_country_option') as HTMLDivElement;
-    const city = document.getElementById('registrationForm__container_city_option') as HTMLDivElement;
-    const street = document.getElementById('registrationForm__container_street_option') as HTMLDivElement;
-    const postcode = document.getElementById('registrationForm__container_postcode_option') as HTMLDivElement;
-    const radio = document.getElementById('containerRadioButtonThree') as HTMLDivElement;
+    const country = document.getElementById(
+      'registrationForm__container_country_option',
+    ) as HTMLDivElement;
+    const city = document.getElementById(
+      'registrationForm__container_city_option',
+    ) as HTMLDivElement;
+    const street = document.getElementById(
+      'registrationForm__container_street_option',
+    ) as HTMLDivElement;
+    const postcode = document.getElementById(
+      'registrationForm__container_postcode_option',
+    ) as HTMLDivElement;
+    const radio = document.getElementById(
+      'containerRadioButtonThree',
+    ) as HTMLDivElement;
     if (billing.style.display !== 'none') {
       billing.style.display = 'none';
       country.style.display = 'none';

@@ -90,11 +90,11 @@ export default class HeaderView {
   private createHomeLink() {
     const tagCreator = new TagCreator('a', 'home-link', 'homeLink', '', 'HOME');
     this.homeLink = tagCreator.createAndReturn();
-    this.homeLink.setAttribute('href', '/');
+    this.homeLink.setAttribute('href', '#');
 
     this.homeLink.addEventListener('click', function (e) {
       e.preventDefault();
-      history.pushState({ page: 'home' }, titlesPages.homePage, '/');
+      history.pushState({ page: '/#' }, titlesPages.homePage, '#');
       document.title = titlesPages.homePage;
       clearPageContainer();
 
@@ -113,14 +113,14 @@ export default class HeaderView {
       'sign up',
     );
     this.signUpLink = tagCreator.createAndReturn();
-    this.signUpLink.setAttribute('href', '/signin');
+    this.signUpLink.setAttribute('href', '#signin');
 
     this.signUpLink.addEventListener('click', (e) => {
       e.preventDefault();
       history.pushState(
-        { page: 'signup' },
+        { page: '/#signup' },
         titlesPages.registrationPage,
-        '/signup',
+        '#signup',
       );
       document.title = titlesPages.registrationPage;
       clearPageContainer();
@@ -142,11 +142,11 @@ export default class HeaderView {
       'sign in',
     );
     this.signInLink = tagCreator.createAndReturn();
-    this.signInLink.setAttribute('href', '/signin');
+    this.signInLink.setAttribute('href', '#signin');
 
     this.signInLink.addEventListener('click', (e) => {
       e.preventDefault();
-      history.pushState({ page: 'signin' }, titlesPages.loginPage, '/signin');
+      history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
       document.title = titlesPages.loginPage;
       clearPageContainer();
 
@@ -172,6 +172,10 @@ export default class HeaderView {
     );
     this.toCartLink = tagCreator.createAndReturn();
     this.toCartLink.setAttribute('href', '#');
+
+    this.toCartLink.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
     return this.toCartLink;
   }
 
@@ -185,6 +189,10 @@ export default class HeaderView {
     );
     this.userProfileLink = tagCreator.createAndReturn();
     this.userProfileLink.setAttribute('href', '#');
+
+    this.userProfileLink.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
     return this.userProfileLink;
   }
 

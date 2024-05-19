@@ -33,34 +33,38 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       let error = outputObj.message;
 
       //if (outputObj.statusCode == 400 || 200) {
-       console.log('message about error: ' + error);
+      console.log('message about error: ' + error);
 
-       //createModalWindow(error);
+      //createModalWindow(error);
 
-        if (error == undefined) {
-          createModalWindow("Registration completed successfully!");
+      if (error == undefined) {
+        createModalWindow('Registration completed successfully!');
 
-          const registrationForm = document.getElementById('registrationForm');
-          registrationForm.remove();
+        const registrationForm = document.getElementById('registrationForm');
+        registrationForm.remove();
 
-          const pageContainer = document.getElementById('pageContainer');
-          const homePage = new HomePage();
-          pageContainer.append(homePage.getHomePage());
+        const pageContainer = document.getElementById('pageContainer');
+        const homePage = new HomePage();
+        pageContainer.append(homePage.getHomePage());
+      } else if (
+        error ==
+        'There is already an existing customer with the provided email.'
+      ) {
+        createModalWindow(
+          'There is already an existing customer with the provided data! Please enter the new correct ones or use our login form!',
+        );
+      }
 
-        } else if (error == 'There is already an existing customer with the provided email.') {
-          createModalWindow("There is already an existing customer with the provided data! Please enter the new correct ones or use our login form!");
-        }
+      const btnCloseModalWindow = document.getElementById(
+        'btnCloseModalWindow',
+      ) as HTMLButtonElement;
 
-        const btnCloseModalWindow = document.getElementById(
-          'btnCloseModalWindow',
-        ) as HTMLButtonElement; 
+      btnCloseModalWindow.addEventListener('click', function () {
+        const modalWindow = document.getElementById('modalWindow');
+        modalWindow.remove();
+      });
 
-        btnCloseModalWindow.addEventListener("click", function() {
-          const modalWindow = document.getElementById("modalWindow");
-          modalWindow.remove();
-        }) 
-
-     // }
+      // }
       return output;
     })
     .catch((err) => console.log(err + 2));

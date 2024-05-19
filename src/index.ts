@@ -10,14 +10,19 @@ import { moveToMainPage } from './pages/LoginPage/buttonsToRegToHome';
 import { directMoveToMainPage } from './pages/LoginPage/buttonsToRegToHome';
 import HomePage from './pages/Home/homePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
+import { Router } from './router/router';
 
 const { body } = document;
 const appContainer = new AppContainer();
-const pageContainer = new PageContainer();
+export const pageContainer = new PageContainer();
+export const homePage = new HomePage();
+export const notFoundPage = new NotFoundPage();
 const header = new HeaderView();
 const footer = new FooterView();
-const homePage = new HomePage();
-const notFoundPage = new NotFoundPage();
+// const router = new Router({'/signup': 'Sign Up | Joy.M Home Furniture',
+//     '/': 'Joy.M Home Furniture',
+//     '/signin': 'Sign In | Joy.M Home Furniture'});
+const router = new Router();
 
 appContainer
   .getAppContainer()
@@ -31,11 +36,11 @@ pageContainer.getPageContainer().append(homePage.getHomePage());
 
 body.append(appContainer.getAppContainer());
 
-// чтобы не искать отдельно loginForm или отдельно RegistrationForm для того, чтобы удалить их, думаю, лучше будет использовать одну такую функцию
-// function clearPageContainer() {
-//   pageContainer.getPageContainer().innerHTML = '';
-// }
+export function clearPageContainer() {
+  pageContainer.getPageContainer().innerHTML = '';
+}
 
+router.init();
 /*
 if (localStorage.getItem('isLogined') === null) {
   const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
@@ -56,6 +61,3 @@ if (
 ) {
   directMoveToMainPage();
 }
-
-// так добавляется notFoundPage
-// pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());

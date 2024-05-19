@@ -7,6 +7,14 @@ import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import RegistrationForm from '../../pages/Registration/registrationForm';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import HomePage from '../../pages/Home/homePage';
+import NotFoundPage from '../../pages/NotFoundPage/notFoundSection';
+import {
+  clearPageContainer,
+  pageContainer,
+  homePage,
+  notFoundPage,
+} from '../..';
+import titlesPages from '../../Helpers/documentTitle';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -80,14 +88,17 @@ export default class HeaderView {
   }
 
   private createHomeLink() {
-    const tagCreator = new TagCreator('a', 'homelink', 'homeLink', '', 'HOME');
+    const tagCreator = new TagCreator('a', 'home-link', 'homeLink', '', 'HOME');
     this.homeLink = tagCreator.createAndReturn();
+    this.homeLink.setAttribute('href', '#');
 
-    this.homeLink.addEventListener('click', function () {
-      const pageContainer = document.getElementById('pageContainer');
-      pageContainer.innerHTML = '';
-      const homePage = new HomePage();
-      pageContainer.append(homePage.getHomePage());
+    this.homeLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      history.pushState({ page: '/#' }, titlesPages.homePage, '#');
+      document.title = titlesPages.homePage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(homePage.getHomePage());
     });
 
     return this.homeLink;
@@ -102,11 +113,17 @@ export default class HeaderView {
       'sign up',
     );
     this.signUpLink = tagCreator.createAndReturn();
-    this.signUpLink.setAttribute('href', '#');
+    this.signUpLink.setAttribute('href', '#signin');
 
-    this.signUpLink.addEventListener('click', function () {
-      const pageContainer = document.getElementById('pageContainer');
-      pageContainer.innerHTML = '';
+    this.signUpLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      history.pushState(
+        { page: '/#signup' },
+        titlesPages.registrationPage,
+        '#signup',
+      );
+      document.title = titlesPages.registrationPage;
+      clearPageContainer();
 
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
@@ -125,11 +142,13 @@ export default class HeaderView {
       'sign in',
     );
     this.signInLink = tagCreator.createAndReturn();
-    this.signInLink.setAttribute('href', '#');
+    this.signInLink.setAttribute('href', '#signin');
 
-    this.signInLink.addEventListener('click', function () {
-      const pageContainer = document.getElementById('pageContainer');
-      pageContainer.innerHTML = '';
+    this.signInLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
+      document.title = titlesPages.loginPage;
+      clearPageContainer();
 
       if (!localStorage.getItem('access_token_for_user')) {
         const loginFormDiv = new LoginForm('pageContainer', 'log');
@@ -153,6 +172,10 @@ export default class HeaderView {
     );
     this.toCartLink = tagCreator.createAndReturn();
     this.toCartLink.setAttribute('href', '#');
+
+    this.toCartLink.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
     return this.toCartLink;
   }
 
@@ -166,6 +189,10 @@ export default class HeaderView {
     );
     this.userProfileLink = tagCreator.createAndReturn();
     this.userProfileLink.setAttribute('href', '#');
+
+    this.userProfileLink.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
     return this.userProfileLink;
   }
 
@@ -180,7 +207,8 @@ export default class HeaderView {
     this.logoutLink = tagCreator.createAndReturn();
     this.logoutLink.setAttribute('href', '#');
 
-    this.logoutLink.addEventListener('click', function () {
+    this.logoutLink.addEventListener('click', (e) => {
+      e.preventDefault();
       localStorage.clear();
     });
 

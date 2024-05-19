@@ -5,19 +5,24 @@ import FooterView from './components/Footer/footerView';
 import RegistrationForm from './pages/Registration/registrationForm';
 import LoginForm from './pages/LoginPage/loginForm';
 import { sendLoginPasswordToLocalStorage } from './pages/LoginPage/inputsLoginPassword';
-import { moveToRegistration } from './pages/LoginPage/buttonsToRegToHome';
-import { moveToMainPage } from './pages/LoginPage/buttonsToRegToHome';
-import { directMoveToMainPage } from './pages/LoginPage/buttonsToRegToHome';
+import {
+  moveToRegistration,
+  moveToMainPage,
+  directMoveToMainPage,
+} from './pages/LoginPage/buttonsToRegToHome';
 import HomePage from './pages/Home/homePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
+import titlesPages from './Helpers/documentTitle';
+import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 
 const { body } = document;
 const appContainer = new AppContainer();
-const pageContainer = new PageContainer();
+export const pageContainer = new PageContainer();
+export const homePage = new HomePage();
+export const notFoundPage = new NotFoundPage();
 const header = new HeaderView();
 const footer = new FooterView();
-const homePage = new HomePage();
-const notFoundPage = new NotFoundPage();
+let currentHash = '';
 
 appContainer
   .getAppContainer()
@@ -27,14 +32,79 @@ appContainer
     footer.getFooterElement(),
   );
 
-pageContainer.getPageContainer().append(homePage.getHomePage());
-
 body.append(appContainer.getAppContainer());
 
-// чтобы не искать отдельно loginForm или отдельно RegistrationForm для того, чтобы удалить их, думаю, лучше будет использовать одну такую функцию
-// function clearPageContainer() {
-//   pageContainer.getPageContainer().innerHTML = '';
-// }
+export function clearPageContainer() {
+  pageContainer.getPageContainer().innerHTML = '';
+}
+
+function getHash() {
+  const currentHash = window.location.hash.slice(1);
+  console.log(currentHash);
+  return currentHash;
+}
+currentHash = getHash();
+
+function setRoutingPage() {
+  switch (currentHash) {
+    case '':
+      history.pushState({ page: '#' }, titlesPages.homePage, '#');
+      document.title = titlesPages.homePage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(homePage.getHomePage());
+      break;
+
+    case 'signup':
+      history.pushState(
+        { page: '#signup' },
+        titlesPages.registrationPage,
+        '#signup',
+      );
+      document.title = titlesPages.registrationPage;
+      clearPageContainer();
+
+      const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
+      registrationFormDiv.createRegistrationForm();
+      receiveAccessToken();
+      break;
+
+    case 'signin':
+      history.pushState({ page: '#signin' }, titlesPages.loginPage, '#signin');
+      document.title = titlesPages.loginPage;
+      clearPageContainer();
+
+      if (!localStorage.getItem('access_token_for_user')) {
+        const loginFormDiv = new LoginForm('pageContainer', 'log');
+        loginFormDiv.createLoginForm();
+        sendLoginPasswordToLocalStorage();
+        moveToRegistration();
+        moveToMainPage();
+      }
+      break;
+
+    default:
+      history.pushState(
+        { page: 'notFound' },
+        titlesPages.notFoundPage,
+        '#notFound',
+      );
+      document.title = titlesPages.notFoundPage;
+      clearPageContainer();
+      pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());
+  }
+}
+setRoutingPage();
+
+window.addEventListener('hashchange', () => {
+  currentHash = getHash();
+  setRoutingPage();
+});
+
+window.addEventListener('popstate', () => {
+  currentHash = getHash();
+  setRoutingPage();
+});
 
 /*
 if (localStorage.getItem('isLogined') === null) {
@@ -56,6 +126,3 @@ if (
 ) {
   directMoveToMainPage();
 }
-
-// так добавляется notFoundPage
-// pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());

@@ -6,6 +6,8 @@ import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import '../../../public/assets/css/registrationForm.css';
 import '../../../public/assets/css/button.css';
+import { createModalWindow } from '../../components/ModalWindow/modalWindow';
+import HomePage from '../Home/homePage';
 
 export default class RegistrationForm {
   private id: string;

@@ -21,6 +21,7 @@ export default class HeaderView {
   constructor() {
     this.nameOfShop = this.createNameOfShop();
     this.navbar = new Navbar();
+    this.burger = this.createBurger();
     this.headerWrapper = this.createHeaderWrapper();
     this.header = this.createHeader();
   }
@@ -51,14 +52,7 @@ export default class HeaderView {
     return this.nameOfShop;
   }
 
-  private createHeaderWrapper() {
-    const tagCreator = new TagCreator(
-      'section',
-      'header-wrapper',
-      'headerWrapper',
-    );
-    this.headerWrapper = tagCreator.createAndReturn();
-
+  private createBurger() {
     const burgerTagCreator = new TagCreator('button', 'burger', 'burger');
     this.burger = burgerTagCreator.createAndReturn();
 
@@ -78,18 +72,55 @@ export default class HeaderView {
 
     this.burger.append(this.firstLine, this.secondLine);
 
-    this.burger.addEventListener('click', () => {
-      this.burger.classList.toggle('open');
-      this.navbar.getNavbar().classList.toggle('open');
-    });
+    return this.burger;
+  }
+
+  private createHeaderWrapper() {
+    const tagCreator = new TagCreator(
+      'section',
+      'header-wrapper',
+      'headerWrapper',
+    );
+    this.headerWrapper = tagCreator.createAndReturn();
 
     this.headerWrapper.append(
       this.nameOfShop,
       this.navbar.getNavbar(),
       this.burger,
     );
+
+    this.burger.addEventListener('click', () => {
+      if (this.burger.classList.contains('open')) {
+        this.removeOpenClassOnBurgerAndNavbar();
+      } else {
+        this.addOpenClassOnBurgerAndNavbar();
+      }
+    });
+
     return this.headerWrapper;
   }
+
+  private addOpenClassOnBurgerAndNavbar = () => {
+    this.burger.classList.add('open');
+    this.navbar.getNavbar().classList.add('open');
+    document.addEventListener('click', this.handleClickOutsideNavbar);
+  };
+
+  private removeOpenClassOnBurgerAndNavbar = () => {
+    this.burger.classList.remove('open');
+    this.navbar.getNavbar().classList.remove('open');
+    document.removeEventListener('click', this.handleClickOutsideNavbar);
+  };
+
+  private handleClickOutsideNavbar = (e: Event) => {
+    if (
+      this.navbar.getNavbar().contains(e.target as Node) ||
+      this.burger.contains(e.target as Node)
+    ) {
+      return;
+    }
+    this.removeOpenClassOnBurgerAndNavbar();
+  };
 
   private createHeader() {
     const tagCreator = new TagCreator('header', 'header', 'header');

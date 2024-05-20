@@ -1,35 +1,18 @@
 import TagCreator from '../../module/tagCreator';
+import Navbar from '../Navbar/navbar';
+import { setHistoryPushStateToHome } from '../Navbar/navbar';
 import '../../../public/assets/css/header.css';
-import LoginForm from '../../pages/LoginPage/loginForm';
-import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
-import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
-import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
-import RegistrationForm from '../../pages/Registration/registrationForm';
-import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
-import HomePage from '../../pages/Home/homePage';
-import NotFoundPage from '../../pages/NotFoundPage/notFoundSection';
-import {
-  clearPageContainer,
-  pageContainer,
-  homePage,
-  notFoundPage,
-} from '../..';
-import titlesPages from '../../Helpers/documentTitle';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
 
-  private signInLink: HTMLElement;
+  private navbar: Navbar;
 
-  private signUpLink: HTMLElement;
+  private burger: HTMLElement;
 
-  private homeLink: HTMLElement;
+  private firstLine: HTMLElement;
 
-  private toCartLink: HTMLElement;
-
-  private userProfileLink: HTMLElement;
-
-  private logoutLink: HTMLElement;
+  private secondLine: HTMLElement;
 
   private headerWrapper: HTMLElement;
 
@@ -37,12 +20,8 @@ export default class HeaderView {
 
   constructor() {
     this.nameOfShop = this.createNameOfShop();
-    this.homeLink = this.createHomeLink();
-    this.signUpLink = this.createSignUpLink();
-    this.signInLink = this.createSignInLink();
-    this.toCartLink = this.createToCartLink();
-    this.userProfileLink = this.createUserProfileLink();
-    this.logoutLink = this.createLogoutLink();
+    this.navbar = new Navbar();
+    this.burger = this.createBurger();
     this.headerWrapper = this.createHeaderWrapper();
     this.header = this.createHeader();
   }
@@ -55,26 +34,6 @@ export default class HeaderView {
     return this.nameOfShop;
   }
 
-  public getHomeLink(): HTMLElement {
-    return this.homeLink;
-  }
-
-  public getSignUpLink(): HTMLElement {
-    return this.signUpLink;
-  }
-
-  public getSignInLink(): HTMLElement {
-    return this.signInLink;
-  }
-
-  public getUserProfileLink(): HTMLElement {
-    return this.userProfileLink;
-  }
-
-  public getLogoutLink() {
-    return this.logoutLink;
-  }
-
   private createNameOfShop() {
     const tagCreator = new TagCreator(
       'h1',
@@ -84,135 +43,36 @@ export default class HeaderView {
       'JOY.M',
     );
     this.nameOfShop = tagCreator.createAndReturn();
+
+    this.nameOfShop.addEventListener('click', function (e) {
+      e.preventDefault();
+      setHistoryPushStateToHome();
+    });
+
     return this.nameOfShop;
   }
 
-  private createHomeLink() {
-    const tagCreator = new TagCreator('a', 'home-link', 'homeLink', '', 'HOME');
-    this.homeLink = tagCreator.createAndReturn();
-    this.homeLink.setAttribute('href', '#');
+  private createBurger() {
+    const burgerTagCreator = new TagCreator('button', 'burger', 'burger');
+    this.burger = burgerTagCreator.createAndReturn();
 
-    this.homeLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      history.pushState({ page: '/#' }, titlesPages.homePage, '#');
-      document.title = titlesPages.homePage;
-      clearPageContainer();
-
-      pageContainer.getPageContainer().append(homePage.getHomePage());
-    });
-
-    return this.homeLink;
-  }
-
-  private createSignUpLink() {
-    const tagCreator = new TagCreator(
-      'a',
-      'sign-up-link',
-      'signUpLink',
-      '',
-      'sign up',
+    const firstLineTagCreator = new TagCreator(
+      'span',
+      'first-line',
+      'firstLine',
     );
-    this.signUpLink = tagCreator.createAndReturn();
-    this.signUpLink.setAttribute('href', '#signin');
+    this.firstLine = firstLineTagCreator.createAndReturn();
 
-    this.signUpLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState(
-        { page: '/#signup' },
-        titlesPages.registrationPage,
-        '#signup',
-      );
-      document.title = titlesPages.registrationPage;
-      clearPageContainer();
-
-      const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
-      registrationFormDiv.createRegistrationForm();
-      receiveAccessToken();
-    });
-
-    return this.signUpLink;
-  }
-
-  private createSignInLink() {
-    const tagCreator = new TagCreator(
-      'a',
-      'sign-in-link',
-      'signInLink',
-      '',
-      'sign in',
+    const secondLineTagCreator = new TagCreator(
+      'span',
+      'second-line',
+      'secondLine',
     );
-    this.signInLink = tagCreator.createAndReturn();
-    this.signInLink.setAttribute('href', '#signin');
+    this.secondLine = secondLineTagCreator.createAndReturn();
 
-    this.signInLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
-      document.title = titlesPages.loginPage;
-      clearPageContainer();
+    this.burger.append(this.firstLine, this.secondLine);
 
-      if (!localStorage.getItem('access_token_for_user')) {
-        const loginFormDiv = new LoginForm('pageContainer', 'log');
-        loginFormDiv.createLoginForm();
-        sendLoginPasswordToLocalStorage();
-        moveToRegistration();
-        moveToMainPage();
-      }
-    });
-
-    return this.signInLink;
-  }
-
-  private createToCartLink() {
-    const tagCreator = new TagCreator(
-      'a',
-      'to-cart-link',
-      'toCartLink',
-      '',
-      'to cart',
-    );
-    this.toCartLink = tagCreator.createAndReturn();
-    this.toCartLink.setAttribute('href', '#');
-
-    this.toCartLink.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-    return this.toCartLink;
-  }
-
-  private createUserProfileLink() {
-    const tagCreator = new TagCreator(
-      'a',
-      'user-profile-link',
-      'userProfileLink',
-      '',
-      'profile',
-    );
-    this.userProfileLink = tagCreator.createAndReturn();
-    this.userProfileLink.setAttribute('href', '#');
-
-    this.userProfileLink.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
-    return this.userProfileLink;
-  }
-
-  private createLogoutLink() {
-    const tagCreator = new TagCreator(
-      'a',
-      'logout-link',
-      'logoutLink',
-      '',
-      'logout',
-    );
-    this.logoutLink = tagCreator.createAndReturn();
-    this.logoutLink.setAttribute('href', '#');
-
-    this.logoutLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      localStorage.clear();
-    });
-
-    return this.logoutLink;
+    return this.burger;
   }
 
   private createHeaderWrapper() {
@@ -222,22 +82,60 @@ export default class HeaderView {
       'headerWrapper',
     );
     this.headerWrapper = tagCreator.createAndReturn();
+
     this.headerWrapper.append(
-      this.getNameOfShop(),
-      this.getHomeLink(),
-      this.getSignUpLink(),
-      this.getSignInLink(),
-      this.createToCartLink(),
-      this.createUserProfileLink(),
-      this.createLogoutLink(),
+      this.nameOfShop,
+      this.navbar.getNavbar(),
+      this.burger,
     );
+
+    this.burger.addEventListener('click', () => {
+      if (this.burger.classList.contains('open')) {
+        this.removeOpenClassOnBurgerAndNavbar();
+      } else {
+        this.addOpenClassOnBurgerAndNavbar();
+      }
+    });
+
     return this.headerWrapper;
   }
+
+  private addOpenClassOnBurgerAndNavbar = () => {
+    this.burger.classList.add('open');
+    this.navbar.getNavbar().classList.add('open');
+    document.addEventListener('click', this.handleClickOutsideNavbar);
+  };
+
+  private removeOpenClassOnBurgerAndNavbar = () => {
+    this.burger.classList.remove('open');
+    this.navbar.getNavbar().classList.remove('open');
+    document.removeEventListener('click', this.handleClickOutsideNavbar);
+  };
+
+  private handleClickOutsideNavbar = (e: Event) => {
+    if (
+      this.navbar.getNavbar().contains(e.target as Node) ||
+      this.burger.contains(e.target as Node)
+    ) {
+      if (
+        this.navbar.getHomeLink().contains(e.target as Node) ||
+        this.navbar.getSignUpLink().contains(e.target as Node) ||
+        this.navbar.getSignInLink().contains(e.target as Node) ||
+        this.navbar.getToCartLink().contains(e.target as Node) ||
+        this.navbar.getUserProfileLink().contains(e.target as Node) ||
+        this.navbar.getLogoutLink().contains(e.target as Node)
+      ) {
+        this.removeOpenClassOnBurgerAndNavbar();
+      }
+      return;
+    }
+    this.removeOpenClassOnBurgerAndNavbar();
+  };
 
   private createHeader() {
     const tagCreator = new TagCreator('header', 'header', 'header');
     this.header = tagCreator.createAndReturn();
-    this.header.append(this.createHeaderWrapper());
+    this.header.append(this.headerWrapper);
     return this.header;
   }
 }

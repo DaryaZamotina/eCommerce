@@ -4,5 +4,6 @@
   justify-content: start;
   align-items: center;
   padding: 40px;
+  min-height: calc(100dvh - var(--header-height) - (var(--footer-height) - 20px));
   background-color: rgba(1, 79, 7, 0.345);
 }

@@ -4,6 +4,8 @@ import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/button.css';
 import { moveToRegistration } from './buttonsToRegToHome';
+import { sendLoginPasswordToLocalStorage } from './inputsLoginPassword';
+import { sendDataToEComm } from './loginAuthentification';
 
 export default class LoginForm {
   private id: string;
@@ -46,6 +48,7 @@ export default class LoginForm {
       '',
     );
     messageAboutError.createAndAppend();
+    sendLoginPasswordToLocalStorage();
 
     moveToRegistration();
   }

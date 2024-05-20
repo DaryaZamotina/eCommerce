@@ -9,9 +9,9 @@ import { sendDataToEComm } from './loginAuthentification';
 
 export default class LoginForm {
   private id: string;
-  private form: string;
+  private form: 'log';
 
-  constructor(id: string, form: string) {
+  constructor(id: string, form: 'log') {
     this.form = form;
     this.id = id;
   }
@@ -37,7 +37,7 @@ export default class LoginForm {
     );
     buttonsWrapper.createAndAppend();
 
-    const inputs = new CreateInputForForm(InputsForFormLogin, 'log');
+    const inputs = new CreateInputForForm(InputsForFormLogin, this.form);
     inputs.createAndAppend();
 
     const messageAboutError = new TagCreator(
@@ -48,8 +48,9 @@ export default class LoginForm {
       '',
     );
     messageAboutError.createAndAppend();
+
     sendLoginPasswordToLocalStorage();
 
-    moveToRegistration();
+   moveToRegistration();
   }
 }

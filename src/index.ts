@@ -119,10 +119,10 @@ if (localStorage.getItem('isLogined') === null) {
   moveToRegistration();
   moveToMainPage();
 } */
-
+/*
 if (
   localStorage.getItem('access_token_for_user') &&
   localStorage.getItem('access_token_for_user') !== 'undefined'
 ) {
   directMoveToMainPage();
-}
+} */

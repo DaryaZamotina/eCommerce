@@ -4,7 +4,8 @@ import { directMoveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import '../../../public/assets/css/body.css';
 import HomePage from '../../pages/Home/homePage';
-//import { clearPageContainer } from '../..';
+import { clearPageContainer } from '../..';
+import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -56,12 +57,13 @@ export function sendDataToEComm() {
       ) {
         const loginFormDiv = document.getElementById('loginForm');
         loginFormDiv.remove();
+        //clearPageContainer();
+        //e.preventDefault();
+        setHistoryPushStateToHome();
 
-        const pageContainer = document.getElementById('pageContainer');
+       /* const pageContainer = document.getElementById('pageContainer');
         const homePage = new HomePage();
-        pageContainer.append(homePage.getHomePage());
-
-        // directMoveToMainPage();
+        pageContainer.append(homePage.getHomePage());*/
 
         receiveAccessToken();
       }

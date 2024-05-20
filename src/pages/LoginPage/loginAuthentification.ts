@@ -61,7 +61,7 @@ export function sendDataToEComm() {
         //e.preventDefault();
         setHistoryPushStateToHome();
 
-       /* const pageContainer = document.getElementById('pageContainer');
+        /* const pageContainer = document.getElementById('pageContainer');
         const homePage = new HomePage();
         pageContainer.append(homePage.getHomePage());*/
 

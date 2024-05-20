@@ -51,6 +51,6 @@ export default class LoginForm {
 
     sendLoginPasswordToLocalStorage();
 
-   moveToRegistration();
+    moveToRegistration();
   }
 }

@@ -11,7 +11,6 @@ export function moveToRegistration() {
   const linkToRegForm = document.getElementById('loginForm__link');
 
   linkToRegForm.addEventListener('click', function (e) {
-
     e.preventDefault();
     history.pushState(
       { page: '/#signup' },
@@ -50,13 +49,15 @@ export function moveToLogin() {
   const linkToLoginForm = document.getElementById('registrationForm__link');
 
   linkToLoginForm.addEventListener('click', function (e) {
-
     e.preventDefault();
     history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
     document.title = titlesPages.loginPage;
     clearPageContainer();
 
-    if (!localStorage.getItem('access_token_for_user') || localStorage.getItem('access_token_for_user') == 'undefined') {
+    if (
+      !localStorage.getItem('access_token_for_user') ||
+      localStorage.getItem('access_token_for_user') == 'undefined'
+    ) {
       const loginFormDiv = new LoginForm('pageContainer', 'log');
       loginFormDiv.createLoginForm();
       sendLoginPasswordToLocalStorage();
@@ -69,7 +70,7 @@ export function moveToLogin() {
 
     const loginFormDiv = new LoginForm('pageContainer', 'log');
     loginFormDiv.createLoginForm();*/
-   // sendDataToEComm();
+    // sendDataToEComm();
   });
 }
 

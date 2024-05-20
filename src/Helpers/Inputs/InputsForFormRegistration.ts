@@ -136,7 +136,7 @@ export default [
       class: 'registrationForm__label',
       id: 'registrationForm__label_date',
       id_parent: 'registrationForm__container_date',
-      text_content: 'Date',
+      text_content: 'Date of birth',
       attributes: {
         for: 'text',
       },

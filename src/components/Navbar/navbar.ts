@@ -129,7 +129,10 @@ export default class Navbar {
       document.title = titlesPages.loginPage;
       clearPageContainer();
 
-      if (!localStorage.getItem('access_token_for_user') || localStorage.getItem('access_token_for_user') == 'undefined') {
+      if (
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      ) {
         const loginFormDiv = new LoginForm('pageContainer', 'log');
         loginFormDiv.createLoginForm();
         sendLoginPasswordToLocalStorage();

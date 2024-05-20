@@ -1,8 +1,12 @@
+@import url("root-variables.css");
+
+
 .home-page {
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     padding: 40px;
+    min-height: calc(100dvh - var(--header-height) - (var(--footer-height) - 20px));
     background-color: rgba(255, 251, 0, 0.345);
 }

@@ -110,7 +110,7 @@ export default class Navbar {
 
       if (
         (localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined') ||
+          localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();
@@ -150,7 +150,7 @@ export default class Navbar {
       }
       if (
         (localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined') ||
+          localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();

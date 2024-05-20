@@ -11,6 +11,8 @@ import {
   directMoveToMainPage,
 } from './pages/LoginPage/buttonsToRegToHome';
 import HomePage from './pages/Home/homePage';
+import CartPage from './pages/Cart/cartPage';
+import UserProfilePage from './pages/UserProfile/userProfilePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
@@ -20,6 +22,8 @@ const { body } = document;
 const appContainer = new AppContainer();
 export const pageContainer = new PageContainer();
 export const homePage = new HomePage();
+export const cartPage = new CartPage();
+export const userProfilePage = new UserProfilePage();
 export const notFoundPage = new NotFoundPage();
 const header = new HeaderView();
 const footer = new FooterView();
@@ -100,6 +104,29 @@ function setRoutingPage() {
       ) {
         setHistoryPushStateToHome();
       }
+      break;
+
+    case 'cart':
+      history.pushState({ page: '#cart' }, titlesPages.cartPage, '#cart');
+      document.title = titlesPages.cartPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(cartPage.getCartPage());
+      break;
+
+    case 'userProfile':
+    case 'userprofile':
+      history.pushState(
+        { page: '#userProfile' },
+        titlesPages.userProfilePage,
+        '#userProfile',
+      );
+      document.title = titlesPages.userProfilePage;
+      clearPageContainer();
+
+      pageContainer
+        .getPageContainer()
+        .append(userProfilePage.getUserProfilePage());
       break;
 
     default:

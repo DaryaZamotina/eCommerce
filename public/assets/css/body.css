@@ -54,3 +54,15 @@ button  {
     color:  #802408;
     font-style: italic;
 }
+
+.home-page,
+.cart-page,
+.user-profile-page,
+.not-found-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    padding: 40px;
+    min-height: calc(100dvh - var(--header-height) - (var(--footer-height) - 20px));
+}

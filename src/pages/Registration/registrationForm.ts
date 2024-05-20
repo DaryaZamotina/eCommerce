@@ -6,6 +6,9 @@ import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import '../../../public/assets/css/registrationForm.css';
 import '../../../public/assets/css/button.css';
+import { createModalWindow } from '../../components/ModalWindow/modalWindow';
+import HomePage from '../Home/homePage';
+import { moveToLogin } from '../LoginPage/buttonsToRegToHome';
 
 export default class RegistrationForm {
   private id: string;
@@ -45,5 +48,6 @@ export default class RegistrationForm {
       const tokenForAuth = localStorage.getItem('access_token_auth');
       forwardRegDatatoServer(tokenForAuth);
     });
+    moveToLogin();
   }
 }

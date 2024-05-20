@@ -2,13 +2,13 @@ export default function validateAge(ade: string): boolean {
   const birthdate = new Date(ade);
   const currentDate = new Date();
   const age = currentDate.getFullYear() - birthdate.getFullYear();
-  if (
-    currentDate.getMonth() < birthdate.getMonth() ||
+
+  const isBirthdayPassedThisYear =
+    currentDate.getMonth() > birthdate.getMonth() ||
     (currentDate.getMonth() === birthdate.getMonth() &&
-      currentDate.getDate() < birthdate.getDate())
-  ) {
-    return age - 1 >= 12;
-  } else {
-    return age >= 12;
-  }
+      currentDate.getDate() >= birthdate.getDate());
+
+  const actualAge = isBirthdayPassedThisYear ? age : age - 1;
+
+  return actualAge >= 12 && actualAge <= 120;
 }

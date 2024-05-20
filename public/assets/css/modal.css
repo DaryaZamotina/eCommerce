@@ -1,0 +1,21 @@
+.modalWindow {
+    border: 0.5px solid  #2b3b33;
+    border-radius: 0.5rem;
+    background-color: #708d58;
+    color: white;
+    width: 40%;
+    padding: 0.5rem 0.5rem;
+    align-content: center;
+    position: absolute;
+    top: 25%;
+    left: 35%;
+}
+
+.btnCloseModalWindow {
+    background-color: #2b3b33;
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    border-radius: 1rem;
+    float: right;
+}

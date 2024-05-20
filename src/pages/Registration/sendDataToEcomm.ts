@@ -1,9 +1,12 @@
 import '../../../public/assets/css/body.css';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import getDataUser from './getDataUser';
-import { createModalWindow } from '../../components/ModalWindow/modalWindow';
-import HomePage from '../../pages/Home/homePage';
+import {
+  createModalWindow,
+  handleClickCloseModalWindow,
+} from '../../components/ModalWindow/modalWindow';
 import '../../../public/assets/css/modal.css';
+import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 
 export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
@@ -39,13 +42,8 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
 
       if (error == undefined) {
         createModalWindow('Registration completed successfully!');
-
-        const registrationForm = document.getElementById('registrationForm');
-        registrationForm.remove();
-
-        const pageContainer = document.getElementById('pageContainer');
-        const homePage = new HomePage();
-        pageContainer.append(homePage.getHomePage());
+        setHistoryPushStateToHome();
+        document.addEventListener('click', handleClickCloseModalWindow);
       } else if (
         error ==
         'There is already an existing customer with the provided email.'
@@ -53,18 +51,9 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
         createModalWindow(
           'There is already an existing customer with the provided data! Please enter the new correct ones or use our login form!',
         );
+        document.addEventListener('click', handleClickCloseModalWindow);
       }
 
-      const btnCloseModalWindow = document.getElementById(
-        'btnCloseModalWindow',
-      ) as HTMLButtonElement;
-
-      btnCloseModalWindow.addEventListener('click', function () {
-        const modalWindow = document.getElementById('modalWindow');
-        modalWindow.remove();
-      });
-
-      // }
       return output;
     })
     .catch((err) => console.log(err + 2));

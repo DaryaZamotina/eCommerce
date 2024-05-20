@@ -58,6 +58,10 @@ export default class Navbar {
     return this.signInLink;
   }
 
+  public getToCartLink() {
+    return this.toCartLink;
+  }
+
   public getUserProfileLink(): HTMLElement {
     return this.userProfileLink;
   }

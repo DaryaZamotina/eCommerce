@@ -4,5 +4,5 @@ export default [
   'Must contain at least one character and no special characters or numbers',
   'Must contain at least one character',
   'Must contain five digits',
-  'Confirm that you are over 12',
+  'Age must be more than 12 and less than 120 years',
 ];

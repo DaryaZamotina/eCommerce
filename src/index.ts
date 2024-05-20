@@ -14,6 +14,7 @@ import HomePage from './pages/Home/homePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
+import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 
 const { body } = document;
 const appContainer = new AppContainer();
@@ -67,6 +68,14 @@ function setRoutingPage() {
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
       receiveAccessToken();
+
+      if (
+        (localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined') ||
+        localStorage.getItem('newUser')
+      ) {
+        setHistoryPushStateToHome();
+      }
       break;
 
     case 'signin':
@@ -74,12 +83,22 @@ function setRoutingPage() {
       document.title = titlesPages.loginPage;
       clearPageContainer();
 
-      if (!localStorage.getItem('access_token_for_user')) {
+      if (
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      ) {
         const loginFormDiv = new LoginForm('pageContainer', 'log');
         loginFormDiv.createLoginForm();
         sendLoginPasswordToLocalStorage();
         moveToRegistration();
         moveToMainPage();
+      }
+      if (
+        (localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined') ||
+        localStorage.getItem('newUser')
+      ) {
+        setHistoryPushStateToHome();
       }
       break;
 

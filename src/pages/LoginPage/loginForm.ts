@@ -3,7 +3,6 @@ import CreateInputForForm from '../creatorInputForForm';
 import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/button.css';
-import { moveToRegistration } from './buttonsToRegToHome';
 
 export default class LoginForm {
   private id: string;
@@ -38,6 +37,24 @@ export default class LoginForm {
     const inputs = new CreateInputForForm(InputsForFormLogin, 'log');
     inputs.createAndAppend();
 
+    /*const buttonRegistration = new TagCreator(
+      'button',
+      'buttonRegistration',
+      'buttonRegistration',
+      'buttonsWrapper',
+      'Go to Registration',
+    );
+    buttonRegistration.createAndAppend();
+
+    const buttonToMainPage = new TagCreator(
+      'button',
+      'buttonToMainPage',
+      'buttonToMainPage',
+      'buttonsWrapper',
+      'Home',
+    );
+    buttonToMainPage.createAndAppend(); */
+
     const messageAboutError = new TagCreator(
       'div',
       'messageAboutError',
@@ -46,7 +63,5 @@ export default class LoginForm {
       '',
     );
     messageAboutError.createAndAppend();
-
-    moveToRegistration();
   }
 }

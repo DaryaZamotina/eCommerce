@@ -4,7 +4,6 @@ import { receiveAccessToken } from './loginGetToken';
 import LoginForm from './loginForm';
 import { clearPageContainer } from '../..';
 import { sendLoginPasswordToLocalStorage } from './inputsLoginPassword';
-import { sendDataToEComm } from './loginAuthentification';
 import titlesPages from '../../Helpers/documentTitle';
 
 export function moveToRegistration() {
@@ -23,26 +22,9 @@ export function moveToRegistration() {
     const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
     registrationFormDiv.createRegistrationForm();
     receiveAccessToken();
-    /*const loginFormDiv = document.getElementById('loginForm');
-    loginFormDiv.remove(); 
-
-    clearPageContainer();
-
-    const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
-    registrationFormDiv.createRegistrationForm();
-    receiveAccessToken(); */
+   
   });
 
-  /*const buttonRegistration = document.getElementById('buttonRegistration');
-
-  buttonRegistration.addEventListener('click', function () {
-    const loginFormDiv = document.getElementById('loginForm');
-    loginFormDiv.remove();
-
-    const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
-    registrationFormDiv.createRegistrationForm();
-    receiveAccessToken();
-  }); */
 }
 
 export function moveToLogin() {
@@ -64,22 +46,11 @@ export function moveToLogin() {
       moveToRegistration();
       moveToMainPage();
     }
-
-    /*const registrationFormDiv = document.getElementById('registrationForm');
-    registrationFormDiv.remove();  
-
-    const loginFormDiv = new LoginForm('pageContainer', 'log');
-    loginFormDiv.createLoginForm();*/
-    // sendDataToEComm();
   });
 }
 
 export function moveToMainPage() {
-  /*const buttonToMainPage = document.getElementById('buttonToMainPage');
-
-  buttonToMainPage.addEventListener('click', function () {
-    directMoveToMainPage();
-  });*/
+  
 }
 
 export function directMoveToMainPage() {

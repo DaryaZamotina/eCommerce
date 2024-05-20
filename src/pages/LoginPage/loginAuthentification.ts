@@ -57,13 +57,8 @@ export function sendDataToEComm() {
       ) {
         const loginFormDiv = document.getElementById('loginForm');
         loginFormDiv.remove();
-        //clearPageContainer();
-        //e.preventDefault();
-        setHistoryPushStateToHome();
 
-        /* const pageContainer = document.getElementById('pageContainer');
-        const homePage = new HomePage();
-        pageContainer.append(homePage.getHomePage());*/
+        setHistoryPushStateToHome();
 
         receiveAccessToken();
       }

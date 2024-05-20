@@ -49,3 +49,8 @@ button  {
     min-height: calc(100dvh - (var(--footer-height) - 20px));
     padding-top: 100px;
 }
+
+.messageAboutError {
+    color:  #802408;
+    font-style: italic;
+}

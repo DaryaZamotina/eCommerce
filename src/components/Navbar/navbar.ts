@@ -6,7 +6,13 @@ import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
 import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import RegistrationForm from '../../pages/Registration/registrationForm';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
-import { clearPageContainer, pageContainer, homePage } from '../..';
+import {
+  clearPageContainer,
+  pageContainer,
+  homePage,
+  cartPage,
+  userProfilePage,
+} from '../..';
 import titlesPages from '../../Helpers/documentTitle';
 
 export function setHistoryPushStateToHome() {
@@ -157,6 +163,11 @@ export default class Navbar {
 
     this.toCartLink.addEventListener('click', (e) => {
       e.preventDefault();
+      history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
+      document.title = titlesPages.cartPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(cartPage.getCartPage());
     });
     return this.toCartLink;
   }
@@ -174,6 +185,17 @@ export default class Navbar {
 
     this.userProfileLink.addEventListener('click', (e) => {
       e.preventDefault();
+      history.pushState(
+        { page: '/#userProfile' },
+        titlesPages.userProfilePage,
+        '#userProfile',
+      );
+      document.title = titlesPages.cartPage;
+      clearPageContainer();
+
+      pageContainer
+        .getPageContainer()
+        .append(userProfilePage.getUserProfilePage());
     });
     return this.userProfileLink;
   }

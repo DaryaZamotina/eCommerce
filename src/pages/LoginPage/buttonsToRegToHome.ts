@@ -22,9 +22,7 @@ export function moveToRegistration() {
     const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
     registrationFormDiv.createRegistrationForm();
     receiveAccessToken();
-   
   });
-
 }
 
 export function moveToLogin() {
@@ -49,9 +47,7 @@ export function moveToLogin() {
   });
 }
 
-export function moveToMainPage() {
-  
-}
+export function moveToMainPage() {}
 
 export function directMoveToMainPage() {
   clearPageContainer();

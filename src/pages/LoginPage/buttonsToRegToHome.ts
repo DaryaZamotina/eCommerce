@@ -47,7 +47,9 @@ export function moveToLogin() {
   });
 }
 
-export function moveToMainPage() {}
+export function moveToMainPage() {
+  
+}
 
 export function directMoveToMainPage() {
   clearPageContainer();

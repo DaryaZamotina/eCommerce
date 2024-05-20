@@ -49,7 +49,7 @@ export function sendDataToEComm() {
           document.getElementById('messageAboutError');
         messageAboutError.textContent =
           'Sorry, try again with the right mail and/or password or go to Registration';
-          localStorage.clear();
+        localStorage.clear();
       }
 
       if (

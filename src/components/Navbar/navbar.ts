@@ -107,6 +107,15 @@ export default class Navbar {
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
       receiveAccessToken();
+
+      if (
+        (localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined') ||
+        localStorage.getItem('newUser')
+      ) {
+        e.preventDefault();
+        setHistoryPushStateToHome();
+      }
     });
 
     return this.signUpLink;
@@ -138,6 +147,14 @@ export default class Navbar {
         sendLoginPasswordToLocalStorage();
         moveToRegistration();
         moveToMainPage();
+      }
+      if (
+        (localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined') ||
+        localStorage.getItem('newUser')
+      ) {
+        e.preventDefault();
+        setHistoryPushStateToHome();
       }
     });
 

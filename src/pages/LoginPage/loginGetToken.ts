@@ -1,4 +1,5 @@
 import '../../../public/assets/css/body.css';
+import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 
 export const projectKey: string = 'jffecommerce';
 
@@ -32,7 +33,7 @@ export function receiveAccessToken() {
         grant_type: 'client_credentials',
         client_id: testAPIclient.clientID,
         client_secret: testAPIclient.clientSecret,
-        scope: `manage_customers:${projectKey}`,
+        //scope: `manage_customers:${projectKey}`,
       }),
     });
     const resp = await response.json();

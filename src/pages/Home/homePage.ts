@@ -1,5 +1,8 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/homePage.css';
+import Products from '../../components/ProductCard/ProductList';
+import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
+import { receiveAccessToken } from '../LoginPage/loginGetToken';
 
 export default class HomePage {
   section: HTMLElement;
@@ -28,6 +31,8 @@ export default class HomePage {
       'Home Page Content Will Be Here',
     );
     this.section = tagCreator.createAndReturn();
+
+    this.section.textContent = `${localStorage.getItem('goods')}`;
     return this.section;
   }
 

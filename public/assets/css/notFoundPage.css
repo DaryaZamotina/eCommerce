@@ -1,0 +1,5 @@
+@import url("root-variables.css");
+
+.not-found-page {
+  background-color: rgba(1, 79, 7, 0.345);
+}

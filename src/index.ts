@@ -155,9 +155,13 @@ window.addEventListener('popstate', () => {
 });
 
 window.addEventListener('load', () => {
-  if (!localStorage.getItem("anonym_access_token") || localStorage.getItem("anonym_access_token") == 'undefined') 
-  receiveAnonymusAccessToken();
-else (getProductsListInfoFromEcomm(localStorage.getItem("anonym_access_token")))
+  if (
+    !localStorage.getItem('anonym_access_token') ||
+    localStorage.getItem('anonym_access_token') == 'undefined'
+  )
+    receiveAnonymusAccessToken();
+  else
+    getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
 
 /*

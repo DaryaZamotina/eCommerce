@@ -1,4 +1,3 @@
-
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 
 export function getProductsListInfoFromEcomm(token: string) {
@@ -25,9 +24,10 @@ export function getProductsListInfoFromEcomm(token: string) {
       const infoJSON = JSON.parse(info);
 
       const homeSection = document.getElementById('homeSection');
-      homeSection.textContent = info;
+      homeSection.textContent = infoJSON.results;
 
       console.log('goods = ' + info);
+      console.log("infoJSON.results = " + infoJSON.results);
       /*console.log('refresh_token_for_user = ' + infoJSON.refresh_token);
         localStorage.setItem('access_token_for_user', infoJSON.access_token);
         localStorage.setItem('refresh_token_for_user', infoJSON.refresh_token);*/

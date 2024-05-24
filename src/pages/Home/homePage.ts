@@ -31,8 +31,6 @@ export default class HomePage {
       'Home Page Content Will Be Here',
     );
     this.section = tagCreator.createAndReturn();
-
-    this.section.textContent = `${localStorage.getItem('goods')}`;
     return this.section;
   }
 

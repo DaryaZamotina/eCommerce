@@ -7,27 +7,30 @@ import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 //import HomePage from '../../pages/Home/homePage';
 
 export default class Products {
-   private id: string;
-   // private form: 'prod';
-  
-    constructor(id: string, form: 'prod') {
+  private id: string;
+  // private form: 'prod';
+
+  constructor(id: string, form: 'prod') {
     //  this.form = form;
-      this.id = id;
-    } 
-  
-    public createProductList() {
-      const productList = new TagCreator('div', 'productList', 'productList', 'homeSection');
-      productList.createAndAppend();
-  
-      const productListTitle = new TagCreator(
-        'div',
-        'productListTitle',
-        'productListTitle',
-        'productList',
-        'Our Products',
-      );
-      productListTitle.createAndAppend();
-  
-    }
-  } 
-  
+    this.id = id;
+  }
+
+  public createProductList() {
+    const productList = new TagCreator(
+      'div',
+      'productList',
+      'productList',
+      'homeSection',
+    );
+    productList.createAndAppend();
+
+    const productListTitle = new TagCreator(
+      'div',
+      'productListTitle',
+      'productListTitle',
+      'productList',
+      'Our Products',
+    );
+    productListTitle.createAndAppend();
+  }
+}

@@ -2,6 +2,7 @@ import '../../../public/assets/css/body.css';
 import { projectKey } from '../LoginPage/loginGetToken';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 
+//const api = `https://auth.us-east-2.aws.commercetools.com/oauth/token`;
 const api = `https://auth.us-east-2.aws.commercetools.com/oauth/${projectKey}/anonymous/token`;
 
 interface APIclient {
@@ -20,20 +21,28 @@ export const firstAPIclient: APIclient = {
   },
 };
 
+export const newClientForProducts: APIclient = {
+  clientID: 'prbJGzm9SX_IQmd4rCebdASm',
+  clientSecret: 'NzK4PIQznLSKXS9MGnyzZ0gQNsW3sZ1v',
+
+  getKeyOfClient(): string {
+    return btoa(`${this.clientID}:${this.clientSecret}`);
+  },
+};
+
 export function receiveAnonymusAccessToken() {
   async function getAnonymusToken(url: string) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${firstAPIclient.getKeyOfClient()}`,
-        'Content-Type': 'application/x-www-form-urlencoded'
+        Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
+        //'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',
-        scope: `create_anonymous_token:${projectKey} manage_my_orders:${projectKey} view_published_products:${projectKey} manage_my_profile:${projectKey}`,
-        client_id: firstAPIclient.clientID,
-        client_secret: firstAPIclient.clientSecret
-        //scope: `view_products:${projectKey} manage_my_orders:${projectKey} manage_my_profile:${projectKey}`,
+        //scope: `create_anonymous_token:${projectKey}`,
+        //client_id: newClientForProducts.clientID,
+       //client_secret: newClientForProducts.clientSecret,
         //scope: `create_anonymous_token:${projectKey} view_products:${projectKey} manage_my_orders:${projectKey} manage_my_profile:${projectKey}`,
       }),
     });

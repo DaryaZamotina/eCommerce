@@ -28,7 +28,7 @@ export default class HomePage {
       'home__section1',
       'homeSection',
       '',
-      'Home Page Content Will Be Here',
+      '',
     );
     this.section = tagCreator.createAndReturn();
     return this.section;

@@ -36,14 +36,9 @@ export function receiveAnonymusAccessToken() {
       method: 'POST',
       headers: {
         Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
-        //'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',
-        //scope: `create_anonymous_token:${projectKey}`,
-        //client_id: newClientForProducts.clientID,
-       //client_secret: newClientForProducts.clientSecret,
-        //scope: `create_anonymous_token:${projectKey} view_products:${projectKey} manage_my_orders:${projectKey} manage_my_profile:${projectKey}`,
       }),
     });
     const resp = await response.json();

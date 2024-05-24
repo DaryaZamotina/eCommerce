@@ -6,8 +6,9 @@ import '../../../public/assets/css/button.css';
 import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 //import HomePage from '../../pages/Home/homePage';
 
+
 export default class Products {
-  private id: string;
+  /*private id: string;
   // private form: 'prod';
 
   constructor(id: string, form: 'prod') {
@@ -32,5 +33,5 @@ export default class Products {
       'Our Products',
     );
     productListTitle.createAndAppend();
-  }
-}
+  }*/
+} 

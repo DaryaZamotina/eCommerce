@@ -3,10 +3,25 @@ import TagCreator from '../../module/tagCreator';
 //import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/button.css';
+import '../../../public/assets/css/products.css';
 import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
+import IResult from './InterfaceProduct';
 //import HomePage from '../../pages/Home/homePage';
 
+
+export function createProductsList(n: number, obj: Array <IResult>) {
+  for (let i = 0; i < n; i++) {
+    const productCardInfoContainer = document.createElement("div");
+    productCardInfoContainer.className = "productCardInfoContainer";
+    productCardInfoContainer.textContent = JSON.stringify(obj[i]);
+
+    const homeSection = document.getElementById("homeSection");
+    homeSection.append(productCardInfoContainer);  
+  }
+}
+
 export default class Products {
+
   /*private id: string;
   // private form: 'prod';
 
@@ -33,4 +48,4 @@ export default class Products {
     );
     productListTitle.createAndAppend();
   }*/
-}
+} 

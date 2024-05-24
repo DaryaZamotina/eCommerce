@@ -8,7 +8,6 @@ import { clearPageContainer } from '../..';
 import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 import { newClientForProducts } from '../Home/anonymusSessionToken';
 
-
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
 

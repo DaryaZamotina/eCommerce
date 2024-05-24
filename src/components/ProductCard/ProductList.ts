@@ -8,20 +8,18 @@ import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 import IResult from './InterfaceProduct';
 //import HomePage from '../../pages/Home/homePage';
 
-
-export function createProductsList(n: number, obj: Array <IResult>) {
+export function createProductsList(n: number, obj: Array<IResult>) {
   for (let i = 0; i < n; i++) {
-    const productCardInfoContainer = document.createElement("div");
-    productCardInfoContainer.className = "productCardInfoContainer";
+    const productCardInfoContainer = document.createElement('div');
+    productCardInfoContainer.className = 'productCardInfoContainer';
     productCardInfoContainer.textContent = JSON.stringify(obj[i]);
 
-    const homeSection = document.getElementById("homeSection");
-    homeSection.append(productCardInfoContainer);  
+    const homeSection = document.getElementById('homeSection');
+    homeSection.append(productCardInfoContainer);
   }
 }
 
 export default class Products {
-
   /*private id: string;
   // private form: 'prod';
 
@@ -48,4 +46,4 @@ export default class Products {
     );
     productListTitle.createAndAppend();
   }*/
-} 
+}

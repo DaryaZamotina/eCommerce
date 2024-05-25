@@ -2,7 +2,7 @@ import '../../../public/assets/css/body.css';
 //import { projectKey } from '../LoginPage/loginGetToken';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 const projectKey: string = 'jffecommerce';
-console.log("projectKey = " + projectKey);
+console.log('projectKey = ' + projectKey);
 
 //const api = `https://auth.us-east-2.aws.commercetools.com/oauth/token`;
 const api = `https://auth.us-east-2.aws.commercetools.com/oauth/${projectKey}/anonymous/token`;

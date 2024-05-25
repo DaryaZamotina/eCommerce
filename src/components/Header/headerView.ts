@@ -118,7 +118,7 @@ export default class HeaderView {
       this.burger.contains(e.target as Node)
     ) {
       if (
-        this.navbar.getHomeLink().contains(e.target as Node) ||
+        this.navbar.getCatalogLink().contains(e.target as Node) ||
         this.navbar.getSignUpLink().contains(e.target as Node) ||
         this.navbar.getSignInLink().contains(e.target as Node) ||
         this.navbar.getToCartLink().contains(e.target as Node) ||

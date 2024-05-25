@@ -10,6 +10,7 @@ import {
   clearPageContainer,
   pageContainer,
   homePage,
+  catalogPage,
   cartPage,
   userProfilePage,
 } from '../..';
@@ -28,7 +29,7 @@ export default class Navbar {
 
   private signUpLink: HTMLElement;
 
-  private homeLink: HTMLElement;
+  private catalogLink: HTMLElement;
 
   private toCartLink: HTMLElement;
 
@@ -39,7 +40,7 @@ export default class Navbar {
   private navbar: HTMLElement;
 
   constructor() {
-    this.homeLink = this.createHomeLink();
+    this.catalogLink = this.createCatalogLink();
     this.signUpLink = this.createSignUpLink();
     this.signInLink = this.createSignInLink();
     this.toCartLink = this.createToCartLink();
@@ -52,8 +53,8 @@ export default class Navbar {
     return this.navbar;
   }
 
-  public getHomeLink(): HTMLElement {
-    return this.homeLink;
+  public getCatalogLink(): HTMLElement {
+    return this.catalogLink;
   }
 
   public getSignUpLink(): HTMLElement {
@@ -76,17 +77,31 @@ export default class Navbar {
     return this.logoutLink;
   }
 
-  private createHomeLink() {
-    const tagCreator = new TagCreator('a', 'home-link', 'homeLink', '', 'HOME');
-    this.homeLink = tagCreator.createAndReturn();
-    this.homeLink.setAttribute('href', '#');
+  private createCatalogLink() {
+    const tagCreator = new TagCreator(
+      'a',
+      'catalog-link',
+      'catalogLink',
+      '',
+      'catalog',
+    );
+    this.catalogLink = tagCreator.createAndReturn();
+    this.catalogLink.setAttribute('href', '#catalog');
 
-    this.homeLink.addEventListener('click', function (e) {
+    this.catalogLink.addEventListener('click', function (e) {
       e.preventDefault();
-      setHistoryPushStateToHome();
+      history.pushState(
+        { page: '/#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
     });
 
-    return this.homeLink;
+    return this.catalogLink;
   }
 
   private createSignUpLink() {
@@ -241,7 +256,7 @@ export default class Navbar {
     this.navbar = tagCreator.createAndReturn();
 
     this.navbar.append(
-      this.homeLink,
+      this.catalogLink,
       this.signUpLink,
       this.signInLink,
       this.toCartLink,

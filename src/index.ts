@@ -11,6 +11,7 @@ import {
   directMoveToMainPage,
 } from './pages/LoginPage/buttonsToRegToHome';
 import HomePage from './pages/Home/homePage';
+import CatalogPage from './pages/Catalog/catalogPage';
 import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
@@ -22,6 +23,7 @@ const { body } = document;
 const appContainer = new AppContainer();
 export const pageContainer = new PageContainer();
 export const homePage = new HomePage();
+export const catalogPage = new CatalogPage();
 export const cartPage = new CartPage();
 export const userProfilePage = new UserProfilePage();
 export const notFoundPage = new NotFoundPage();
@@ -58,6 +60,18 @@ function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(homePage.getHomePage());
+      break;
+
+    case 'catalog':
+      history.pushState(
+        { page: '#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       break;
 
     case 'signup':
@@ -133,7 +147,7 @@ function setRoutingPage() {
       history.pushState(
         { page: 'notFound' },
         titlesPages.notFoundPage,
-        '#notFound',
+        `#${currentHash}`,
       );
       document.title = titlesPages.notFoundPage;
       clearPageContainer();

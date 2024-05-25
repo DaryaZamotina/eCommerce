@@ -15,6 +15,7 @@ import {
   userProfilePage,
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
+import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -223,6 +224,10 @@ export default class Navbar {
         '#userProfile',
       );
       document.title = titlesPages.cartPage;
+
+      if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined'){
+        getUserInfoFromEcomm(localStorage.getItem("access_token_for_user"));
+      }
       clearPageContainer();
 
       pageContainer

@@ -20,6 +20,7 @@ import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
+import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 
 const { body } = document;
 const appContainer = new AppContainer();
@@ -143,6 +144,10 @@ function setRoutingPage() {
       pageContainer
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
+        
+        if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined'){
+          getUserInfoFromEcomm(localStorage.getItem("access_token_for_user"));
+        }
       break;
 
     default:

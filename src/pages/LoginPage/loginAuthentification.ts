@@ -26,7 +26,7 @@ export function sendDataToEComm() {
         grant_type: 'password',
         username: `${emailLogin}`,
         password: `${passwordLogin}`,
-        scope: `manage_customers:${projectKey}`,
+        //scope: `manage_customers:${projectKey}`,
       }),
     });
     const resp = await response.json();

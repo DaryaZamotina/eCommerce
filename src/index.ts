@@ -102,7 +102,7 @@ export function setRoutingPage() {
         );
         document.title = titlesPages.catalogPage;
         clearPageContainer();
-  
+
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
       break;
@@ -134,8 +134,23 @@ export function setRoutingPage() {
         );
         document.title = titlesPages.catalogPage;
         clearPageContainer();
-  
+
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        if (
+          !localStorage.getItem('anonym_access_token') ||
+          localStorage.getItem('anonym_access_token') == 'undefined' ||
+          !localStorage.getItem('access_token_for_user') ||
+          localStorage.getItem('access_token_for_user') == 'undefined'
+        )
+          receiveAnonymusAccessToken();
+        if (
+          localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined'
+        ) {
+          getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+        } else
+          getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
+
       }
       break;
 

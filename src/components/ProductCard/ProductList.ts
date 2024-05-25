@@ -7,15 +7,24 @@ import '../../../public/assets/css/products.css';
 import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 import IResult from './InterfaceProduct';
 //import HomePage from '../../pages/Home/homePage';
+import { openProductCard } from './openProductCard';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
-  for (let i = 0; i < n; i++) {
-    const productCardInfoContainer = document.createElement('div');
+  for (let i: number = 0; i < n; i++) {
+    const productCardInfoContainer: HTMLDivElement = document.createElement('div');
     productCardInfoContainer.className = 'productCardInfoContainer';
     productCardInfoContainer.textContent = JSON.stringify(obj[i]);
-
-    const catalogSection = document.getElementById('catalogSection');
+    
+    let info: string = JSON.stringify(obj[i]);
+    let result: IResult = obj[i];
+    let id: string = result.id;
+    
+    const catalogSection: HTMLElement = document.getElementById('catalogSection');
     catalogSection.append(productCardInfoContainer);
+    productCardInfoContainer.addEventListener('click', function() {
+      openProductCard();
+      console.log('id = ' + id);
+    });
   }
 }
 

@@ -7,6 +7,9 @@ import HomePage from '../../pages/Home/homePage';
 import { clearPageContainer } from '../..';
 import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 import { newClientForProducts } from '../Home/anonymusSessionToken';
+import titlesPages from '../../Helpers/documentTitle';
+import PageContainer from '../../components/PageContainer/pageContainer';
+import { setRoutingPage } from '../..';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -60,7 +63,19 @@ export function sendDataToEComm() {
         const loginFormDiv = document.getElementById('loginForm');
         loginFormDiv.remove();
 
-        setHistoryPushStateToHome();
+        /*history.pushState(
+          { page: '#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+  
+        //const pageContainer = document.getElementById("pageContainer");
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
+        setRoutingPage();
+
+        //setHistoryPushStateToHome();
 
         receiveAccessToken();
       }

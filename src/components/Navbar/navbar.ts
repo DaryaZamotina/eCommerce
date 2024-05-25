@@ -143,7 +143,7 @@ export default class Navbar {
         );
         document.title = titlesPages.catalogPage;
         clearPageContainer();
-  
+
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
     });
@@ -191,7 +191,7 @@ export default class Navbar {
         );
         document.title = titlesPages.catalogPage;
         clearPageContainer();
-  
+
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
     });

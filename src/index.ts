@@ -55,7 +55,7 @@ function getHash() {
 }
 currentHash = getHash();
 
-function setRoutingPage() {
+export function setRoutingPage() {
   switch (currentHash) {
     case '':
       history.pushState({ page: '#' }, titlesPages.homePage, '#');
@@ -95,7 +95,15 @@ function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        setHistoryPushStateToHome();
+        history.pushState(
+          { page: '#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+  
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
       break;
 
@@ -119,7 +127,15 @@ function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        setHistoryPushStateToHome();
+        history.pushState(
+          { page: '#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+  
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
       break;
 
@@ -178,20 +194,18 @@ window.addEventListener('popstate', () => {
 
 window.addEventListener('load', () => {
   if (
-    (!localStorage.getItem('anonym_access_token') ||
-    localStorage.getItem('anonym_access_token') == 'undefined') || (
-      (!localStorage.getItem('access_token_for_user') ||
-      localStorage.getItem('access_token_for_user') == 'undefined')
-    )
+    !localStorage.getItem('anonym_access_token') ||
+    localStorage.getItem('anonym_access_token') == 'undefined' ||
+    !localStorage.getItem('access_token_for_user') ||
+    localStorage.getItem('access_token_for_user') == 'undefined'
   )
     receiveAnonymusAccessToken();
-    if (
-      localStorage.getItem('access_token_for_user') &&
-      localStorage.getItem('access_token_for_user') !== 'undefined'
-    ) 
-    {
-      getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-    } else 
+  if (
+    localStorage.getItem('access_token_for_user') &&
+    localStorage.getItem('access_token_for_user') !== 'undefined'
+  ) {
+    getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+  } else
     getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
 

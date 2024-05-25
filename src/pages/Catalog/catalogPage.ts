@@ -25,7 +25,7 @@ export default class CatalogPage {
       'catalog__section1',
       'catalogSection',
       '',
-      'Catalog Page',
+      '',
     );
     this.section = tagCreator.createAndReturn();
     return this.section;

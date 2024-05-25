@@ -144,10 +144,13 @@ function setRoutingPage() {
       pageContainer
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
-        
-        if (localStorage.getItem("access_token_for_user") && localStorage.getItem("access_token_for_user") !== 'undefined'){
-          getUserInfoFromEcomm(localStorage.getItem("access_token_for_user"));
-        }
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+      }
       break;
 
     default:
@@ -175,11 +178,20 @@ window.addEventListener('popstate', () => {
 
 window.addEventListener('load', () => {
   if (
-    !localStorage.getItem('anonym_access_token') ||
-    localStorage.getItem('anonym_access_token') == 'undefined'
+    (!localStorage.getItem('anonym_access_token') ||
+    localStorage.getItem('anonym_access_token') == 'undefined') || (
+      (!localStorage.getItem('access_token_for_user') ||
+      localStorage.getItem('access_token_for_user') == 'undefined')
+    )
   )
     receiveAnonymusAccessToken();
-  else
+    if (
+      localStorage.getItem('access_token_for_user') &&
+      localStorage.getItem('access_token_for_user') !== 'undefined'
+    ) 
+    {
+      getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+    } else 
     getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
 

@@ -1,3 +1,7 @@
 .user-profile-page {
     background-color: rgba(0, 255, 242, 0.178);
   }
+
+  .user-profile__section1 {
+    border: 1ps solid black;
+  }

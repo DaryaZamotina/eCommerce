@@ -14,8 +14,8 @@ export function createProductsList(n: number, obj: Array<IResult>) {
     productCardInfoContainer.className = 'productCardInfoContainer';
     productCardInfoContainer.textContent = JSON.stringify(obj[i]);
 
-    const homeSection = document.getElementById('homeSection');
-    homeSection.append(productCardInfoContainer);
+    const catalogSection = document.getElementById('catalogSection');
+    catalogSection.append(productCardInfoContainer);
   }
 }
 

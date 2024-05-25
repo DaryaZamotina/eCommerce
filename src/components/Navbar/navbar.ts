@@ -272,15 +272,15 @@ export default class Navbar {
       localStorage.clear();
 
       history.pushState(
-      { page: '/#catalog' },
-      titlesPages.catalogPage,
-      '#catalog',
-    );
-    document.title = titlesPages.catalogPage;
-    clearPageContainer();
+        { page: '/#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
 
-    pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-  });
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+    });
     return this.logoutLink;
   }
 

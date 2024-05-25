@@ -25,8 +25,17 @@ export default class UserProfilePage {
       'user-profile__section1',
       'userProfileSection1',
       '',
-      'User Profile Page Content Will Be Here',
+      '',
     );
+    /*if (localStorage.getItem('newUser') && localStorage.getItem('newUser') !== 'undefined') {
+      this.section.textContent = localStorage.getItem('newUser');
+    } 
+    if (localStorage.getItem('userDetails') && localStorage.getItem('userDetails') !== 'undefined') {
+      this.section.textContent = localStorage.getItem('userDetails');
+    } else {
+      this.section.textContent = '';
+    } */
+  
     this.section = tagCreator.createAndReturn();
     return this.section;
   }

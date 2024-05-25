@@ -7,6 +7,9 @@ import {
 } from '../../components/ModalWindow/modalWindow';
 import '../../../public/assets/css/modal.css';
 import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
+import { setRoutingPage } from '../..';
+import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
+import { getUserInfoFromEcomm } from '../UserProfile/getUserDataFromEcomm';
 
 export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
@@ -32,8 +35,10 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
     .then((output) => {
       localStorage.setItem('newUser', output);
       let outputObj = JSON.parse(output);
-
       let error = outputObj.message;
+      let customerID = outputObj.customer.id;
+      console.log("customerID = " + customerID);
+      localStorage.setItem('customerID', output);
 
       //if (outputObj.statusCode == 400 || 200) {
       console.log('message about error: ' + error);
@@ -42,8 +47,25 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
 
       if (error == undefined) {
         createModalWindow('Registration completed successfully!');
-        setHistoryPushStateToHome();
+        //setRoutingPage();
+      //setHistoryPushStateToHome();
         document.addEventListener('click', handleClickCloseModalWindow);
+
+
+      if (
+        localStorage.getItem('newUser') &&
+        localStorage.getItem('newUser') !== 'undefined'
+      ) {
+        const registrationForm = document.getElementById('registrationForm');
+        registrationForm.remove();
+
+        setRoutingPage();
+
+        const userProfileSection1 = document.getElementById(
+          'userProfileSection1',
+        );
+        userProfileSection1.textContent = output;
+      }
       } else if (
         error ==
         'There is already an existing customer with the provided email.'
@@ -53,7 +75,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
         );
         document.addEventListener('click', handleClickCloseModalWindow);
       }
-
       return output;
     })
     .catch((err) => console.log(err + 2));

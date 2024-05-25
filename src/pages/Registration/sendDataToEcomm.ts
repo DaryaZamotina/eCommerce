@@ -37,7 +37,7 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       let outputObj = JSON.parse(output);
       let error = outputObj.message;
       let customerID = outputObj.customer.id;
-      console.log("customerID = " + customerID);
+      console.log('customerID = ' + customerID);
       localStorage.setItem('customerID', output);
 
       //if (outputObj.statusCode == 400 || 200) {
@@ -48,24 +48,23 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       if (error == undefined) {
         createModalWindow('Registration completed successfully!');
         //setRoutingPage();
-      //setHistoryPushStateToHome();
+        //setHistoryPushStateToHome();
         document.addEventListener('click', handleClickCloseModalWindow);
 
+        if (
+          localStorage.getItem('newUser') &&
+          localStorage.getItem('newUser') !== 'undefined'
+        ) {
+          const registrationForm = document.getElementById('registrationForm');
+          registrationForm.remove();
 
-      if (
-        localStorage.getItem('newUser') &&
-        localStorage.getItem('newUser') !== 'undefined'
-      ) {
-        const registrationForm = document.getElementById('registrationForm');
-        registrationForm.remove();
+          setRoutingPage();
 
-        setRoutingPage();
-
-        const userProfileSection1 = document.getElementById(
-          'userProfileSection1',
-        );
-        userProfileSection1.textContent = output;
-      }
+          const userProfileSection1 = document.getElementById(
+            'userProfileSection1',
+          );
+          userProfileSection1.textContent = output;
+        }
       } else if (
         error ==
         'There is already an existing customer with the provided email.'

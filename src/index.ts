@@ -87,9 +87,13 @@ export function setRoutingPage() {
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
-        getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
       } else
-        getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
 
       break;
 
@@ -195,15 +199,21 @@ export function setRoutingPage() {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-        const userProfileSection1 = document.getElementById(
-          'userProfileSection1',
-        );
-      
-          userProfileSection1.textContent
+      const userProfileSection1 = document.getElementById(
+        'userProfileSection1',
+      );
 
-      if (localStorage.getItem('newUser') && localStorage.getItem('newUser') !== 'undefined') {
+      userProfileSection1.textContent;
+
+      if (
+        localStorage.getItem('newUser') &&
+        localStorage.getItem('newUser') !== 'undefined'
+      ) {
         userProfileSection1.textContent = localStorage.getItem('newUser');
-      } else if (localStorage.getItem('userDetails') && localStorage.getItem('userDetails') !== 'undefined') {
+      } else if (
+        localStorage.getItem('userDetails') &&
+        localStorage.getItem('userDetails') !== 'undefined'
+      ) {
         userProfileSection1.textContent = localStorage.getItem('userDetails');
       } else {
         userProfileSection1.textContent = '';

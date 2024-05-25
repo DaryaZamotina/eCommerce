@@ -27,9 +27,9 @@ export function getUserInfoFromEcomm(token: string) {
       const userProfileSection1 = document.getElementById(
         'userProfileSection1',
       );
-    
-        userProfileSection1.textContent = info;
-      
+
+      userProfileSection1.textContent = info;
+
       //const homeSection = document.getElementById('homeSection');
       //homeSection.textContent = infoJSON.results;
 

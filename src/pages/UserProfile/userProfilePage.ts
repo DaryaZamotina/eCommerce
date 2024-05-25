@@ -35,7 +35,7 @@ export default class UserProfilePage {
     } else {
       this.section.textContent = '';
     } */
-  
+
     this.section = tagCreator.createAndReturn();
     return this.section;
   }

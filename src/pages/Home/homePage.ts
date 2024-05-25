@@ -1,5 +1,8 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/homePage.css';
+import Products from '../../components/ProductCard/ProductList';
+import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
+import { receiveAccessToken } from '../LoginPage/loginGetToken';
 
 export default class HomePage {
   section: HTMLElement;
@@ -25,7 +28,7 @@ export default class HomePage {
       'home__section1',
       'homeSection',
       '',
-      'Home Page Content Will Be Here',
+      '',
     );
     this.section = tagCreator.createAndReturn();
     return this.section;

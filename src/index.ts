@@ -17,6 +17,8 @@ import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { setHistoryPushStateToHome } from './components/Navbar/navbar';
+import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
+import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
 
 const { body } = document;
 const appContainer = new AppContainer();
@@ -150,6 +152,16 @@ window.addEventListener('hashchange', () => {
 window.addEventListener('popstate', () => {
   currentHash = getHash();
   setRoutingPage();
+});
+
+window.addEventListener('load', () => {
+  if (
+    !localStorage.getItem('anonym_access_token') ||
+    localStorage.getItem('anonym_access_token') == 'undefined'
+  )
+    receiveAnonymusAccessToken();
+  else
+    getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
 
 /*

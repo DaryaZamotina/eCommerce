@@ -6,6 +6,7 @@ import '../../../public/assets/css/body.css';
 import HomePage from '../../pages/Home/homePage';
 import { clearPageContainer } from '../..';
 import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
+import { newClientForProducts } from '../Home/anonymusSessionToken';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -18,7 +19,7 @@ export function sendDataToEComm() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${testAPIclient.getKeyOfClient()}`,
+        Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({

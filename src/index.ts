@@ -147,10 +147,13 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') &&
           localStorage.getItem('access_token_for_user') !== 'undefined'
         ) {
-          getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+          getProductsListInfoFromEcomm(
+            localStorage.getItem('access_token_for_user'),
+          );
         } else
-          getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
-
+          getProductsListInfoFromEcomm(
+            localStorage.getItem('anonym_access_token'),
+          );
       }
       break;
 

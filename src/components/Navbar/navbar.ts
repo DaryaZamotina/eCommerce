@@ -18,6 +18,7 @@ import titlesPages from '../../Helpers/documentTitle';
 import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
+import { editUserData } from '../../pages/UserProfile/editUserData';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -264,18 +265,37 @@ export default class Navbar {
         '#userProfile',
       );
       document.title = titlesPages.cartPage;
-
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-      }
       clearPageContainer();
 
       pageContainer
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
+
+        const userProfileSection1 = document.getElementById(
+          'userProfileSection1',
+        );
+  
+        if (
+          localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined'
+        ) {
+          getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+          editUserData(localStorage.getItem('access_token_for_user'));
+        }
+  
+        if (
+          localStorage.getItem('newUser') &&
+          localStorage.getItem('newUser') !== 'undefined'
+        ) {
+          userProfileSection1.textContent = localStorage.getItem('newUser');
+        } else if (
+          localStorage.getItem('userDetails') &&
+          localStorage.getItem('userDetails') !== 'undefined'
+        ) {
+          userProfileSection1.textContent = localStorage.getItem('userDetails');
+        } else {
+          userProfileSection1.textContent = "No information available";
+        }
     });
     return this.userProfileLink;
   }

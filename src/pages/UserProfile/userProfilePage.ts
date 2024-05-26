@@ -27,14 +27,6 @@ export default class UserProfilePage {
       '',
       '',
     );
-    /*if (localStorage.getItem('newUser') && localStorage.getItem('newUser') !== 'undefined') {
-      this.section.textContent = localStorage.getItem('newUser');
-    } 
-    if (localStorage.getItem('userDetails') && localStorage.getItem('userDetails') !== 'undefined') {
-      this.section.textContent = localStorage.getItem('userDetails');
-    } else {
-      this.section.textContent = '';
-    } */
 
     this.section = tagCreator.createAndReturn();
     return this.section;
@@ -48,6 +40,7 @@ export default class UserProfilePage {
     );
     this.userProfilePage = userProfilePageTagCreator.createAndReturn();
     this.userProfilePage.append(this.getSection());
+    
     return this.userProfilePage;
   }
 }

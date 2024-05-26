@@ -40,7 +40,7 @@ export default class UserProfilePage {
     );
     this.userProfilePage = userProfilePageTagCreator.createAndReturn();
     this.userProfilePage.append(this.getSection());
-    
+
     return this.userProfilePage;
   }
 }

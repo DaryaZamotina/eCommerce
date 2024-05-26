@@ -137,7 +137,6 @@ export function setRoutingPage() {
         clearPageContainer();
 
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-
       }
       break;
 

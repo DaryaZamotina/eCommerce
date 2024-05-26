@@ -1,4 +1,3 @@
-
 export function getUserInfoFromEcomm(token: string) {
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
 

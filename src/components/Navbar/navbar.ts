@@ -271,31 +271,31 @@ export default class Navbar {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-        const userProfileSection1 = document.getElementById(
-          'userProfileSection1',
-        );
-  
-        if (
-          localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined'
-        ) {
-          getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-          editUserData(localStorage.getItem('access_token_for_user'));
-        }
-  
-        if (
-          localStorage.getItem('newUser') &&
-          localStorage.getItem('newUser') !== 'undefined'
-        ) {
-          userProfileSection1.textContent = localStorage.getItem('newUser');
-        } else if (
-          localStorage.getItem('userDetails') &&
-          localStorage.getItem('userDetails') !== 'undefined'
-        ) {
-          userProfileSection1.textContent = localStorage.getItem('userDetails');
-        } else {
-          userProfileSection1.textContent = "No information available";
-        }
+      const userProfileSection1 = document.getElementById(
+        'userProfileSection1',
+      );
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+        editUserData(localStorage.getItem('access_token_for_user'));
+      }
+
+      if (
+        localStorage.getItem('newUser') &&
+        localStorage.getItem('newUser') !== 'undefined'
+      ) {
+        userProfileSection1.textContent = localStorage.getItem('newUser');
+      } else if (
+        localStorage.getItem('userDetails') &&
+        localStorage.getItem('userDetails') !== 'undefined'
+      ) {
+        userProfileSection1.textContent = localStorage.getItem('userDetails');
+      } else {
+        userProfileSection1.textContent = 'No information available';
+      }
     });
     return this.userProfileLink;
   }

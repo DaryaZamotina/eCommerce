@@ -205,5 +205,3 @@ window.addEventListener('popstate', () => {
   currentHash = getHash();
   setRoutingPage();
 });
-
-

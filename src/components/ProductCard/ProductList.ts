@@ -36,7 +36,7 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 }
 
 export default class Products {
- /*
+  /*
     productListTitle.createAndAppend();
   }*/
 }

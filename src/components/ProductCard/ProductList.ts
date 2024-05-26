@@ -11,6 +11,11 @@ import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
+  const catalogSection: HTMLElement =
+  document.getElementById('catalogSection');
+
+  catalogSection.innerHTML = '';
+
   for (let i: number = 0; i < n; i++) {
     const productCardInfoContainer: HTMLDivElement =
       document.createElement('div');
@@ -41,8 +46,6 @@ export function createProductsList(n: number, obj: Array<IResult>) {
       productCardInfoContainer.append(productVariantContainer);
     } */
 
-    const catalogSection: HTMLElement =
-      document.getElementById('catalogSection');
     catalogSection.append(productCardInfoContainer);
 
     productCardInfoContainer.addEventListener('click', function () {

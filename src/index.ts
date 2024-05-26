@@ -75,7 +75,7 @@ export function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-
+/*
       if (
         !localStorage.getItem('anonym_access_token') ||
         localStorage.getItem('anonym_access_token') == 'undefined' ||
@@ -93,7 +93,7 @@ export function setRoutingPage() {
       } else
         getProductsListInfoFromEcomm(
           localStorage.getItem('anonym_access_token'),
-        );
+        );*/
 
       break;
 
@@ -156,24 +156,7 @@ export function setRoutingPage() {
         clearPageContainer();
 
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-        /*if (
-          !localStorage.getItem('anonym_access_token') ||
-          localStorage.getItem('anonym_access_token') == 'undefined' ||
-          !localStorage.getItem('access_token_for_user') ||
-          localStorage.getItem('access_token_for_user') == 'undefined'
-        )
-          receiveAnonymusAccessToken();
-        if (
-          localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined'
-        ) {
-          getProductsListInfoFromEcomm(
-            localStorage.getItem('access_token_for_user'),
-          );
-        } else
-          getProductsListInfoFromEcomm(
-            localStorage.getItem('anonym_access_token'),
-          );*/
+
       }
       break;
 
@@ -244,6 +227,12 @@ window.addEventListener('popstate', () => {
 });
 /*
 window.addEventListener('load', () => {
+  currentHash = getHash();
+  setRoutingPage();
+});
+*/
+/*
+window.addEventListener('load', () => {
   if (
     !localStorage.getItem('anonym_access_token') ||
     localStorage.getItem('anonym_access_token') == 'undefined' ||
@@ -261,23 +250,3 @@ window.addEventListener('load', () => {
     getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
 */
-/*
-if (localStorage.getItem('isLogined') === null) {
-  const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
-  registrationFormDiv.createRegistrationForm();
-} 
-
-if (localStorage.getItem('isLogined') === null) {
-  const loginFormDiv = new LoginForm('pageContainer', 'log');
-  loginFormDiv.createLoginForm();
-  sendLoginPasswordToLocalStorage();
-  moveToRegistration();
-  moveToMainPage();
-} */
-/*
-if (
-  localStorage.getItem('access_token_for_user') &&
-  localStorage.getItem('access_token_for_user') !== 'undefined'
-) {
-  directMoveToMainPage();
-} */

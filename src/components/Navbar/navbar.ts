@@ -16,6 +16,8 @@ import {
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
 import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
+import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
+import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -100,6 +102,25 @@ export default class Navbar {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+
+      if (
+        !localStorage.getItem('anonym_access_token') ||
+        localStorage.getItem('anonym_access_token') == 'undefined' ||
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      )
+        receiveAnonymusAccessToken();
+      else if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (localStorage.getItem('anonym_access_token') && localStorage.getItem('anonym_access_token') !== 'undefined')
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
     });
 
     return this.catalogLink;

@@ -25,7 +25,7 @@ export function createProductCard(id: string, masterData: MasterData) {
     'masterDataDiv',
     'masterDataDiv',
     'productCard',
-    `masterDataDiv: ${JSON.stringify(masterData.current.masterVariant)}`,
+    `masterDataDiv: ${JSON.stringify(masterData)}`,
   );
   masterDataDiv.createAndAppend();
 

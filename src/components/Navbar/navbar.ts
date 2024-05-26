@@ -15,6 +15,7 @@ import {
   userProfilePage,
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
+import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -135,7 +136,15 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();
-        setHistoryPushStateToHome();
+        history.pushState(
+          { page: '/#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
     });
 
@@ -175,7 +184,15 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();
-        setHistoryPushStateToHome();
+        history.pushState(
+          { page: '/#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
     });
 
@@ -223,6 +240,13 @@ export default class Navbar {
         '#userProfile',
       );
       document.title = titlesPages.cartPage;
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+      }
       clearPageContainer();
 
       pageContainer
@@ -246,8 +270,17 @@ export default class Navbar {
     this.logoutLink.addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.clear();
-    });
 
+      history.pushState(
+        { page: '/#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+    });
     return this.logoutLink;
   }
 

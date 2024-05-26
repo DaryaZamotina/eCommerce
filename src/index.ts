@@ -20,6 +20,7 @@ import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
+import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 
 const { body } = document;
 const appContainer = new AppContainer();
@@ -54,7 +55,7 @@ function getHash() {
 }
 currentHash = getHash();
 
-function setRoutingPage() {
+export function setRoutingPage() {
   switch (currentHash) {
     case '':
       history.pushState({ page: '#' }, titlesPages.homePage, '#');
@@ -74,6 +75,26 @@ function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+
+      if (
+        !localStorage.getItem('anonym_access_token') ||
+        localStorage.getItem('anonym_access_token') == 'undefined' ||
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      )
+        receiveAnonymusAccessToken();
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
+
       break;
 
     case 'signup':
@@ -94,7 +115,15 @@ function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        setHistoryPushStateToHome();
+        history.pushState(
+          { page: '#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       }
       break;
 
@@ -118,7 +147,33 @@ function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        setHistoryPushStateToHome();
+        history.pushState(
+          { page: '#catalog' },
+          titlesPages.catalogPage,
+          '#catalog',
+        );
+        document.title = titlesPages.catalogPage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        if (
+          !localStorage.getItem('anonym_access_token') ||
+          localStorage.getItem('anonym_access_token') == 'undefined' ||
+          !localStorage.getItem('access_token_for_user') ||
+          localStorage.getItem('access_token_for_user') == 'undefined'
+        )
+          receiveAnonymusAccessToken();
+        if (
+          localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined'
+        ) {
+          getProductsListInfoFromEcomm(
+            localStorage.getItem('access_token_for_user'),
+          );
+        } else
+          getProductsListInfoFromEcomm(
+            localStorage.getItem('anonym_access_token'),
+          );
       }
       break;
 
@@ -143,6 +198,26 @@ function setRoutingPage() {
       pageContainer
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
+
+      const userProfileSection1 = document.getElementById(
+        'userProfileSection1',
+      );
+
+      userProfileSection1.textContent;
+
+      if (
+        localStorage.getItem('newUser') &&
+        localStorage.getItem('newUser') !== 'undefined'
+      ) {
+        userProfileSection1.textContent = localStorage.getItem('newUser');
+      } else if (
+        localStorage.getItem('userDetails') &&
+        localStorage.getItem('userDetails') !== 'undefined'
+      ) {
+        userProfileSection1.textContent = localStorage.getItem('userDetails');
+      } else {
+        userProfileSection1.textContent = '';
+      }
       break;
 
     default:
@@ -171,10 +246,17 @@ window.addEventListener('popstate', () => {
 window.addEventListener('load', () => {
   if (
     !localStorage.getItem('anonym_access_token') ||
-    localStorage.getItem('anonym_access_token') == 'undefined'
+    localStorage.getItem('anonym_access_token') == 'undefined' ||
+    !localStorage.getItem('access_token_for_user') ||
+    localStorage.getItem('access_token_for_user') == 'undefined'
   )
     receiveAnonymusAccessToken();
-  else
+  if (
+    localStorage.getItem('access_token_for_user') &&
+    localStorage.getItem('access_token_for_user') !== 'undefined'
+  ) {
+    getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+  } else
     getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
 

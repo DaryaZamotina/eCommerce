@@ -11,8 +11,7 @@ import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
-  const catalogSection: HTMLElement =
-  document.getElementById('catalogSection');
+  const catalogSection: HTMLElement = document.getElementById('catalogSection');
 
   catalogSection.innerHTML = '';
 
@@ -28,24 +27,6 @@ export function createProductsList(n: number, obj: Array<IResult>) {
     let masterData: MasterData = result.masterData;
     let masterVariant = masterData.current.masterVariant;
 
-    //productCardInfoContainer.textContent = JSON.stringify(masterVariant);
-
-    /*let objVariants = JSON.parse(JSON.stringify(masterData));
-    console.log("objVariants = " + objVariants);
-
-    let numberOfVariants: number = JSON.stringify(masterData).split('').length;
-    console.log("numberOfVariants = " + numberOfVariants);
-
-    for (let j: number = 0; j < numberOfVariants; j++){
-      const productVariantContainer: HTMLDivElement =
-        document.createElement('div');
-      productVariantContainer.className = 'productVariantContainer';
-      productVariantContainer.textContent = JSON.stringify(objVariants[j]);
-      console.log("JSON.stringify(objVariants[j]) = " + JSON.stringify(objVariants[j]));
-
-      productCardInfoContainer.append(productVariantContainer);
-    } */
-
     catalogSection.append(productCardInfoContainer);
 
     productCardInfoContainer.addEventListener('click', function () {
@@ -55,30 +36,7 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 }
 
 export default class Products {
-  /*private id: string;
-  // private form: 'prod';
-
-  constructor(id: string, form: 'prod') {
-    //  this.form = form;
-    this.id = id;
-  }
-
-  public createProductList() {
-    const productList = new TagCreator(
-      'div',
-      'productList',
-      'productList',
-      'homeSection',
-    );
-    productList.createAndAppend();
-
-    const productListTitle = new TagCreator(
-      'div',
-      'productListTitle',
-      'productListTitle',
-      'productList',
-      'Our Products',
-    );
+ /*
     productListTitle.createAndAppend();
   }*/
 }

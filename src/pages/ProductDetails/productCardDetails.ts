@@ -29,7 +29,6 @@ export function createProductCard(id: string, masterData: MasterData) {
   );
   masterDataDiv.createAndAppend();
 
-
   /* const goodImg = document.createElement('img');
       goodImg.src = '';
       goodImg.alt = '';

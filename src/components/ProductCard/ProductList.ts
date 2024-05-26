@@ -11,7 +11,6 @@ import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
-
   for (let i: number = 0; i < n; i++) {
     const productCardInfoContainer: HTMLDivElement =
       document.createElement('div');
@@ -23,7 +22,7 @@ export function createProductsList(n: number, obj: Array<IResult>) {
     let id: string = result.id;
     let masterData: MasterData = result.masterData;
     let masterVariant = masterData.current.masterVariant;
-    
+
     //productCardInfoContainer.textContent = JSON.stringify(masterVariant);
 
     /*let objVariants = JSON.parse(JSON.stringify(masterData));

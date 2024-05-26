@@ -174,7 +174,7 @@ export function setRoutingPage() {
           getProductsListInfoFromEcomm(
             localStorage.getItem('anonym_access_token'),
           );*/
-      } 
+      }
       break;
 
     case 'cart':

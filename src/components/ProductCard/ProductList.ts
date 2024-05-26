@@ -11,18 +11,20 @@ import { openProductCard } from './openProductCard';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
   for (let i: number = 0; i < n; i++) {
-    const productCardInfoContainer: HTMLDivElement = document.createElement('div');
+    const productCardInfoContainer: HTMLDivElement =
+      document.createElement('div');
     productCardInfoContainer.className = 'productCardInfoContainer';
     productCardInfoContainer.textContent = JSON.stringify(obj[i]);
-    
+
     let info: string = JSON.stringify(obj[i]);
     let result: IResult = obj[i];
     let id: string = result.id;
-    
-    const catalogSection: HTMLElement = document.getElementById('catalogSection');
+
+    const catalogSection: HTMLElement =
+      document.getElementById('catalogSection');
     catalogSection.append(productCardInfoContainer);
-    productCardInfoContainer.addEventListener('click', function() {
-      openProductCard();
+    productCardInfoContainer.addEventListener('click', function () {
+      openProductCard(id);
       console.log('id = ' + id);
     });
   }

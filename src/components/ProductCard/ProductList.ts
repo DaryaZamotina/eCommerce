@@ -8,8 +8,10 @@ import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 import IResult from './InterfaceProduct';
 //import HomePage from '../../pages/Home/homePage';
 import { openProductCard } from './openProductCard';
+import MasterData from './masterData';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
+
   for (let i: number = 0; i < n; i++) {
     const productCardInfoContainer: HTMLDivElement =
       document.createElement('div');
@@ -19,13 +21,33 @@ export function createProductsList(n: number, obj: Array<IResult>) {
     let info: string = JSON.stringify(obj[i]);
     let result: IResult = obj[i];
     let id: string = result.id;
+    let masterData: MasterData = result.masterData;
+    let masterVariant = masterData.current.masterVariant;
+    
+    //productCardInfoContainer.textContent = JSON.stringify(masterVariant);
+
+    /*let objVariants = JSON.parse(JSON.stringify(masterData));
+    console.log("objVariants = " + objVariants);
+
+    let numberOfVariants: number = JSON.stringify(masterData).split('').length;
+    console.log("numberOfVariants = " + numberOfVariants);
+
+    for (let j: number = 0; j < numberOfVariants; j++){
+      const productVariantContainer: HTMLDivElement =
+        document.createElement('div');
+      productVariantContainer.className = 'productVariantContainer';
+      productVariantContainer.textContent = JSON.stringify(objVariants[j]);
+      console.log("JSON.stringify(objVariants[j]) = " + JSON.stringify(objVariants[j]));
+
+      productCardInfoContainer.append(productVariantContainer);
+    } */
 
     const catalogSection: HTMLElement =
       document.getElementById('catalogSection');
     catalogSection.append(productCardInfoContainer);
+
     productCardInfoContainer.addEventListener('click', function () {
-      openProductCard(id);
-      console.log('id = ' + id);
+      openProductCard(id, masterData);
     });
   }
 }

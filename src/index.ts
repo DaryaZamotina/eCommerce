@@ -156,7 +156,7 @@ export function setRoutingPage() {
         clearPageContainer();
 
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-        if (
+        /*if (
           !localStorage.getItem('anonym_access_token') ||
           localStorage.getItem('anonym_access_token') == 'undefined' ||
           !localStorage.getItem('access_token_for_user') ||
@@ -173,8 +173,8 @@ export function setRoutingPage() {
         } else
           getProductsListInfoFromEcomm(
             localStorage.getItem('anonym_access_token'),
-          );
-      }
+          );*/
+      } 
       break;
 
     case 'cart':
@@ -242,7 +242,7 @@ window.addEventListener('popstate', () => {
   currentHash = getHash();
   setRoutingPage();
 });
-
+/*
 window.addEventListener('load', () => {
   if (
     !localStorage.getItem('anonym_access_token') ||
@@ -251,15 +251,16 @@ window.addEventListener('load', () => {
     localStorage.getItem('access_token_for_user') == 'undefined'
   )
     receiveAnonymusAccessToken();
-  if (
+  else if (
     localStorage.getItem('access_token_for_user') &&
     localStorage.getItem('access_token_for_user') !== 'undefined'
   ) {
     getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-  } else
+  } else if (localStorage.getItem('anonym_access_token') &&
+  localStorage.getItem('anonym_access_token') !== 'undefined' )
     getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
 });
-
+*/
 /*
 if (localStorage.getItem('isLogined') === null) {
   const registrationFormDiv = new RegistrationForm('pageContainer', 'form');

@@ -49,5 +49,4 @@ export function sliderMaker(links: Array<string>) {
   }
 
   slides[0].dataset.active = 'true';
-
 }

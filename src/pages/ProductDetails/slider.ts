@@ -1,8 +1,8 @@
 import { sliderMaker } from './sliderInterface';
 
 //export function getSlider(links?: Array<string>) {
-  //sliderMaker(links);
-  export function getSlider() {
+//sliderMaker(links);
+export function getSlider() {
   const leftButton = document.getElementById('leftButton');
   leftButton.textContent = 'left';
 
@@ -29,13 +29,12 @@ import { sliderMaker } from './sliderInterface';
 
   leftButton.addEventListener('click', function () {
     sliderChange(1);
-  }); 
+  });
 
   rightButton.addEventListener('click', function () {
     sliderChange(-1);
   });
 
-  
   let time = 5000;
   setInterval(function () {
     sliderChange(1);

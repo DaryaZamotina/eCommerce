@@ -65,5 +65,4 @@ export function createProductCard(id: string, masterData: MasterData) {
     `Slider for images of good will be here`,
   );
   sliderWrapper.createAndAppend();
-
 }

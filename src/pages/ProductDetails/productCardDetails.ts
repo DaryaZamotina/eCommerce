@@ -22,14 +22,39 @@ export function createProductCard(id: string, masterData: MasterData) {
   );
   productName.createAndAppend();
 
+  const descriptionProd = 
+  masterData.current.description.en;
+
   const productDescription = new TagCreator(
     'div',
     'productDescription',
     'productDescription',
     'productCard',
-    `Description of the choosen good: ${JSON.stringify(masterData)}`,
+    `${JSON.stringify(descriptionProd)}`,
   );
   productDescription.createAndAppend();
+
+  const info = JSON.stringify(masterData);
+  let categoriesImgs = masterData.current.masterVariant.images;
+  
+  let linksForImgs: Array<string> = [];
+
+  for (let i = 0; i < categoriesImgs.length; i++) {
+    let category = categoriesImgs[i];
+    console.log(category["url"]);
+    linksForImgs[i] = category["url"];
+  }
+  console.log(linksForImgs);
+
+  const productInfo = new TagCreator(
+    'div',
+    'productInfo ',
+    'productInfo ',
+    'productCard',
+    `${JSON.stringify(categoriesImgs)}`,
+  );
+  productInfo.createAndAppend();
+
 
   const sliderWrapper = new TagCreator(
     'div',
@@ -39,5 +64,4 @@ export function createProductCard(id: string, masterData: MasterData) {
     `Slider for images of good will be here`,
   );
   sliderWrapper.createAndAppend();
-
 }

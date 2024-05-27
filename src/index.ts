@@ -137,7 +137,6 @@ export function setRoutingPage() {
         clearPageContainer();
 
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-
       }
       break;
 
@@ -163,7 +162,7 @@ export function setRoutingPage() {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-      const userProfileSection1 = document.getElementById(
+      /*const userProfileSection1 = document.getElementById(
         'userProfileSection1',
       );
 
@@ -181,7 +180,7 @@ export function setRoutingPage() {
         userProfileSection1.textContent = localStorage.getItem('userDetails');
       } else {
         userProfileSection1.textContent = '';
-      }
+      }*/
       break;
 
     default:

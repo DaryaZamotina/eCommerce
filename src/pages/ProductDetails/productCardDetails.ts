@@ -1,5 +1,7 @@
 import TagCreator from '../../module/tagCreator';
 import MasterData from '../../components/ProductCard/masterData';
+import '../../../public/assets/css/body.css';
+import '../../../public/assets/css/products.css';
 
 export function createProductCard(id: string, masterData: MasterData) {
   const productCard = new TagCreator(
@@ -11,26 +13,31 @@ export function createProductCard(id: string, masterData: MasterData) {
   );
   productCard.createAndAppend();
 
-  const productTitle = new TagCreator(
+  const productName = new TagCreator(
     'div',
     'productTitle',
     'productTitle',
     'productCard',
-    `good title id: ${id}`,
+    `Name of the good under id No. ${id}`,
   );
-  productTitle.createAndAppend();
+  productName.createAndAppend();
 
-  const masterDataDiv = new TagCreator(
+  const productDescription = new TagCreator(
     'div',
-    'masterDataDiv',
-    'masterDataDiv',
+    'productDescription',
+    'productDescription',
     'productCard',
-    `masterDataDiv: ${JSON.stringify(masterData)}`,
+    `Description of the choosen good: ${JSON.stringify(masterData)}`,
   );
-  masterDataDiv.createAndAppend();
+  productDescription.createAndAppend();
 
-  /* const goodImg = document.createElement('img');
-      goodImg.src = '';
-      goodImg.alt = '';
-      productCard.append(goodImg); */
+  const sliderWrapper = new TagCreator(
+    'div',
+    'sliderWrapper',
+    'sliderWrapper',
+    'productCard',
+    `Slider for images of good will be here`,
+  );
+  sliderWrapper.createAndAppend();
+
 }

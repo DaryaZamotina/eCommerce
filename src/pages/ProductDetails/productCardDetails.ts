@@ -46,7 +46,7 @@ export function createProductCard(id: string, masterData: MasterData) {
   }
   console.log(linksForImgs);
 
-  localStorage.setItem("currentLinksToImgs", JSON.stringify(linksForImgs));
+  localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
 
   const productInfo = new TagCreator(
     'div',
@@ -66,6 +66,4 @@ export function createProductCard(id: string, masterData: MasterData) {
   );
   sliderWrapper.createAndAppend();
 
-  //getSlider(JSON.parse(localStorage.getItem("currentLinksToImgs")));
 }
-

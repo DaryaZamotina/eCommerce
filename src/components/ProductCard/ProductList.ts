@@ -32,7 +32,6 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 
     productCardInfoContainer.addEventListener('click', function () {
       openProductCard(id, masterData);
-      getSlider(JSON.parse(localStorage.getItem("currentLinksToImgs")));
     });
   }
 }

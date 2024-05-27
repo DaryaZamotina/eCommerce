@@ -3,7 +3,7 @@ import { createProductsList } from './ProductList';
 
 export function getProductsListInfoFromEcomm(token: string) {
   const link =
-    'https://api.us-east-2.aws.commercetools.com/jffecommerce/products';
+    'https://api.us-east-2.aws.commercetools.com/jffecommerce/products?limit=30';
 
   console.log('token in getProdFunc = ' + token);
 

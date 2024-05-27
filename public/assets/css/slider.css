@@ -1,3 +1,9 @@
+.carousel {
+    position: relative;
+    overflow: hidden;
+    height: 15rem;;
+}
+
 .carousel .slider {
     width: 100%;
     text-align: center;
@@ -6,7 +12,7 @@
 .carousel .slider .slide {
     width: 100%;
     margin: auto;
-    /*position: absolute; */
+    position: absolute;
     opacity: 0;
     inset: 0;
     transition: translate(left) 6s ease-in-out;
@@ -19,18 +25,17 @@
 
 .carousel img {
     display: block;
-    height: 10em;
+    height: 10rem;
     margin: 1rem auto;
     object-position: center;
 }
 
 .carousel .btnWrapper .leftButton,
-.carousel .btnWrapper .rightutton {
+.carousel .btnWrapper .rightButton {
     cursor: pointer;
     border: 1px solid #665F55;
     padding: 30px;
     border-radius: 50px;
-    background-color: rgb(8, 86, 8);
 }
 
 /*

@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import MasterData from '../../components/ProductCard/masterData';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/products.css';
+import { getSlider } from './slider';
 
 export function createProductCard(id: string, masterData: MasterData) {
   const productCard = new TagCreator(
@@ -22,8 +23,7 @@ export function createProductCard(id: string, masterData: MasterData) {
   );
   productName.createAndAppend();
 
-  const descriptionProd = 
-  masterData.current.description.en;
+  const descriptionProd = masterData.current.description.en;
 
   const productDescription = new TagCreator(
     'div',
@@ -36,15 +36,17 @@ export function createProductCard(id: string, masterData: MasterData) {
 
   const info = JSON.stringify(masterData);
   let categoriesImgs = masterData.current.masterVariant.images;
-  
+
   let linksForImgs: Array<string> = [];
 
   for (let i = 0; i < categoriesImgs.length; i++) {
     let category = categoriesImgs[i];
-    console.log(category["url"]);
-    linksForImgs[i] = category["url"];
+    console.log(category['url']);
+    linksForImgs[i] = category['url'];
   }
   console.log(linksForImgs);
+
+  localStorage.setItem("currentLinksToImgs", JSON.stringify(linksForImgs));
 
   const productInfo = new TagCreator(
     'div',
@@ -55,7 +57,6 @@ export function createProductCard(id: string, masterData: MasterData) {
   );
   productInfo.createAndAppend();
 
-
   const sliderWrapper = new TagCreator(
     'div',
     'sliderWrapper',
@@ -64,4 +65,7 @@ export function createProductCard(id: string, masterData: MasterData) {
     `Slider for images of good will be here`,
   );
   sliderWrapper.createAndAppend();
+
+  //getSlider(JSON.parse(localStorage.getItem("currentLinksToImgs")));
 }
+

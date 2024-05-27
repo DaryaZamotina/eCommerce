@@ -9,6 +9,7 @@ import IResult from './InterfaceProduct';
 //import HomePage from '../../pages/Home/homePage';
 import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
+import { getSlider } from '../../pages/ProductDetails/slider';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
@@ -31,6 +32,7 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 
     productCardInfoContainer.addEventListener('click', function () {
       openProductCard(id, masterData);
+      getSlider(JSON.parse(localStorage.getItem("currentLinksToImgs")));
     });
   }
 }

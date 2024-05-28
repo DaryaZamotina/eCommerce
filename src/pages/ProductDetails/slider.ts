@@ -37,4 +37,3 @@ export function getSlider() {
     sliderChange(1);
   }, time); */
 }
-

@@ -12,7 +12,7 @@ export function createProductCard(id: string, masterData: MasterData) {
     ``,
   );
   productCard.createAndAppend();
-  const  nameProd = masterData.current.name.en;
+  const nameProd = masterData.current.name.en;
 
   const productName = new TagCreator(
     'h3',
@@ -24,7 +24,7 @@ export function createProductCard(id: string, masterData: MasterData) {
   productName.createAndAppend();
 
   //const descriptionProd = masterData.current.description.en;
-  const descriptionProd = masterData.staged.description.en;    
+  const descriptionProd = masterData.staged.description.en;
 
   const productDescription = new TagCreator(
     'div',

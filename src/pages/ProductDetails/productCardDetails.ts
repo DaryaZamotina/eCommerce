@@ -2,7 +2,6 @@ import TagCreator from '../../module/tagCreator';
 import MasterData from '../../components/ProductCard/masterData';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/products.css';
-import { getSlider } from './slider';
 
 export function createProductCard(id: string, masterData: MasterData) {
   const productCard = new TagCreator(
@@ -13,24 +12,26 @@ export function createProductCard(id: string, masterData: MasterData) {
     ``,
   );
   productCard.createAndAppend();
+  const  nameProd = masterData.current.name.en;
 
   const productName = new TagCreator(
-    'div',
+    'h3',
     'productTitle',
     'productTitle',
     'productCard',
-    `Name of the good under id No. ${id}`,
+    `Name of your choosen product - ${nameProd}! Great choice!`,
   );
   productName.createAndAppend();
 
-  const descriptionProd = masterData.current.description.en;
+  //const descriptionProd = masterData.current.description.en;
+  const descriptionProd = masterData.staged.description.en;    
 
   const productDescription = new TagCreator(
     'div',
     'productDescription',
     'productDescription',
     'productCard',
-    `${JSON.stringify(descriptionProd)}`,
+    `Description of this item: ${JSON.stringify(descriptionProd)}`,
   );
   productDescription.createAndAppend();
 
@@ -48,21 +49,33 @@ export function createProductCard(id: string, masterData: MasterData) {
 
   localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
 
-  const productInfo = new TagCreator(
+  const priceOfGood = masterData.current.masterVariant.prices;
+
+  const productPrice = new TagCreator(
     'div',
-    'productInfo ',
-    'productInfo ',
+    'productPrice',
+    'productPrice',
     'productCard',
-    `${JSON.stringify(categoriesImgs)}`,
+    `Our Best price: ${JSON.stringify(priceOfGood)}`,
+    //`${JSON.stringify(priceOfGood)}`,
   );
-  productInfo.createAndAppend();
+  productPrice.createAndAppend();
+
+  const productPriceDiscount = new TagCreator(
+    'div',
+    'productPriceDiscount',
+    'productPriceDiscount',
+    'productCard',
+    `Our Best price including discount:  ${JSON.stringify(priceOfGood)}`,
+  );
+  productPriceDiscount.createAndAppend();
 
   const sliderWrapper = new TagCreator(
     'div',
     'sliderWrapper',
     'sliderWrapper',
     'productCard',
-    `Slider for images of good will be here`,
+    ``,
   );
   sliderWrapper.createAndAppend();
 }

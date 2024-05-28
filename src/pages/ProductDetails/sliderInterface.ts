@@ -2,6 +2,7 @@ import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/slider.css';
 import '../../../public/assets/css/button.css';
 
+
 export function sliderMaker(links: Array<string>) {
   const sliderWrapper: HTMLElement = document.getElementById('sliderWrapper');
 
@@ -49,4 +50,5 @@ export function sliderMaker(links: Array<string>) {
   }
 
   slides[0].dataset.active = 'true';
+
 }

@@ -11,11 +11,30 @@
 .productCard {
     margin: 2em auto;
     padding: 2em; 
+    font-size: 1em;
+    width: 90%;
+    overflow: hidden;
+    border: 1px solid rgb(9, 47, 9);
+    border-radius: 2em;
+}
+
+.productPrice {
+    text-decoration: line-through;
+}
+.productPriceDiscount {
+    color: rgb(101, 43, 9);
 }
 
 .productTitle,
 .productDescription,
+.productPrice,
+.productPriceDiscount,
 .sliderWrapper {
-    margin: 2em auto;
+    margin: 1em auto;
     text-align: justify;
+}
+
+.productTitle {
+    font-weight: bold;
+    color:  rgb(9, 47, 9);
 }

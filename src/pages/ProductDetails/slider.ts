@@ -1,7 +1,5 @@
 import { sliderMaker } from './sliderInterface';
 
-//export function getSlider(links?: Array<string>) {
-//sliderMaker(links);
 export function getSlider() {
   const leftButton = document.getElementById('leftButton');
   leftButton.textContent = 'left';
@@ -14,8 +12,6 @@ export function getSlider() {
   let sliderChange = (count: number) => {
     let activeSlide: HTMLElement = document.querySelector('[data-active]');
     let carouselSlides = [...document.querySelectorAll('.slide')];
-    console.log('carouselSlides = ' + carouselSlides);
-    console.log('typeof carouselSlides = ' + typeof carouselSlides);
 
     let currentIndex: number = carouselSlides.indexOf(activeSlide);
     let newIndex: number = currentIndex + count;
@@ -35,8 +31,10 @@ export function getSlider() {
     sliderChange(-1);
   });
 
+  /*
   let time = 5000;
   setInterval(function () {
     sliderChange(1);
-  }, time);
+  }, time); */
 }
+

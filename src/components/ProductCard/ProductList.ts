@@ -6,7 +6,6 @@ import '../../../public/assets/css/button.css';
 import '../../../public/assets/css/products.css';
 import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 import IResult from './InterfaceProduct';
-//import HomePage from '../../pages/Home/homePage';
 import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 import { getSlider } from '../../pages/ProductDetails/slider';
@@ -34,10 +33,4 @@ export function createProductsList(n: number, obj: Array<IResult>) {
       openProductCard(id, masterData);
     });
   }
-}
-
-export default class Products {
-  /*
-    productListTitle.createAndAppend();
-  }*/
 }

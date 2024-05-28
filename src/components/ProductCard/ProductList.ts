@@ -68,14 +68,14 @@ export function createProductsList(n: number, obj: Array<IResult>) {
     let info: string = JSON.stringify(obj[i]);
     let result: IResult = obj[i];
     let id: string = result.id;
-    let masterData: MasterData = result.masterData;
-    let masterVariant = masterData.current.masterVariant;
+    // let masterData: MasterData = result.masterData;
+    // let masterVariant = masterData.current.masterVariant;
 
     catalogSection.append(productCardInfoContainer);
 
-    productCardInfoContainer.addEventListener('click', function () {
-      openProductCard(id, masterData);
-    });
+    // productCardInfoContainer.addEventListener('click', function () {
+    //   openProductCard(id, masterData);
+    // });
   }
 }
 

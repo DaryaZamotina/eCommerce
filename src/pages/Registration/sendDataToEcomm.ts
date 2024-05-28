@@ -40,15 +40,11 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       console.log('customerID = ' + customerID);
       localStorage.setItem('customerID', output);
 
-      //if (outputObj.statusCode == 400 || 200) {
       console.log('message about error: ' + error);
-
-      //createModalWindow(error);
 
       if (error == undefined) {
         createModalWindow('Registration completed successfully!');
-        //setRoutingPage();
-        //setHistoryPushStateToHome();
+
         document.addEventListener('click', handleClickCloseModalWindow);
 
         if (

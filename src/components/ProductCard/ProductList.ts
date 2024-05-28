@@ -4,46 +4,41 @@ import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/button.css';
 import '../../../public/assets/css/products.css';
+import '../../../public/assets/css/productsInCatalog.css'
 import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 import IResult from './InterfaceProduct';
 //import HomePage from '../../pages/Home/homePage';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
-  for (let i = 0; i < n; i++) {
-    const productCardInfoContainer = document.createElement('div');
-    productCardInfoContainer.className = 'productCardInfoContainer';
-    productCardInfoContainer.textContent = JSON.stringify(obj[i]);
+  // for (let i = 0; i < n; i++) {
+  //   const productCardInfoContainer = document.createElement('div');
+  //   productCardInfoContainer.className = 'productCardInfoContainer';
+  //   productCardInfoContainer.textContent = JSON.stringify(obj[i]);
 
-    const catalogSection = document.getElementById('catalogSection');
-    catalogSection.append(productCardInfoContainer);
-  }
+  //   const catalogSection = document.getElementById('catalogSection');
+  //   catalogSection.append(productCardInfoContainer);
+  // }
+  obj.forEach((elem) => {
+    const tag = new ProductsCardInCatalog(elem);
+    tag.createProductsCardInCatalog();
+  });
 }
 
-export default class Products {
-  /*private id: string;
-  // private form: 'prod';
+class ProductsCardInCatalog {
+  private card: IResult;
 
-  constructor(id: string, form: 'prod') {
-    //  this.form = form;
-    this.id = id;
+  constructor(card: IResult) {
+    this.card = card;
   }
 
-  public createProductList() {
-    const productList = new TagCreator(
-      'div',
-      'productList',
-      'productList',
-      'homeSection',
-    );
-    productList.createAndAppend();
+  public createProductsCardInCatalog() {
+    const catalogContainer = new TagCreator('div', 'catalog__container', `catalogContainer_${this.card.id}`, 'catalogSection');
+    catalogContainer.createAndAppend();
 
-    const productListTitle = new TagCreator(
-      'div',
-      'productListTitle',
-      'productListTitle',
-      'productList',
-      'Our Products',
-    );
-    productListTitle.createAndAppend();
-  }*/
+    const catalogContainerImg = new TagCreator('div', 'catalog__container_img', `catalogContainerImg_${this.card.id}`, `catalogContainer_${this.card.id}`);
+    catalogContainerImg.createAndAppend();
+
+    const img = document.getElementById(`catalogContainerImg_${this.card.id}`) as HTMLDivElement;
+    img.style.backgroundImage = `url(${this.card.masterData.current.masterVariant.images[0].url})`;
+  }
 }

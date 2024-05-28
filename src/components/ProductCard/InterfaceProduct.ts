@@ -45,7 +45,12 @@ export default interface IResult {
       masterVariant: {
         id: number;
         prices: [];
-        images: [];
+        images: [
+          {
+            dimensions: {},
+            url: string,
+          }
+        ];
         attributes: [
           {
             name: string;

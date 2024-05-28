@@ -4,7 +4,7 @@ import '../../../public/assets/css/body.css';
 import { moveToRegistration } from './buttonsToRegToHome';
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
-console.log('keyOfAPIClient = ' + keyOfAPIClient);
+// console.log('keyOfAPIClient = ' + keyOfAPIClient);
 
 export function sendLoginPasswordToLocalStorage() {
   const messageAboutError: HTMLElement =

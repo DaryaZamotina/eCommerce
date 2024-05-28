@@ -50,7 +50,7 @@ export function clearPageContainer() {
 
 function getHash() {
   const currentHash = window.location.hash.slice(1);
-  console.log(currentHash);
+  // console.log(currentHash);
   return currentHash;
 }
 currentHash = getHash();

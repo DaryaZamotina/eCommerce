@@ -1,6 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/homePage.css';
-import Products from '../../components/ProductCard/ProductList';
+// import Products from '../../components/ProductCard/ProductList';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { receiveAccessToken } from '../LoginPage/loginGetToken';
 

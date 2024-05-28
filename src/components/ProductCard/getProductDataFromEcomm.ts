@@ -24,19 +24,9 @@ export function getProductsListInfoFromEcomm(token: string) {
 
       const infoJSON = JSON.parse(info);
 
-      //const homeSection = document.getElementById('homeSection');
-      //homeSection.textContent = infoJSON.results;
-
-      // console.log('goods = ' + info);
-      // console.log('infoJSON.results = ' + infoJSON.results);
       const numberOfGoods = infoJSON.results.length;
-      // console.log('numberOfGoods = ' + numberOfGoods);
+      console.log('numberOfGoods = ' + numberOfGoods);
       createProductsList(numberOfGoods, infoJSON.results);
-      console.log(infoJSON.results);
-
-      /*console.log('refresh_token_for_user = ' + infoJSON.refresh_token);
-        localStorage.setItem('access_token_for_user', infoJSON.access_token);
-        localStorage.setItem('refresh_token_for_user', infoJSON.refresh_token);*/
 
       return info;
     })

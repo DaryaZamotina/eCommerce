@@ -76,25 +76,6 @@ export function setRoutingPage() {
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
 
-      if (
-        !localStorage.getItem('anonym_access_token') ||
-        localStorage.getItem('anonym_access_token') == 'undefined' ||
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      )
-        receiveAnonymusAccessToken();
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('access_token_for_user'),
-        );
-      } else
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('anonym_access_token'),
-        );
-
       break;
 
     case 'signup':
@@ -156,24 +137,6 @@ export function setRoutingPage() {
         clearPageContainer();
 
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-        if (
-          !localStorage.getItem('anonym_access_token') ||
-          localStorage.getItem('anonym_access_token') == 'undefined' ||
-          !localStorage.getItem('access_token_for_user') ||
-          localStorage.getItem('access_token_for_user') == 'undefined'
-        )
-          receiveAnonymusAccessToken();
-        if (
-          localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined'
-        ) {
-          getProductsListInfoFromEcomm(
-            localStorage.getItem('access_token_for_user'),
-          );
-        } else
-          getProductsListInfoFromEcomm(
-            localStorage.getItem('anonym_access_token'),
-          );
       }
       break;
 
@@ -199,7 +162,7 @@ export function setRoutingPage() {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-      const userProfileSection1 = document.getElementById(
+      /*const userProfileSection1 = document.getElementById(
         'userProfileSection1',
       );
 
@@ -217,7 +180,7 @@ export function setRoutingPage() {
         userProfileSection1.textContent = localStorage.getItem('userDetails');
       } else {
         userProfileSection1.textContent = '';
-      }
+      }*/
       break;
 
     default:
@@ -242,41 +205,3 @@ window.addEventListener('popstate', () => {
   currentHash = getHash();
   setRoutingPage();
 });
-
-window.addEventListener('load', () => {
-  if (
-    !localStorage.getItem('anonym_access_token') ||
-    localStorage.getItem('anonym_access_token') == 'undefined' ||
-    !localStorage.getItem('access_token_for_user') ||
-    localStorage.getItem('access_token_for_user') == 'undefined'
-  )
-    receiveAnonymusAccessToken();
-  if (
-    localStorage.getItem('access_token_for_user') &&
-    localStorage.getItem('access_token_for_user') !== 'undefined'
-  ) {
-    getProductsListInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-  } else
-    getProductsListInfoFromEcomm(localStorage.getItem('anonym_access_token'));
-});
-
-/*
-if (localStorage.getItem('isLogined') === null) {
-  const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
-  registrationFormDiv.createRegistrationForm();
-} 
-
-if (localStorage.getItem('isLogined') === null) {
-  const loginFormDiv = new LoginForm('pageContainer', 'log');
-  loginFormDiv.createLoginForm();
-  sendLoginPasswordToLocalStorage();
-  moveToRegistration();
-  moveToMainPage();
-} */
-/*
-if (
-  localStorage.getItem('access_token_for_user') &&
-  localStorage.getItem('access_token_for_user') !== 'undefined'
-) {
-  directMoveToMainPage();
-} */

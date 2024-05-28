@@ -47,9 +47,9 @@ export default interface IResult {
         prices: [];
         images: [
           {
-            dimensions: {},
-            url: string,
-          }
+            dimensions: {};
+            url: string;
+          },
         ];
         attributes: [
           {

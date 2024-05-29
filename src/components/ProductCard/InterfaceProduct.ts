@@ -46,15 +46,27 @@ export default interface IResult {
         id: number;
         prices: [
           {
-            id: string,
-            key: string,
-            value: {
-              centAmount: number,
-              currencyCode: string,
-              fractionDigits: number,
-              type: string,
+            discounted?: {
+              discount: {
+                id: string,
+                typeId: string,
+              };
+              value: {
+                centAmount: number;
+                currencyCode: string;
+                fractionDigits: number;
+                type: string;
+              },
             }
-          }
+            id: string;
+            key: string;
+            value: {
+              centAmount: number;
+              currencyCode: string;
+              fractionDigits: number;
+              type: string;
+            };
+          },
         ];
         images: [
           {

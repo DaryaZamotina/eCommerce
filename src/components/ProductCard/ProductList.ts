@@ -53,14 +53,45 @@ export default class ProductsCardInCatalog {
     ) as HTMLDivElement;
     img.style.backgroundImage = `url(${this.card.masterData.current.masterVariant.images[0].url})`;
 
-    const catalogTitle = new TagCreator('div', 'catalogTitle', `catalogTitle_${this.card.id}`, `catalogContainer_${this.card.id}`, this.card.masterData.current.name.en);
+    const catalogTitle = new TagCreator(
+      'div',
+      'catalogTitle',
+      `catalogTitle_${this.card.id}`,
+      `catalogContainer_${this.card.id}`,
+      this.card.masterData.current.name.en,
+    );
     catalogTitle.createAndAppend();
 
-    // const catalogDescription = new TagCreator('div', 'catalogDescription', `catalogDescription_${this.card.id}`, `catalogContainer_${this.card.id}`, this.card.masterData.current.description.en);
-    // catalogDescription.createAndAppend();
+    if (this.card.masterData.current.description !== undefined) {
+      const catalogDescription = new TagCreator('div', 'catalogDescription', `catalogDescription_${this.card.id}`, `catalogContainer_${this.card.id}`, this.card.masterData.current.description.en);
+      catalogDescription.createAndAppend();
+    }
 
-    const catalogPrice = new TagCreator('div', 'catalogPrice', `catalogPrice_${this.card.id}`, `catalogContainer_${this.card.id}`, `${this.card.masterData.current.masterVariant.prices[0].value.centAmount / 10} €`);
+    const catalogPrice = new TagCreator(
+      'div',
+      'catalogPrice',
+      `catalogPrice_${this.card.id}`,
+      `catalogContainer_${this.card.id}`
+    );
     catalogPrice.createAndAppend();
+
+    let price: number;
+    let oldPrice: number;
+
+    if (this.card.masterData.current.masterVariant.prices[0].discounted !== undefined) {
+      price = this.card.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100;
+      oldPrice = this.card.masterData.current.masterVariant.prices[0].value.centAmount / 100;
+    } else {
+      price = this.card.masterData.current.masterVariant.prices[0].value.centAmount / 100;
+    }
+
+    const catalogPriceTitle = new TagCreator('div', 'catalogPriceTitle', `catalogPriceTitle_${this.card.id}`, `catalogPrice_${this.card.id}`, `${price} €`);
+    catalogPriceTitle.createAndAppend();
+
+    if (this.card.masterData.current.masterVariant.prices[0].discounted !== undefined) {
+      const catalogPriceTitleOld = new TagCreator('div', 'catalogPriceTitleOld', `catalogPriceTitleOld_${this.card.id}`, `catalogPrice_${this.card.id}`, `${oldPrice} €`);
+      catalogPriceTitleOld.createAndAppend();
+    }
   }
 
   private openProduct(id: string) {

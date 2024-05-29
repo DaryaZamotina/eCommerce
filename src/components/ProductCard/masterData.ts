@@ -21,15 +21,15 @@ export default interface MasterData {
       id: number;
       prices: [
         {
-          id: string,
-          key: string,
+          id: string;
+          key: string;
           value: {
-            centAmount: number,
-            currencyCode: string,
-            fractionDigits: number,
-            type: string,
-          }
-        }
+            centAmount: number;
+            currencyCode: string;
+            fractionDigits: number;
+            type: string;
+          };
+        },
       ];
       images: [
         {

@@ -14,6 +14,7 @@
     border: 0.5px solid gray;
     cursor: pointer;
     overflow: hidden;
+    position: relative;
 }
 
 .catalog__container_img {
@@ -26,7 +27,7 @@
 
 .catalog__container:hover .catalog__container_img {
     transform: scale(1.1);
-    opacity: 0.8;
+    opacity: 0.5;
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
@@ -37,9 +38,49 @@
 }
 
 .catalogDescription {
+    position: absolute;
+    top: -18rem;
+    overflow: auto;
     margin: 1rem;
+    width: 16rem;
+    height: 16rem;
+    transition: top 0.3s ease;
+}
+
+.catalog__container:hover .catalogDescription {
+    top: 0;
 }
 
 .catalogPrice {
+    display: flex;
+    justify-content: space-between;
     margin: 1rem;
+}
+
+.catalogPriceTitleOld {
+    color: gray;
+    text-decoration: line-through;
+}
+
+.catalog__sort {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    padding: 0.5rem;
+    padding-left: 1rem;
+    border-radius: 1rem;
+    border: 0.5px solid gray;
+}
+
+.catalogSortTitle,
+.catalogSortByPrice {
+    margin-right: 1rem;
+}
+
+.catalogSortByPrice {
+    cursor: pointer;
+}
+
+.catalogSortByPrice.active {
+    font-weight: bold;
 }

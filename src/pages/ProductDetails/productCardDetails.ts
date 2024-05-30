@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import MasterData from '../../components/ProductCard/masterData';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/products.css';
+import { IPrices } from './pricesInterface';
 
 export function createProductCard(id: string, masterData: MasterData) {
   const productCard = new TagCreator(
@@ -49,15 +50,17 @@ export function createProductCard(id: string, masterData: MasterData) {
 
   localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
 
-  const priceOfGood = masterData.current.masterVariant.prices;
+  const price: Array<IPrices> = masterData.current.masterVariant.prices;
+
+  const priceAmount = price[0].value.centAmount / 100;
+  const priceDiscount = price[0].discounted.value.centAmount / 100;
 
   const productPrice = new TagCreator(
     'div',
     'productPrice',
     'productPrice',
     'productCard',
-    `Our Best price: ${JSON.stringify(priceOfGood)}`,
-    //`${JSON.stringify(priceOfGood)}`,
+    `${priceAmount}`,
   );
   productPrice.createAndAppend();
 
@@ -66,7 +69,7 @@ export function createProductCard(id: string, masterData: MasterData) {
     'productPriceDiscount',
     'productPriceDiscount',
     'productCard',
-    `Our Best price including discount:  ${JSON.stringify(priceOfGood)}`,
+    `${priceDiscount}`,
   );
   productPriceDiscount.createAndAppend();
 

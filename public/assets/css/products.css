@@ -18,9 +18,6 @@
     border-radius: 2em;
 }
 
-.productPrice {
-    text-decoration: line-through;
-}
 .productPriceDiscount {
     color: rgb(101, 43, 9);
 }

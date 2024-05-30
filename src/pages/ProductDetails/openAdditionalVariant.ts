@@ -1,20 +1,19 @@
-import TagCreator from '../../module/tagCreator';
-import MasterData from '../../components/ProductCard/masterData';
-import '../../../public/assets/css/body.css';
-import '../../../public/assets/css/products.css';
-import { IPrices } from './pricesInterface';
-import { getInfoFromEcommByIDofGood } from './getInfoFromEcommByIDofGood';
-import IResult from '../../components/ProductCard/InterfaceProduct';
-import { sliderMaker } from './sliderInterface';
-import { getSlider } from './slider';
-import { openAdditionalVariant } from './openAdditionalVariant';
+import { clearPageContainer } from "../..";
+import { sliderMaker } from "./sliderInterface";
+import { getSlider } from "./slider";
+import TagCreator from "../../module/tagCreator";
+import IResult from "../../components/ProductCard/InterfaceProduct";
+import { IPrices } from "./pricesInterface";
 
-export function createProductCard(id: string) {
+export function openAdditionalVariant() {
+    clearPageContainer();
+  const dataVariant = JSON.parse(localStorage.getItem("data of variant"));
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
+
   console.log('choosenVariants = ' + choosenVariant);
-  const additionalVariants = choosenGood.masterData.current.variants;
+  //const additionalVariants = choosenGood.masterData.current.variants;
 
   const productCard = new TagCreator(
     'div',
@@ -45,7 +44,6 @@ export function createProductCard(id: string) {
   );
   productName.createAndAppend();
 
-  //const descriptionProd = masterData.staged.description.en;
   const descriptionProd = choosenGood.masterData.staged.description.en;
   const descriptionString = JSON.stringify(descriptionProd);
   const descriptionStringWithoutFirstLast = descriptionString.substring(
@@ -63,9 +61,8 @@ export function createProductCard(id: string) {
   );
   productDescription.createAndAppend();
 
-  //const info = JSON.stringify(masterData);
-  //let categoriesImgs = masterData.current.masterVariant.images;
-  const categoriesImgs = choosenVariant.images;
+  //const categoriesImgs = choosenVariant.images;
+  const categoriesImgs = dataVariant.images;
 
   let linksForImgs: Array<string> = [];
 
@@ -76,10 +73,9 @@ export function createProductCard(id: string) {
   }
   console.log(linksForImgs);
 
-  //localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
-  //const price: Array<IPrices> = masterData.current.masterVariant.prices;
+  //const price: Array<IPrices> = choosenVariant.prices;
+  const price: Array<IPrices> = dataVariant.prices;
 
-  const price: Array<IPrices> = choosenVariant.prices;
   console.log("price = " + JSON.stringify(price));
 
   const priceAmount = price[0].value.centAmount / 100;
@@ -128,24 +124,5 @@ export function createProductCard(id: string) {
 
   sliderMaker(linksForImgs);
   getSlider();
-
-
-  if (additionalVariants) {
-    for (let j = 0; j < additionalVariants.length; j++) {
-      const btnToNewVariants = new TagCreator(
-        'button',
-        'btnToNewVariants',
-        'btnToNewVariants',
-        'productCard',
-        `See the additional variant ${j+1}`,
-      );
-      btnToNewVariants.createAndAppend();
-
-      const data = additionalVariants[j];
-      localStorage.setItem("data of variant", JSON.stringify(data));
-
-      const btn = document.getElementById("btnToNewVariants");
-      btn.addEventListener("click", openAdditionalVariant);
-    }
-  }
+  
 }

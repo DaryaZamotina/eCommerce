@@ -1,13 +1,13 @@
-import { clearPageContainer } from "../..";
-import { sliderMaker } from "./sliderInterface";
-import { getSlider } from "./slider";
-import TagCreator from "../../module/tagCreator";
-import IResult from "../../components/ProductCard/InterfaceProduct";
-import { IPrices } from "./pricesInterface";
+import { clearPageContainer } from '../..';
+import { sliderMaker } from './sliderInterface';
+import { getSlider } from './slider';
+import TagCreator from '../../module/tagCreator';
+import IResult from '../../components/ProductCard/InterfaceProduct';
+import { IPrices } from './pricesInterface';
 
 export function openAdditionalVariant() {
-    clearPageContainer();
-  const dataVariant = JSON.parse(localStorage.getItem("data of variant"));
+  clearPageContainer();
+  const dataVariant = JSON.parse(localStorage.getItem('data of variant'));
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
@@ -76,7 +76,7 @@ export function openAdditionalVariant() {
   //const price: Array<IPrices> = choosenVariant.prices;
   const price: Array<IPrices> = dataVariant.prices;
 
-  console.log("price = " + JSON.stringify(price));
+  console.log('price = ' + JSON.stringify(price));
 
   const priceAmount = price[0].value.centAmount / 100;
 
@@ -97,10 +97,10 @@ export function openAdditionalVariant() {
     `\u20ac ${priceAmount}`,
   );
   productPrice.createAndAppend();
-  
+
   if (price[0].discounted) {
     const prodPrice = document.getElementById('productPrice');
-    prodPrice.style.textDecoration = "line-through";
+    prodPrice.style.textDecoration = 'line-through';
     const priceDiscount = price[0].discounted.value.centAmount / 100;
 
     const productPriceDiscount = new TagCreator(
@@ -124,5 +124,4 @@ export function openAdditionalVariant() {
 
   sliderMaker(linksForImgs);
   getSlider();
-  
 }

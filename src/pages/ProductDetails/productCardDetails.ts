@@ -141,10 +141,13 @@ export function createProductCard(id: string) {
       btnToNewVariants.createAndAppend();
 
       const data = additionalVariants[j];
-      localStorage.setItem('data of variant', JSON.stringify(data));
+      //localStorage.setItem('data of variant', JSON.stringify(data));
 
       const btn = document.getElementById('btnToNewVariants');
-      btn.addEventListener('click', openAdditionalVariant);
+      btn.addEventListener('click', function() {
+        localStorage.setItem('data of variant', JSON.stringify(data));
+        openAdditionalVariant();
+      });
     }
   }
 }

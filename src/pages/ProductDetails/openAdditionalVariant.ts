@@ -4,12 +4,14 @@ import { getSlider } from './slider';
 import TagCreator from '../../module/tagCreator';
 import IResult from '../../components/ProductCard/InterfaceProduct';
 import { IPrices } from './pricesInterface';
+import { createProductCard } from './productCardDetails';
 
 export function openAdditionalVariant() {
   clearPageContainer();
-  const dataVariant = JSON.parse(localStorage.getItem('data of variant'));
-  const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
 
+  const dataVariant = JSON.parse(localStorage.getItem('data of variant'));
+  
+  const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
   const choosenVariant = choosenGood.masterData.current.masterVariant;
 
   console.log('choosenVariants = ' + choosenVariant);
@@ -23,6 +25,21 @@ export function openAdditionalVariant() {
     ``,
   );
   productCard.createAndAppend();
+
+  const btnBack = new TagCreator(
+    'button',
+    'btnBack',
+    'btnBack',
+    'productCard',
+    `Back`,
+  );
+  btnBack.createAndAppend();
+
+  const buttonBack = document.getElementById("btnBack");
+  buttonBack.addEventListener("click", function() {
+    clearPageContainer();
+    createProductCard(localStorage.getItem('idofGood'));
+  });
 
   const nameProd = choosenGood.masterData.current.name.en;
 

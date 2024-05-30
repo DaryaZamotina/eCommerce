@@ -5,7 +5,11 @@ import { getSlider } from '../../pages/ProductDetails/slider';
 import { sliderMaker } from '../../pages/ProductDetails/sliderInterface';
 import { getInfoFromEcommByIDofGood } from '../../pages/ProductDetails/getInfoFromEcommByIDofGood';
 
-export function openProductCard(id?: string, masterData?: MasterData, token?: string) {
+export function openProductCard(
+  id?: string,
+  masterData?: MasterData,
+  token?: string,
+) {
   clearPageContainer();
   //createProductCard(id);
   //sliderMaker(JSON.parse(localStorage.getItem('currentLinksToImgs')));

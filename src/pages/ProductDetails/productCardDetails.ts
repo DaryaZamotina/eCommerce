@@ -3,17 +3,16 @@ import MasterData from '../../components/ProductCard/masterData';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/products.css';
 import { IPrices } from './pricesInterface';
-import { getInfoFromEcommByIDofGood } from './getInfoFromEcommByIDofGood'; 
+import { getInfoFromEcommByIDofGood } from './getInfoFromEcommByIDofGood';
 import IResult from '../../components/ProductCard/InterfaceProduct';
 import { sliderMaker } from './sliderInterface';
 import { getSlider } from './slider';
 
 export function createProductCard(id: string) {
-  
-  const choosenGood: IResult = JSON.parse(localStorage.getItem("choosenGood"));
+  const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
-  console.log("choosenVariants = " + choosenVariant);
+  console.log('choosenVariants = ' + choosenVariant);
 
   const productCard = new TagCreator(
     'div',
@@ -24,7 +23,7 @@ export function createProductCard(id: string) {
   );
   productCard.createAndAppend();
   //const nameProd = masterData.current.name.en;
- const nameProd = choosenGood.masterData.current.name.en;
+  const nameProd = choosenGood.masterData.current.name.en;
 
   const headOfCard = new TagCreator(
     'h4',
@@ -33,7 +32,7 @@ export function createProductCard(id: string) {
     'productCard',
     `Product`,
   );
-  headOfCard .createAndAppend();
+  headOfCard.createAndAppend();
 
   const productName = new TagCreator(
     'h3',
@@ -47,7 +46,10 @@ export function createProductCard(id: string) {
   //const descriptionProd = masterData.staged.description.en;
   const descriptionProd = choosenGood.masterData.staged.description.en;
   const descriptionString = JSON.stringify(descriptionProd);
-  const descriptionStringWithoutFirstLast = descriptionString.substring(1, descriptionString.length-2);
+  const descriptionStringWithoutFirstLast = descriptionString.substring(
+    1,
+    descriptionString.length - 2,
+  );
   console.log(descriptionStringWithoutFirstLast);
 
   const productDescription = new TagCreator(
@@ -119,5 +121,5 @@ export function createProductCard(id: string) {
 
   sliderMaker(linksForImgs);
   //sliderMaker(JSON.parse(localStorage.getItem('currentLinksToImgs')));
-  getSlider(); 
+  getSlider();
 }

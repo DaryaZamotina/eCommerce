@@ -46,7 +46,7 @@ export function receiveAnonymusAccessToken() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-       // Authorization: `Basic ${oneMoreClient.getKeyOfClient()}`,
+        // Authorization: `Basic ${oneMoreClient.getKeyOfClient()}`,
         Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
       },
       body: new URLSearchParams({

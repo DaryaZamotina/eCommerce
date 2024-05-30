@@ -33,21 +33,23 @@ export function createProductsList(n: number, obj: Array<IResult>) {
     catalogSection.append(productCardInfoContainer);
 
     productCardInfoContainer.addEventListener('click', function () {
-      localStorage.setItem("idofGood", id);
+      localStorage.setItem('idofGood', id);
 
       if (
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
-        getInfoFromEcommByIDofGood(id,
+        getInfoFromEcommByIDofGood(
+          id,
           localStorage.getItem('access_token_for_user'),
         );
       } else if (
         localStorage.getItem('anonym_access_token') &&
         localStorage.getItem('anonym_access_token') !== 'undefined'
       ) {
-        getInfoFromEcommByIDofGood(id,
-          localStorage.getItem('anonym_access_token')
+        getInfoFromEcommByIDofGood(
+          id,
+          localStorage.getItem('anonym_access_token'),
         );
       }
     });

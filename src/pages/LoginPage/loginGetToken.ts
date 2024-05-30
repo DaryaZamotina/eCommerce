@@ -1,6 +1,9 @@
 import '../../../public/assets/css/body.css';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
-import { newClientForProducts, oneMoreClient } from '../Home/anonymusSessionToken';
+import {
+  newClientForProducts,
+  oneMoreClient,
+} from '../Home/anonymusSessionToken';
 
 export const projectKey: string = 'jffecommerce';
 

@@ -75,6 +75,7 @@ export function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+      catalogPage.sortListener();
 
       break;
 

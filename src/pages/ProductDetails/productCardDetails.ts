@@ -3,8 +3,18 @@ import MasterData from '../../components/ProductCard/masterData';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/products.css';
 import { IPrices } from './pricesInterface';
+import { getInfoFromEcommByIDofGood } from './getInfoFromEcommByIDofGood'; 
+import IResult from '../../components/ProductCard/InterfaceProduct';
+import { sliderMaker } from './sliderInterface';
+import { getSlider } from './slider';
 
-export function createProductCard(id: string, masterData: MasterData) {
+export function createProductCard(id: string) {
+  
+  const choosenGood: IResult = JSON.parse(localStorage.getItem("choosenGood"));
+
+  const choosenVariant = choosenGood.masterData.current.masterVariant;
+  console.log("choosenVariants = " + choosenVariant);
+
   const productCard = new TagCreator(
     'div',
     'productCard',
@@ -13,31 +23,45 @@ export function createProductCard(id: string, masterData: MasterData) {
     ``,
   );
   productCard.createAndAppend();
-  const nameProd = masterData.current.name.en;
+  //const nameProd = masterData.current.name.en;
+ const nameProd = choosenGood.masterData.current.name.en;
+
+  const headOfCard = new TagCreator(
+    'h4',
+    'headOfCard',
+    'headOfCard',
+    'productCard',
+    `Product`,
+  );
+  headOfCard .createAndAppend();
 
   const productName = new TagCreator(
     'h3',
     'productTitle',
     'productTitle',
     'productCard',
-    `Name of your choosen product - ${nameProd}! Great choice!`,
+    `${nameProd}`,
   );
   productName.createAndAppend();
 
-  //const descriptionProd = masterData.current.description.en;
-  const descriptionProd = masterData.staged.description.en;
+  //const descriptionProd = masterData.staged.description.en;
+  const descriptionProd = choosenGood.masterData.staged.description.en;
+  const descriptionString = JSON.stringify(descriptionProd);
+  const descriptionStringWithoutFirstLast = descriptionString.substring(1, descriptionString.length-2);
+  console.log(descriptionStringWithoutFirstLast);
 
   const productDescription = new TagCreator(
     'div',
     'productDescription',
     'productDescription',
     'productCard',
-    `Description of this item: ${JSON.stringify(descriptionProd)}`,
+    `${descriptionStringWithoutFirstLast}`,
   );
   productDescription.createAndAppend();
 
-  const info = JSON.stringify(masterData);
-  let categoriesImgs = masterData.current.masterVariant.images;
+  //const info = JSON.stringify(masterData);
+  //let categoriesImgs = masterData.current.masterVariant.images;
+  const categoriesImgs = choosenVariant.images;
 
   let linksForImgs: Array<string> = [];
 
@@ -48,18 +72,29 @@ export function createProductCard(id: string, masterData: MasterData) {
   }
   console.log(linksForImgs);
 
-  localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
+  //localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
+  //const price: Array<IPrices> = masterData.current.masterVariant.prices;
 
-  const price: Array<IPrices> = masterData.current.masterVariant.prices;
+  const price: Array<IPrices> = choosenVariant.prices;
 
-  const priceAmount = price[0].value.centAmount / 100;
+  /*const priceAmount = price[0].value.centAmount / 100;
   const priceDiscount = price[0].discounted.value.centAmount / 100;
+
+
+  const priceContainer = new TagCreator(
+    'div',
+    'priceContainer',
+    'priceContainer',
+    'productCard',
+    ``,
+  );
+  priceContainer.createAndAppend();
 
   const productPrice = new TagCreator(
     'div',
     'productPrice',
     'productPrice',
-    'productCard',
+    'priceContainer',
     `${priceAmount}`,
   );
   productPrice.createAndAppend();
@@ -68,11 +103,11 @@ export function createProductCard(id: string, masterData: MasterData) {
     'div',
     'productPriceDiscount',
     'productPriceDiscount',
-    'productCard',
+    'priceContainer',
     `${priceDiscount}`,
   );
   productPriceDiscount.createAndAppend();
-
+*/
   const sliderWrapper = new TagCreator(
     'div',
     'sliderWrapper',
@@ -81,4 +116,8 @@ export function createProductCard(id: string, masterData: MasterData) {
     ``,
   );
   sliderWrapper.createAndAppend();
+
+  sliderMaker(linksForImgs);
+  //sliderMaker(JSON.parse(localStorage.getItem('currentLinksToImgs')));
+  getSlider(); 
 }

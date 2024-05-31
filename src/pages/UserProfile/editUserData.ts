@@ -65,10 +65,8 @@ export function editUserData(token: string) {
       const userProfileSection1 = document.getElementById(
         'userProfileSection1',
       );
-     // userProfileSection1.textContent = info;
+      // userProfileSection1.textContent = info;
 
-
-     
       /* const userProfileSection1 = document.getElementById(
           'userProfileSection1',
         );

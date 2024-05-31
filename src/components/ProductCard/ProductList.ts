@@ -34,29 +34,6 @@ export default class ProductsCardInCatalog {
     this.card = _card;
   }
 
-    productCardInfoContainer.addEventListener('click', function () {
-      localStorage.setItem('idofGood', id);
-
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getInfoFromEcommByIDofGood(
-          id,
-          localStorage.getItem('access_token_for_user'),
-        );
-      } else if (
-        localStorage.getItem('anonym_access_token') &&
-        localStorage.getItem('anonym_access_token') !== 'undefined'
-      ) {
-        getInfoFromEcommByIDofGood(
-          id,
-          localStorage.getItem('anonym_access_token'),
-        );
-      }
-    });
-  }
-
   public createProductsCardInCatalog() {
     let result: IResultNew;
     let resultId: string;
@@ -165,7 +142,25 @@ export default class ProductsCardInCatalog {
   private openProduct(id: string) {
     const card = document.getElementById(id) as HTMLDivElement;
     card.addEventListener('click', () => {
-      openProductCard(this.card.id);
+      localStorage.setItem('idofGood', id);
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getInfoFromEcommByIDofGood(
+          this.card.id,
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getInfoFromEcommByIDofGood(
+          this.card.id,
+          localStorage.getItem('anonym_access_token'),
+        );
+      }
     });
   }
 }

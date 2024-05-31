@@ -14,10 +14,10 @@ export function createUserProfile() {
   const password = info.password;
 
   const address = info.addresses;
-  const lastAddress = address[address.length-1];
+  const lastAddress = address[address.length - 1];
   const street = lastAddress.streetName;
   const city = lastAddress.city;
-  const coutry= lastAddress.country;
+  const coutry = lastAddress.country;
   const postalCode = lastAddress.postalCode;
 
   const wrapperProfile = document.createElement('div');
@@ -76,59 +76,60 @@ export function createUserProfile() {
   inputForPassword.type = 'password';
   inputForPassword.placeholder = `${password}`;
   labelForPassword.append(inputForPassword);
-//-------------
-const labelForStreet: HTMLLabelElement = document.createElement('label');
-labelForStreet.textContent = 'Street';
-wrapperProfile.append(labelForStreet);
+  //-------------
+  const labelForStreet: HTMLLabelElement = document.createElement('label');
+  labelForStreet.textContent = 'Street';
+  wrapperProfile.append(labelForStreet);
 
-const inputForStreet: HTMLInputElement = document.createElement('input');
-inputForStreet.className = 'inputForStreet';
-inputForStreet.id = 'inputForStreet';
-inputForStreet.placeholder = `${street}`;
-labelForStreet.append(inputForStreet);
+  const inputForStreet: HTMLInputElement = document.createElement('input');
+  inputForStreet.className = 'inputForStreet';
+  inputForStreet.id = 'inputForStreet';
+  inputForStreet.placeholder = `${street}`;
+  labelForStreet.append(inputForStreet);
 
-//-------------
+  //-------------
 
-const labelForStreetNumber: HTMLLabelElement = document.createElement('label');
-labelForStreetNumber.textContent = 'Street No.';
-wrapperProfile.append(labelForStreetNumber);
+  const labelForStreetNumber: HTMLLabelElement =
+    document.createElement('label');
+  labelForStreetNumber.textContent = 'Street No.';
+  wrapperProfile.append(labelForStreetNumber);
 
-const inputForStreetNo: HTMLInputElement = document.createElement('input');
-inputForStreetNo.className = 'inputForStreetNo';
-inputForStreetNo.id = 'inputForStreetNo';
-inputForStreetNo.placeholder = ``;
-labelForStreetNumber.append(inputForStreetNo);
+  const inputForStreetNo: HTMLInputElement = document.createElement('input');
+  inputForStreetNo.className = 'inputForStreetNo';
+  inputForStreetNo.id = 'inputForStreetNo';
+  inputForStreetNo.placeholder = ``;
+  labelForStreetNumber.append(inputForStreetNo);
 
-//-------------
-const labelForPostalCode: HTMLLabelElement = document.createElement('label');
-labelForPostalCode.textContent = 'Postal code ';
-wrapperProfile.append(labelForPostalCode);
+  //-------------
+  const labelForPostalCode: HTMLLabelElement = document.createElement('label');
+  labelForPostalCode.textContent = 'Postal code ';
+  wrapperProfile.append(labelForPostalCode);
 
-const inputForPostalCode: HTMLInputElement = document.createElement('input');
-inputForPostalCode.className = 'inputForPostalCode.';
-inputForPostalCode.id = 'inputForPostalCode.';
-inputForPostalCode.placeholder = `${postalCode}`;
-labelForPostalCode.append(inputForPostalCode);
-//-------------
-const labelForCity: HTMLLabelElement = document.createElement('label');
-labelForCity.textContent = 'City ';
-wrapperProfile.append(labelForCity);
+  const inputForPostalCode: HTMLInputElement = document.createElement('input');
+  inputForPostalCode.className = 'inputForPostalCode.';
+  inputForPostalCode.id = 'inputForPostalCode.';
+  inputForPostalCode.placeholder = `${postalCode}`;
+  labelForPostalCode.append(inputForPostalCode);
+  //-------------
+  const labelForCity: HTMLLabelElement = document.createElement('label');
+  labelForCity.textContent = 'City ';
+  wrapperProfile.append(labelForCity);
 
-const inputForCity: HTMLInputElement = document.createElement('input');
-inputForCity.className = 'inputForCity';
-inputForCity.id = 'inputForCity';
-inputForCity.placeholder = `${city}`;
-labelForCity.append(inputForCity);
-//-------------
-const labelForCoutry: HTMLLabelElement = document.createElement('label');
-labelForCoutry.textContent = 'Coutry';
-wrapperProfile.append(labelForCoutry);
+  const inputForCity: HTMLInputElement = document.createElement('input');
+  inputForCity.className = 'inputForCity';
+  inputForCity.id = 'inputForCity';
+  inputForCity.placeholder = `${city}`;
+  labelForCity.append(inputForCity);
+  //-------------
+  const labelForCoutry: HTMLLabelElement = document.createElement('label');
+  labelForCoutry.textContent = 'Coutry';
+  wrapperProfile.append(labelForCoutry);
 
-const inputForCoutry: HTMLInputElement = document.createElement('input');
-inputForCoutry.className = 'inputForCoutry';
-inputForCoutry.id = 'inputForCoutry';
-inputForCoutry.placeholder = `${coutry}`;
-labelForCoutry.append(inputForCoutry);
+  const inputForCoutry: HTMLInputElement = document.createElement('input');
+  inputForCoutry.className = 'inputForCoutry';
+  inputForCoutry.id = 'inputForCoutry';
+  inputForCoutry.placeholder = `${coutry}`;
+  labelForCoutry.append(inputForCoutry);
 
   //-------------
 

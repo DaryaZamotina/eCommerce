@@ -1,5 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/userProfilePage.css';
+//import createProfile  from "../UserProfile/";
 
 export default class UserProfilePage {
   section: HTMLElement;
@@ -43,4 +44,5 @@ export default class UserProfilePage {
 
     return this.userProfilePage;
   }
+  //createProfile();
 }

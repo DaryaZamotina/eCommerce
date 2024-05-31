@@ -19,11 +19,11 @@ export function getUserInfoFromEcomm(token: string) {
       localStorage.setItem('userDetails', info);
       console.log('userDetails = ' + info);
       const infoJSON = JSON.parse(info);
-      /*const userProfileSection1 = document.getElementById(
+      const userProfileSection1 = document.getElementById(
         'userProfileSection1',
       );
 
-      userProfileSection1.textContent = info; */
+      userProfileSection1.textContent = info;
 
       return info;
     })

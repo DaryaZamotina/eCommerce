@@ -280,7 +280,7 @@ export default class Navbar {
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
         getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-        editUserData(localStorage.getItem('access_token_for_user'));
+        //editUserData(localStorage.getItem('access_token_for_user'));
       }
 
       if (

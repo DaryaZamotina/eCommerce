@@ -28,7 +28,7 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 }
 
 export default class ProductsCardInCatalog {
-  private card: IResult
+  private card: IResult;
 
   constructor(_card: IResult) {
     this.card = _card;
@@ -99,20 +99,11 @@ export default class ProductsCardInCatalog {
     let price: number;
     let oldPrice: number;
 
-    if (
-      result.masterVariant.prices[0].discounted !==
-      undefined
-    ) {
-      price =
-        result.masterVariant.prices[0].discounted.value
-          .centAmount / 100;
-      oldPrice =
-        result.masterVariant.prices[0].value.centAmount /
-        100;
+    if (result.masterVariant.prices[0].discounted !== undefined) {
+      price = result.masterVariant.prices[0].discounted.value.centAmount / 100;
+      oldPrice = result.masterVariant.prices[0].value.centAmount / 100;
     } else {
-      price =
-        result.masterVariant.prices[0].value.centAmount /
-        100;
+      price = result.masterVariant.prices[0].value.centAmount / 100;
     }
 
     const catalogPriceTitle = new TagCreator(
@@ -124,10 +115,7 @@ export default class ProductsCardInCatalog {
     );
     catalogPriceTitle.createAndAppend();
 
-    if (
-      result.masterVariant.prices[0].discounted !==
-      undefined
-    ) {
+    if (result.masterVariant.prices[0].discounted !== undefined) {
       const catalogPriceTitleOld = new TagCreator(
         'div',
         'catalogPriceTitleOld',
@@ -142,25 +130,25 @@ export default class ProductsCardInCatalog {
   private openProduct(id: string) {
     const card = document.getElementById(id) as HTMLDivElement;
     card.addEventListener('click', () => {
-        localStorage.setItem('idofGood', this.card.id);
-  
-        if (
-          localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined'
-        ) {
-          getInfoFromEcommByIDofGood(
-            this.card.id,
-            localStorage.getItem('access_token_for_user'),
-          );
-        } else if (
-          localStorage.getItem('anonym_access_token') &&
-          localStorage.getItem('anonym_access_token') !== 'undefined'
-        ) {
-          getInfoFromEcommByIDofGood(
-            this.card.id,
-            localStorage.getItem('anonym_access_token'),
-          );
-        }
+      localStorage.setItem('idofGood', this.card.id);
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getInfoFromEcommByIDofGood(
+          this.card.id,
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getInfoFromEcommByIDofGood(
+          this.card.id,
+          localStorage.getItem('anonym_access_token'),
+        );
+      }
     });
   }
 }

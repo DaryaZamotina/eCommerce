@@ -65,6 +65,7 @@
 .catalog__sort {
     display: flex;
     flex-direction: row;
+    align-items: center;
     margin: 1rem;
     padding: 0.5rem;
     padding-left: 1rem;
@@ -72,8 +73,17 @@
     border: 0.5px solid gray;
 }
 
+@media (max-width: 990px) {
+    .catalog__sort {
+        flex-direction: column;
+        align-items: start;
+    }
+}
+
 .catalogSortTitle,
 .catalogSortByPrice {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
     margin-right: 1rem;
 }
 
@@ -83,4 +93,19 @@
 
 .catalogSortByPrice.active {
     font-weight: bold;
+}
+
+#catalogSortBy_Z_A {
+    flex-grow: 2;
+}
+
+.inputSearch {
+    height: 2rem;
+    width: 60%;
+    max-width: 11rem;
+    margin-right: 1rem;
+    padding-left: 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid gray;
+    outline: none;
 }

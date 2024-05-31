@@ -79,7 +79,7 @@ export function createProductCard(id: string) {
   //localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
   //const price: Array<IPrices> = masterData.current.masterVariant.prices;
 
-  const price: Array<IPrices> = choosenVariant.prices;
+  const price = choosenVariant.prices;
   console.log('price = ' + JSON.stringify(price));
 
   const priceAmount = price[0].value.centAmount / 100;

@@ -282,7 +282,7 @@ export default class Navbar {
         getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
         //editUserData(localStorage.getItem('access_token_for_user'));
       }
-/*
+      /*
       if (
         localStorage.getItem('newUser') &&
         localStorage.getItem('newUser') !== 'undefined'

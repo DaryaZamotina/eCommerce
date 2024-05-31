@@ -1,6 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/userProfilePage.css';
-//import createProfile  from "../UserProfile/";
+//import createProfile from "../../pages/UserProfile/";
 
 export default class UserProfilePage {
   section: HTMLElement;

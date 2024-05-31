@@ -10,9 +10,12 @@ import IResult from './InterfaceProduct';
 import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 import { getSlider } from '../../pages/ProductDetails/slider';
+
 import { getInfoFromEcommByIDofGood } from '../../pages/ProductDetails/getInfoFromEcommByIDofGood';
 import { clearPageContainer } from '../..';
 import { createProductCard } from '../../pages/ProductDetails/productCardDetails';
+
+import IResultNew from './InterfaceProductNew';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
@@ -25,10 +28,10 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 }
 
 export default class ProductsCardInCatalog {
-  private card: IResult;
+  private card: IResult
 
-  constructor(card: IResult) {
-    this.card = card;
+  constructor(_card: IResult) {
+    this.card = _card;
   }
 
     productCardInfoContainer.addEventListener('click', function () {
@@ -55,66 +58,106 @@ export default class ProductsCardInCatalog {
   }
 
   public createProductsCardInCatalog() {
+    let result: IResultNew;
+    let resultId: string;
+    if ('masterData' in this.card) {
+      result = this.card.masterData.current;
+      resultId = this.card.id;
+    } else {
+      result = this.card;
+      resultId = this.card.id;
+    }
+
     const catalogContainer = new TagCreator(
       'div',
       'catalog__container',
-      `catalogContainer_${this.card.id}`,
+      `catalogContainer_${resultId}`,
       'catalogSection',
     );
     catalogContainer.createAndAppend();
 
-    this.openProduct(`catalogContainer_${this.card.id}`);
+    this.openProduct(`catalogContainer_${resultId}`);
 
     const catalogContainerImg = new TagCreator(
       'div',
       'catalog__container_img',
-      `catalogContainerImg_${this.card.id}`,
-      `catalogContainer_${this.card.id}`,
+      `catalogContainerImg_${resultId}`,
+      `catalogContainer_${resultId}`,
     );
     catalogContainerImg.createAndAppend();
 
     const img = document.getElementById(
-      `catalogContainerImg_${this.card.id}`,
+      `catalogContainerImg_${resultId}`,
     ) as HTMLDivElement;
-    img.style.backgroundImage = `url(${this.card.masterData.current.masterVariant.images[0].url})`;
+    img.style.backgroundImage = `url(${result.masterVariant.images[0].url})`;
 
     const catalogTitle = new TagCreator(
       'div',
       'catalogTitle',
-      `catalogTitle_${this.card.id}`,
-      `catalogContainer_${this.card.id}`,
-      this.card.masterData.current.name.en,
+      `catalogTitle_${resultId}`,
+      `catalogContainer_${resultId}`,
+      result.name.en,
     );
     catalogTitle.createAndAppend();
 
-    if (this.card.masterData.current.description !== undefined) {
-      const catalogDescription = new TagCreator('div', 'catalogDescription', `catalogDescription_${this.card.id}`, `catalogContainer_${this.card.id}`, this.card.masterData.current.description.en);
+    if (result.description !== undefined) {
+      const catalogDescription = new TagCreator(
+        'div',
+        'catalogDescription',
+        `catalogDescription_${resultId}`,
+        `catalogContainer_${resultId}`,
+        result.description.en,
+      );
       catalogDescription.createAndAppend();
     }
 
     const catalogPrice = new TagCreator(
       'div',
       'catalogPrice',
-      `catalogPrice_${this.card.id}`,
-      `catalogContainer_${this.card.id}`
+      `catalogPrice_${resultId}`,
+      `catalogContainer_${resultId}`,
     );
     catalogPrice.createAndAppend();
 
     let price: number;
     let oldPrice: number;
 
-    if (this.card.masterData.current.masterVariant.prices[0].discounted !== undefined) {
-      price = this.card.masterData.current.masterVariant.prices[0].discounted.value.centAmount / 100;
-      oldPrice = this.card.masterData.current.masterVariant.prices[0].value.centAmount / 100;
+    if (
+      result.masterVariant.prices[0].discounted !==
+      undefined
+    ) {
+      price =
+        result.masterVariant.prices[0].discounted.value
+          .centAmount / 100;
+      oldPrice =
+        result.masterVariant.prices[0].value.centAmount /
+        100;
     } else {
-      price = this.card.masterData.current.masterVariant.prices[0].value.centAmount / 100;
+      price =
+        result.masterVariant.prices[0].value.centAmount /
+        100;
     }
 
-    const catalogPriceTitle = new TagCreator('div', 'catalogPriceTitle', `catalogPriceTitle_${this.card.id}`, `catalogPrice_${this.card.id}`, `${price} €`);
+    const catalogPriceTitle = new TagCreator(
+      'div',
+      'catalogPriceTitle',
+      `catalogPriceTitle_${resultId}`,
+      `catalogPrice_${resultId}`,
+      `${price} €`,
+    );
     catalogPriceTitle.createAndAppend();
 
-    if (this.card.masterData.current.masterVariant.prices[0].discounted !== undefined) {
-      const catalogPriceTitleOld = new TagCreator('div', 'catalogPriceTitleOld', `catalogPriceTitleOld_${this.card.id}`, `catalogPrice_${this.card.id}`, `${oldPrice} €`);
+    if (
+      result.masterVariant.prices[0].discounted !==
+      undefined
+    ) {
+      const catalogPriceTitleOld = new TagCreator(
+        'div',
+        'catalogPriceTitleOld',
+        `catalogPriceTitleOld_${resultId}`,
+        `catalogPrice_${resultId}`,
+        `${oldPrice} €`,
+      );
       catalogPriceTitleOld.createAndAppend();
     }
   }
@@ -122,7 +165,7 @@ export default class ProductsCardInCatalog {
   private openProduct(id: string) {
     const card = document.getElementById(id) as HTMLDivElement;
     card.addEventListener('click', () => {
-      openProductCard(this.card.id, this.card.masterData);
+      openProductCard(this.card.id);
     });
   }
 }

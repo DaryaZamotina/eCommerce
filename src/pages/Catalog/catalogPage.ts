@@ -108,9 +108,9 @@ export default class CatalogPage {
       { query: 'search?sort=price', order: ' asc' },
       { query: 'search?sort=price', order: ' desc' },
       { query: 'search?sort=name.en', order: ' asc' },
-      { query: 'search?sort=name.en', order: ' desc' }
+      { query: 'search?sort=name.en', order: ' desc' },
     ];
-  
+
     sortButton.forEach((button, index) => {
       button.addEventListener('click', (event) => {
         if (!button.classList.contains('active')) {

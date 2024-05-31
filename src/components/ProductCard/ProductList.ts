@@ -28,12 +28,12 @@ export function createProductsList(n: number, obj: Array<IResult>) {
 }
 
 export default class ProductsCardInCatalog {
-  private card: IResult
+  private card: IResult;
 
   constructor(_card: IResult) {
     this.card = _card;
   }
-/*
+  /*
     productCardInfoContainer.addEventListener('click', function () {
       localStorage.setItem('idofGood', id);
 
@@ -54,8 +54,8 @@ export default class ProductsCardInCatalog {
           localStorage.getItem('anonym_access_token'),
         );
       }
-    });*/
-  }
+    });
+  } */
 
   public createProductsCardInCatalog() {
     let result: IResultNew;
@@ -122,20 +122,11 @@ export default class ProductsCardInCatalog {
     let price: number;
     let oldPrice: number;
 
-    if (
-      result.masterVariant.prices[0].discounted !==
-      undefined
-    ) {
-      price =
-        result.masterVariant.prices[0].discounted.value
-          .centAmount / 100;
-      oldPrice =
-        result.masterVariant.prices[0].value.centAmount /
-        100;
+    if (result.masterVariant.prices[0].discounted !== undefined) {
+      price = result.masterVariant.prices[0].discounted.value.centAmount / 100;
+      oldPrice = result.masterVariant.prices[0].value.centAmount / 100;
     } else {
-      price =
-        result.masterVariant.prices[0].value.centAmount /
-        100;
+      price = result.masterVariant.prices[0].value.centAmount / 100;
     }
 
     const catalogPriceTitle = new TagCreator(
@@ -147,10 +138,7 @@ export default class ProductsCardInCatalog {
     );
     catalogPriceTitle.createAndAppend();
 
-    if (
-      result.masterVariant.prices[0].discounted !==
-      undefined
-    ) {
+    if (result.masterVariant.prices[0].discounted !== undefined) {
       const catalogPriceTitleOld = new TagCreator(
         'div',
         'catalogPriceTitleOld',

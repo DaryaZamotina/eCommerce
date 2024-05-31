@@ -1,130 +1,130 @@
 export default interface IResult {
-  id: string;
-  version: number;
-  versionModifiedAt: string;
-  lastMessageSequenceNumber: number;
-  createdAt: string;
-  lastModifiedAt: string;
-  lastModifiedBy: {
-    isPlatformClient: boolean;
-    user: {
-      typeId: string;
-      id: string;
+  id?: string;
+  version?: number;
+  versionModifiedAt?: string;
+  lastMessageSequenceNumber?: number;
+  createdAt?: string;
+  lastModifiedAt?: string;
+  lastModifiedBy?: {
+    isPlatformClient?: boolean;
+    user?: {
+      typeId?: string;
+      id?: string;
     };
   };
-  createdBy: {
-    isPlatformClient: boolean;
-    user: {
-      typeId: string;
-      id: string;
+  createdBy?: {
+    isPlatformClient?: boolean;
+    user?: {
+      typeId?: string;
+      id?: string;
     };
   };
-  productType: {
-    typeId: string;
-    id: string;
+  productType?: {
+    typeId?: string;
+    id?: string;
   };
-  masterData: {
-    current: {
-      name: {
-        en: string;
+  masterData?: {
+    current?: {
+      name?: {
+        en?: string;
       };
-      description: {
-        en: string;
+      description?: {
+        en?: string;
       };
-      categories: [];
-      categoryOrderHints: {};
-      lug: {
-        en: string;
+      categories?: [];
+      categoryOrderHints?: {};
+      lug?: {
+        en?: string;
       };
-      metaTitle: {
-        en: string;
+      metaTitle?: {
+        en?: string;
       };
-      metaDescription: {
-        en: string;
+      metaDescription?: {
+        en?: string;
       };
-      masterVariant: {
-        id: number;
-        prices: [
+      masterVariant?: {
+        id?: number;
+        prices?: [
           {
             discounted?: {
-              discount: {
-                id: string,
-                typeId: string,
+              discount?: {
+                id?: string;
+                typeId?: string;
               };
-              value: {
-                centAmount: number;
-                currencyCode: string;
-                fractionDigits: number;
-                type: string;
-              },
-            }
-            id: string;
-            key: string;
-            value: {
-              centAmount: number;
-              currencyCode: string;
-              fractionDigits: number;
-              type: string;
+              value?: {
+                centAmount?: number;
+                currencyCode?: string;
+                fractionDigits?: number;
+                type?: string;
+              };
+            };
+            id?: string;
+            key?: string;
+            value?: {
+              centAmount?: number;
+              currencyCode?: string;
+              fractionDigits?: number;
+              type?: string;
             };
           },
         ];
-        images: [
+        images?: [
           {
-            dimensions: {};
-            url: string;
+            dimensions?: {};
+            url?: string;
           },
         ];
-        attributes: [
+        attributes?: [
           {
-            name: string;
-            value: {
-              en: string;
+            name?: string;
+            value?: {
+              en?: string;
             };
           },
         ];
-        assets: [];
+        assets?: [];
       };
-      variants: [];
-      searchKeywords: {};
+      variants?: [];
+      searchKeywords?: {};
     };
-    staged: {
-      name: {
-        en: string;
+    staged?: {
+      name?: {
+        en?: string;
       };
-      description: {
-        en: string;
+      description?: {
+        en?: string;
       };
-      categories: [];
-      categoryOrderHints: {};
-      slug: {
-        en: string;
+      categories?: [];
+      categoryOrderHints?: {};
+      slug?: {
+        en?: string;
       };
-      metaTitle: {
-        en: string;
+      metaTitle?: {
+        en?: string;
       };
-      metaDescription: {
-        en: string;
+      metaDescription?: {
+        en?: string;
       };
-      masterVariant: {
-        id: number;
-        prices: [];
-        images: [];
-        attributes: [
+      masterVariant?: {
+        id?: number;
+        prices?: [];
+        images?: [];
+        attributes?: [
           {
-            name: string;
-            value: {
-              en: string;
+            name?: string;
+            value?: {
+              en?: string;
             };
           },
         ];
-        assets: [];
+        assets?: [];
       };
-      variants: [];
-      searchKeywords: {};
+      variants?: [];
+      searchKeywords?: {};
     };
-    published: boolean;
-    hasStagedChanges: boolean;
+    published?: boolean;
+    hasStagedChanges?: boolean;
   };
-  priceMode: string;
-  lastVariantId: number;
+  priceMode?: string;
+  lastVariantId?: number;
 }

@@ -1,3 +1,5 @@
+import { createUserProfile } from "./createUserProfile";
+
 export function getUserInfoFromEcomm(token: string) {
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
 
@@ -17,13 +19,12 @@ export function getUserInfoFromEcomm(token: string) {
   getInfo(link)
     .then((info) => {
       localStorage.setItem('userDetails', info);
-      console.log('userDetails = ' + info);
-      const infoJSON = JSON.parse(info);
-      const userProfileSection1 = document.getElementById(
+      /*const userProfileSection1 = document.getElementById(
         'userProfileSection1',
       );
 
-      userProfileSection1.textContent = info;
+      userProfileSection1.textContent = info; */
+      createUserProfile();
 
       return info;
     })

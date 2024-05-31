@@ -79,11 +79,11 @@ export function createProductCard(id: string) {
   //localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
   //const price: Array<IPrices> = masterData.current.masterVariant.prices;
 
-  const price: Array<IPrices> = choosenVariant.prices;
-  console.log('price = ' + JSON.stringify(price));
+  //const price: Array<IPrices> = choosenVariant.prices;
+  //console.log('price = ' + JSON.stringify(price));
 
-  const priceAmount = price[0].value.centAmount / 100;
-
+  //const priceAmount = price[0].value.centAmount / 100;
+  /*
   const priceContainer = new TagCreator(
     'div',
     'priceContainer',
@@ -115,7 +115,7 @@ export function createProductCard(id: string) {
       `\u20ac ${priceDiscount}`,
     );
     productPriceDiscount.createAndAppend();
-  }
+  } */
 
   const sliderWrapper = new TagCreator(
     'div',
@@ -144,7 +144,7 @@ export function createProductCard(id: string) {
       //localStorage.setItem('data of variant', JSON.stringify(data));
 
       const btn = document.getElementById('btnToNewVariants');
-      btn.addEventListener('click', function() {
+      btn.addEventListener('click', function () {
         localStorage.setItem('data of variant', JSON.stringify(data));
         openAdditionalVariant();
       });

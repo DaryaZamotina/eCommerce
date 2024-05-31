@@ -10,7 +10,7 @@ export function openAdditionalVariant() {
   clearPageContainer();
 
   const dataVariant = JSON.parse(localStorage.getItem('data of variant'));
-  
+
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
   const choosenVariant = choosenGood.masterData.current.masterVariant;
 
@@ -35,8 +35,8 @@ export function openAdditionalVariant() {
   );
   btnBack.createAndAppend();
 
-  const buttonBack = document.getElementById("btnBack");
-  buttonBack.addEventListener("click", function() {
+  const buttonBack = document.getElementById('btnBack');
+  buttonBack.addEventListener('click', function () {
     clearPageContainer();
     createProductCard(localStorage.getItem('idofGood'));
   });

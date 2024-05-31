@@ -5,3 +5,8 @@
   .user-profile__section1 {
     border: 1ps solid black;
   }
+
+  .wrapperProfile {
+    display: flex;
+    flex-direction: column;
+  }

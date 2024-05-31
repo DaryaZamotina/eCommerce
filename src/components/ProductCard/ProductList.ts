@@ -131,7 +131,7 @@ export default class ProductsCardInCatalog {
     const card = document.getElementById(id) as HTMLDivElement;
     card.addEventListener('click', () => {
       localStorage.setItem('idofGood', this.card.id);
-      
+
       if (
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'

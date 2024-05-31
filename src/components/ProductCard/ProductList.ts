@@ -7,10 +7,14 @@ import '../../../public/assets/css/products.css';
 import '../../../public/assets/css/productsInCatalog.css';
 import { getProductsListInfoFromEcomm } from './getProductDataFromEcomm';
 import IResult from './InterfaceProduct';
-//import HomePage from '../../pages/Home/homePage';
 import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 import { getSlider } from '../../pages/ProductDetails/slider';
+
+import { getInfoFromEcommByIDofGood } from '../../pages/ProductDetails/getInfoFromEcommByIDofGood';
+import { clearPageContainer } from '../..';
+import { createProductCard } from '../../pages/ProductDetails/productCardDetails';
+
 import IResultNew from './InterfaceProductNew';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
@@ -28,6 +32,29 @@ export default class ProductsCardInCatalog {
 
   constructor(_card: IResult) {
     this.card = _card;
+  }
+
+    productCardInfoContainer.addEventListener('click', function () {
+      localStorage.setItem('idofGood', id);
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getInfoFromEcommByIDofGood(
+          id,
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getInfoFromEcommByIDofGood(
+          id,
+          localStorage.getItem('anonym_access_token'),
+        );
+      }
+    });
   }
 
   public createProductsCardInCatalog() {

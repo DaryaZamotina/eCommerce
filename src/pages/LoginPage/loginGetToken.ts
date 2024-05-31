@@ -1,6 +1,9 @@
 import '../../../public/assets/css/body.css';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
-import { newClientForProducts } from '../Home/anonymusSessionToken';
+import {
+  newClientForProducts,
+  oneMoreClient,
+} from '../Home/anonymusSessionToken';
 
 export const projectKey: string = 'jffecommerce';
 
@@ -28,6 +31,7 @@ export function receiveAccessToken() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
+        // Authorization: `Basic ${oneMoreClient.getKeyOfClient()}`,
         Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
       },
       body: new URLSearchParams({

@@ -1,5 +1,5 @@
 export interface IPrices {
-  id: string;
+  id?: string;
   value: {
     type: string;
     currencyCode: string;

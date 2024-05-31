@@ -9,7 +9,7 @@ import { sliderMaker } from './sliderInterface';
 import { getSlider } from './slider';
 import { openAdditionalVariant } from './openAdditionalVariant';
 
-export function createProductCard(id: string) {
+export function createProductCard(id?: string) {
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
@@ -76,10 +76,11 @@ export function createProductCard(id: string) {
   }
   console.log(linksForImgs);
 
-  //localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
-  //const price: Array<IPrices> = masterData.current.masterVariant.prices;
-
+  localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
+  //const price: Array<IPrices> = choosenGood.masterData.current.masterVariant.prices;
   const price = choosenVariant.prices;
+  //const price: Array<IPrices> = choosenVariant.prices;
+
   console.log('price = ' + JSON.stringify(price));
 
   const priceAmount = price[0].value.centAmount / 100;

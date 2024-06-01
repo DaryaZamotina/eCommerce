@@ -63,21 +63,7 @@ export function sendDataToEComm() {
         const loginFormDiv = document.getElementById('loginForm');
         loginFormDiv.remove();
 
-        /*history.pushState(
-          { page: '#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
-        clearPageContainer();
-  
-        //const pageContainer = document.getElementById("pageContainer");
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
         setRoutingPage();
-
-        //setHistoryPushStateToHome();
-
-        receiveAccessToken();
       }
       return info;
     })

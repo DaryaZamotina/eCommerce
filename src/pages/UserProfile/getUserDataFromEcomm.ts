@@ -1,7 +1,11 @@
 import { createUserProfile } from './createUserProfile';
+import { IUser } from './userInterface';
 
 export function getUserInfoFromEcomm(token: string) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
+  
+  let linkID: string;
+
+  const linkMe = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
 
   console.log('token in getProdFunc = ' + token);
 
@@ -16,7 +20,11 @@ export function getUserInfoFromEcomm(token: string) {
     return JSON.stringify(resp);
   }
 
-  getInfo(link)
+  if (localStorage.getItem('customerID')) {
+    let id = localStorage.getItem('customerID');
+    linkID = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
+  
+    getInfo(linkID)
     .then((info) => {
       localStorage.setItem('userDetails', info);
       createUserProfile();
@@ -24,4 +32,14 @@ export function getUserInfoFromEcomm(token: string) {
       return info;
     })
     .catch((err) => console.log(err.message));
+  } else {
+    getInfo(linkMe)
+    .then((info) => {
+      localStorage.setItem('userDetails', info);
+      createUserProfile();
+
+      return info;
+    })
+    .catch((err) => console.log(err.message));
+  }
 }

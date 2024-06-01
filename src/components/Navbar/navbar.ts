@@ -161,16 +161,7 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         setHistoryPushStateToHome();
-        /*e.preventDefault();
-        history.pushState(
-          { page: '/#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
+      
       }
     });
 
@@ -212,15 +203,6 @@ export default class Navbar {
         e.preventDefault();
         setHistoryPushStateToHome();
 
-        /*history.pushState(
-          { page: '/#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
       }
     });
 
@@ -274,17 +256,12 @@ export default class Navbar {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-      const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );
-
       if (
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
         getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-        //editUserData(localStorage.getItem('access_token_for_user'));
-      }
+      } else getUserInfoFromEcomm(localStorage.getItem("access_token_auth"));
       /*
       if (
         localStorage.getItem('newUser') &&

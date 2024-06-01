@@ -46,7 +46,7 @@ export interface IUser {
       country: string;
       email: string;
       key: string;
-    }
+    },
   ];
   defaultBillingAddressId: string;
   defaultShippingAddressId: string;

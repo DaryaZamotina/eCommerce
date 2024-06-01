@@ -24,7 +24,7 @@ export function createUserProfile() {
   const defaultBilID: string = info.defaultBillingAddressId;
   const bilID: string = info.billingAddressIds[0];
 
-  console.log("defaultBilID vs bilID = " + defaultBilID + " vs " + bilID);
+  console.log('defaultBilID vs bilID = ' + defaultBilID + ' vs ' + bilID);
 
   const billingAddress = address[1];
   const streetBil: string = billingAddress.streetName;
@@ -34,9 +34,9 @@ export function createUserProfile() {
   const defaultShipID: string = info.defaultShippingAddressId;
   const shipID: string = info.shippingAddressIds[0];
 
-  console.log("defaultShipID vs shipID = " + defaultShipID + " vs " + shipID);
+  console.log('defaultShipID vs shipID = ' + defaultShipID + ' vs ' + shipID);
 
-//---------------wrappers
+  //---------------wrappers
 
   const wrapperGeneralData: HTMLDivElement = document.createElement('div');
   wrapperGeneralData.className = 'wrapperGeneralData';
@@ -59,7 +59,7 @@ export function createUserProfile() {
   wrapperBilAddress.id = 'wrapperBilAddress';
   wrapperGeneralData.append(wrapperBilAddress);
 
-  const h3BilAddress: HTMLElement  = document.createElement('h3');
+  const h3BilAddress: HTMLElement = document.createElement('h3');
   h3BilAddress.className = 'h3BilAddress';
   h3BilAddress.id = 'h3BilAddress';
   h3BilAddress.textContent = 'Billing address';
@@ -69,17 +69,17 @@ export function createUserProfile() {
   labelForCheckboxBil.textContent = 'Default billing address';
   wrapperBilAddress.append(labelForCheckboxBil);
 
-  const checkboxBilling: HTMLInputElement  = document.createElement('input');
+  const checkboxBilling: HTMLInputElement = document.createElement('input');
   checkboxBilling.className = 'checkboxBiling';
   checkboxBilling.id = 'checkboxBiling';
-  checkboxBilling.type = "checkbox";
+  checkboxBilling.type = 'checkbox';
   labelForCheckboxBil.append(checkboxBilling);
 
   if (defaultBilID == bilID) {
     checkboxBilling.checked = true;
   }
 
-//------------Shipping wrapper
+  //------------Shipping wrapper
   const wrapperShipAddress: HTMLDivElement = document.createElement('div');
   wrapperShipAddress.className = 'wrapperShipAddress';
   wrapperShipAddress.id = 'wrapperShipAddress';
@@ -91,14 +91,15 @@ export function createUserProfile() {
   h3ShipAddress.textContent = 'Shipping address';
   wrapperShipAddress.append(h3ShipAddress);
 
-  const labelForCheckboxShip: HTMLLabelElement = document.createElement('label');
+  const labelForCheckboxShip: HTMLLabelElement =
+    document.createElement('label');
   labelForCheckboxShip.textContent = 'Default shipping address';
   wrapperShipAddress.append(labelForCheckboxShip);
 
-  const checkboxShipping: HTMLInputElement  = document.createElement('input');
+  const checkboxShipping: HTMLInputElement = document.createElement('input');
   checkboxShipping.className = 'checkboxShipping';
   checkboxShipping.id = 'checkboxShipping';
-  checkboxShipping.type = "checkbox";
+  checkboxShipping.type = 'checkbox';
   labelForCheckboxShip.append(checkboxShipping);
 
   if (defaultShipID == shipID) {

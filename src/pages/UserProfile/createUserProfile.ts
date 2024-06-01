@@ -20,10 +20,30 @@ export function createUserProfile() {
   const coutry = lastAddress.country;
   const postalCode = lastAddress.postalCode;
 
+  const wrapperGeneralData = document.createElement('div');
+  wrapperGeneralData.className = 'wrapperGeneralData';
+  wrapperGeneralData.id = 'wrapperGeneralData';
+  profileSection.append(wrapperGeneralData);
+
+  const wrapperPassword = document.createElement('div');
+  wrapperPassword.className = 'wrapperPassword';
+  wrapperPassword.id = 'wrapperPassword';
+  profileSection.append(wrapperPassword);
+
   const wrapperProfile = document.createElement('div');
   wrapperProfile.className = 'wrapperProfile';
   wrapperProfile.id = 'wrapperProfile';
-  profileSection.append(wrapperProfile);
+  wrapperGeneralData.append(wrapperProfile);
+
+  const wrapperBilAddress = document.createElement('div');
+  wrapperBilAddress.className = 'wrapperBilAddress';
+  wrapperBilAddress.id = 'wrapperBilAddress';
+  wrapperGeneralData.append(wrapperBilAddress);
+
+  const wrapperShipAddress = document.createElement('div');
+  wrapperShipAddress.className = 'wrapperShipAddress';
+  wrapperShipAddress.id = 'wrapperShipAddress';
+  wrapperGeneralData.append(wrapperShipAddress);
 
   //-------------
   const labelForName: HTMLLabelElement = document.createElement('label');
@@ -65,21 +85,11 @@ export function createUserProfile() {
   inputForEmail.id = 'inputForEmailh';
   inputForEmail.placeholder = `${email}`;
   labelForEmail.append(inputForEmail);
-  //-------------
-  const labelForPassword: HTMLLabelElement = document.createElement('label');
-  labelForPassword.textContent = 'Password';
-  wrapperProfile.append(labelForPassword);
-
-  const inputForPassword: HTMLInputElement = document.createElement('input');
-  inputForPassword.className = 'inputForEmail';
-  inputForPassword.id = 'inputForEmail';
-  inputForPassword.type = 'password';
-  inputForPassword.placeholder = `${password}`;
-  labelForPassword.append(inputForPassword);
-  //-------------
+  
+  //-------------Billing adress -----
   const labelForStreet: HTMLLabelElement = document.createElement('label');
   labelForStreet.textContent = 'Street';
-  wrapperProfile.append(labelForStreet);
+  wrapperBilAddress.append(labelForStreet);
 
   const inputForStreet: HTMLInputElement = document.createElement('input');
   inputForStreet.className = 'inputForStreet';
@@ -92,7 +102,7 @@ export function createUserProfile() {
   const labelForStreetNumber: HTMLLabelElement =
     document.createElement('label');
   labelForStreetNumber.textContent = 'Street No.';
-  wrapperProfile.append(labelForStreetNumber);
+  wrapperBilAddress.append(labelForStreetNumber);
 
   const inputForStreetNo: HTMLInputElement = document.createElement('input');
   inputForStreetNo.className = 'inputForStreetNo';
@@ -103,7 +113,7 @@ export function createUserProfile() {
   //-------------
   const labelForPostalCode: HTMLLabelElement = document.createElement('label');
   labelForPostalCode.textContent = 'Postal code ';
-  wrapperProfile.append(labelForPostalCode);
+  wrapperBilAddress.append(labelForPostalCode);
 
   const inputForPostalCode: HTMLInputElement = document.createElement('input');
   inputForPostalCode.className = 'inputForPostalCode.';
@@ -113,7 +123,7 @@ export function createUserProfile() {
   //-------------
   const labelForCity: HTMLLabelElement = document.createElement('label');
   labelForCity.textContent = 'City ';
-  wrapperProfile.append(labelForCity);
+  wrapperBilAddress.append(labelForCity);
 
   const inputForCity: HTMLInputElement = document.createElement('input');
   inputForCity.className = 'inputForCity';
@@ -123,7 +133,7 @@ export function createUserProfile() {
   //-------------
   const labelForCoutry: HTMLLabelElement = document.createElement('label');
   labelForCoutry.textContent = 'Coutry';
-  wrapperProfile.append(labelForCoutry);
+  wrapperBilAddress.append(labelForCoutry);
 
   const inputForCoutry: HTMLInputElement = document.createElement('input');
   inputForCoutry.className = 'inputForCoutry';
@@ -131,12 +141,87 @@ export function createUserProfile() {
   inputForCoutry.placeholder = `${coutry}`;
   labelForCoutry.append(inputForCoutry);
 
+  //-------------Shipping adress -----
+  const labelForStreetShip: HTMLLabelElement = document.createElement('label');
+  labelForStreetShip.textContent = 'Street';
+  wrapperShipAddress.append(labelForStreetShip);
+
+  const inputForStreetShip: HTMLInputElement = document.createElement('input');
+  inputForStreetShip.className = 'inputForStreet';
+  inputForStreetShip.id = 'inputForStreet';
+  inputForStreetShip.placeholder = `${street}`;
+  labelForStreetShip.append(inputForStreetShip);
+
+  //-------------
+
+  const labelForStreetNumberShip: HTMLLabelElement =
+    document.createElement('label');
+  labelForStreetNumberShip.textContent = 'Street No.';
+  wrapperShipAddress.append(labelForStreetNumberShip);
+
+  const inputForStreetNoShip: HTMLInputElement = document.createElement('input');
+  inputForStreetNoShip.className = 'inputForStreetNo';
+  inputForStreetNoShip.id = 'inputForStreetNo';
+  inputForStreetNoShip.placeholder = ``;
+  labelForStreetNumberShip.append(inputForStreetNoShip);
+
+  //-------------
+  const labelForPostalCodeShip: HTMLLabelElement = document.createElement('label');
+  labelForPostalCodeShip.textContent = 'Postal code ';
+  wrapperShipAddress.append(labelForPostalCodeShip);
+
+  const inputForPostalCodeShip: HTMLInputElement = document.createElement('input');
+  inputForPostalCodeShip.className = 'inputForPostalCode.';
+  inputForPostalCodeShip.id = 'inputForPostalCode';
+  inputForPostalCodeShip.placeholder = `${postalCode}`;
+  labelForPostalCodeShip.append(inputForPostalCodeShip);
+  //-------------
+  const labelForCityShip: HTMLLabelElement = document.createElement('label');
+  labelForCityShip.textContent = 'City ';
+  wrapperShipAddress.append(labelForCityShip);
+
+  const inputForCityShip: HTMLInputElement = document.createElement('input');
+  inputForCityShip.className = 'inputForCity';
+  inputForCityShip.id = 'inputForCity';
+  inputForCityShip.placeholder = `${city}`;
+  labelForCityShip.append(inputForCityShip);
+  //-------------
+  const labelForCoutryShip: HTMLLabelElement = document.createElement('label');
+  labelForCoutryShip.textContent = 'Coutry';
+  wrapperShipAddress.append(labelForCoutryShip);
+
+  const inputForCoutryShip: HTMLInputElement = document.createElement('input');
+  inputForCoutryShip.className = 'inputForCoutry';
+  inputForCoutryShip.id = 'inputForCoutry';
+  inputForCoutryShip.placeholder = `${coutry}`;
+  labelForCoutryShip.append(inputForCoutryShip);
+
   //-------------
 
   const buttonForChangeData: HTMLButtonElement =
     document.createElement('button');
-  buttonForChangeData.className = 'buttonForChaneData';
-  buttonForChangeData.id = 'buttonForChaneData';
+  buttonForChangeData.className = 'buttonForChangeData';
+  buttonForChangeData.id = 'buttonForChangeData';
   buttonForChangeData.textContent = 'Change your profile data';
-  wrapperProfile.append(buttonForChangeData);
+  wrapperGeneralData.append(buttonForChangeData);
+
+      //-------------
+      const labelForPassword: HTMLLabelElement = document.createElement('label');
+      labelForPassword.textContent = 'Password';
+      wrapperPassword.append(labelForPassword);
+    
+      const inputForPassword: HTMLInputElement = document.createElement('input');
+      inputForPassword.className = 'inputForEmail';
+      inputForPassword.id = 'inputForEmail';
+      inputForPassword.type = 'password';
+      inputForPassword.placeholder = `${password}`;
+      labelForPassword.append(inputForPassword);
+    //-------------
+
+    const buttonForChangePassword: HTMLButtonElement =
+    document.createElement('button');
+    buttonForChangePassword.className = 'buttonForChangePassword';
+    buttonForChangePassword.id = 'buttonForChangePassword';
+    buttonForChangePassword.textContent = 'Change your password';
+    wrapperPassword.append(buttonForChangePassword);
 }

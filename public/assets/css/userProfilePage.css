@@ -4,9 +4,39 @@
 
   .user-profile__section1 {
     border: 1ps solid black;
+    width: 25rem;
   }
 
-  .wrapperProfile {
+  .wrapperProfile, 
+  .wrapperPassword,
+  .wrapperBilAddress,
+  .wrapperShipAddress,
+  .wrapperGeneralData {
     display: flex;
     flex-direction: column;
+    border: 0.5rem solid rgba(13, 62, 10, 0.178);
+    border-radius: 1rem;
+    margin: 0.5rem;
   }
+
+  .buttonForChangePassword, 
+  .buttonForChangeData {
+    border-radius: 2rem;
+    background-color: rgb(197, 242, 197);
+  }
+
+  .buttonForChangePassword:hover, 
+  .buttonForChangeData:hover {
+    background-color: rgb(110, 152, 110);
+  } 
+
+label,
+button {
+    margin: 0.3rem;
+  }
+
+  label input {
+    float: right;
+  }
+
+  

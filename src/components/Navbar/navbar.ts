@@ -260,20 +260,6 @@ export default class Navbar {
       ) {
         getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
       } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
-      /*
-      if (
-        localStorage.getItem('newUser') &&
-        localStorage.getItem('newUser') !== 'undefined'
-      ) {
-        userProfileSection1.textContent = localStorage.getItem('newUser');
-      } else if (
-        localStorage.getItem('userDetails') &&
-        localStorage.getItem('userDetails') !== 'undefined'
-      ) {
-        userProfileSection1.textContent = localStorage.getItem('userDetails');
-      } else {
-        userProfileSection1.textContent = 'No information available';
-      } */
     });
     return this.userProfileLink;
   }

@@ -44,7 +44,7 @@ export function createUserProfile() {
   const h3BilAddress = document.createElement('h3');
   h3BilAddress.className = 'h3BilAddress';
   h3BilAddress.id = 'h3BilAddress';
-  h3BilAddress.textContent = "Billing address";
+  h3BilAddress.textContent = 'Billing address';
   wrapperBilAddress.append(h3BilAddress);
 
   const wrapperShipAddress = document.createElement('div');
@@ -55,7 +55,7 @@ export function createUserProfile() {
   const h3ShipAddress = document.createElement('h3');
   h3ShipAddress.className = 'h3ShipAddress';
   h3ShipAddress.id = 'h3ShipAddress';
-  h3ShipAddress.textContent = "Shipping address";
+  h3ShipAddress.textContent = 'Shipping address';
   wrapperShipAddress.append(h3ShipAddress);
 
   //-------------

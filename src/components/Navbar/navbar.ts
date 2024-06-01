@@ -160,8 +160,7 @@ export default class Navbar {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-
-        setHistoryPushStateToHome(); 
+        setHistoryPushStateToHome();
         /*e.preventDefault();
         history.pushState(
           { page: '/#catalog' },
@@ -211,8 +210,8 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();
-        setHistoryPushStateToHome(); 
-       
+        setHistoryPushStateToHome();
+
         /*history.pushState(
           { page: '/#catalog' },
           titlesPages.catalogPage,
@@ -318,8 +317,8 @@ export default class Navbar {
     this.logoutLink.addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.clear();
-      setHistoryPushStateToHome(); 
-      
+      setHistoryPushStateToHome();
+
       /*history.pushState(
         { page: '/#catalog' },
         titlesPages.catalogPage,

@@ -97,7 +97,7 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-       /* history.pushState(
+        /* history.pushState(
           { page: '#catalog' },
           titlesPages.catalogPage,
           '#catalog',
@@ -108,10 +108,10 @@ export function setRoutingPage() {
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
 
         history.pushState({ page: '#' }, titlesPages.homePage, '#');
-      document.title = titlesPages.homePage;
-      clearPageContainer();
+        document.title = titlesPages.homePage;
+        clearPageContainer();
 
-      pageContainer.getPageContainer().append(homePage.getHomePage());
+        pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 
@@ -131,11 +131,12 @@ export function setRoutingPage() {
         moveToMainPage();
       }
       if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') &&
-        (localStorage.getItem('userLogin') && localStorage.getItem('userLogin') !== 'undefined')
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined' &&
+        localStorage.getItem('userLogin') &&
+        localStorage.getItem('userLogin') !== 'undefined'
       ) {
-     /* if (
+        /* if (
         (localStorage.getItem('access_token_for_user') &&
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
@@ -151,10 +152,10 @@ export function setRoutingPage() {
         pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
 
         history.pushState({ page: '#' }, titlesPages.homePage, '#');
-      document.title = titlesPages.homePage;
-      clearPageContainer();
+        document.title = titlesPages.homePage;
+        clearPageContainer();
 
-      pageContainer.getPageContainer().append(homePage.getHomePage());
+        pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 

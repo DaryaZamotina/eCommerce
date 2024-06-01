@@ -19,11 +19,6 @@ export function getUserInfoFromEcomm(token: string) {
   getInfo(link)
     .then((info) => {
       localStorage.setItem('userDetails', info);
-      /*const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );
-
-      userProfileSection1.textContent = info; */
       createUserProfile();
 
       return info;

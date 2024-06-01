@@ -19,6 +19,13 @@
     margin: 0.5rem;
   }
 
+  .h3ShipAddress,
+  .h3BilAddress {
+    border-bottom: 1px solid rgba(13, 62, 10, 0.178);
+    font-weight: bold;
+    font-style: italic;
+  }
+
   .buttonForChangePassword, 
   .buttonForChangeData {
     border-radius: 2rem;

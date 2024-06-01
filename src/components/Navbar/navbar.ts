@@ -160,7 +160,9 @@ export default class Navbar {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        e.preventDefault();
+
+        setHistoryPushStateToHome(); 
+        /*e.preventDefault();
         history.pushState(
           { page: '/#catalog' },
           titlesPages.catalogPage,
@@ -169,7 +171,7 @@ export default class Navbar {
         document.title = titlesPages.catalogPage;
         clearPageContainer();
 
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
       }
     });
 
@@ -209,7 +211,9 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();
-        history.pushState(
+        setHistoryPushStateToHome(); 
+       
+        /*history.pushState(
           { page: '/#catalog' },
           titlesPages.catalogPage,
           '#catalog',
@@ -217,7 +221,7 @@ export default class Navbar {
         document.title = titlesPages.catalogPage;
         clearPageContainer();
 
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
       }
     });
 
@@ -314,8 +318,9 @@ export default class Navbar {
     this.logoutLink.addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.clear();
-
-      history.pushState(
+      setHistoryPushStateToHome(); 
+      
+      /*history.pushState(
         { page: '/#catalog' },
         titlesPages.catalogPage,
         '#catalog',
@@ -323,7 +328,7 @@ export default class Navbar {
       document.title = titlesPages.catalogPage;
       clearPageContainer();
 
-      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
     });
     return this.logoutLink;
   }

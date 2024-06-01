@@ -97,7 +97,7 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        history.pushState(
+       /* history.pushState(
           { page: '#catalog' },
           titlesPages.catalogPage,
           '#catalog',
@@ -105,7 +105,13 @@ export function setRoutingPage() {
         document.title = titlesPages.catalogPage;
         clearPageContainer();
 
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
+
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+      document.title = titlesPages.homePage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 
@@ -126,10 +132,15 @@ export function setRoutingPage() {
       }
       if (
         (localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined') &&
+        (localStorage.getItem('userLogin') && localStorage.getItem('userLogin') !== 'undefined')
+      ) {
+     /* if (
+        (localStorage.getItem('access_token_for_user') &&
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
-      ) {
-        history.pushState(
+      ) {*/
+        /*history.pushState(
           { page: '#catalog' },
           titlesPages.catalogPage,
           '#catalog',
@@ -137,7 +148,13 @@ export function setRoutingPage() {
         document.title = titlesPages.catalogPage;
         clearPageContainer();
 
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        pageContainer.getPageContainer().append(catalogPage.getCatalogPage()); */
+
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+      document.title = titlesPages.homePage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 

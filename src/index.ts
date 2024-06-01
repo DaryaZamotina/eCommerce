@@ -77,7 +77,6 @@ export function setRoutingPage() {
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       catalogPage.sortListener();
 
-
       if (
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
@@ -120,7 +119,6 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-
         history.pushState({ page: '#' }, titlesPages.homePage, '#');
         document.title = titlesPages.homePage;
         clearPageContainer();
@@ -150,7 +148,6 @@ export function setRoutingPage() {
         localStorage.getItem('userLogin') &&
         localStorage.getItem('userLogin') !== 'undefined'
       ) {
-
         history.pushState({ page: '#' }, titlesPages.homePage, '#');
         document.title = titlesPages.homePage;
         clearPageContainer();
@@ -181,12 +178,12 @@ export function setRoutingPage() {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-        if (
-          localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined'
-        ) {
-          getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-        } else getUserInfoFromEcomm(localStorage.getItem("access_token_auth"));
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
 
       break;
 

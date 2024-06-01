@@ -161,7 +161,6 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         setHistoryPushStateToHome();
-      
       }
     });
 
@@ -202,7 +201,6 @@ export default class Navbar {
       ) {
         e.preventDefault();
         setHistoryPushStateToHome();
-
       }
     });
 
@@ -261,7 +259,7 @@ export default class Navbar {
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
         getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-      } else getUserInfoFromEcomm(localStorage.getItem("access_token_auth"));
+      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
       /*
       if (
         localStorage.getItem('newUser') &&

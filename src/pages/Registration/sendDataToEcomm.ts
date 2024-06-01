@@ -55,7 +55,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
           registrationForm.remove();
 
           setRoutingPage();
-
         }
       } else if (
         error ==

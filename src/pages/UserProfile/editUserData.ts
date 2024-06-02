@@ -41,6 +41,7 @@ DATA
 });*/
 
 export function editUserData(token: string, obj: IObjGeneralData) {
+
   const id = localStorage.getItem('customerID');
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
 

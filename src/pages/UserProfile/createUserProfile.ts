@@ -4,6 +4,7 @@ import '../../../public/assets/css/userProfilePage.css';
 import getDataUser from '../Registration/getDataUser';
 import { editUserData } from './editUserData';
 import { IObjGeneralData } from './interfacesForObjectData';
+import { getInfoFromInputs } from './getInfoFromInputs';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -272,10 +273,16 @@ export function createUserProfile() {
   wrapperPassword.append(buttonForChangePassword);
 
   //--------object for General info -------
-  let objGenData: IObjGeneralData;
 
-  inputForEmail.addEventListener('change', () => {
-    objGenData['email'] = inputForEmail.value;
+getInfoFromInputs();
+
+  /*let objGenData: IObjGeneralData;
+
+  const inputEmail = <HTMLInputElement>(document.getElementById('inputForEmail'));
+
+  inputEmail.addEventListener('input', () => {
+    objGenData['email'] = inputEmail.value;
+    localStorage.setItem('email', inputEmail.value);
   });
 
   inputName.addEventListener('change', () => {
@@ -291,12 +298,12 @@ export function createUserProfile() {
     objGenData['dateOfBirth'] = inputForDateOfBirth.value;
   });
 
-  console.log('firstName = ' + localStorage.getItem('firstName'));
-  //console.log("objGenData = " + objGenData);
+  console.log('email = ' + localStorage.getItem('email'));
+  //console.log("objGenData = " + objGenData); */
 
   //----------------
 
-  buttonForChangeGenData.addEventListener('click', function () {
+  /*buttonForChangeGenData.addEventListener('click', function () {
     editUserData(localStorage.getItem('access_token_auth'), objGenData);
   });
 

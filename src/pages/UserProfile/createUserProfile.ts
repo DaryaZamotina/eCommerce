@@ -6,6 +6,7 @@ import { editUserData } from './editUserData';
 import { IObjGeneralData } from './interfacesForObjectData';
 import { getInfoFromInputs } from './getInfoFromInputs';
 import validateEmail from '../../Helpers/Inputs/validateEmail';
+import { editPassword } from './editPassword';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -193,8 +194,7 @@ export function createUserProfile() {
 
   if (shipID == bilID) {
     inputForStreet.placeholder = `${streetShip}`;
-  } else
-  inputForStreet.placeholder = `${streetBil}`;
+  } else inputForStreet.placeholder = `${streetBil}`;
   labelForStreet.append(inputForStreet);
 
   //-------------
@@ -208,8 +208,7 @@ export function createUserProfile() {
 
   if (shipID == bilID) {
     inputForPostalCode.placeholder = `${postalCodeShip}`;
-  } else
-  inputForPostalCode.placeholder = `${postalCodeBil}`;
+  } else inputForPostalCode.placeholder = `${postalCodeBil}`;
   labelForPostalCode.append(inputForPostalCode);
   //-------------
   const labelForCity: HTMLLabelElement = document.createElement('label');
@@ -221,8 +220,7 @@ export function createUserProfile() {
   inputForCity.id = 'inputForCity';
   if (shipID == bilID) {
     inputForCity.placeholder = `${cityShip}`;
-  } else
-  inputForCity.placeholder = `${cityBil}`;
+  } else inputForCity.placeholder = `${cityBil}`;
   labelForCity.append(inputForCity);
   //-------------
   const labelForCoutry: HTMLLabelElement = document.createElement('label');
@@ -234,8 +232,7 @@ export function createUserProfile() {
   inputForCoutry.id = 'inputForCoutry';
   if (shipID == bilID) {
     inputForCoutry.placeholder = `${coutryShip}`;
-  } else
-  inputForCoutry.placeholder = `${coutryBil}`;
+  } else inputForCoutry.placeholder = `${coutryBil}`;
   labelForCoutry.append(inputForCoutry);
 
   //-------------Shipping adress -----
@@ -292,16 +289,33 @@ export function createUserProfile() {
   wrapperGeneralData.append(buttonForChangeAddress);
 
   //-------------
-  const labelForPassword: HTMLLabelElement = document.createElement('label');
-  labelForPassword.textContent = 'Password';
-  wrapperPassword.append(labelForPassword);
+  const labelForOldPassword: HTMLLabelElement = document.createElement('label');
+  labelForOldPassword.textContent = 'Old Password';
+  wrapperPassword.append(labelForOldPassword);
 
-  const inputForPassword: HTMLInputElement = document.createElement('input');
-  inputForPassword.className = 'inputForEmail';
-  inputForPassword.id = 'inputForEmail';
-  inputForPassword.type = 'password';
-  inputForPassword.placeholder = `${password}`;
-  labelForPassword.append(inputForPassword);
+  const inputForOldPassword: HTMLInputElement = document.createElement('input');
+  inputForOldPassword.className = 'inputForOldPassword';
+  inputForOldPassword.id = 'inputForOldPassword';
+  inputForOldPassword.type = 'password';
+  inputForOldPassword.placeholder = ``;
+  inputForOldPassword.onchange = () => {
+    localStorage.setItem('oldPassword', inputForOldPassword.value);
+  }
+  labelForOldPassword.append(inputForOldPassword);
+//--------
+  const labelForNewPassword: HTMLLabelElement = document.createElement('label');
+  labelForNewPassword.textContent = 'New Password';
+  wrapperPassword.append(labelForNewPassword);
+
+  const inputForNewPassword: HTMLInputElement = document.createElement('input');
+  inputForNewPassword.className = 'inputForNewPassword';
+  inputForNewPassword.id = 'inputForNewPassword';
+  inputForNewPassword.type = 'password';
+  inputForNewPassword.placeholder = ``;
+  inputForNewPassword.onchange = () => {
+    localStorage.setItem('newPassword', inputForNewPassword.value);
+  }
+  labelForNewPassword.append(inputForNewPassword);
   //-------------
 
   const buttonForChangePassword: HTMLButtonElement =
@@ -317,83 +331,16 @@ export function createUserProfile() {
     getInfoFromInputs();
     editUserData(localStorage.getItem('access_token_auth'));
   });
-  /*
-  let objGenData = {
-    'email': () => {
-        if (localStorage.getItem('email')) {
-        return localStorage.getItem('email');
-      } else return email; 
-    },
-    'firstName': () => {
-        if (localStorage.getItem('firstName')) {
-            return localStorage.getItem('firstName');
-          } else return name; 
-    },
-    'lastName': () => {
-        if (localStorage.getItem('lastName')) {
-        return localStorage.getItem('lastName');
-      } else return surname; 
-    },
-    'dateOfBirth': () => { 
-        if (localStorage.getItem('dateOfBirth')) {
-        return localStorage.getItem('dateOfBirth');
-      } else return dateOfBirth; 
-    }
-  }; */
 
-  /*if (localStorage.getItem('email')) {
-    objGenData['email'] = localStorage.getItem('email');
-  } else  objGenData['email'] = email;
-
-  if (localStorage.getItem('firstName')) {
-    objGenData['firstName'] = localStorage.getItem('firstName');
-  } else objGenData['firstName'] = name;
-
-  if (localStorage.getItem('lastName')) {
-     objGenData['lastName'] = localStorage.getItem('lastName');
-  } else objGenData['lastName'] = surname;
-
-  if (localStorage.getItem('dateOfBirth')) {
-    objGenData['dateOfBirth'] = localStorage.getItem('dateOfBirth');
-  } else objGenData['dateOfBirth'] = dateOfBirth; 
- */
-  // console.log("objGenData" + objGenData);
-  // getInfoFromInputs();
-
-  /*const inputEmail = <HTMLInputElement>(document.getElementById('inputForEmail'));
-
-  inputEmail.addEventListener('input', () => {
-    objGenData['email'] = inputEmail.value;
-    localStorage.setItem('email', inputEmail.value);
-  });
-
-  inputName.addEventListener('change', () => {
-    objGenData['firstName'] = inputName.value;
-    localStorage.setItem('firstName', inputName.value);
-  });
-
-  inputSurname.addEventListener('change', () => {
-    objGenData['lastName'] = inputSurname.value;
-  });
-
-  inputForDateOfBirth.addEventListener('change', () => {
-    objGenData['dateOfBirth'] = inputForDateOfBirth.value;
-  });
-*/
-  //console.log('email = ' + localStorage.getItem('email'));
-  //console.log("objGenData = " + objGenData);
-
+  buttonForChangePassword.addEventListener('click', function(){
+    editPassword(localStorage.getItem('access_token_auth'));
+  })
+}
+  
   //----------------
-
-  /*buttonForChangeGenData.addEventListener('click', function () {
-    editUserData(localStorage.getItem('access_token_auth'), objGenData);
-  });
 
   /*buttonForChangeAddress.addEventListener('click', function() {
     editUserData(localStorage.getItem('access_token_auth'), objAddress);
   });
 
-  buttonForChangePassword.addEventListener('click', function(){
-    editUserData(localStorage.getItem('access_token_auth'), objPass);
-  })*/
-}
+*/

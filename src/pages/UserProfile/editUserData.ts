@@ -8,24 +8,36 @@ export function editUserData(token: string) {
 
   let info: IUser = JSON.parse(localStorage.getItem('userDetails'));
   let version = info.version;
-  
-  let mail: string; 
-  if (localStorage.getItem('email') && localStorage.getItem('email') !== 'undefined') {
-    mail = localStorage.getItem('email')
+
+  let mail: string;
+  if (
+    localStorage.getItem('email') &&
+    localStorage.getItem('email') !== 'undefined'
+  ) {
+    mail = localStorage.getItem('email');
   } else mail = info.email;
 
-  let name: string; 
-  if (localStorage.getItem('firstName') && localStorage.getItem('firstName') !== 'undefined') {
+  let name: string;
+  if (
+    localStorage.getItem('firstName') &&
+    localStorage.getItem('firstName') !== 'undefined'
+  ) {
     name = localStorage.getItem('firstName');
   } else name = info.firstName;
 
-  let surname: string; 
-  if (localStorage.getItem('lastName') && localStorage.getItem('lastName') !== 'undefined') {
+  let surname: string;
+  if (
+    localStorage.getItem('lastName') &&
+    localStorage.getItem('lastName') !== 'undefined'
+  ) {
     surname = localStorage.getItem('lastName');
   } else surname = info.firstName;
 
-  let date: string; 
-  if (localStorage.getItem('dateOfBirth') && localStorage.getItem('dateOfBirth') !== 'undefined') {
+  let date: string;
+  if (
+    localStorage.getItem('dateOfBirth') &&
+    localStorage.getItem('dateOfBirth') !== 'undefined'
+  ) {
     date = localStorage.getItem('dateOfBirth');
   } else date = info.dateOfBirth;
 

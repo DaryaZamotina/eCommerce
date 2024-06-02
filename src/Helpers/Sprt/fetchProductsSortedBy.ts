@@ -10,7 +10,6 @@ export default async function fetchProductsSortedBy(
   if (metod !== undefined) {
     link += metod;
     link += '&limit=30';
-    link += '&search?text.en=mirror';
   }
   const response = await fetch(link, {
     method: 'GET',
@@ -26,7 +25,11 @@ export default async function fetchProductsSortedBy(
 
   const data = await response.json();
 
-  const obj: IResult[] = data.results;
+  const obj: IResultNew[] = data.results;
+
+  obj.forEach((elem) => {
+    console.log(elem.categories);
+  });
 
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
   catalogSection.innerHTML = '';
@@ -36,6 +39,9 @@ export default async function fetchProductsSortedBy(
     tag.createProductsCardInCatalog();
   });
 }
+
+//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=categories.id:"950ea710-9576-4fa2-8b58-9a7cd2df6a5a"&sort=name.en asc
+//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=categories.id:"e9d069eb-6d49-4c02-a2a3-b826a9b1851b","6d27bebe-8118-4149-a30a-9a23b3859c6d"&sort=name.en asc
 
 //https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/?limit=30
 

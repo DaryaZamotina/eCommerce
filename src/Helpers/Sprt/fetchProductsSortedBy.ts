@@ -10,6 +10,7 @@ export default async function fetchProductsSortedBy(
   if (metod !== undefined) {
     link += metod;
     link += '&limit=30';
+    link += '&search?text.en=mirror';
   }
   const response = await fetch(link, {
     method: 'GET',

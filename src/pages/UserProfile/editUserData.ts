@@ -81,6 +81,7 @@ export function editUserData(token: string) {
       localStorage.setItem('userDetails', info);
       console.log('userDetails = ' + info);
       const infoJSON = JSON.parse(info);
+
       return info;
     })
     .catch((err) => console.log(err.message));

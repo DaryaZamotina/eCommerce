@@ -4,7 +4,8 @@ button {
 }
 
 .registrationForm__button,
-.buttonLogin {
+.buttonLogin,
+.buttonSearch {
     border-radius: 0.5rem;
     outline: none;
     border: 0px solid black;
@@ -18,12 +19,14 @@ button {
 }
 
 .registrationForm__button:hover,
-.buttonLogin:hover {
+.buttonLogin:hover,
+.buttonSearch:hover {
     background-position: right bottom;
 }
 
 .registrationForm__button.disabled,
-.buttonLogin.disabled {
+.buttonLogin.disabled,
+.buttonSearch.disabled {
     cursor: auto;
     background-color: rgba(43, 59, 51, 0.5);
     background-image: none;

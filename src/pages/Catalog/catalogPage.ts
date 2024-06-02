@@ -1,6 +1,7 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/catalogPage.css';
 import fetchProductsSortedBy from '../../Helpers/Sprt/fetchProductsSortedBy';
+import fetchProductsSearch from '../../Helpers/Sprt/fetchProductsSearch';
 
 export default class CatalogPage {
   section: HTMLElement;
@@ -80,12 +81,23 @@ export default class CatalogPage {
       '',
       'Z - A',
     );
+    const inputSearch = new TagCreator('input', 'inputSearch', 'inputSearch');
+    const inputSearchAttribute = inputSearch.createAndReturn();
+    inputSearchAttribute.setAttribute('placeholder', 'Search...');
+    const buttonSearch = new TagCreator('button', 'buttonSearch disabled', 'buttonSearch', '', 'Search');
+    const buttonSearchAttribute = buttonSearch.createAndReturn();
+    buttonSearchAttribute.setAttribute('disabled', 'disabled');
+    const containerSearch = new TagCreator('div', 'containerSearch', 'containerSearch');
+    const containerSearchDiv = containerSearch.createAndReturn();
+    containerSearchDiv.append(inputSearchAttribute);
+    containerSearchDiv.append(buttonSearchAttribute);
     this.sort.append(catalogSortTitle.createAndReturn());
     this.sort.append(catalogSortByRecommended.createAndReturn());
     this.sort.append(catalogSortByPrice_L.createAndReturn());
     this.sort.append(catalogSortByPrice_H.createAndReturn());
     this.sort.append(catalogSortByPrice_A_Z.createAndReturn());
     this.sort.append(catalogSortByPrice_Z_A.createAndReturn());
+    this.sort.append(containerSearchDiv);
     return this.sort;
   }
 
@@ -103,12 +115,15 @@ export default class CatalogPage {
 
   public sortListener() {
     const sortButton = document.querySelectorAll('div.catalogSortByPrice');
-    const sortCriteria = [
-      { query: '?limit=30' },
-      { query: 'search?sort=price', order: ' asc' },
-      { query: 'search?sort=price', order: ' desc' },
-      { query: 'search?sort=name.en', order: ' asc' },
-      { query: 'search?sort=name.en', order: ' desc' },
+    const input = document.getElementById('inputSearch') as HTMLInputElement;
+    const button = document.getElementById('buttonSearch') as HTMLButtonElement;
+    let seartText = '';
+    let sortCriteria = [
+      { query: `search?${seartText}limit=30` },
+      { query: `search?${seartText}sort=price`, order: ' asc' },
+      { query: `search?${seartText}sort=price`, order: ' desc' },
+      { query: `search?${seartText}sort=name.en`, order: ' asc' },
+      { query: `search?${seartText}sort=name.en`, order: ' desc' }
     ];
 
     sortButton.forEach((button, index) => {
@@ -116,6 +131,34 @@ export default class CatalogPage {
         if (!button.classList.contains('active')) {
           sortButton.forEach((elem) => elem.classList.remove('active'));
           button.classList.add('active');
+          const { query, order } = sortCriteria[index];
+          fetchProductsSortedBy(query, order);
+        }
+      });
+    });
+
+    input.addEventListener('input', () => {
+      if (input.value.length > 0) {
+        button.removeAttribute('disabled');
+        button.classList.remove('disabled');
+      } else {
+        button.setAttribute('disabled', 'disabled');
+        button.classList.add('disabled');
+      }
+      seartText = `text.en=${input.value}&`;
+      sortCriteria = [
+        { query: `search?${seartText}limit=30` },
+        { query: `search?${seartText}sort=price`, order: ' asc' },
+        { query: `search?${seartText}sort=price`, order: ' desc' },
+        { query: `search?${seartText}sort=name.en`, order: ' asc' },
+        { query: `search?${seartText}sort=name.en`, order: ' desc' }
+      ]
+    });
+
+    button.addEventListener('click', () => {
+      let sortNumber: number;
+      sortButton.forEach((button, index) => {
+        if (button.classList.contains('active')) {
           const { query, order } = sortCriteria[index];
           fetchProductsSortedBy(query, order);
         }

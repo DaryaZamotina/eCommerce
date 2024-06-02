@@ -160,16 +160,7 @@ export default class Navbar {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        e.preventDefault();
-        history.pushState(
-          { page: '/#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        setHistoryPushStateToHome();
       }
     });
 
@@ -209,15 +200,7 @@ export default class Navbar {
         localStorage.getItem('newUser')
       ) {
         e.preventDefault();
-        history.pushState(
-          { page: '/#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        setHistoryPushStateToHome();
       }
     });
 
@@ -271,31 +254,12 @@ export default class Navbar {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-      const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );
-
       if (
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
         getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-        //editUserData(localStorage.getItem('access_token_for_user'));
-      }
-      /*
-      if (
-        localStorage.getItem('newUser') &&
-        localStorage.getItem('newUser') !== 'undefined'
-      ) {
-        userProfileSection1.textContent = localStorage.getItem('newUser');
-      } else if (
-        localStorage.getItem('userDetails') &&
-        localStorage.getItem('userDetails') !== 'undefined'
-      ) {
-        userProfileSection1.textContent = localStorage.getItem('userDetails');
-      } else {
-        userProfileSection1.textContent = 'No information available';
-      } */
+      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
     });
     return this.userProfileLink;
   }
@@ -314,8 +278,9 @@ export default class Navbar {
     this.logoutLink.addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.clear();
+      setHistoryPushStateToHome();
 
-      history.pushState(
+      /*history.pushState(
         { page: '/#catalog' },
         titlesPages.catalogPage,
         '#catalog',
@@ -323,7 +288,7 @@ export default class Navbar {
       document.title = titlesPages.catalogPage;
       clearPageContainer();
 
-      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
     });
     return this.logoutLink;
   }

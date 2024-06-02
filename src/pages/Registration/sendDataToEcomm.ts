@@ -38,7 +38,7 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       let error = outputObj.message;
       let customerID = outputObj.customer.id;
       console.log('customerID = ' + customerID);
-      localStorage.setItem('customerID', output);
+      localStorage.setItem('customerID', customerID);
 
       console.log('message about error: ' + error);
 
@@ -55,11 +55,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
           registrationForm.remove();
 
           setRoutingPage();
-
-          const userProfileSection1 = document.getElementById(
-            'userProfileSection1',
-          );
-          userProfileSection1.textContent = output;
         }
       } else if (
         error ==

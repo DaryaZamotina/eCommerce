@@ -77,6 +77,28 @@ export function setRoutingPage() {
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       catalogPage.sortListener();
 
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
+      } else if (
+        !localStorage.getItem('anonym_access_token') ||
+        localStorage.getItem('anonym_access_token') == 'undefined' ||
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      )
+        receiveAnonymusAccessToken();
+
       break;
 
     case 'signup':
@@ -97,15 +119,11 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        history.pushState(
-          { page: '#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        document.title = titlesPages.homePage;
         clearPageContainer();
 
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 
@@ -125,19 +143,16 @@ export function setRoutingPage() {
         moveToMainPage();
       }
       if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') ||
-        localStorage.getItem('newUser')
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined' &&
+        localStorage.getItem('userLogin') &&
+        localStorage.getItem('userLogin') !== 'undefined'
       ) {
-        history.pushState(
-          { page: '#catalog' },
-          titlesPages.catalogPage,
-          '#catalog',
-        );
-        document.title = titlesPages.catalogPage;
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        document.title = titlesPages.homePage;
         clearPageContainer();
 
-        pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+        pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 
@@ -163,25 +178,13 @@ export function setRoutingPage() {
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
 
-      /*const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );
-
-      userProfileSection1.textContent;
-
       if (
-        localStorage.getItem('newUser') &&
-        localStorage.getItem('newUser') !== 'undefined'
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
-        userProfileSection1.textContent = localStorage.getItem('newUser');
-      } else if (
-        localStorage.getItem('userDetails') &&
-        localStorage.getItem('userDetails') !== 'undefined'
-      ) {
-        userProfileSection1.textContent = localStorage.getItem('userDetails');
-      } else {
-        userProfileSection1.textContent = '';
-      }*/
+        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+
       break;
 
     default:
@@ -203,6 +206,11 @@ window.addEventListener('hashchange', () => {
 });
 
 window.addEventListener('popstate', () => {
+  currentHash = getHash();
+  setRoutingPage();
+});
+
+window.addEventListener('DOMContentLoaded', () => {
   currentHash = getHash();
   setRoutingPage();
 });

@@ -1,6 +1,7 @@
 import TagCreator from '../../module/tagCreator';
 import { IUser } from './userInterface';
 import '../../../public/assets/css/userProfilePage.css';
+import getDataUser from '../Registration/getDataUser';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -14,16 +15,96 @@ export function createUserProfile() {
   const password = info.password;
 
   const address = info.addresses;
-  const lastAddress = address[address.length - 1];
-  const street = lastAddress.streetName;
-  const city = lastAddress.city;
-  const coutry = lastAddress.country;
-  const postalCode = lastAddress.postalCode;
 
-  const wrapperProfile = document.createElement('div');
+  const shippingAddress = address[0];
+  const streetShip: string = shippingAddress.streetName;
+  const cityShip: string = shippingAddress.city;
+  const coutryShip: string = shippingAddress.country;
+  const postalCodeShip: string = shippingAddress.postalCode;
+  const defaultBilID: string = info.defaultBillingAddressId;
+  const bilID: string = info.billingAddressIds[0];
+
+  console.log('defaultBilID vs bilID = ' + defaultBilID + ' vs ' + bilID);
+
+  const billingAddress = address[1];
+  const streetBil: string = billingAddress.streetName;
+  const cityBil: string = billingAddress.city;
+  const coutryBil: string = billingAddress.country;
+  const postalCodeBil: string = billingAddress.postalCode;
+  const defaultShipID: string = info.defaultShippingAddressId;
+  const shipID: string = info.shippingAddressIds[0];
+
+  console.log('defaultShipID vs shipID = ' + defaultShipID + ' vs ' + shipID);
+
+  //---------------wrappers
+
+  const wrapperGeneralData: HTMLDivElement = document.createElement('div');
+  wrapperGeneralData.className = 'wrapperGeneralData';
+  wrapperGeneralData.id = 'wrapperGeneralData';
+  profileSection.append(wrapperGeneralData);
+
+  const wrapperPassword: HTMLDivElement = document.createElement('div');
+  wrapperPassword.className = 'wrapperPassword';
+  wrapperPassword.id = 'wrapperPassword';
+  profileSection.append(wrapperPassword);
+
+  const wrapperProfile: HTMLDivElement = document.createElement('div');
   wrapperProfile.className = 'wrapperProfile';
   wrapperProfile.id = 'wrapperProfile';
-  profileSection.append(wrapperProfile);
+  wrapperGeneralData.append(wrapperProfile);
+
+  //------------Biling wrapper
+  const wrapperBilAddress: HTMLDivElement = document.createElement('div');
+  wrapperBilAddress.className = 'wrapperBilAddress';
+  wrapperBilAddress.id = 'wrapperBilAddress';
+  wrapperGeneralData.append(wrapperBilAddress);
+
+  const h3BilAddress: HTMLElement = document.createElement('h3');
+  h3BilAddress.className = 'h3BilAddress';
+  h3BilAddress.id = 'h3BilAddress';
+  h3BilAddress.textContent = 'Billing address';
+  wrapperBilAddress.append(h3BilAddress);
+
+  const labelForCheckboxBil: HTMLLabelElement = document.createElement('label');
+  labelForCheckboxBil.textContent = 'Default billing address';
+  wrapperBilAddress.append(labelForCheckboxBil);
+
+  const checkboxBilling: HTMLInputElement = document.createElement('input');
+  checkboxBilling.className = 'checkboxBiling';
+  checkboxBilling.id = 'checkboxBiling';
+  checkboxBilling.type = 'checkbox';
+  labelForCheckboxBil.append(checkboxBilling);
+
+  if (defaultBilID == bilID) {
+    checkboxBilling.checked = true;
+  }
+
+  //------------Shipping wrapper
+  const wrapperShipAddress: HTMLDivElement = document.createElement('div');
+  wrapperShipAddress.className = 'wrapperShipAddress';
+  wrapperShipAddress.id = 'wrapperShipAddress';
+  wrapperGeneralData.append(wrapperShipAddress);
+
+  const h3ShipAddress: HTMLElement = document.createElement('h3');
+  h3ShipAddress.className = 'h3ShipAddress';
+  h3ShipAddress.id = 'h3ShipAddress';
+  h3ShipAddress.textContent = 'Shipping address';
+  wrapperShipAddress.append(h3ShipAddress);
+
+  const labelForCheckboxShip: HTMLLabelElement =
+    document.createElement('label');
+  labelForCheckboxShip.textContent = 'Default shipping address';
+  wrapperShipAddress.append(labelForCheckboxShip);
+
+  const checkboxShipping: HTMLInputElement = document.createElement('input');
+  checkboxShipping.className = 'checkboxShipping';
+  checkboxShipping.id = 'checkboxShipping';
+  checkboxShipping.type = 'checkbox';
+  labelForCheckboxShip.append(checkboxShipping);
+
+  if (defaultShipID == shipID) {
+    checkboxShipping.checked = true;
+  }
 
   //-------------
   const labelForName: HTMLLabelElement = document.createElement('label');
@@ -65,10 +146,106 @@ export function createUserProfile() {
   inputForEmail.id = 'inputForEmailh';
   inputForEmail.placeholder = `${email}`;
   labelForEmail.append(inputForEmail);
+
+  //-------------Billing adress -----
+  const labelForStreet: HTMLLabelElement = document.createElement('label');
+  labelForStreet.textContent = 'Street';
+  wrapperBilAddress.append(labelForStreet);
+
+  const inputForStreet: HTMLInputElement = document.createElement('input');
+  inputForStreet.className = 'inputForStreet';
+  inputForStreet.id = 'inputForStreet';
+  inputForStreet.placeholder = `${streetBil}`;
+  labelForStreet.append(inputForStreet);
+
+  //-------------
+  const labelForPostalCode: HTMLLabelElement = document.createElement('label');
+  labelForPostalCode.textContent = 'Postal code ';
+  wrapperBilAddress.append(labelForPostalCode);
+
+  const inputForPostalCode: HTMLInputElement = document.createElement('input');
+  inputForPostalCode.className = 'inputForPostalCode.';
+  inputForPostalCode.id = 'inputForPostalCode.';
+  inputForPostalCode.placeholder = `${postalCodeBil}`;
+  labelForPostalCode.append(inputForPostalCode);
+  //-------------
+  const labelForCity: HTMLLabelElement = document.createElement('label');
+  labelForCity.textContent = 'City ';
+  wrapperBilAddress.append(labelForCity);
+
+  const inputForCity: HTMLInputElement = document.createElement('input');
+  inputForCity.className = 'inputForCity';
+  inputForCity.id = 'inputForCity';
+  inputForCity.placeholder = `${cityBil}`;
+  labelForCity.append(inputForCity);
+  //-------------
+  const labelForCoutry: HTMLLabelElement = document.createElement('label');
+  labelForCoutry.textContent = 'Coutry';
+  wrapperBilAddress.append(labelForCoutry);
+
+  const inputForCoutry: HTMLInputElement = document.createElement('input');
+  inputForCoutry.className = 'inputForCoutry';
+  inputForCoutry.id = 'inputForCoutry';
+  inputForCoutry.placeholder = `${coutryBil}`;
+  labelForCoutry.append(inputForCoutry);
+
+  //-------------Shipping adress -----
+  const labelForStreetShip: HTMLLabelElement = document.createElement('label');
+  labelForStreetShip.textContent = 'Street';
+  wrapperShipAddress.append(labelForStreetShip);
+
+  const inputForStreetShip: HTMLInputElement = document.createElement('input');
+  inputForStreetShip.className = 'inputForStreet';
+  inputForStreetShip.id = 'inputForStreet';
+  inputForStreetShip.placeholder = `${streetShip}`;
+  labelForStreetShip.append(inputForStreetShip);
+
+  //-------------
+  const labelForPostalCodeShip: HTMLLabelElement =
+    document.createElement('label');
+  labelForPostalCodeShip.textContent = 'Postal code ';
+  wrapperShipAddress.append(labelForPostalCodeShip);
+
+  const inputForPostalCodeShip: HTMLInputElement =
+    document.createElement('input');
+  inputForPostalCodeShip.className = 'inputForPostalCode.';
+  inputForPostalCodeShip.id = 'inputForPostalCode';
+  inputForPostalCodeShip.placeholder = `${postalCodeShip}`;
+  labelForPostalCodeShip.append(inputForPostalCodeShip);
+  //-------------
+  const labelForCityShip: HTMLLabelElement = document.createElement('label');
+  labelForCityShip.textContent = 'City ';
+  wrapperShipAddress.append(labelForCityShip);
+
+  const inputForCityShip: HTMLInputElement = document.createElement('input');
+  inputForCityShip.className = 'inputForCity';
+  inputForCityShip.id = 'inputForCity';
+  inputForCityShip.placeholder = `${cityShip}`;
+  labelForCityShip.append(inputForCityShip);
+  //-------------
+  const labelForCoutryShip: HTMLLabelElement = document.createElement('label');
+  labelForCoutryShip.textContent = 'Coutry';
+  wrapperShipAddress.append(labelForCoutryShip);
+
+  const inputForCoutryShip: HTMLInputElement = document.createElement('input');
+  inputForCoutryShip.className = 'inputForCoutry';
+  inputForCoutryShip.id = 'inputForCoutry';
+  inputForCoutryShip.placeholder = `${coutryShip}`;
+  labelForCoutryShip.append(inputForCoutryShip);
+
+  //-------------
+
+  const buttonForChangeData: HTMLButtonElement =
+    document.createElement('button');
+  buttonForChangeData.className = 'buttonForChangeData';
+  buttonForChangeData.id = 'buttonForChangeData';
+  buttonForChangeData.textContent = 'Change your profile data';
+  wrapperGeneralData.append(buttonForChangeData);
+
   //-------------
   const labelForPassword: HTMLLabelElement = document.createElement('label');
   labelForPassword.textContent = 'Password';
-  wrapperProfile.append(labelForPassword);
+  wrapperPassword.append(labelForPassword);
 
   const inputForPassword: HTMLInputElement = document.createElement('input');
   inputForPassword.className = 'inputForEmail';
@@ -77,66 +254,11 @@ export function createUserProfile() {
   inputForPassword.placeholder = `${password}`;
   labelForPassword.append(inputForPassword);
   //-------------
-  const labelForStreet: HTMLLabelElement = document.createElement('label');
-  labelForStreet.textContent = 'Street';
-  wrapperProfile.append(labelForStreet);
 
-  const inputForStreet: HTMLInputElement = document.createElement('input');
-  inputForStreet.className = 'inputForStreet';
-  inputForStreet.id = 'inputForStreet';
-  inputForStreet.placeholder = `${street}`;
-  labelForStreet.append(inputForStreet);
-
-  //-------------
-
-  const labelForStreetNumber: HTMLLabelElement =
-    document.createElement('label');
-  labelForStreetNumber.textContent = 'Street No.';
-  wrapperProfile.append(labelForStreetNumber);
-
-  const inputForStreetNo: HTMLInputElement = document.createElement('input');
-  inputForStreetNo.className = 'inputForStreetNo';
-  inputForStreetNo.id = 'inputForStreetNo';
-  inputForStreetNo.placeholder = ``;
-  labelForStreetNumber.append(inputForStreetNo);
-
-  //-------------
-  const labelForPostalCode: HTMLLabelElement = document.createElement('label');
-  labelForPostalCode.textContent = 'Postal code ';
-  wrapperProfile.append(labelForPostalCode);
-
-  const inputForPostalCode: HTMLInputElement = document.createElement('input');
-  inputForPostalCode.className = 'inputForPostalCode.';
-  inputForPostalCode.id = 'inputForPostalCode.';
-  inputForPostalCode.placeholder = `${postalCode}`;
-  labelForPostalCode.append(inputForPostalCode);
-  //-------------
-  const labelForCity: HTMLLabelElement = document.createElement('label');
-  labelForCity.textContent = 'City ';
-  wrapperProfile.append(labelForCity);
-
-  const inputForCity: HTMLInputElement = document.createElement('input');
-  inputForCity.className = 'inputForCity';
-  inputForCity.id = 'inputForCity';
-  inputForCity.placeholder = `${city}`;
-  labelForCity.append(inputForCity);
-  //-------------
-  const labelForCoutry: HTMLLabelElement = document.createElement('label');
-  labelForCoutry.textContent = 'Coutry';
-  wrapperProfile.append(labelForCoutry);
-
-  const inputForCoutry: HTMLInputElement = document.createElement('input');
-  inputForCoutry.className = 'inputForCoutry';
-  inputForCoutry.id = 'inputForCoutry';
-  inputForCoutry.placeholder = `${coutry}`;
-  labelForCoutry.append(inputForCoutry);
-
-  //-------------
-
-  const buttonForChangeData: HTMLButtonElement =
+  const buttonForChangePassword: HTMLButtonElement =
     document.createElement('button');
-  buttonForChangeData.className = 'buttonForChaneData';
-  buttonForChangeData.id = 'buttonForChaneData';
-  buttonForChangeData.textContent = 'Change your profile data';
-  wrapperProfile.append(buttonForChangeData);
+  buttonForChangePassword.className = 'buttonForChangePassword';
+  buttonForChangePassword.id = 'buttonForChangePassword';
+  buttonForChangePassword.textContent = 'Change your password';
+  wrapperPassword.append(buttonForChangePassword);
 }

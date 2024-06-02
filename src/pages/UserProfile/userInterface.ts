@@ -37,15 +37,21 @@ export interface IUser {
     },
     {
       id: string;
+      title: string;
+      firstName: string;
+      lastName: string;
       streetName: string;
-      streetNumber: string;
       postalCode: string;
       city: string;
       country: string;
+      email: string;
+      key: string;
     },
   ];
-  shippingAddressIds: [];
-  billingAddressIds: [];
+  defaultBillingAddressId: string;
+  defaultShippingAddressId: string;
+  shippingAddressIds: string[];
+  billingAddressIds: string[];
   isEmailVerified: boolean;
   stores: [];
   authenticationMode: string;

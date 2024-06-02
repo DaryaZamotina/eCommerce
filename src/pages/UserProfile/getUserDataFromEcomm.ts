@@ -1,7 +1,10 @@
 import { createUserProfile } from './createUserProfile';
+import { IUser } from './userInterface';
 
 export function getUserInfoFromEcomm(token: string) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
+  let linkID: string;
+
+  const linkMe = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
 
   console.log('token in getProdFunc = ' + token);
 
@@ -16,17 +19,26 @@ export function getUserInfoFromEcomm(token: string) {
     return JSON.stringify(resp);
   }
 
-  getInfo(link)
-    .then((info) => {
-      localStorage.setItem('userDetails', info);
-      /*const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );
+  if (localStorage.getItem('customerID')) {
+    let id = localStorage.getItem('customerID');
+    linkID = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
 
-      userProfileSection1.textContent = info; */
-      createUserProfile();
+    getInfo(linkID)
+      .then((info) => {
+        localStorage.setItem('userDetails', info);
+        createUserProfile();
 
-      return info;
-    })
-    .catch((err) => console.log(err.message));
+        return info;
+      })
+      .catch((err) => console.log(err.message));
+  } else {
+    getInfo(linkMe)
+      .then((info) => {
+        localStorage.setItem('userDetails', info);
+        createUserProfile();
+
+        return info;
+      })
+      .catch((err) => console.log(err.message));
+  }
 }

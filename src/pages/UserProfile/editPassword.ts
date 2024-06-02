@@ -9,14 +9,14 @@ export function editPassword(token: string) {
   let info: IUser = JSON.parse(localStorage.getItem('userDetails'));
   let version = info.version;
 
-  let oldPassword:string = localStorage.getItem('oldPassword');
-  let newPassword:string = localStorage.getItem('newPassword');
+  let oldPassword: string = localStorage.getItem('oldPassword');
+  let newPassword: string = localStorage.getItem('newPassword');
 
   const bodyData = JSON.stringify({
     id: index,
     version: version,
-    currentPassword : oldPassword,
-    newPassword: newPassword
+    currentPassword: oldPassword,
+    newPassword: newPassword,
   });
 
   async function postInfo(url: string) {

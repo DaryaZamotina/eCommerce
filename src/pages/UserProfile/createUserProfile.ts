@@ -7,6 +7,7 @@ import { IObjGeneralData } from './interfacesForObjectData';
 import { getInfoFromInputs } from './getInfoFromInputs';
 import validateEmail from '../../Helpers/Inputs/validateEmail';
 import { editPassword } from './editPassword';
+import { editAddress } from './editAddress';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -192,9 +193,13 @@ export function createUserProfile() {
   inputForStreet.className = 'inputForStreet';
   inputForStreet.id = 'inputForStreet';
 
-  if (shipID == bilID) {
+  if (shipID == bilID || !streetBil) {
     inputForStreet.placeholder = `${streetShip}`;
   } else inputForStreet.placeholder = `${streetBil}`;
+
+  inputForStreet.onchange = () => {
+    localStorage.setItem('streetBil', inputForStreet.value);
+  };
   labelForStreet.append(inputForStreet);
 
   //-------------
@@ -206,9 +211,13 @@ export function createUserProfile() {
   inputForPostalCode.className = 'inputForPostalCode.';
   inputForPostalCode.id = 'inputForPostalCode.';
 
-  if (shipID == bilID) {
+  if (shipID == bilID || !postalCodeBil) {
     inputForPostalCode.placeholder = `${postalCodeShip}`;
   } else inputForPostalCode.placeholder = `${postalCodeBil}`;
+
+  inputForPostalCode.onchange = () => {
+    localStorage.setItem('postalCodeBil', inputForPostalCode.value);
+  };
   labelForPostalCode.append(inputForPostalCode);
   //-------------
   const labelForCity: HTMLLabelElement = document.createElement('label');
@@ -218,9 +227,13 @@ export function createUserProfile() {
   const inputForCity: HTMLInputElement = document.createElement('input');
   inputForCity.className = 'inputForCity';
   inputForCity.id = 'inputForCity';
-  if (shipID == bilID) {
+  if (shipID == bilID || !cityBil) {
     inputForCity.placeholder = `${cityShip}`;
   } else inputForCity.placeholder = `${cityBil}`;
+
+  inputForCity.onchange = () => {
+    localStorage.setItem('cityBil', inputForCity.value);
+  };
   labelForCity.append(inputForCity);
   //-------------
   const labelForCoutry: HTMLLabelElement = document.createElement('label');
@@ -230,9 +243,13 @@ export function createUserProfile() {
   const inputForCoutry: HTMLInputElement = document.createElement('input');
   inputForCoutry.className = 'inputForCoutry';
   inputForCoutry.id = 'inputForCoutry';
-  if (shipID == bilID) {
+  if (shipID == bilID || !coutryBil) {
     inputForCoutry.placeholder = `${coutryShip}`;
   } else inputForCoutry.placeholder = `${coutryBil}`;
+  
+  inputForCoutry.onchange = () => {
+    localStorage.setItem('countryBil', inputForCoutry.value);
+  };
   labelForCoutry.append(inputForCoutry);
 
   //-------------Shipping adress -----
@@ -244,6 +261,10 @@ export function createUserProfile() {
   inputForStreetShip.className = 'inputForStreet';
   inputForStreetShip.id = 'inputForStreet';
   inputForStreetShip.placeholder = `${streetShip}`;
+
+  inputForStreetShip.onchange = () => {
+    localStorage.setItem('streetShip', inputForStreetShip.value);
+  };
   labelForStreetShip.append(inputForStreetShip);
 
   //-------------
@@ -257,6 +278,10 @@ export function createUserProfile() {
   inputForPostalCodeShip.className = 'inputForPostalCode.';
   inputForPostalCodeShip.id = 'inputForPostalCode';
   inputForPostalCodeShip.placeholder = `${postalCodeShip}`;
+
+  inputForPostalCodeShip.onchange = () => {
+    localStorage.setItem('postalCodeShip', inputForPostalCodeShip.value);
+  };
   labelForPostalCodeShip.append(inputForPostalCodeShip);
   //-------------
   const labelForCityShip: HTMLLabelElement = document.createElement('label');
@@ -267,6 +292,10 @@ export function createUserProfile() {
   inputForCityShip.className = 'inputForCity';
   inputForCityShip.id = 'inputForCity';
   inputForCityShip.placeholder = `${cityShip}`;
+
+  inputForCityShip.onchange = () => {
+    localStorage.setItem('cityShip', inputForCityShip.value);
+  };
   labelForCityShip.append(inputForCityShip);
   //-------------
   const labelForCoutryShip: HTMLLabelElement = document.createElement('label');
@@ -277,6 +306,9 @@ export function createUserProfile() {
   inputForCoutryShip.className = 'inputForCoutry';
   inputForCoutryShip.id = 'inputForCoutry';
   inputForCoutryShip.placeholder = `${coutryShip}`;
+  inputForCoutryShip.onchange = () => {
+    localStorage.setItem('countryShip', inputForCoutryShip.value);
+  };
   labelForCoutryShip.append(inputForCoutryShip);
 
   //-------------
@@ -300,9 +332,9 @@ export function createUserProfile() {
   inputForOldPassword.placeholder = ``;
   inputForOldPassword.onchange = () => {
     localStorage.setItem('oldPassword', inputForOldPassword.value);
-  }
+  };
   labelForOldPassword.append(inputForOldPassword);
-//--------
+  //--------
   const labelForNewPassword: HTMLLabelElement = document.createElement('label');
   labelForNewPassword.textContent = 'New Password';
   wrapperPassword.append(labelForNewPassword);
@@ -314,7 +346,7 @@ export function createUserProfile() {
   inputForNewPassword.placeholder = ``;
   inputForNewPassword.onchange = () => {
     localStorage.setItem('newPassword', inputForNewPassword.value);
-  }
+  };
   labelForNewPassword.append(inputForNewPassword);
   //-------------
 
@@ -332,15 +364,12 @@ export function createUserProfile() {
     editUserData(localStorage.getItem('access_token_auth'));
   });
 
-  buttonForChangePassword.addEventListener('click', function(){
+  buttonForChangePassword.addEventListener('click', function () {
     editPassword(localStorage.getItem('access_token_auth'));
-  })
-}
-  
-  //----------------
-
-  /*buttonForChangeAddress.addEventListener('click', function() {
-    editUserData(localStorage.getItem('access_token_auth'), objAddress);
   });
 
-*/
+  buttonForChangeAddress.addEventListener('click', function() {
+    editAddress(localStorage.getItem('access_token_auth'));
+  });
+
+}

@@ -84,10 +84,20 @@ export default class CatalogPage {
     const inputSearch = new TagCreator('input', 'inputSearch', 'inputSearch');
     const inputSearchAttribute = inputSearch.createAndReturn();
     inputSearchAttribute.setAttribute('placeholder', 'Search...');
-    const buttonSearch = new TagCreator('button', 'buttonSearch disabled', 'buttonSearch', '', 'Search');
+    const buttonSearch = new TagCreator(
+      'button',
+      'buttonSearch disabled',
+      'buttonSearch',
+      '',
+      'Search',
+    );
     const buttonSearchAttribute = buttonSearch.createAndReturn();
     buttonSearchAttribute.setAttribute('disabled', 'disabled');
-    const containerSearch = new TagCreator('div', 'containerSearch', 'containerSearch');
+    const containerSearch = new TagCreator(
+      'div',
+      'containerSearch',
+      'containerSearch',
+    );
     const containerSearchDiv = containerSearch.createAndReturn();
     containerSearchDiv.append(inputSearchAttribute);
     containerSearchDiv.append(buttonSearchAttribute);
@@ -123,7 +133,7 @@ export default class CatalogPage {
       { query: `search?${seartText}sort=price`, order: ' asc' },
       { query: `search?${seartText}sort=price`, order: ' desc' },
       { query: `search?${seartText}sort=name.en`, order: ' asc' },
-      { query: `search?${seartText}sort=name.en`, order: ' desc' }
+      { query: `search?${seartText}sort=name.en`, order: ' desc' },
     ];
 
     sortButton.forEach((button, index) => {
@@ -151,8 +161,8 @@ export default class CatalogPage {
         { query: `search?${seartText}sort=price`, order: ' asc' },
         { query: `search?${seartText}sort=price`, order: ' desc' },
         { query: `search?${seartText}sort=name.en`, order: ' asc' },
-        { query: `search?${seartText}sort=name.en`, order: ' desc' }
-      ]
+        { query: `search?${seartText}sort=name.en`, order: ' desc' },
+      ];
     });
 
     button.addEventListener('click', () => {

@@ -39,9 +39,8 @@ export function createUserProfile() {
   let postalCodeBil: string;
   let defaultShipID: string;
   let shipID: string;
- 
-  if (address[1]) {
 
+  if (address[1]) {
     billingAddress = address[1];
     streetBil = billingAddress.streetName;
     cityBil = billingAddress.city;
@@ -229,7 +228,7 @@ export function createUserProfile() {
 
   inputForPostalCode.onchange = () => {
     localStorage.setItem('postalCodeBil', inputForPostalCode.value);
-  }
+  };
 
   //-------------
   const labelForCity: HTMLLabelElement = document.createElement('label');
@@ -392,5 +391,4 @@ export function createUserProfile() {
   buttonForChangeAddress.addEventListener('click', function () {
     editAddress(localStorage.getItem('access_token_auth'));
   });
-
 }

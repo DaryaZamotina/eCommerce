@@ -1,3 +1,5 @@
+import { IObjGeneralData } from './interfacesForObjectData';
+
 /*
 curl https://api.{region}.commercetools.com/{projectKey}/me -i \
 --header 'Authorization: Bearer ${BEARER_TOKEN}' \
@@ -22,7 +24,7 @@ DATA
 // Вместо этой инфы ниже, нужно будет засунуть любую инфу из инпутов с
 // измененными данными юзера. formDataOfNewUser приведен для примера
 
-let formDataOfNewUser = JSON.stringify({
+/*let formDataOfNewUser = JSON.stringify({
   version: 1,
   actions: [
     {
@@ -36,12 +38,11 @@ let formDataOfNewUser = JSON.stringify({
       },
     },
   ],
-});
+});*/
 
-// функция editUserData пока вызывается в navbar.ts и пока просто добавляет новую инфу про пользователя на страницу профиля
-
-export function editUserData(token: string) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
+export function editUserData(token: string, obj: IObjGeneralData) {
+  const id = localStorage.getItem("customerID");
+  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
 
   async function postInfo(url: string) {
     const response = await fetch(url, {
@@ -50,7 +51,7 @@ export function editUserData(token: string) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: formDataOfNewUser,
+      body: JSON.stringify(obj),
     });
     const resp = await response.json();
     return JSON.stringify(resp);
@@ -61,18 +62,6 @@ export function editUserData(token: string) {
       localStorage.setItem('userDetails', info);
       console.log('userDetails = ' + info);
       const infoJSON = JSON.parse(info);
-
-      /*const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );*/
-      // userProfileSection1.textContent = info;
-
-      /* const userProfileSection1 = document.getElementById(
-          'userProfileSection1',
-        );
-        userProfileSection1.textContent = "";
-        userProfileSection1.textContent = info; */
-
       return info;
     })
     .catch((err) => console.log(err.message));

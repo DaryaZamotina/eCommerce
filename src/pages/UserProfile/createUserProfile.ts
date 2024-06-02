@@ -2,6 +2,8 @@ import TagCreator from '../../module/tagCreator';
 import { IUser } from './userInterface';
 import '../../../public/assets/css/userProfilePage.css';
 import getDataUser from '../Registration/getDataUser';
+import { editUserData } from './editUserData';
+import { IObjGeneralData } from './interfacesForObjectData';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -36,7 +38,7 @@ export function createUserProfile() {
 
   console.log('defaultShipID vs shipID = ' + defaultShipID + ' vs ' + shipID);
 
-  //---------------wrappers
+  //---------------wrappers ------------
 
   const wrapperGeneralData: HTMLDivElement = document.createElement('div');
   wrapperGeneralData.className = 'wrapperGeneralData';
@@ -146,6 +148,13 @@ export function createUserProfile() {
   inputForEmail.id = 'inputForEmailh';
   inputForEmail.placeholder = `${email}`;
   labelForEmail.append(inputForEmail);
+  //-------------
+  const buttonForChangeGenData: HTMLButtonElement =
+  document.createElement('button');
+  buttonForChangeGenData.className = 'buttonForChangeGenData';
+  buttonForChangeGenData.id = 'buttonForChangeGenData';
+  buttonForChangeGenData.textContent = 'Change your personal info';
+  wrapperProfile.append(buttonForChangeGenData);
 
   //-------------Billing adress -----
   const labelForStreet: HTMLLabelElement = document.createElement('label');
@@ -235,12 +244,12 @@ export function createUserProfile() {
 
   //-------------
 
-  const buttonForChangeData: HTMLButtonElement =
+  const buttonForChangeAddress: HTMLButtonElement =
     document.createElement('button');
-  buttonForChangeData.className = 'buttonForChangeData';
-  buttonForChangeData.id = 'buttonForChangeData';
-  buttonForChangeData.textContent = 'Change your profile data';
-  wrapperGeneralData.append(buttonForChangeData);
+    buttonForChangeAddress.className = 'buttonForChangeAddress';
+    buttonForChangeAddress.id = 'buttonForChangeAddress';
+    buttonForChangeAddress.textContent = 'Change your address';
+  wrapperGeneralData.append(buttonForChangeAddress);
 
   //-------------
   const labelForPassword: HTMLLabelElement = document.createElement('label');
@@ -261,4 +270,42 @@ export function createUserProfile() {
   buttonForChangePassword.id = 'buttonForChangePassword';
   buttonForChangePassword.textContent = 'Change your password';
   wrapperPassword.append(buttonForChangePassword);
+
+  //--------object for General info -------
+ let objGenData: IObjGeneralData;
+
+  inputForEmail.addEventListener('change', () => {
+    objGenData['email'] = inputForEmail.value;
+  });
+
+  inputName.addEventListener('change', () => {
+    objGenData['firstName'] = inputName.value;
+    localStorage.setItem('firstName', inputName.value);
+  });
+
+  inputSurname.addEventListener('change', () => {
+    objGenData['lastName'] = inputSurname.value;
+  });
+
+  inputForDateOfBirth.addEventListener('change', () => {
+    objGenData['dateOfBirth'] = inputForDateOfBirth.value;
+  });
+
+  console.log("firstName = " + localStorage.getItem('firstName'));
+  //console.log("objGenData = " + objGenData);
+
+  //----------------
+
+  buttonForChangeGenData.addEventListener('click', function() {
+    editUserData(localStorage.getItem('access_token_auth'), objGenData);
+  });
+
+  /*buttonForChangeAddress.addEventListener('click', function() {
+    editUserData(localStorage.getItem('access_token_auth'), objAddress);
+  });
+
+  buttonForChangePassword.addEventListener('click', function(){
+    editUserData(localStorage.getItem('access_token_auth'), objPass);
+  })*/
 }
+

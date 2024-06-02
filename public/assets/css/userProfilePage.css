@@ -27,13 +27,15 @@
   }
 
   .buttonForChangePassword, 
-  .buttonForChangeData {
+  .buttonForChangeAddress,
+  .buttonForChangeGenData {
     border-radius: 2rem;
     background-color: rgb(197, 242, 197);
   }
-
+ 
   .buttonForChangePassword:hover, 
-  .buttonForChangeData:hover {
+  .buttonForChangeAddress:hover,
+  .buttonForChangeGenData:hover {
     background-color: rgb(110, 152, 110);
   } 
 

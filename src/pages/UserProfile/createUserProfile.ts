@@ -274,7 +274,7 @@ export function createUserProfile() {
 
   //--------object for General info -------
 
-getInfoFromInputs();
+  getInfoFromInputs();
 
   /*let objGenData: IObjGeneralData;
 

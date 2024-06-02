@@ -1,6 +1,6 @@
 export interface IObjGeneralData {
-    email: string; 
-    firstName: string; 
-    lastName: string;
-    dateOfBirth: string;
-  };
+  email: string;
+  firstName: string;
+  lastName: string;
+  dateOfBirth: string;
+}

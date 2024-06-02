@@ -150,7 +150,7 @@ export function createUserProfile() {
   labelForEmail.append(inputForEmail);
   //-------------
   const buttonForChangeGenData: HTMLButtonElement =
-  document.createElement('button');
+    document.createElement('button');
   buttonForChangeGenData.className = 'buttonForChangeGenData';
   buttonForChangeGenData.id = 'buttonForChangeGenData';
   buttonForChangeGenData.textContent = 'Change your personal info';
@@ -246,9 +246,9 @@ export function createUserProfile() {
 
   const buttonForChangeAddress: HTMLButtonElement =
     document.createElement('button');
-    buttonForChangeAddress.className = 'buttonForChangeAddress';
-    buttonForChangeAddress.id = 'buttonForChangeAddress';
-    buttonForChangeAddress.textContent = 'Change your address';
+  buttonForChangeAddress.className = 'buttonForChangeAddress';
+  buttonForChangeAddress.id = 'buttonForChangeAddress';
+  buttonForChangeAddress.textContent = 'Change your address';
   wrapperGeneralData.append(buttonForChangeAddress);
 
   //-------------
@@ -272,7 +272,7 @@ export function createUserProfile() {
   wrapperPassword.append(buttonForChangePassword);
 
   //--------object for General info -------
- let objGenData: IObjGeneralData;
+  let objGenData: IObjGeneralData;
 
   inputForEmail.addEventListener('change', () => {
     objGenData['email'] = inputForEmail.value;
@@ -291,12 +291,12 @@ export function createUserProfile() {
     objGenData['dateOfBirth'] = inputForDateOfBirth.value;
   });
 
-  console.log("firstName = " + localStorage.getItem('firstName'));
+  console.log('firstName = ' + localStorage.getItem('firstName'));
   //console.log("objGenData = " + objGenData);
 
   //----------------
 
-  buttonForChangeGenData.addEventListener('click', function() {
+  buttonForChangeGenData.addEventListener('click', function () {
     editUserData(localStorage.getItem('access_token_auth'), objGenData);
   });
 
@@ -308,4 +308,3 @@ export function createUserProfile() {
     editUserData(localStorage.getItem('access_token_auth'), objPass);
   })*/
 }
-

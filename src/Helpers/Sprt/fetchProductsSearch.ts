@@ -1,9 +1,10 @@
-import IResult from "../../components/ProductCard/InterfaceProduct";
+import IResult from '../../components/ProductCard/InterfaceProduct';
 
 export default async function fetchProductsSearch() {
-  const url = 'https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?text.en=mirror';
+  const url =
+    'https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?text.en=mirror';
   const queryParams = new URLSearchParams({
-    'text': 'name.en=Nicole Mirror',
+    text: 'name.en=Nicole Mirror',
     // 'query.fullText.language': 'en',
     // 'value': `"bad"`,
     // 'query.fullText.mustMatch': 'any'
@@ -16,8 +17,8 @@ export default async function fetchProductsSearch() {
       method: 'GET',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('anonym_access_token')}`,
-        'Content-Type': 'application/json'
-      }
+        'Content-Type': 'application/json',
+      },
     });
 
     if (!response.ok) {

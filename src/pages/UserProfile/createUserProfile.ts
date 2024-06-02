@@ -246,7 +246,7 @@ export function createUserProfile() {
   if (shipID == bilID || !coutryBil) {
     inputForCoutry.placeholder = `${coutryShip}`;
   } else inputForCoutry.placeholder = `${coutryBil}`;
-  
+
   inputForCoutry.onchange = () => {
     localStorage.setItem('countryBil', inputForCoutry.value);
   };
@@ -368,8 +368,7 @@ export function createUserProfile() {
     editPassword(localStorage.getItem('access_token_auth'));
   });
 
-  buttonForChangeAddress.addEventListener('click', function() {
+  buttonForChangeAddress.addEventListener('click', function () {
     editAddress(localStorage.getItem('access_token_auth'));
   });
-
 }

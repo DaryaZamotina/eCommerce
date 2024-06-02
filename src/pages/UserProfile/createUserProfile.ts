@@ -190,6 +190,10 @@ export function createUserProfile() {
   const inputForStreet: HTMLInputElement = document.createElement('input');
   inputForStreet.className = 'inputForStreet';
   inputForStreet.id = 'inputForStreet';
+
+  if (shipID == bilID) {
+    inputForStreet.placeholder = `${streetShip}`;
+  } else
   inputForStreet.placeholder = `${streetBil}`;
   labelForStreet.append(inputForStreet);
 
@@ -201,6 +205,10 @@ export function createUserProfile() {
   const inputForPostalCode: HTMLInputElement = document.createElement('input');
   inputForPostalCode.className = 'inputForPostalCode.';
   inputForPostalCode.id = 'inputForPostalCode.';
+
+  if (shipID == bilID) {
+    inputForPostalCode.placeholder = `${postalCodeShip}`;
+  } else
   inputForPostalCode.placeholder = `${postalCodeBil}`;
   labelForPostalCode.append(inputForPostalCode);
   //-------------
@@ -211,6 +219,9 @@ export function createUserProfile() {
   const inputForCity: HTMLInputElement = document.createElement('input');
   inputForCity.className = 'inputForCity';
   inputForCity.id = 'inputForCity';
+  if (shipID == bilID) {
+    inputForCity.placeholder = `${cityShip}`;
+  } else
   inputForCity.placeholder = `${cityBil}`;
   labelForCity.append(inputForCity);
   //-------------
@@ -221,6 +232,9 @@ export function createUserProfile() {
   const inputForCoutry: HTMLInputElement = document.createElement('input');
   inputForCoutry.className = 'inputForCoutry';
   inputForCoutry.id = 'inputForCoutry';
+  if (shipID == bilID) {
+    inputForCoutry.placeholder = `${coutryShip}`;
+  } else
   inputForCoutry.placeholder = `${coutryBil}`;
   labelForCoutry.append(inputForCoutry);
 

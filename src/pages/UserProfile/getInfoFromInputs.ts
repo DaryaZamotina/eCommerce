@@ -4,19 +4,18 @@ import validateEmail from '../../Helpers/Inputs/validateEmail';
 import { IUser } from './userInterface';
 
 export function getInfoFromInputs() {
-
   const info: IUser = JSON.parse(localStorage.getItem('userDetails'));
   const name = info.firstName;
   const surname = info.lastName;
   const dateOfBirth = info.dateOfBirth;
   const email = info.email;
 
-  let objGenData = { 
-    'email': localStorage.getItem('email'),
-  'firstName': localStorage.getItem('firstName'),
-  'lastName': localStorage.getItem('lastName'),
-  'dateOfBirth': localStorage.getItem('dateOfBirth')
-};
+  let objGenData = {
+    email: localStorage.getItem('email'),
+    firstName: localStorage.getItem('firstName'),
+    lastName: localStorage.getItem('lastName'),
+    dateOfBirth: localStorage.getItem('dateOfBirth'),
+  };
   /*let objGenData = {
     'email': () => {
         if (localStorage.getItem('email')) {
@@ -40,7 +39,7 @@ export function getInfoFromInputs() {
     }
   }; */
 
-  localStorage.setItem("objGenData", JSON.stringify(objGenData));
+  localStorage.setItem('objGenData', JSON.stringify(objGenData));
 
   /*const info: IUser = JSON.parse(localStorage.getItem('userDetails'));
   const name = info.firstName;
@@ -65,7 +64,7 @@ export function getInfoFromInputs() {
     objGenData['dateOfBirth'] = localStorage.getItem('dateOfBirth');
   } else objGenData['dateOfBirth'] = dateOfBirth; 
  */
-  
-  console.log("objGenData = " + JSON.stringify(objGenData)); 
+
+  console.log('objGenData = ' + JSON.stringify(objGenData));
   return objGenData;
 }

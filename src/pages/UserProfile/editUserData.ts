@@ -3,33 +3,32 @@ import { getInfoFromInputs } from './getInfoFromInputs';
 import { IUser } from './userInterface';
 
 export function editUserData(token: string) {
-
   const id = localStorage.getItem('customerID');
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
 
-  let info: IUser = JSON.parse(localStorage.getItem("newUser"));
+  let info: IUser = JSON.parse(localStorage.getItem('newUser'));
   let version = info.version;
 
   const bodyData = JSON.stringify({
     version: version,
     actions: [
       {
-      "action": "changeEmail",
-      "email": localStorage.getItem('email'),
+        action: 'changeEmail',
+        email: localStorage.getItem('email'),
       },
       {
-        "action": "setFirstName",
-        "firstName": localStorage.getItem('firstName'),
+        action: 'setFirstName',
+        firstName: localStorage.getItem('firstName'),
       },
       {
-        "action": "setLastName",
-        "lastName": localStorage.getItem('lastName'),
+        action: 'setLastName',
+        lastName: localStorage.getItem('lastName'),
       },
       {
-        "action": "setDateOfBirth",
-        "dateOfBirth":localStorage.getItem('dateOfBirth'),
-      }
-    ]
+        action: 'setDateOfBirth',
+        dateOfBirth: localStorage.getItem('dateOfBirth'),
+      },
+    ],
   });
 
   async function postInfo(url: string) {

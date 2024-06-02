@@ -124,7 +124,7 @@ export function createUserProfile() {
   inputName.onchange = () => {
     localStorage.setItem('firstName', inputName.value);
     console.log(inputName.value);
-  }
+  };
   //-------------
   const labelForSurname: HTMLLabelElement = document.createElement('label');
   labelForSurname.textContent = 'Surname ';
@@ -139,7 +139,7 @@ export function createUserProfile() {
   inputSurname.onchange = () => {
     localStorage.setItem('lastName', inputSurname.value);
     console.log(inputSurname.value);
-  }
+  };
   //-------------
   const labelForDateOfBirth: HTMLLabelElement = document.createElement('label');
   labelForDateOfBirth.textContent = 'Date of birth';
@@ -154,7 +154,7 @@ export function createUserProfile() {
   inputForDateOfBirth.onchange = () => {
     localStorage.setItem('dateOfBirth', inputForDateOfBirth.value);
     console.log(inputForDateOfBirth.value);
-  }
+  };
 
   //-------------
   const labelForEmail: HTMLLabelElement = document.createElement('label');
@@ -172,7 +172,7 @@ export function createUserProfile() {
     localStorage.setItem('email', inputForEmail.value);
     validateEmail(inputForEmail.value);
     console.log(inputForEmail.value);
-  }
+  };
 
   //-------------
   const buttonForChangeGenData: HTMLButtonElement =
@@ -299,11 +299,11 @@ export function createUserProfile() {
 
   //--------object for General info -------
 
-    buttonForChangeGenData.addEventListener('click', function () {
-        getInfoFromInputs();
-        editUserData(localStorage.getItem('access_token_auth'));
+  buttonForChangeGenData.addEventListener('click', function () {
+    getInfoFromInputs();
+    editUserData(localStorage.getItem('access_token_auth'));
   });
-/*
+  /*
   let objGenData = {
     'email': () => {
         if (localStorage.getItem('email')) {
@@ -343,9 +343,8 @@ export function createUserProfile() {
     objGenData['dateOfBirth'] = localStorage.getItem('dateOfBirth');
   } else objGenData['dateOfBirth'] = dateOfBirth; 
  */
- // console.log("objGenData" + objGenData);
- // getInfoFromInputs();
-
+  // console.log("objGenData" + objGenData);
+  // getInfoFromInputs();
 
   /*const inputEmail = <HTMLInputElement>(document.getElementById('inputForEmail'));
 

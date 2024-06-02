@@ -125,7 +125,7 @@ export default class CatalogPage {
       { query: `search?${seartText}sort=name.en`, order: ' asc' },
       { query: `search?${seartText}sort=name.en`, order: ' desc' }
     ];
-  
+
     sortButton.forEach((button, index) => {
       button.addEventListener('click', (event) => {
         if (!button.classList.contains('active')) {

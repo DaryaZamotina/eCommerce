@@ -32,11 +32,21 @@ export const newClientForProducts: APIclient = {
   },
 };
 
+export const oneMoreClient: APIclient = {
+  clientID: 'w14HWORSLRe5Of1h4rfWha6D',
+  clientSecret: 'Z7JggTu1YK9Sdd8Greaix096fFwzpt_6',
+
+  getKeyOfClient(): string {
+    return btoa(`${this.clientID}:${this.clientSecret}`);
+  },
+};
+
 export function receiveAnonymusAccessToken() {
   async function getAnonymusToken(url: string) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
+        // Authorization: `Basic ${oneMoreClient.getKeyOfClient()}`,
         Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
       },
       body: new URLSearchParams({

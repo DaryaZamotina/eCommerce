@@ -5,6 +5,7 @@ import getDataUser from '../Registration/getDataUser';
 import { editUserData } from './editUserData';
 import { IObjGeneralData } from './interfacesForObjectData';
 import { getInfoFromInputs } from './getInfoFromInputs';
+import validateEmail from '../../Helpers/Inputs/validateEmail';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -119,6 +120,11 @@ export function createUserProfile() {
   inputName.id = 'inputName';
   inputName.placeholder = `${name}`;
   labelForName.append(inputName);
+
+  inputName.onchange = () => {
+    localStorage.setItem('firstName', inputName.value);
+    console.log(inputName.value);
+  }
   //-------------
   const labelForSurname: HTMLLabelElement = document.createElement('label');
   labelForSurname.textContent = 'Surname ';
@@ -129,6 +135,11 @@ export function createUserProfile() {
   inputSurname.id = 'inputSurname';
   inputSurname.placeholder = `${surname}`;
   labelForSurname.append(inputSurname);
+
+  inputSurname.onchange = () => {
+    localStorage.setItem('lastName', inputSurname.value);
+    console.log(inputSurname.value);
+  }
   //-------------
   const labelForDateOfBirth: HTMLLabelElement = document.createElement('label');
   labelForDateOfBirth.textContent = 'Date of birth';
@@ -139,6 +150,12 @@ export function createUserProfile() {
   inputForDateOfBirth.id = 'inputForDateOfBirth';
   inputForDateOfBirth.placeholder = `${dateOfBirth}`;
   labelForDateOfBirth.append(inputForDateOfBirth);
+
+  inputForDateOfBirth.onchange = () => {
+    localStorage.setItem('dateOfBirth', inputForDateOfBirth.value);
+    console.log(inputForDateOfBirth.value);
+  }
+
   //-------------
   const labelForEmail: HTMLLabelElement = document.createElement('label');
   labelForEmail.textContent = 'Email';
@@ -146,9 +163,17 @@ export function createUserProfile() {
 
   const inputForEmail: HTMLInputElement = document.createElement('input');
   inputForEmail.className = 'inputForEmail';
-  inputForEmail.id = 'inputForEmailh';
+  inputForEmail.id = 'inputForEmail';
   inputForEmail.placeholder = `${email}`;
+  inputForEmail.type = 'email';
   labelForEmail.append(inputForEmail);
+
+  inputForEmail.onchange = () => {
+    localStorage.setItem('email', inputForEmail.value);
+    validateEmail(inputForEmail.value);
+    console.log(inputForEmail.value);
+  }
+
   //-------------
   const buttonForChangeGenData: HTMLButtonElement =
     document.createElement('button');
@@ -274,11 +299,55 @@ export function createUserProfile() {
 
   //--------object for General info -------
 
-  getInfoFromInputs();
+    buttonForChangeGenData.addEventListener('click', function () {
+        getInfoFromInputs();
+        editUserData(localStorage.getItem('access_token_auth'));
+  });
+/*
+  let objGenData = {
+    'email': () => {
+        if (localStorage.getItem('email')) {
+        return localStorage.getItem('email');
+      } else return email; 
+    },
+    'firstName': () => {
+        if (localStorage.getItem('firstName')) {
+            return localStorage.getItem('firstName');
+          } else return name; 
+    },
+    'lastName': () => {
+        if (localStorage.getItem('lastName')) {
+        return localStorage.getItem('lastName');
+      } else return surname; 
+    },
+    'dateOfBirth': () => { 
+        if (localStorage.getItem('dateOfBirth')) {
+        return localStorage.getItem('dateOfBirth');
+      } else return dateOfBirth; 
+    }
+  }; */
 
-  /*let objGenData: IObjGeneralData;
+  /*if (localStorage.getItem('email')) {
+    objGenData['email'] = localStorage.getItem('email');
+  } else  objGenData['email'] = email;
 
-  const inputEmail = <HTMLInputElement>(document.getElementById('inputForEmail'));
+  if (localStorage.getItem('firstName')) {
+    objGenData['firstName'] = localStorage.getItem('firstName');
+  } else objGenData['firstName'] = name;
+
+  if (localStorage.getItem('lastName')) {
+     objGenData['lastName'] = localStorage.getItem('lastName');
+  } else objGenData['lastName'] = surname;
+
+  if (localStorage.getItem('dateOfBirth')) {
+    objGenData['dateOfBirth'] = localStorage.getItem('dateOfBirth');
+  } else objGenData['dateOfBirth'] = dateOfBirth; 
+ */
+ // console.log("objGenData" + objGenData);
+ // getInfoFromInputs();
+
+
+  /*const inputEmail = <HTMLInputElement>(document.getElementById('inputForEmail'));
 
   inputEmail.addEventListener('input', () => {
     objGenData['email'] = inputEmail.value;
@@ -297,9 +366,9 @@ export function createUserProfile() {
   inputForDateOfBirth.addEventListener('change', () => {
     objGenData['dateOfBirth'] = inputForDateOfBirth.value;
   });
-
-  console.log('email = ' + localStorage.getItem('email'));
-  //console.log("objGenData = " + objGenData); */
+*/
+  //console.log('email = ' + localStorage.getItem('email'));
+  //console.log("objGenData = " + objGenData);
 
   //----------------
 

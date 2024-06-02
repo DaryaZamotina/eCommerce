@@ -1,48 +1,36 @@
 import { IObjGeneralData } from './interfacesForObjectData';
+import { getInfoFromInputs } from './getInfoFromInputs';
+import { IUser } from './userInterface';
 
-/*
-curl https://api.{region}.commercetools.com/{projectKey}/me -i \
---header 'Authorization: Bearer ${BEARER_TOKEN}' \
---header 'Content-Type: application/json' \
---data-binary @- << DATA 
-{
-  "version" : 3,
-  "actions" : [ {
-    "action" : "addAddress",
-    "address" : {
-      "streetName" : "Any Street",
-      "streetNumber" : "1337",
-      "postalCode" : "11111",
-      "city" : "Any City",
-      "country" : "US"
-    }
-  } ]
-}
-DATA
-*/
+export function editUserData(token: string) {
 
-// Вместо этой инфы ниже, нужно будет засунуть любую инфу из инпутов с
-// измененными данными юзера. formDataOfNewUser приведен для примера
-
-/*let formDataOfNewUser = JSON.stringify({
-  version: 1,
-  actions: [
-    {
-      action: 'addAddress',
-      address: {
-        streetName: 'Any Street',
-        streetNumber: '1337',
-        postalCode: '11111',
-        city: 'Any City',
-        country: 'US',
-      },
-    },
-  ],
-});*/
-
-export function editUserData(token: string, obj: IObjGeneralData) {
   const id = localStorage.getItem('customerID');
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
+
+  let info: IUser = JSON.parse(localStorage.getItem("newUser"));
+  let version = info.version;
+
+  const bodyData = JSON.stringify({
+    version: version,
+    actions: [
+      {
+      "action": "changeEmail",
+      "email": localStorage.getItem('email'),
+      },
+      {
+        "action": "setFirstName",
+        "firstName": localStorage.getItem('firstName'),
+      },
+      {
+        "action": "setLastName",
+        "lastName": localStorage.getItem('lastName'),
+      },
+      {
+        "action": "setDateOfBirth",
+        "dateOfBirth":localStorage.getItem('dateOfBirth'),
+      }
+    ]
+  });
 
   async function postInfo(url: string) {
     const response = await fetch(url, {
@@ -51,7 +39,7 @@ export function editUserData(token: string, obj: IObjGeneralData) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(obj),
+      body: bodyData,
     });
     const resp = await response.json();
     return JSON.stringify(resp);
@@ -59,7 +47,7 @@ export function editUserData(token: string, obj: IObjGeneralData) {
 
   postInfo(link)
     .then((info) => {
-      localStorage.setItem('userDetails', info);
+      localStorage.setItem('newUser', info);
       console.log('userDetails = ' + info);
       const infoJSON = JSON.parse(info);
       return info;

@@ -1,47 +1,67 @@
-/*
-curl https://api.{region}.commercetools.com/{projectKey}/me -i \
---header 'Authorization: Bearer ${BEARER_TOKEN}' \
---header 'Content-Type: application/json' \
---data-binary @- << DATA 
-{
-  "version" : 3,
-  "actions" : [ {
-    "action" : "addAddress",
-    "address" : {
-      "streetName" : "Any Street",
-      "streetNumber" : "1337",
-      "postalCode" : "11111",
-      "city" : "Any City",
-      "country" : "US"
-    }
-  } ]
-}
-DATA
-*/
-
-// Вместо этой инфы ниже, нужно будет засунуть любую инфу из инпутов с
-// измененными данными юзера. formDataOfNewUser приведен для примера
-
-let formDataOfNewUser = JSON.stringify({
-  version: 1,
-  actions: [
-    {
-      action: 'addAddress',
-      address: {
-        streetName: 'Any Street',
-        streetNumber: '1337',
-        postalCode: '11111',
-        city: 'Any City',
-        country: 'US',
-      },
-    },
-  ],
-});
-
-// функция editUserData пока вызывается в navbar.ts и пока просто добавляет новую инфу про пользователя на страницу профиля
+import { IObjGeneralData } from './interfacesForObjectData';
+import { getInfoFromInputs } from './getInfoFromInputs';
+import { IUser } from './userInterface';
 
 export function editUserData(token: string) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
+  const id = localStorage.getItem('customerID');
+  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
+
+  let info: IUser = JSON.parse(localStorage.getItem('userDetails'));
+  let version = info.version;
+
+  let mail: string;
+  if (
+    localStorage.getItem('email') &&
+    localStorage.getItem('email') !== 'undefined'
+  ) {
+    mail = localStorage.getItem('email');
+  } else mail = info.email;
+
+  let name: string;
+  if (
+    localStorage.getItem('firstName') &&
+    localStorage.getItem('firstName') !== 'undefined'
+  ) {
+    name = localStorage.getItem('firstName');
+  } else name = info.firstName;
+
+  let surname: string;
+  if (
+    localStorage.getItem('lastName') &&
+    localStorage.getItem('lastName') !== 'undefined'
+  ) {
+    surname = localStorage.getItem('lastName');
+  } else surname = info.firstName;
+
+  let date: string;
+  if (
+    localStorage.getItem('dateOfBirth') &&
+    localStorage.getItem('dateOfBirth') !== 'undefined'
+  ) {
+    date = localStorage.getItem('dateOfBirth');
+  } else date = info.dateOfBirth;
+
+  const bodyData = JSON.stringify({
+    version: version,
+    actions: [
+      {
+        action: 'changeEmail',
+        email: mail,
+      },
+      {
+        action: 'setFirstName',
+        firstName: name,
+      },
+      {
+        action: 'setLastName',
+        lastName: surname,
+      },
+      {
+        action: 'setDateOfBirth',
+        dateOfBirth: date,
+      },
+    ],
+  });
 
   async function postInfo(url: string) {
     const response = await fetch(url, {
@@ -50,7 +70,7 @@ export function editUserData(token: string) {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: formDataOfNewUser,
+      body: bodyData,
     });
     const resp = await response.json();
     return JSON.stringify(resp);
@@ -61,17 +81,6 @@ export function editUserData(token: string) {
       localStorage.setItem('userDetails', info);
       console.log('userDetails = ' + info);
       const infoJSON = JSON.parse(info);
-
-      /*const userProfileSection1 = document.getElementById(
-        'userProfileSection1',
-      );*/
-      // userProfileSection1.textContent = info;
-
-      /* const userProfileSection1 = document.getElementById(
-          'userProfileSection1',
-        );
-        userProfileSection1.textContent = "";
-        userProfileSection1.textContent = info; */
 
       return info;
     })

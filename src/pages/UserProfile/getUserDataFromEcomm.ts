@@ -1,5 +1,6 @@
 import { createUserProfile } from './createUserProfile';
 import { IUser } from './userInterface';
+import { getInfoFromInputs } from './getInfoFromInputs';
 
 export function getUserInfoFromEcomm(token: string) {
   let linkID: string;
@@ -36,6 +37,7 @@ export function getUserInfoFromEcomm(token: string) {
       .then((info) => {
         localStorage.setItem('userDetails', info);
         createUserProfile();
+        getInfoFromInputs();
 
         return info;
       })

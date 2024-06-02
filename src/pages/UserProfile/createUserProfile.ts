@@ -2,6 +2,12 @@ import TagCreator from '../../module/tagCreator';
 import { IUser } from './userInterface';
 import '../../../public/assets/css/userProfilePage.css';
 import getDataUser from '../Registration/getDataUser';
+import { editUserData } from './editUserData';
+import { IObjGeneralData } from './interfacesForObjectData';
+import { getInfoFromInputs } from './getInfoFromInputs';
+import validateEmail from '../../Helpers/Inputs/validateEmail';
+import { editPassword } from './editPassword';
+import { editAddress } from './editAddress';
 
 export function createUserProfile() {
   const profileSection = document.getElementById('userProfileSection1');
@@ -36,7 +42,7 @@ export function createUserProfile() {
 
   console.log('defaultShipID vs shipID = ' + defaultShipID + ' vs ' + shipID);
 
-  //---------------wrappers
+  //---------------wrappers ------------
 
   const wrapperGeneralData: HTMLDivElement = document.createElement('div');
   wrapperGeneralData.className = 'wrapperGeneralData';
@@ -116,6 +122,11 @@ export function createUserProfile() {
   inputName.id = 'inputName';
   inputName.placeholder = `${name}`;
   labelForName.append(inputName);
+
+  inputName.onchange = () => {
+    localStorage.setItem('firstName', inputName.value);
+    console.log(inputName.value);
+  };
   //-------------
   const labelForSurname: HTMLLabelElement = document.createElement('label');
   labelForSurname.textContent = 'Surname ';
@@ -126,6 +137,11 @@ export function createUserProfile() {
   inputSurname.id = 'inputSurname';
   inputSurname.placeholder = `${surname}`;
   labelForSurname.append(inputSurname);
+
+  inputSurname.onchange = () => {
+    localStorage.setItem('lastName', inputSurname.value);
+    console.log(inputSurname.value);
+  };
   //-------------
   const labelForDateOfBirth: HTMLLabelElement = document.createElement('label');
   labelForDateOfBirth.textContent = 'Date of birth';
@@ -136,6 +152,12 @@ export function createUserProfile() {
   inputForDateOfBirth.id = 'inputForDateOfBirth';
   inputForDateOfBirth.placeholder = `${dateOfBirth}`;
   labelForDateOfBirth.append(inputForDateOfBirth);
+
+  inputForDateOfBirth.onchange = () => {
+    localStorage.setItem('dateOfBirth', inputForDateOfBirth.value);
+    console.log(inputForDateOfBirth.value);
+  };
+
   //-------------
   const labelForEmail: HTMLLabelElement = document.createElement('label');
   labelForEmail.textContent = 'Email';
@@ -143,9 +165,24 @@ export function createUserProfile() {
 
   const inputForEmail: HTMLInputElement = document.createElement('input');
   inputForEmail.className = 'inputForEmail';
-  inputForEmail.id = 'inputForEmailh';
+  inputForEmail.id = 'inputForEmail';
   inputForEmail.placeholder = `${email}`;
+  inputForEmail.type = 'email';
   labelForEmail.append(inputForEmail);
+
+  inputForEmail.onchange = () => {
+    localStorage.setItem('email', inputForEmail.value);
+    validateEmail(inputForEmail.value);
+    console.log(inputForEmail.value);
+  };
+
+  //-------------
+  const buttonForChangeGenData: HTMLButtonElement =
+    document.createElement('button');
+  buttonForChangeGenData.className = 'buttonForChangeGenData';
+  buttonForChangeGenData.id = 'buttonForChangeGenData';
+  buttonForChangeGenData.textContent = 'Change your personal info';
+  wrapperProfile.append(buttonForChangeGenData);
 
   //-------------Billing adress -----
   const labelForStreet: HTMLLabelElement = document.createElement('label');
@@ -155,7 +192,15 @@ export function createUserProfile() {
   const inputForStreet: HTMLInputElement = document.createElement('input');
   inputForStreet.className = 'inputForStreet';
   inputForStreet.id = 'inputForStreet';
-  inputForStreet.placeholder = `${streetBil}`;
+
+  if (shipID == bilID || !streetBil) {
+    inputForStreet.placeholder = `${streetShip}`;
+  } else inputForStreet.placeholder = `${streetBil}`;
+
+  inputForStreet.onchange = () => {
+    localStorage.setItem('streetBil', inputForStreet.value);
+  };
+
   labelForStreet.append(inputForStreet);
 
   //-------------
@@ -166,7 +211,14 @@ export function createUserProfile() {
   const inputForPostalCode: HTMLInputElement = document.createElement('input');
   inputForPostalCode.className = 'inputForPostalCode.';
   inputForPostalCode.id = 'inputForPostalCode.';
-  inputForPostalCode.placeholder = `${postalCodeBil}`;
+
+  if (shipID == bilID || !postalCodeBil) {
+    inputForPostalCode.placeholder = `${postalCodeShip}`;
+  } else inputForPostalCode.placeholder = `${postalCodeBil}`;
+
+  inputForPostalCode.onchange = () => {
+    localStorage.setItem('postalCodeBil', inputForPostalCode.value);
+
   labelForPostalCode.append(inputForPostalCode);
   //-------------
   const labelForCity: HTMLLabelElement = document.createElement('label');
@@ -176,7 +228,14 @@ export function createUserProfile() {
   const inputForCity: HTMLInputElement = document.createElement('input');
   inputForCity.className = 'inputForCity';
   inputForCity.id = 'inputForCity';
-  inputForCity.placeholder = `${cityBil}`;
+  if (shipID == bilID || !cityBil) {
+    inputForCity.placeholder = `${cityShip}`;
+  } else inputForCity.placeholder = `${cityBil}`;
+
+  inputForCity.onchange = () => {
+    localStorage.setItem('cityBil', inputForCity.value);
+  };
+
   labelForCity.append(inputForCity);
   //-------------
   const labelForCoutry: HTMLLabelElement = document.createElement('label');
@@ -186,7 +245,15 @@ export function createUserProfile() {
   const inputForCoutry: HTMLInputElement = document.createElement('input');
   inputForCoutry.className = 'inputForCoutry';
   inputForCoutry.id = 'inputForCoutry';
-  inputForCoutry.placeholder = `${coutryBil}`;
+
+  if (shipID == bilID || !coutryBil) {
+    inputForCoutry.placeholder = `${coutryShip}`;
+  } else inputForCoutry.placeholder = `${coutryBil}`;
+
+  inputForCoutry.onchange = () => {
+    localStorage.setItem('countryBil', inputForCoutry.value);
+  };
+
   labelForCoutry.append(inputForCoutry);
 
   //-------------Shipping adress -----
@@ -198,6 +265,11 @@ export function createUserProfile() {
   inputForStreetShip.className = 'inputForStreet';
   inputForStreetShip.id = 'inputForStreet';
   inputForStreetShip.placeholder = `${streetShip}`;
+
+  inputForStreetShip.onchange = () => {
+    localStorage.setItem('streetShip', inputForStreetShip.value);
+  };
+
   labelForStreetShip.append(inputForStreetShip);
 
   //-------------
@@ -211,6 +283,10 @@ export function createUserProfile() {
   inputForPostalCodeShip.className = 'inputForPostalCode.';
   inputForPostalCodeShip.id = 'inputForPostalCode';
   inputForPostalCodeShip.placeholder = `${postalCodeShip}`;
+  inputForPostalCodeShip.onchange = () => {
+    localStorage.setItem('postalCodeShip', inputForPostalCodeShip.value);
+  };
+
   labelForPostalCodeShip.append(inputForPostalCodeShip);
   //-------------
   const labelForCityShip: HTMLLabelElement = document.createElement('label');
@@ -221,6 +297,11 @@ export function createUserProfile() {
   inputForCityShip.className = 'inputForCity';
   inputForCityShip.id = 'inputForCity';
   inputForCityShip.placeholder = `${cityShip}`;
+
+  inputForCityShip.onchange = () => {
+    localStorage.setItem('cityShip', inputForCityShip.value);
+  };
+
   labelForCityShip.append(inputForCityShip);
   //-------------
   const labelForCoutryShip: HTMLLabelElement = document.createElement('label');
@@ -231,28 +312,52 @@ export function createUserProfile() {
   inputForCoutryShip.className = 'inputForCoutry';
   inputForCoutryShip.id = 'inputForCoutry';
   inputForCoutryShip.placeholder = `${coutryShip}`;
+
+  inputForCoutryShip.onchange = () => {
+    localStorage.setItem('countryShip', inputForCoutryShip.value);
+  };
+
   labelForCoutryShip.append(inputForCoutryShip);
 
   //-------------
 
-  const buttonForChangeData: HTMLButtonElement =
+  const buttonForChangeAddress: HTMLButtonElement =
     document.createElement('button');
-  buttonForChangeData.className = 'buttonForChangeData';
-  buttonForChangeData.id = 'buttonForChangeData';
-  buttonForChangeData.textContent = 'Change your profile data';
-  wrapperGeneralData.append(buttonForChangeData);
+
+  buttonForChangeAddress.className = 'buttonForChangeAddress';
+  buttonForChangeAddress.id = 'buttonForChangeAddress';
+  buttonForChangeAddress.textContent = 'Change your address';
+  wrapperGeneralData.append(buttonForChangeAddress);
 
   //-------------
-  const labelForPassword: HTMLLabelElement = document.createElement('label');
-  labelForPassword.textContent = 'Password';
-  wrapperPassword.append(labelForPassword);
+  const labelForOldPassword: HTMLLabelElement = document.createElement('label');
+  labelForOldPassword.textContent = 'Old Password';
+  wrapperPassword.append(labelForOldPassword);
 
-  const inputForPassword: HTMLInputElement = document.createElement('input');
-  inputForPassword.className = 'inputForEmail';
-  inputForPassword.id = 'inputForEmail';
-  inputForPassword.type = 'password';
-  inputForPassword.placeholder = `${password}`;
-  labelForPassword.append(inputForPassword);
+  const inputForOldPassword: HTMLInputElement = document.createElement('input');
+  inputForOldPassword.className = 'inputForOldPassword';
+  inputForOldPassword.id = 'inputForOldPassword';
+  inputForOldPassword.type = 'password';
+  inputForOldPassword.placeholder = ``;
+  inputForOldPassword.onchange = () => {
+    localStorage.setItem('oldPassword', inputForOldPassword.value);
+  };
+  labelForOldPassword.append(inputForOldPassword);
+  //--------
+  const labelForNewPassword: HTMLLabelElement = document.createElement('label');
+  labelForNewPassword.textContent = 'New Password';
+  wrapperPassword.append(labelForNewPassword);
+
+  const inputForNewPassword: HTMLInputElement = document.createElement('input');
+  inputForNewPassword.className = 'inputForNewPassword';
+  inputForNewPassword.id = 'inputForNewPassword';
+  inputForNewPassword.type = 'password';
+  inputForNewPassword.placeholder = ``;
+  inputForNewPassword.onchange = () => {
+    localStorage.setItem('newPassword', inputForNewPassword.value);
+  };
+  labelForNewPassword.append(inputForNewPassword);
+
   //-------------
 
   const buttonForChangePassword: HTMLButtonElement =
@@ -261,4 +366,20 @@ export function createUserProfile() {
   buttonForChangePassword.id = 'buttonForChangePassword';
   buttonForChangePassword.textContent = 'Change your password';
   wrapperPassword.append(buttonForChangePassword);
+
+  //--------object for General info -------
+
+  buttonForChangeGenData.addEventListener('click', function () {
+    getInfoFromInputs();
+    editUserData(localStorage.getItem('access_token_auth'));
+  });
+
+  buttonForChangePassword.addEventListener('click', function () {
+    editPassword(localStorage.getItem('access_token_auth'));
+  });
+
+  buttonForChangeAddress.addEventListener('click', function () {
+    editAddress(localStorage.getItem('access_token_auth'));
+  });
+
 }

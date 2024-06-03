@@ -30,5 +30,4 @@ export function getModalSlider() {
   rightButton.addEventListener('click', function () {
     sliderChange(-1);
   });
-
 }

@@ -103,6 +103,7 @@ export default class Navbar {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+      catalogPage.sortListener();
 
       if (
         localStorage.getItem('access_token_for_user') &&

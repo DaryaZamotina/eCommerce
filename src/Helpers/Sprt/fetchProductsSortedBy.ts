@@ -11,6 +11,8 @@ export default async function fetchProductsSortedBy(
     link += metod;
     link += '&limit=30';
   }
+  // let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice"`;
+  // link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.name:"collection"&filter.query=variants.attributes.value.key:"Dublin"`;
   const response = await fetch(link, {
     method: 'GET',
     headers: {
@@ -27,18 +29,19 @@ export default async function fetchProductsSortedBy(
 
   const obj: IResultNew[] = data.results;
 
-  obj.forEach((elem) => {
-    console.log(elem.categories);
-  });
-
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
-  catalogSection.innerHTML = '';
 
-  obj.forEach((elem) => {
-    const tag = new ProductsCardInCatalog(elem);
-    tag.createProductsCardInCatalog();
-  });
+  if (obj.length > 0) {
+    catalogSection.innerHTML = '';
+    obj.forEach((elem) => {
+      const tag = new ProductsCardInCatalog(elem);
+      tag.createProductsCardInCatalog();
+    });
+  }
+  
 }
+
+//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice";
 
 //https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=categories.id:"950ea710-9576-4fa2-8b58-9a7cd2df6a5a"&sort=name.en asc
 //https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=categories.id:"e9d069eb-6d49-4c02-a2a3-b826a9b1851b","6d27bebe-8118-4149-a30a-9a23b3859c6d"&sort=name.en asc

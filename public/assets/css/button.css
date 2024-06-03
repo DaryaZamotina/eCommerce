@@ -5,7 +5,8 @@ button {
 
 .registrationForm__button,
 .buttonLogin,
-.buttonSearch {
+.buttonSearch,
+.buttonReset {
     border-radius: 0.5rem;
     outline: none;
     border: 0px solid black;
@@ -20,7 +21,8 @@ button {
 
 .registrationForm__button:hover,
 .buttonLogin:hover,
-.buttonSearch:hover {
+.buttonSearch:hover,
+.buttonReset:hover {
     background-position: right bottom;
 }
 

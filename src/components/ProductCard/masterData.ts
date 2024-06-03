@@ -40,10 +40,11 @@ export default interface MasterData {
       attributes: [
         {
           name: string;
-          value: {
-            en: string;
-          };
-        },
+          value?: number | string | {
+            key?: string | number;
+            label?: string | number;
+          }
+      },
       ];
       assets: [];
     };
@@ -75,10 +76,11 @@ export default interface MasterData {
       attributes: [
         {
           name: string;
-          value: {
-            en: string;
-          };
-        },
+          value?: number | string | {
+            key?: string | number;
+            label?: string | number;
+          }
+      },
       ];
       assets: [];
     };

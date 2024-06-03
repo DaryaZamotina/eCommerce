@@ -77,9 +77,10 @@ export default interface IResult {
         attributes?: [
           {
             name?: string;
-            value?: {
-              en?: string;
-            };
+            value?: number | string | {
+              key?: string | number;
+              label?: string | number;
+            }
           },
         ];
         assets?: [];
@@ -112,9 +113,10 @@ export default interface IResult {
         attributes?: [
           {
             name?: string;
-            value?: {
-              en?: string;
-            };
+            value?: number | string | {
+              key?: string | number;
+              label?: string | number;
+            }
           },
         ];
         assets?: [];

@@ -11,6 +11,7 @@ import { openAdditionalVariant } from './openAdditionalVariant';
 import AttributesView from '../../components/ProductCard/attributesView';
 import PageContainer from '../../components/PageContainer/pageContainer';
 import { pageContainer } from '../..';
+import { openModaWindowForImgs } from './modalForImgs';
 
 export function createProductCard(id?: string) {
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
@@ -134,6 +135,12 @@ export function createProductCard(id?: string) {
 
   sliderMaker(linksForImgs);
   getSlider();
+
+  const sliderWrapperDiv = <HTMLDivElement>document.getElementById("sliderWrapper");
+
+  sliderWrapperDiv.addEventListener('click', function() {
+    openModaWindowForImgs();
+  });
 
   const attributesContainer = new AttributesView(choosenGood);
   productCard.append(attributesContainer.getAttributeContainer());

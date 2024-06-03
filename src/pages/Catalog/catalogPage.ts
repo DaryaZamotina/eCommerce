@@ -119,16 +119,74 @@ export default class CatalogPage {
   }
 
   private createCategory() {
-    const tagCategory = new TagCreator('div', 'catalogCategory', 'catalogCategory');
-    const linkCatalog = new TagCreator('div', 'link_catalog active', 'link_catalog_catalog', '', 'Catalog');
-    const linkBedroom = new TagCreator('div', 'link_catalog', 'link_catalog_bedroom', '', '  Bedroom');
-    const linkBeds = new TagCreator('div', 'link_catalog', 'link_catalog_beds', '', '      Beds');
-    const linkStorage = new TagCreator('div', 'link_catalog', 'link_catalog_storage', '', '      Storage');
-    const linkWardrobes = new TagCreator('div', 'link_catalog', 'link_catalog_wardrobes', '', '          Wardrobes');
-    const linkChests = new TagCreator('div', 'link_catalog', 'link_catalog_chests', '', '          Chests');
-    const linkDressingTables = new TagCreator('div', 'link_catalog', 'link_catalog_dressing', '', '      Dressing tables');
-    const linkMirrors = new TagCreator('div', 'link_catalog', 'link_catalog_mirrors', '', '      Mirrors');
-    const linkHallway = new TagCreator('div', 'link_catalog', 'link_catalog_hallway', '', '  Hallway');
+    const tagCategory = new TagCreator(
+      'div',
+      'catalogCategory',
+      'catalogCategory',
+    );
+    const linkCatalog = new TagCreator(
+      'div',
+      'link_catalog active',
+      'link_catalog_catalog',
+      '',
+      'Catalog',
+    );
+    const linkBedroom = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_bedroom',
+      '',
+      '  Bedroom',
+    );
+    const linkBeds = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_beds',
+      '',
+      '      Beds',
+    );
+    const linkStorage = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_storage',
+      '',
+      '      Storage',
+    );
+    const linkWardrobes = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_wardrobes',
+      '',
+      '          Wardrobes',
+    );
+    const linkChests = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_chests',
+      '',
+      '          Chests',
+    );
+    const linkDressingTables = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_dressing',
+      '',
+      '      Dressing tables',
+    );
+    const linkMirrors = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_mirrors',
+      '',
+      '      Mirrors',
+    );
+    const linkHallway = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_hallway',
+      '',
+      '  Hallway',
+    );
     this.category = tagCategory.createAndReturn();
     this.category.append(linkCatalog.createAndReturn());
     this.category.append(linkBedroom.createAndReturn());
@@ -213,10 +271,19 @@ export default class CatalogPage {
     });
 
     select.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement
+      const target = event.target as HTMLElement;
       const id = target.id.split('_');
-      let result: 'bedroom' | 'hallway' | 'catalog' | 'beds'| 'storage' | 'wardrobes' | 'chests' | 'dressing' | 'mirrors';   
-      switch(id[2]) {
+      let result:
+        | 'bedroom'
+        | 'hallway'
+        | 'catalog'
+        | 'beds'
+        | 'storage'
+        | 'wardrobes'
+        | 'chests'
+        | 'dressing'
+        | 'mirrors';
+      switch (id[2]) {
         case 'catalog':
           result = 'catalog';
           break;
@@ -247,11 +314,23 @@ export default class CatalogPage {
       }
       sortCriteria = [
         { query: `search?${categoryList[`${result}`]}limit=30` },
-        { query: `search?${categoryList[`${result}`]}sort=price`, order: ' asc' },
-        { query: `search?${categoryList[`${result}`]}sort=price`, order: ' desc' },
-        { query: `search?${categoryList[`${result}`]}sort=name.en`, order: ' asc' },
-        { query: `search?${categoryList[`${result}`]}sort=name.en`, order: ' desc' }
-      ]
+        {
+          query: `search?${categoryList[`${result}`]}sort=price`,
+          order: ' asc',
+        },
+        {
+          query: `search?${categoryList[`${result}`]}sort=price`,
+          order: ' desc',
+        },
+        {
+          query: `search?${categoryList[`${result}`]}sort=name.en`,
+          order: ' asc',
+        },
+        {
+          query: `search?${categoryList[`${result}`]}sort=name.en`,
+          order: ' desc',
+        },
+      ];
       categoryButton.forEach((elem) => elem.classList.remove('active'));
       target.classList.add('active');
       sortButton.forEach((button, index) => {

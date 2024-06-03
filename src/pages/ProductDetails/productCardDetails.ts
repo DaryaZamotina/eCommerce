@@ -29,7 +29,7 @@ export function createProductCard(id?: string) {
   const productCard = productCardTagCreator.createAndReturn();
 
   pageContainer.getPageContainer().append(productCard);
-  
+
   const nameProd = choosenGood.masterData.current.name.en;
 
   const headOfCard = new TagCreator(
@@ -137,7 +137,7 @@ export function createProductCard(id?: string) {
 
   const attributesContainer = new AttributesView(choosenGood);
   productCard.append(attributesContainer.getAttributeContainer());
-  
+
   if (additionalVariants) {
     for (let j = 0; j < additionalVariants.length; j++) {
       const btnToNewVariants = new TagCreator(

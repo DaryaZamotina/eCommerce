@@ -9,10 +9,12 @@ export default class CatalogPage {
   sort: HTMLElement;
   catalogPage: HTMLElement;
   category: HTMLElement;
+  filter: HTMLElement;
 
   constructor() {
     this.section = this.createSection();
     this.category = this.createCategory();
+    this.filter = this.createFilter();
     this.sort = this.createSort();
     this.catalogPage = this.createCatalogPage();
   }
@@ -27,6 +29,10 @@ export default class CatalogPage {
 
   private getCategory() {
     return this.category;
+  }
+
+  private getFilter() {
+    return this.filter;
   }
 
   private getSort() {
@@ -119,16 +125,74 @@ export default class CatalogPage {
   }
 
   private createCategory() {
-    const tagCategory = new TagCreator('div', 'catalogCategory', 'catalogCategory');
-    const linkCatalog = new TagCreator('div', 'link_catalog active', 'link_catalog_catalog', '', 'Catalog');
-    const linkBedroom = new TagCreator('div', 'link_catalog', 'link_catalog_bedroom', '', '  Bedroom');
-    const linkBeds = new TagCreator('div', 'link_catalog', 'link_catalog_beds', '', '      Beds');
-    const linkStorage = new TagCreator('div', 'link_catalog', 'link_catalog_storage', '', '      Storage');
-    const linkWardrobes = new TagCreator('div', 'link_catalog', 'link_catalog_wardrobes', '', '          Wardrobes');
-    const linkChests = new TagCreator('div', 'link_catalog', 'link_catalog_chests', '', '          Chests');
-    const linkDressingTables = new TagCreator('div', 'link_catalog', 'link_catalog_dressing', '', '      Dressing tables');
-    const linkMirrors = new TagCreator('div', 'link_catalog', 'link_catalog_mirrors', '', '      Mirrors');
-    const linkHallway = new TagCreator('div', 'link_catalog', 'link_catalog_hallway', '', '  Hallway');
+    const tagCategory = new TagCreator(
+      'div',
+      'catalogCategory',
+      'catalogCategory',
+    );
+    const linkCatalog = new TagCreator(
+      'div',
+      'link_catalog active',
+      'link_catalog_catalog',
+      '',
+      'Catalog',
+    );
+    const linkBedroom = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_bedroom',
+      '',
+      '  Bedroom',
+    );
+    const linkBeds = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_beds',
+      '',
+      '      Beds',
+    );
+    const linkStorage = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_storage',
+      '',
+      '      Storage',
+    );
+    const linkWardrobes = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_wardrobes',
+      '',
+      '          Wardrobes',
+    );
+    const linkChests = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_chests',
+      '',
+      '          Chests',
+    );
+    const linkDressingTables = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_dressing',
+      '',
+      '      Dressing tables',
+    );
+    const linkMirrors = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_mirrors',
+      '',
+      '      Mirrors',
+    );
+    const linkHallway = new TagCreator(
+      'div',
+      'link_catalog',
+      'link_catalog_hallway',
+      '',
+      '  Hallway',
+    );
     this.category = tagCategory.createAndReturn();
     this.category.append(linkCatalog.createAndReturn());
     this.category.append(linkBedroom.createAndReturn());
@@ -146,6 +210,44 @@ export default class CatalogPage {
     return this.category;
   }
 
+  private createFilter() {
+    const tagFilter = new TagCreator('div', 'catalog__filter', 'catalogfilter');
+    this.filter = tagFilter.createAndReturn();
+
+    const filterCollectionContainer = new TagCreator('div', 'filterCollectionContainer', 'filterCollectionContainer');
+    const filterBrandContainer = new TagCreator('div', 'filterCollectionContainer', 'filterBrandContainer');
+
+    const filterCollectionContainerDiv = filterCollectionContainer.createAndReturn();
+    const filterBrandContainerDiv = filterBrandContainer.createAndReturn();
+
+    const filterCollectionContainerTitle = new TagCreator('div', 'filterCollectionContainerTitle', 'filterCollectionContainerTitle', '', 'Collection:');
+    const filterBrandContainerTitle = new TagCreator('div', 'filterCollectionContainerTitle', 'filterBrandContainerTitle', '', 'Brand:');
+
+    filterCollectionContainerDiv.append(filterCollectionContainerTitle.createAndReturn());
+    filterBrandContainerDiv.append(filterBrandContainerTitle.createAndReturn());
+
+    const arrCollection = ['Dublin', 'Nicole', 'Ronda', 'Venice', 'Paola', 'Helen', 'Dallas', 'Valencia'];
+    const arrBrand = ['interior-center', 'elbrus-m', 'stendmebel', 'nk-furniture'];
+
+    arrCollection.forEach((elem) => {
+      const filterCollection = new TagCreator('div', 'filterCollection', `filter_collection_${elem}`, '', `${elem}`);
+      filterCollectionContainerDiv.append(filterCollection.createAndReturn());
+    });
+
+    arrBrand.forEach((elem) => {
+      const filterCollection = new TagCreator('div', 'filterCollection', `filter_brand_${elem}`, '', `${elem}`);
+      filterBrandContainerDiv.append(filterCollection.createAndReturn());
+    });
+
+    const buttonReset = new TagCreator('button', 'buttonReset', 'buttonReset', '', 'Reset');
+
+    this.filter.append(filterCollectionContainerDiv);
+    this.filter.append(filterBrandContainerDiv);
+    this.filter.append(buttonReset.createAndReturn());
+
+    return this.filter;
+  }
+
   private createCatalogPage() {
     const catalogPageTagCreator = new TagCreator(
       'div',
@@ -154,6 +256,7 @@ export default class CatalogPage {
     );
     this.catalogPage = catalogPageTagCreator.createAndReturn();
     this.catalogPage.append(this.getCategory());
+    this.catalogPage.append(this.getFilter());
     this.catalogPage.append(this.getSort());
     this.catalogPage.append(this.getSection());
     return this.catalogPage;
@@ -162,9 +265,13 @@ export default class CatalogPage {
   public sortListener() {
     const sortButton = document.querySelectorAll('div.catalogSortByPrice');
     const categoryButton = document.querySelectorAll('div.link_catalog');
+    const filterButton = document.querySelectorAll('div.filterCollection');
     const input = document.getElementById('inputSearch') as HTMLInputElement;
     const button = document.getElementById('buttonSearch') as HTMLButtonElement;
     const select = document.getElementById('catalogCategory') as HTMLDivElement;
+    const filter = document.getElementById('catalogfilter') as HTMLDivElement;
+    const buttonReset = document.getElementById('buttonReset') as HTMLButtonElement;
+    
     let seartText = '';
     let sortCriteria = [
       { query: `search?${seartText}limit=30` },
@@ -204,6 +311,14 @@ export default class CatalogPage {
     });
 
     button.addEventListener('click', () => {
+      seartText = `text.en=${input.value}&`;
+      sortCriteria = [
+        { query: `search?${seartText}limit=30` },
+        { query: `search?${seartText}sort=price`, order: ' asc' },
+        { query: `search?${seartText}sort=price`, order: ' desc' },
+        { query: `search?${seartText}sort=name.en`, order: ' asc' },
+        { query: `search?${seartText}sort=name.en`, order: ' desc' },
+      ];
       sortButton.forEach((button, index) => {
         if (button.classList.contains('active')) {
           const { query, order } = sortCriteria[index];
@@ -213,10 +328,23 @@ export default class CatalogPage {
     });
 
     select.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement
+      filterButton.forEach((elem) => {
+        elem.classList.remove('active');
+      });
+      const target = event.target as HTMLElement;
       const id = target.id.split('_');
-      let result: 'bedroom' | 'hallway' | 'catalog' | 'beds'| 'storage' | 'wardrobes' | 'chests' | 'dressing' | 'mirrors';   
-      switch(id[2]) {
+      let test = true;
+      let result:
+        | 'bedroom'
+        | 'hallway'
+        | 'catalog'
+        | 'beds'
+        | 'storage'
+        | 'wardrobes'
+        | 'chests'
+        | 'dressing'
+        | 'mirrors';
+      switch (id[2]) {
         case 'catalog':
           result = 'catalog';
           break;
@@ -244,22 +372,113 @@ export default class CatalogPage {
         case 'mirrors':
           result = 'mirrors';
           break;
+        default:
+          result = 'catalog';
+          test = false;
+          break;
       }
       sortCriteria = [
         { query: `search?${categoryList[`${result}`]}limit=30` },
-        { query: `search?${categoryList[`${result}`]}sort=price`, order: ' asc' },
-        { query: `search?${categoryList[`${result}`]}sort=price`, order: ' desc' },
-        { query: `search?${categoryList[`${result}`]}sort=name.en`, order: ' asc' },
-        { query: `search?${categoryList[`${result}`]}sort=name.en`, order: ' desc' }
-      ]
-      categoryButton.forEach((elem) => elem.classList.remove('active'));
-      target.classList.add('active');
-      sortButton.forEach((button, index) => {
-        if (button.classList.contains('active')) {
-          const { query, order } = sortCriteria[index];
-          fetchProductsSortedBy(query, order);
-        }
+        {
+          query: `search?${categoryList[`${result}`]}sort=price`,
+          order: ' asc',
+        },
+        {
+          query: `search?${categoryList[`${result}`]}sort=price`,
+          order: ' desc',
+        },
+        {
+          query: `search?${categoryList[`${result}`]}sort=name.en`,
+          order: ' asc',
+        },
+        {
+          query: `search?${categoryList[`${result}`]}sort=name.en`,
+          order: ' desc',
+        },
+      ];
+      if (test) {
+        categoryButton.forEach((elem) => elem.classList.remove('active'));
+        target.classList.add('active');
+        sortButton.forEach((button, index) => {
+          if (button.classList.contains('active')) {
+            const { query, order } = sortCriteria[index];
+            fetchProductsSortedBy(query, order);
+          }
+        });
+      }
+    });
+
+    filter.addEventListener('click', (event) => {
+      const target = event.target as HTMLElement;
+      const id = target.id.split('_');
+      if (id[2] === 'Dublin' || 'Nicole' || 'Ronda' || 'Venice' || 'Paola' || 'Helen' || 'Dallas' || 'Valencia') {
+        sortCriteria = [
+          { query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30` },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
+            order: ' asc',
+          },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
+            order: ' desc',
+          },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=name.en`,
+            order: ' asc',
+          },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=name.en`,
+            order: ' desc',
+          },
+        ];
+        sortButton.forEach((button, index) => {
+          if (button.classList.contains('active')) {
+            const { query, order } = sortCriteria[index];
+            fetchProductsSortedBy(query, order);
+          }
+        });
+      };
+      if (id[2] === 'interior-center' || 'elbrus-m' || 'stendmebel' || 'nk-furniture') {
+        sortCriteria = [
+          { query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30` },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
+            order: ' asc',
+          },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
+            order: ' desc',
+          },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=name.en`,
+            order: ' asc',
+          },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=name.en`,
+            order: ' desc',
+          },
+        ];
+        sortButton.forEach((button, index) => {
+          if (button.classList.contains('active')) {
+            const { query, order } = sortCriteria[index];
+            fetchProductsSortedBy(query, order);
+          }
+        });
+      };
+      categoryButton.forEach((elem) => {
+        elem.classList.remove('active');
+        if (elem.id === 'link_catalog_catalog') {
+          elem.classList.add('active');
+        };
       });
+      filterButton.forEach((elem) => {
+        elem.classList.remove('active');
+      });
+      target.classList.add('active');
+    });
+
+    buttonReset.addEventListener('click', () => {
+      document.getElementById('link_catalog_catalog').click();
     });
   }
 }

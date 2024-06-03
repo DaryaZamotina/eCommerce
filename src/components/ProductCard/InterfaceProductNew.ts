@@ -44,10 +44,11 @@ export default interface IResultNew {
     attributes?: [
       {
         name?: string;
-        value?: {
-          en?: string;
-        };
-      },
+        value?: number | string | {
+          key?: string | number;
+          label?: string | number;
+        }
+  },
     ];
     assets?: [];
   };

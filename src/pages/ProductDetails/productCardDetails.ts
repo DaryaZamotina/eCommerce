@@ -8,6 +8,9 @@ import IResult from '../../components/ProductCard/InterfaceProduct';
 import { sliderMaker } from './sliderInterface';
 import { getSlider } from './slider';
 import { openAdditionalVariant } from './openAdditionalVariant';
+import AttributesView from '../../components/ProductCard/attributesView';
+import PageContainer from '../../components/PageContainer/pageContainer';
+import { pageContainer } from '../..';
 
 export function createProductCard(id?: string) {
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
@@ -16,15 +19,17 @@ export function createProductCard(id?: string) {
   console.log('choosenVariants = ' + choosenVariant);
   const additionalVariants = choosenGood.masterData.current.variants;
 
-  const productCard = new TagCreator(
+  const productCardTagCreator = new TagCreator(
     'div',
     'productCard',
     'productCard',
-    'pageContainer',
+    // 'pageContainer',
     ``,
   );
-  productCard.createAndAppend();
+  const productCard = productCardTagCreator.createAndReturn();
 
+  pageContainer.getPageContainer().append(productCard);
+  
   const nameProd = choosenGood.masterData.current.name.en;
 
   const headOfCard = new TagCreator(
@@ -130,6 +135,9 @@ export function createProductCard(id?: string) {
   sliderMaker(linksForImgs);
   getSlider();
 
+  const attributesContainer = new AttributesView(choosenGood);
+  productCard.append(attributesContainer.getAttributeContainer());
+  
   if (additionalVariants) {
     for (let j = 0; j < additionalVariants.length; j++) {
       const btnToNewVariants = new TagCreator(

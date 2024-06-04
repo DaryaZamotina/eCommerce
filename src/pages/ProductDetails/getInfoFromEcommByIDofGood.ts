@@ -20,7 +20,7 @@ export function getInfoFromEcommByIDofGood(id: string, token: string) {
     .then((info) => {
       localStorage.setItem('choosenGood', info);
       openProductCard();
-      createProductCard(id);
+      // createProductCard(id);
       return info;
     })
     .catch((err) => console.log(err.message));

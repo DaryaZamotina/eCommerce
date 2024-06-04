@@ -214,32 +214,87 @@ export default class CatalogPage {
     const tagFilter = new TagCreator('div', 'catalog__filter', 'catalogfilter');
     this.filter = tagFilter.createAndReturn();
 
-    const filterCollectionContainer = new TagCreator('div', 'filterCollectionContainer', 'filterCollectionContainer');
-    const filterBrandContainer = new TagCreator('div', 'filterCollectionContainer', 'filterBrandContainer');
+    const filterCollectionContainer = new TagCreator(
+      'div',
+      'filterCollectionContainer',
+      'filterCollectionContainer',
+    );
+    const filterBrandContainer = new TagCreator(
+      'div',
+      'filterCollectionContainer',
+      'filterBrandContainer',
+    );
 
-    const filterCollectionContainerDiv = filterCollectionContainer.createAndReturn();
+    const filterCollectionContainerDiv =
+      filterCollectionContainer.createAndReturn();
     const filterBrandContainerDiv = filterBrandContainer.createAndReturn();
 
-    const filterCollectionContainerTitle = new TagCreator('div', 'filterCollectionContainerTitle', 'filterCollectionContainerTitle', '', 'Collection:');
-    const filterBrandContainerTitle = new TagCreator('div', 'filterCollectionContainerTitle', 'filterBrandContainerTitle', '', 'Brand:');
+    const filterCollectionContainerTitle = new TagCreator(
+      'div',
+      'filterCollectionContainerTitle',
+      'filterCollectionContainerTitle',
+      '',
+      'Collection:',
+    );
+    const filterBrandContainerTitle = new TagCreator(
+      'div',
+      'filterCollectionContainerTitle',
+      'filterBrandContainerTitle',
+      '',
+      'Brand:',
+    );
 
-    filterCollectionContainerDiv.append(filterCollectionContainerTitle.createAndReturn());
+    filterCollectionContainerDiv.append(
+      filterCollectionContainerTitle.createAndReturn(),
+    );
     filterBrandContainerDiv.append(filterBrandContainerTitle.createAndReturn());
 
-    const arrCollection = ['Dublin', 'Nicole', 'Ronda', 'Venice', 'Paola', 'Helen', 'Dallas', 'Valencia'];
-    const arrBrand = ['interior-center', 'elbrus-m', 'stendmebel', 'nk-furniture'];
+    const arrCollection = [
+      'Dublin',
+      'Nicole',
+      'Ronda',
+      'Venice',
+      'Paola',
+      'Helen',
+      'Dallas',
+      'Valencia',
+    ];
+    const arrBrand = [
+      'interior-center',
+      'elbrus-m',
+      'stendmebel',
+      'nk-furniture',
+    ];
 
     arrCollection.forEach((elem) => {
-      const filterCollection = new TagCreator('div', 'filterCollection', `filter_collection_${elem}`, '', `${elem}`);
+      const filterCollection = new TagCreator(
+        'div',
+        'filterCollection',
+        `filter_collection_${elem}`,
+        '',
+        `${elem}`,
+      );
       filterCollectionContainerDiv.append(filterCollection.createAndReturn());
     });
 
     arrBrand.forEach((elem) => {
-      const filterCollection = new TagCreator('div', 'filterCollection', `filter_brand_${elem}`, '', `${elem}`);
+      const filterCollection = new TagCreator(
+        'div',
+        'filterCollection',
+        `filter_brand_${elem}`,
+        '',
+        `${elem}`,
+      );
       filterBrandContainerDiv.append(filterCollection.createAndReturn());
     });
 
-    const buttonReset = new TagCreator('button', 'buttonReset', 'buttonReset', '', 'Reset');
+    const buttonReset = new TagCreator(
+      'button',
+      'buttonReset',
+      'buttonReset',
+      '',
+      'Reset',
+    );
 
     this.filter.append(filterCollectionContainerDiv);
     this.filter.append(filterBrandContainerDiv);
@@ -270,8 +325,10 @@ export default class CatalogPage {
     const button = document.getElementById('buttonSearch') as HTMLButtonElement;
     const select = document.getElementById('catalogCategory') as HTMLDivElement;
     const filter = document.getElementById('catalogfilter') as HTMLDivElement;
-    const buttonReset = document.getElementById('buttonReset') as HTMLButtonElement;
-    
+    const buttonReset = document.getElementById(
+      'buttonReset',
+    ) as HTMLButtonElement;
+
     let seartText = '';
     let sortCriteria = [
       { query: `search?${seartText}limit=30` },
@@ -411,9 +468,20 @@ export default class CatalogPage {
     filter.addEventListener('click', (event) => {
       const target = event.target as HTMLElement;
       const id = target.id.split('_');
-      if (id[2] === 'Dublin' || 'Nicole' || 'Ronda' || 'Venice' || 'Paola' || 'Helen' || 'Dallas' || 'Valencia') {
+      if (
+        id[2] === 'Dublin' ||
+        'Nicole' ||
+        'Ronda' ||
+        'Venice' ||
+        'Paola' ||
+        'Helen' ||
+        'Dallas' ||
+        'Valencia'
+      ) {
         sortCriteria = [
-          { query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30` },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30`,
+          },
           {
             query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
             order: ' asc',
@@ -437,10 +505,17 @@ export default class CatalogPage {
             fetchProductsSortedBy(query, order);
           }
         });
-      };
-      if (id[2] === 'interior-center' || 'elbrus-m' || 'stendmebel' || 'nk-furniture') {
+      }
+      if (
+        id[2] === 'interior-center' ||
+        'elbrus-m' ||
+        'stendmebel' ||
+        'nk-furniture'
+      ) {
         sortCriteria = [
-          { query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30` },
+          {
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30`,
+          },
           {
             query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
             order: ' asc',
@@ -464,12 +539,12 @@ export default class CatalogPage {
             fetchProductsSortedBy(query, order);
           }
         });
-      };
+      }
       categoryButton.forEach((elem) => {
         elem.classList.remove('active');
         if (elem.id === 'link_catalog_catalog') {
           elem.classList.add('active');
-        };
+        }
       });
       filterButton.forEach((elem) => {
         elem.classList.remove('active');

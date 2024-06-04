@@ -54,3 +54,25 @@ h4 {
     padding-bottom: 1em;
     border-bottom: 1px solid rgb(9, 47, 9);
 }
+
+.btnToNewVariants {
+    margin: 20px 20px 0 0;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 0px solid black;
+    background-image: linear-gradient(to right, #708d58 0%, #2b3b33 51%, #708d58 100%);
+    background-size: 200% auto;
+    background-position: left top;
+    border-color: transparent;
+    transition: all 0.5s;
+    color: white;
+    cursor: pointer;
+}
+
+.btnToNewVariants:hover {
+    background-position: right bottom;
+}
+
+.attribute-title {
+    margin-bottom: 20px;
+}

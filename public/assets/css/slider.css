@@ -40,10 +40,10 @@
     z-index: 2;
 }
 
-.carousel .btnWrapper .leftButton:active,
+/* .carousel .btnWrapper .leftButton:active,
 .carousel .btnWrapper .rightButton:active {
     background-color: rgb(58, 81, 56);
-}
+} */
 
 .carousel .btnWrapper .leftButton {
     right: 60%;
@@ -56,4 +56,22 @@
 .carousel .btnWrapper {
     display: grid;
     grid-template-columns: repeat(2, 10%);
+}
+
+.carousel .btnWrapper .rightButton,
+.carousel .btnWrapper .leftButton {
+    border-radius: 0.5rem;
+    outline: none;
+    border: 0px solid black;
+    background-image: linear-gradient(to right, #708d58 0%, #2b3b33 51%, #708d58 100%);
+    background-size: 200% auto;
+    background-position: left top;
+    border-color: transparent;
+    transition: all 0.5s;
+    color: white;
+}
+
+.carousel .btnWrapper .rightButton:hover,
+.carousel .btnWrapper .leftButton:hover {
+    background-position: right bottom;
 }

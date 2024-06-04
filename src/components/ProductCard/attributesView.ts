@@ -1,5 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import IResult from './InterfaceProduct';
+import formatName from '../../Helpers/formatAttributeName';
 
 export default class AttributesView {
   private currentGood: IResult;
@@ -31,7 +32,9 @@ export default class AttributesView {
         } else {
           attributeValue = `${attribute.value}`;
         }
-        attributesArray.push(`${attribute.name}: ${attributeValue}`);
+        attributesArray.push(
+          `${formatName(attribute.name)}: ${attributeValue}`,
+        );
       },
     );
     return attributesArray;

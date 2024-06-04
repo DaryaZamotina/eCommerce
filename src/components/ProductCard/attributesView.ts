@@ -1,5 +1,5 @@
-import TagCreator from "../../module/tagCreator";
-import IResult from "./InterfaceProduct";
+import TagCreator from '../../module/tagCreator';
+import IResult from './InterfaceProduct';
 
 export default class AttributesView {
   private currentGood: IResult;
@@ -14,22 +14,26 @@ export default class AttributesView {
   public getAttributeContainer() {
     return this.attributeContainer;
   }
-  
+
   private createAttributeArray() {
     let attributesArray: string[] = [];
-    this.currentGood.masterData.current.masterVariant.attributes.forEach((attribute) => {
-      let attributeValue = '';
-      if (typeof attribute.value === 'object') {
+    this.currentGood.masterData.current.masterVariant.attributes.forEach(
+      (attribute) => {
+        let attributeValue = '';
+        if (typeof attribute.value === 'object') {
           if (Array.isArray(attribute.value)) {
-              attributeValue = attribute.value.map(val => `${val.label}`).join(', ');
+            attributeValue = attribute.value
+              .map((val) => `${val.label}`)
+              .join(', ');
           } else {
-              attributeValue = `${attribute.value.label}`;
+            attributeValue = `${attribute.value.label}`;
           }
-      } else {
+        } else {
           attributeValue = `${attribute.value}`;
-      }
-      attributesArray.push(`${attribute.name}: ${attributeValue}`);
-    });
+        }
+        attributesArray.push(`${attribute.name}: ${attributeValue}`);
+      },
+    );
     return attributesArray;
   }
 
@@ -39,8 +43,8 @@ export default class AttributesView {
       'attribute-title',
       'attributeTitle',
       '',
-      'Specifications'
-    )
+      'Specifications',
+    );
     const title = titleTagCreator.createAndReturn();
     return title;
   }
@@ -49,12 +53,12 @@ export default class AttributesView {
     const tagCreator = new TagCreator(
       'section',
       'attribute-container',
-      'attributeContainer'
+      'attributeContainer',
     );
     this.attributeContainer = tagCreator.createAndReturn();
 
     this.attributeContainer.append(this.createAttributeTitle());
-    
+
     this.createAttributeArray().forEach((attribute: string) => {
       const oneAttribute = document.createElement('p');
       oneAttribute.textContent = attribute;

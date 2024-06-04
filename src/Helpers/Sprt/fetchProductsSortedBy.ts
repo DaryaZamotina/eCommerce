@@ -38,7 +38,6 @@ export default async function fetchProductsSortedBy(
       tag.createProductsCardInCatalog();
     });
   }
-  
 }
 
 //https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice";

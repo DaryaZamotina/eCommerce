@@ -16,7 +16,7 @@ import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
-// import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
+import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
@@ -116,7 +116,8 @@ export function setRoutingPage() {
 
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
-      // receiveAccessToken();
+      // TODO: убрать кнопку sign up, если пользователь уже авторизован
+      receiveAccessToken();
 
       if (
         (localStorage.getItem('access_token_for_user') &&

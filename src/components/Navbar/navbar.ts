@@ -155,7 +155,9 @@ export default class Navbar {
 
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
-      // receiveAccessToken();
+
+      // TODO: убрать кнопку sign up, если пользователь уже авторизован
+      receiveAccessToken();
 
       if (
         (localStorage.getItem('access_token_for_user') &&

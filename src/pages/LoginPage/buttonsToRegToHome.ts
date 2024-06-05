@@ -1,6 +1,6 @@
 import RegistrationForm from '../../pages/Registration/registrationForm';
 import '../../../public/assets/css/body.css';
-// import { receiveAccessToken } from './loginGetToken';
+import { receiveAccessToken } from './loginGetToken';
 import LoginForm from './loginForm';
 import { clearPageContainer } from '../..';
 import { sendLoginPasswordToLocalStorage } from './inputsLoginPassword';
@@ -21,7 +21,7 @@ export function addEventListenerToBtnMoveToReg() {
 
     const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
     registrationFormDiv.createRegistrationForm();
-    // receiveAccessToken();
+    receiveAccessToken();
   });
 }
 

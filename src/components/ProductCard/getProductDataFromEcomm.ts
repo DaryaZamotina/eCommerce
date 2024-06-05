@@ -1,4 +1,4 @@
-import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
+// import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { createProductsList } from './ProductList';
 
 export function getProductsListInfoFromEcomm(token: string) {

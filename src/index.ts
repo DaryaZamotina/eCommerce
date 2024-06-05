@@ -6,7 +6,7 @@ import RegistrationForm from './pages/Registration/registrationForm';
 import LoginForm from './pages/LoginPage/loginForm';
 import { sendLoginPasswordToLocalStorage } from './pages/LoginPage/inputsLoginPassword';
 import {
-  moveToRegistration,
+  addEventListenerToBtnMoveToReg,
   moveToMainPage,
   directMoveToMainPage,
 } from './pages/LoginPage/buttonsToRegToHome';
@@ -16,7 +16,7 @@ import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
-import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
+// import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
@@ -43,6 +43,9 @@ appContainer
   );
 
 body.append(appContainer.getAppContainer());
+
+// Переместила сюда эту функцию, чтобы анонимный токен был получен всегда в начале работы приложения, а то сейчас он часто идёт после запроса на регистрацию, из-за этого в запросе регистрации возникает ошибка. В других местах, закомментировала эту функцию.
+receiveAnonymusAccessToken();
 
 export function clearPageContainer() {
   pageContainer.getPageContainer().innerHTML = '';
@@ -91,13 +94,14 @@ export function setRoutingPage() {
         getProductsListInfoFromEcomm(
           localStorage.getItem('anonym_access_token'),
         );
-      } else if (
-        !localStorage.getItem('anonym_access_token') ||
-        localStorage.getItem('anonym_access_token') == 'undefined' ||
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      )
-        receiveAnonymusAccessToken();
+      }
+      //  else if (
+      //   !localStorage.getItem('anonym_access_token') ||
+      //   localStorage.getItem('anonym_access_token') == 'undefined' ||
+      //   !localStorage.getItem('access_token_for_user') ||
+      //   localStorage.getItem('access_token_for_user') == 'undefined'
+      // )
+      // receiveAnonymusAccessToken();
 
       break;
 
@@ -112,7 +116,7 @@ export function setRoutingPage() {
 
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
-      receiveAccessToken();
+      // receiveAccessToken();
 
       if (
         (localStorage.getItem('access_token_for_user') &&
@@ -139,7 +143,7 @@ export function setRoutingPage() {
         const loginFormDiv = new LoginForm('pageContainer', 'log');
         loginFormDiv.createLoginForm();
         sendLoginPasswordToLocalStorage();
-        moveToRegistration();
+        addEventListenerToBtnMoveToReg();
         moveToMainPage();
       }
       if (

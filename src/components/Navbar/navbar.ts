@@ -2,7 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/navbar.css';
 import LoginForm from '../../pages/LoginPage/loginForm';
 import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
-import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
+import { addEventListenerToBtnMoveToReg } from '../../pages/LoginPage/buttonsToRegToHome';
 import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
 import RegistrationForm from '../../pages/Registration/registrationForm';
 import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
@@ -16,7 +16,7 @@ import {
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
 import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
-import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
+// import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
 import { editUserData } from '../../pages/UserProfile/editUserData';
 
@@ -119,13 +119,14 @@ export default class Navbar {
         getProductsListInfoFromEcomm(
           localStorage.getItem('anonym_access_token'),
         );
-      } else if (
-        !localStorage.getItem('anonym_access_token') ||
-        localStorage.getItem('anonym_access_token') == 'undefined' ||
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      )
-        receiveAnonymusAccessToken();
+      }
+      // else if (
+      //   !localStorage.getItem('anonym_access_token') ||
+      //   localStorage.getItem('anonym_access_token') == 'undefined' ||
+      //   !localStorage.getItem('access_token_for_user') ||
+      //   localStorage.getItem('access_token_for_user') == 'undefined'
+      // )
+      // receiveAnonymusAccessToken();
     });
 
     return this.catalogLink;
@@ -154,7 +155,7 @@ export default class Navbar {
 
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
-      receiveAccessToken();
+      // receiveAccessToken();
 
       if (
         (localStorage.getItem('access_token_for_user') &&
@@ -192,7 +193,7 @@ export default class Navbar {
         const loginFormDiv = new LoginForm('pageContainer', 'log');
         loginFormDiv.createLoginForm();
         sendLoginPasswordToLocalStorage();
-        moveToRegistration();
+        addEventListenerToBtnMoveToReg();
         moveToMainPage();
       }
       if (

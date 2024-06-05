@@ -1,5 +1,5 @@
 import '../../../public/assets/css/body.css';
-import { receiveAccessToken } from '../LoginPage/loginGetToken';
+// import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import getDataUser from './getDataUser';
 import {
   createModalWindow,

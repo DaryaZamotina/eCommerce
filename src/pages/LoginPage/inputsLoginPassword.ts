@@ -1,7 +1,7 @@
 import { testAPIclient } from './loginGetToken';
 import { sendDataToEComm } from './loginAuthentification';
 import '../../../public/assets/css/body.css';
-import { moveToRegistration } from './buttonsToRegToHome';
+import { addEventListenerToBtnMoveToReg } from './buttonsToRegToHome';
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
 console.log('keyOfAPIClient = ' + keyOfAPIClient);
@@ -38,5 +38,5 @@ export function sendLoginPasswordToLocalStorage() {
     }
   });
 
-  moveToRegistration();
+  addEventListenerToBtnMoveToReg();
 }

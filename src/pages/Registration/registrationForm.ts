@@ -3,7 +3,7 @@ import CreateInputForForm from '../creatorInputForForm';
 import InputsForFormRegistration from '../../Helpers/Inputs/InputsForFormRegistration';
 import '../../../public/assets/css/body.css';
 import { forwardRegDatatoServer } from '../Registration/sendDataToEcomm';
-import { receiveAccessToken } from '../LoginPage/loginGetToken';
+// import { receiveAccessToken } from '../LoginPage/loginGetToken';
 import '../../../public/assets/css/registrationForm.css';
 import '../../../public/assets/css/button.css';
 import { createModalWindow } from '../../components/ModalWindow/modalWindow';

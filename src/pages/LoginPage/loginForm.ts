@@ -3,7 +3,7 @@ import CreateInputForForm from '../creatorInputForForm';
 import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/button.css';
-import { moveToRegistration } from './buttonsToRegToHome';
+import { addEventListenerToBtnMoveToReg } from './buttonsToRegToHome';
 import { sendLoginPasswordToLocalStorage } from './inputsLoginPassword';
 import { sendDataToEComm } from './loginAuthentification';
 
@@ -51,6 +51,6 @@ export default class LoginForm {
 
     sendLoginPasswordToLocalStorage();
 
-    moveToRegistration();
+    addEventListenerToBtnMoveToReg();
   }
 }

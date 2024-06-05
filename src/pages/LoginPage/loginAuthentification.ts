@@ -1,7 +1,7 @@
 import { projectKey } from './loginGetToken';
 import { testAPIclient } from './loginGetToken';
 import { directMoveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
-import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
+// import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import '../../../public/assets/css/body.css';
 import HomePage from '../../pages/Home/homePage';
 import { clearPageContainer } from '../..';

@@ -1,6 +1,7 @@
 import '../../../public/assets/css/body.css';
 import '../../../public/assets/css/slider.css';
 import '../../../public/assets/css/button.css';
+import { openBigImg } from './openBigImg';
 
 export function sliderMaker(links: Array<string>) {
   const sliderWrapper: HTMLElement = document.getElementById('sliderWrapper');
@@ -46,6 +47,10 @@ export function sliderMaker(links: Array<string>) {
     slide.append(imgSlide);
 
     slider.append(slide);
+
+    slide.addEventListener("click", function() {
+      openBigImg();
+    })
   }
 
   slides[0].dataset.active = 'true';

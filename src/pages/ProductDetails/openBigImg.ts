@@ -20,7 +20,7 @@ export function openBigImg() {
 
   btnClosed.addEventListener('click', function () {
     bigWindow.remove();
-    document.getElementById('slide').dataset.active = "true";
+    document.getElementById('slide').dataset.active = 'true';
   });
 
   const carousel: HTMLElement = document.createElement('sliderWrapperM');

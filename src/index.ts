@@ -109,10 +109,9 @@ export function setRoutingPage() {
       );
       document.title = titlesPages.registrationPage;
       clearPageContainer();
-
+      receiveAccessToken();
       const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
       registrationFormDiv.createRegistrationForm();
-      receiveAccessToken();
 
       if (
         (localStorage.getItem('access_token_for_user') &&

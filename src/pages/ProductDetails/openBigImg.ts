@@ -1,29 +1,28 @@
-
 import '../../../public/assets/css/bigWindow.css';
 import '../../../public/assets/css/button.css';
 import { getBigSlider } from './sliderForBigImg';
 
 export function openBigImg() {
-    const productCard: HTMLElement = document.getElementById('productCard');
+  const productCard: HTMLElement = document.getElementById('productCard');
 
-    const bigWindow: HTMLDivElement = document.createElement("div");
-    bigWindow.className = "bigWindow";
-    bigWindow.id = "bigWindow";
-    productCard.append(bigWindow);
+  const bigWindow: HTMLDivElement = document.createElement('div');
+  bigWindow.className = 'bigWindow';
+  bigWindow.id = 'bigWindow';
+  productCard.append(bigWindow);
 
-    const links = JSON.parse(localStorage.getItem("currentLinksToImgs"));
+  const links = JSON.parse(localStorage.getItem('currentLinksToImgs'));
 
-    const btnClosed: HTMLButtonElement = document.createElement("button");
-    btnClosed.className = "btnClosed";
-    btnClosed.id = "btnClosed";
-    btnClosed.textContent = 'x';
-    bigWindow.append(btnClosed);
+  const btnClosed: HTMLButtonElement = document.createElement('button');
+  btnClosed.className = 'btnClosed';
+  btnClosed.id = 'btnClosed';
+  btnClosed.textContent = 'x';
+  bigWindow.append(btnClosed);
 
-    btnClosed.addEventListener('click', function() {
-        bigWindow.remove();
-    })
+  btnClosed.addEventListener('click', function () {
+    bigWindow.remove();
+  });
 
-    const carousel: HTMLElement = document.createElement('sliderWrapperM');
+  const carousel: HTMLElement = document.createElement('sliderWrapperM');
   carousel.className = 'carouselM';
   carousel.id = 'carouselM';
   carousel.tabIndex = -1;
@@ -65,9 +64,9 @@ export function openBigImg() {
 
     slider.append(slide);
 
-    slide.addEventListener("click", function() {
+    slide.addEventListener('click', function () {
       openBigImg();
-    })
+    });
   }
 
   slides[0].dataset.active = 'true';

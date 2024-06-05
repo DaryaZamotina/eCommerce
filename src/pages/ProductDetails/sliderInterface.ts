@@ -48,9 +48,9 @@ export function sliderMaker(links: Array<string>) {
 
     slider.append(slide);
 
-    slide.addEventListener("click", function() {
+    slide.addEventListener('click', function () {
       openBigImg();
-    })
+    });
   }
 
   slides[0].dataset.active = 'true';

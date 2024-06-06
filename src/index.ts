@@ -167,6 +167,7 @@ export function setRoutingPage() {
 
     case 'userProfile':
     case 'userprofile':
+    case 'profile':
       history.pushState(
         { page: '#userProfile' },
         titlesPages.userProfilePage,
@@ -192,11 +193,17 @@ export function setRoutingPage() {
           getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
         } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
       } else {
-        history.pushState({ page: '#' }, titlesPages.homePage, '#');
-        document.title = titlesPages.homePage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(homePage.getHomePage());
+        history.pushState(
+          { page: '#signin' },
+          titlesPages.loginPage,
+          '#signin',
+        );
+        document.title = titlesPages.loginPage;
+        const loginFormDiv = new LoginForm('pageContainer', 'log');
+        loginFormDiv.createLoginForm();
+        sendLoginPasswordToLocalStorage();
+        moveToRegistration();
+        moveToMainPage();
       }
 
       break;

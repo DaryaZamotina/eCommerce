@@ -6,6 +6,12 @@ import '../../../public/assets/css/body.css';
 import HomePage from '../../pages/Home/homePage';
 import { clearPageContainer } from '../..';
 import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
+import { newClientForProducts } from '../Home/anonymusSessionToken';
+import titlesPages from '../../Helpers/documentTitle';
+import PageContainer from '../../components/PageContainer/pageContainer';
+import { setRoutingPage } from '../..';
+import { createModalWindow } from '../../components/ModalWindow/modalWindow';
+import { header } from '../..';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -18,14 +24,14 @@ export function sendDataToEComm() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${testAPIclient.getKeyOfClient()}`,
+        Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
         grant_type: 'password',
         username: `${emailLogin}`,
         password: `${passwordLogin}`,
-        scope: `manage_customers:${projectKey}`,
+        //scope: `manage_customers:${projectKey}`,
       }),
     });
     const resp = await response.json();
@@ -56,12 +62,15 @@ export function sendDataToEComm() {
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
-        const loginFormDiv = document.getElementById('loginForm');
-        loginFormDiv.remove();
-
-        setHistoryPushStateToHome();
-
-        receiveAccessToken();
+        header.getNavbar().addOrRemoveLinks();
+        // const loginFormDiv = document.getElementById('loginForm');
+        // loginFormDiv.remove();
+        createModalWindow('You are successfully authenticated!');
+        const modalWindow = document.getElementById('modalWindow');
+        setTimeout(() => {
+          modalWindow.remove();
+        }, 3000);
+        setRoutingPage();
       }
       return info;
     })

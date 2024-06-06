@@ -1,5 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/navbar.css';
+import '../../../public/assets/css/header.css';
 import LoginForm from '../../pages/LoginPage/loginForm';
 import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
 import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
@@ -10,10 +11,19 @@ import {
   clearPageContainer,
   pageContainer,
   homePage,
+  catalogPage,
   cartPage,
   userProfilePage,
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
+import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
+import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
+import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
+import { editUserData } from '../../pages/UserProfile/editUserData';
+import {
+  ifAuthThenDisplayNone,
+  ifAnonimThenDisplayNone,
+} from '../../utils/changeSingUpLogoutButtons';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -28,7 +38,7 @@ export default class Navbar {
 
   private signUpLink: HTMLElement;
 
-  private homeLink: HTMLElement;
+  private catalogLink: HTMLElement;
 
   private toCartLink: HTMLElement;
 
@@ -39,12 +49,13 @@ export default class Navbar {
   private navbar: HTMLElement;
 
   constructor() {
-    this.homeLink = this.createHomeLink();
+    this.catalogLink = this.createCatalogLink();
     this.signUpLink = this.createSignUpLink();
     this.signInLink = this.createSignInLink();
     this.toCartLink = this.createToCartLink();
     this.userProfileLink = this.createUserProfileLink();
     this.logoutLink = this.createLogoutLink();
+    this.addOrRemoveLinks();
     this.navbar = this.createNavbar();
   }
 
@@ -52,8 +63,8 @@ export default class Navbar {
     return this.navbar;
   }
 
-  public getHomeLink(): HTMLElement {
-    return this.homeLink;
+  public getCatalogLink(): HTMLElement {
+    return this.catalogLink;
   }
 
   public getSignUpLink(): HTMLElement {
@@ -76,17 +87,54 @@ export default class Navbar {
     return this.logoutLink;
   }
 
-  private createHomeLink() {
-    const tagCreator = new TagCreator('a', 'home-link', 'homeLink', '', 'HOME');
-    this.homeLink = tagCreator.createAndReturn();
-    this.homeLink.setAttribute('href', '#');
+  private createCatalogLink() {
+    const tagCreator = new TagCreator(
+      'a',
+      'catalog-link',
+      'catalogLink',
+      '',
+      'catalog',
+    );
+    this.catalogLink = tagCreator.createAndReturn();
+    this.catalogLink.setAttribute('href', '#catalog');
 
-    this.homeLink.addEventListener('click', function (e) {
+    this.catalogLink.addEventListener('click', function (e) {
       e.preventDefault();
-      setHistoryPushStateToHome();
+      history.pushState(
+        { page: '/#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+      catalogPage.sortListener();
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
+      } else if (
+        !localStorage.getItem('anonym_access_token') ||
+        localStorage.getItem('anonym_access_token') == 'undefined' ||
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      )
+        receiveAnonymusAccessToken();
     });
 
-    return this.homeLink;
+    return this.catalogLink;
   }
 
   private createSignUpLink() {
@@ -119,7 +167,6 @@ export default class Navbar {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        e.preventDefault();
         setHistoryPushStateToHome();
       }
     });
@@ -213,6 +260,13 @@ export default class Navbar {
       pageContainer
         .getPageContainer()
         .append(userProfilePage.getUserProfilePage());
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
     });
     return this.userProfileLink;
   }
@@ -231,9 +285,25 @@ export default class Navbar {
     this.logoutLink.addEventListener('click', (e) => {
       e.preventDefault();
       localStorage.clear();
-    });
+      setHistoryPushStateToHome();
+      this.addOrRemoveLinks();
 
+      /*history.pushState(
+        { page: '/#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
+    });
     return this.logoutLink;
+  }
+
+  public addOrRemoveLinks() {
+    ifAuthThenDisplayNone([this.signInLink, this.signUpLink]);
+    ifAnonimThenDisplayNone([this.userProfileLink, this.logoutLink]);
   }
 
   private createNavbar() {
@@ -241,7 +311,7 @@ export default class Navbar {
     this.navbar = tagCreator.createAndReturn();
 
     this.navbar.append(
-      this.homeLink,
+      this.catalogLink,
       this.signUpLink,
       this.signInLink,
       this.toCartLink,

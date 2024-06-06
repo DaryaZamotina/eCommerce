@@ -11,7 +11,7 @@
   align-items: center;
   background-color: var(--main-dark-color);
   color: var(--main-light-color);
-  z-index: 2;
+  z-index: 3;
 }
 
 .header-wrapper {
@@ -36,7 +36,8 @@
   cursor: pointer;
 }
 
-.burger {
+.burger,
+.hide-link {
   display: none;
 }
 

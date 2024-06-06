@@ -1,5 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/userProfilePage.css';
+import { createUserProfile } from './createUserProfile';
 
 export default class UserProfilePage {
   section: HTMLElement;
@@ -25,8 +26,9 @@ export default class UserProfilePage {
       'user-profile__section1',
       'userProfileSection1',
       '',
-      'User Profile Page Content Will Be Here',
+      '',
     );
+
     this.section = tagCreator.createAndReturn();
     return this.section;
   }
@@ -39,6 +41,7 @@ export default class UserProfilePage {
     );
     this.userProfilePage = userProfilePageTagCreator.createAndReturn();
     this.userProfilePage.append(this.getSection());
+
     return this.userProfilePage;
   }
 }

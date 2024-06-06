@@ -11,22 +11,28 @@ import {
   directMoveToMainPage,
 } from './pages/LoginPage/buttonsToRegToHome';
 import HomePage from './pages/Home/homePage';
+import CatalogPage from './pages/Catalog/catalogPage';
 import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { setHistoryPushStateToHome } from './components/Navbar/navbar';
+import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
+import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
+import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 
 const { body } = document;
 const appContainer = new AppContainer();
 export const pageContainer = new PageContainer();
+export const header = new HeaderView();
+const footer = new FooterView();
 export const homePage = new HomePage();
+export const catalogPage = new CatalogPage();
 export const cartPage = new CartPage();
 export const userProfilePage = new UserProfilePage();
 export const notFoundPage = new NotFoundPage();
-const header = new HeaderView();
-const footer = new FooterView();
+
 let currentHash = '';
 
 appContainer
@@ -50,7 +56,7 @@ function getHash() {
 }
 currentHash = getHash();
 
-function setRoutingPage() {
+export function setRoutingPage() {
   switch (currentHash) {
     case '':
       history.pushState({ page: '#' }, titlesPages.homePage, '#');
@@ -58,6 +64,42 @@ function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(homePage.getHomePage());
+      break;
+
+    case 'catalog':
+      history.pushState(
+        { page: '#catalog' },
+        titlesPages.catalogPage,
+        '#catalog',
+      );
+      document.title = titlesPages.catalogPage;
+      clearPageContainer();
+
+      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+      catalogPage.sortListener();
+
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
+      } else if (
+        !localStorage.getItem('anonym_access_token') ||
+        localStorage.getItem('anonym_access_token') == 'undefined' ||
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      )
+        receiveAnonymusAccessToken();
+
       break;
 
     case 'signup':
@@ -78,7 +120,11 @@ function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        setHistoryPushStateToHome();
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        document.title = titlesPages.homePage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 
@@ -98,11 +144,16 @@ function setRoutingPage() {
         moveToMainPage();
       }
       if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') ||
-        localStorage.getItem('newUser')
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined' &&
+        localStorage.getItem('userLogin') &&
+        localStorage.getItem('userLogin') !== 'undefined'
       ) {
-        setHistoryPushStateToHome();
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        document.title = titlesPages.homePage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(homePage.getHomePage());
       }
       break;
 
@@ -116,6 +167,7 @@ function setRoutingPage() {
 
     case 'userProfile':
     case 'userprofile':
+    case 'profile':
       history.pushState(
         { page: '#userProfile' },
         titlesPages.userProfilePage,
@@ -124,16 +176,43 @@ function setRoutingPage() {
       document.title = titlesPages.userProfilePage;
       clearPageContainer();
 
-      pageContainer
-        .getPageContainer()
-        .append(userProfilePage.getUserProfilePage());
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined' &&
+        localStorage.getItem('userLogin') &&
+        localStorage.getItem('userLogin') !== 'undefined'
+      ) {
+        pageContainer
+          .getPageContainer()
+          .append(userProfilePage.getUserProfilePage());
+
+        if (
+          localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined'
+        ) {
+          getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+        } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+      } else {
+        history.pushState(
+          { page: '#signin' },
+          titlesPages.loginPage,
+          '#signin',
+        );
+        document.title = titlesPages.loginPage;
+        const loginFormDiv = new LoginForm('pageContainer', 'log');
+        loginFormDiv.createLoginForm();
+        sendLoginPasswordToLocalStorage();
+        moveToRegistration();
+        moveToMainPage();
+      }
+
       break;
 
     default:
       history.pushState(
         { page: 'notFound' },
         titlesPages.notFoundPage,
-        '#notFound',
+        `#${currentHash}`,
       );
       document.title = titlesPages.notFoundPage;
       clearPageContainer();
@@ -152,23 +231,10 @@ window.addEventListener('popstate', () => {
   setRoutingPage();
 });
 
-/*
-if (localStorage.getItem('isLogined') === null) {
-  const registrationFormDiv = new RegistrationForm('pageContainer', 'form');
-  registrationFormDiv.createRegistrationForm();
-} 
+window.addEventListener('DOMContentLoaded', () => {
+  currentHash = getHash();
+  setRoutingPage();
+});
 
-if (localStorage.getItem('isLogined') === null) {
-  const loginFormDiv = new LoginForm('pageContainer', 'log');
-  loginFormDiv.createLoginForm();
-  sendLoginPasswordToLocalStorage();
-  moveToRegistration();
-  moveToMainPage();
-} */
-/*
-if (
-  localStorage.getItem('access_token_for_user') &&
-  localStorage.getItem('access_token_for_user') !== 'undefined'
-) {
-  directMoveToMainPage();
-} */
+// Переместила сюда эту функцию, чтобы анонимный токен был получен всегда в начале работы приложения, а то сейчас он часто идёт после запроса на регистрацию, из-за этого в запросе регистрации возникает ошибка.
+receiveAnonymusAccessToken();

@@ -42,6 +42,7 @@ export function createProductCard(
     `${nameProd}`,
   );
   productName.createAndAppend();
+  console.log(`${nameProd}`);
 
   const descriptionProd = choosenGood.masterData.staged.description.en;
   const descriptionString = JSON.stringify(descriptionProd);

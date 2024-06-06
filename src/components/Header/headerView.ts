@@ -30,6 +30,10 @@ export default class HeaderView {
     return this.header;
   }
 
+  public getNavbar(): Navbar {
+    return this.navbar;
+  }
+
   public getNameOfShop(): HTMLElement {
     return this.nameOfShop;
   }

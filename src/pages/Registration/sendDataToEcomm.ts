@@ -10,6 +10,7 @@ import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 import { setRoutingPage } from '../..';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from '../UserProfile/getUserDataFromEcomm';
+import { header } from '../..';
 
 export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
@@ -51,9 +52,9 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
           localStorage.getItem('newUser') &&
           localStorage.getItem('newUser') !== 'undefined'
         ) {
-          const registrationForm = document.getElementById('registrationForm');
-          registrationForm.remove();
-
+          // const registrationForm = document.getElementById('registrationForm');
+          // registrationForm.remove();
+          header.getNavbar().addOrRemoveLinks();
           setRoutingPage();
         }
       } else if (

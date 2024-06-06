@@ -10,6 +10,8 @@ import { newClientForProducts } from '../Home/anonymusSessionToken';
 import titlesPages from '../../Helpers/documentTitle';
 import PageContainer from '../../components/PageContainer/pageContainer';
 import { setRoutingPage } from '../..';
+import { createModalWindow } from '../../components/ModalWindow/modalWindow';
+import { header } from '../..';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -60,9 +62,14 @@ export function sendDataToEComm() {
         localStorage.getItem('access_token_for_user') &&
         localStorage.getItem('access_token_for_user') !== 'undefined'
       ) {
-        const loginFormDiv = document.getElementById('loginForm');
-        loginFormDiv.remove();
-
+        header.getNavbar().addOrRemoveLinks();
+        // const loginFormDiv = document.getElementById('loginForm');
+        // loginFormDiv.remove();
+        createModalWindow('You are successfully authenticated!');
+        const modalWindow = document.getElementById('modalWindow');
+        setTimeout(() => {
+          modalWindow.remove();
+        }, 3000);
         setRoutingPage();
       }
       return info;

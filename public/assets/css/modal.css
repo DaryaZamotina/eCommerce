@@ -12,6 +12,7 @@
     top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: 10;
 }
 
 .btn-close-modal-window {
@@ -27,4 +28,5 @@
     margin: 0.2rem;
     padding: 0.3rem 0.4rem;
     height: auto;
+    z-index: 11;
 }

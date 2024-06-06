@@ -1,5 +1,8 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/homePage.css';
+import Navbar from '../../components/Navbar/navbar';
+
+const navbar = new Navbar();
 
 export default class HomePage {
   section: HTMLElement;
@@ -9,6 +12,7 @@ export default class HomePage {
   constructor() {
     this.section = this.createSection();
     this.homePage = this.createHomePage();
+    this.insertHTMLToHomePage();
   }
 
   public getHomePage() {
@@ -29,6 +33,11 @@ export default class HomePage {
     );
     this.section = tagCreator.createAndReturn();
     return this.section;
+  }
+
+  private insertHTMLToHomePage() {
+    this.section.innerHTML = `<h2 class="home__title">WELCOME<br>to our online store<br>JOY.M HOME FURNITURE</h2>`;
+    this.section.append(navbar.getCatalogLink());
   }
 
   private createHomePage() {

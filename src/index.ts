@@ -25,13 +25,14 @@ import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 const { body } = document;
 const appContainer = new AppContainer();
 export const pageContainer = new PageContainer();
+export const header = new HeaderView();
+const footer = new FooterView();
 export const homePage = new HomePage();
 export const catalogPage = new CatalogPage();
 export const cartPage = new CartPage();
 export const userProfilePage = new UserProfilePage();
 export const notFoundPage = new NotFoundPage();
-const header = new HeaderView();
-const footer = new FooterView();
+
 let currentHash = '';
 
 appContainer
@@ -174,16 +175,29 @@ export function setRoutingPage() {
       document.title = titlesPages.userProfilePage;
       clearPageContainer();
 
-      pageContainer
-        .getPageContainer()
-        .append(userProfilePage.getUserProfilePage());
-
       if (
         localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
+        localStorage.getItem('access_token_for_user') !== 'undefined' &&
+        localStorage.getItem('userLogin') &&
+        localStorage.getItem('userLogin') !== 'undefined'
       ) {
-        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+        pageContainer
+          .getPageContainer()
+          .append(userProfilePage.getUserProfilePage());
+
+        if (
+          localStorage.getItem('access_token_for_user') &&
+          localStorage.getItem('access_token_for_user') !== 'undefined'
+        ) {
+          getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+        } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+      } else {
+        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        document.title = titlesPages.homePage;
+        clearPageContainer();
+
+        pageContainer.getPageContainer().append(homePage.getHomePage());
+      }
 
       break;
 
@@ -214,3 +228,6 @@ window.addEventListener('DOMContentLoaded', () => {
   currentHash = getHash();
   setRoutingPage();
 });
+
+// Переместила сюда эту функцию, чтобы анонимный токен был получен всегда в начале работы приложения, а то сейчас он часто идёт после запроса на регистрацию, из-за этого в запросе регистрации возникает ошибка.
+receiveAnonymusAccessToken();

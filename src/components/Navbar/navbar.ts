@@ -1,5 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/navbar.css';
+import '../../../public/assets/css/header.css';
 import LoginForm from '../../pages/LoginPage/loginForm';
 import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
 import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
@@ -19,6 +20,10 @@ import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEco
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
 import { editUserData } from '../../pages/UserProfile/editUserData';
+import {
+  ifAuthThenDisplayNone,
+  ifAnonimThenDisplayNone,
+} from '../../utils/changeSingUpLogoutButtons';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -50,6 +55,7 @@ export default class Navbar {
     this.toCartLink = this.createToCartLink();
     this.userProfileLink = this.createUserProfileLink();
     this.logoutLink = this.createLogoutLink();
+    this.addOrRemoveLinks();
     this.navbar = this.createNavbar();
   }
 
@@ -280,6 +286,7 @@ export default class Navbar {
       e.preventDefault();
       localStorage.clear();
       setHistoryPushStateToHome();
+      this.addOrRemoveLinks();
 
       /*history.pushState(
         { page: '/#catalog' },
@@ -292,6 +299,11 @@ export default class Navbar {
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
     });
     return this.logoutLink;
+  }
+
+  public addOrRemoveLinks() {
+    ifAuthThenDisplayNone([this.signInLink, this.signUpLink]);
+    ifAnonimThenDisplayNone([this.userProfileLink, this.logoutLink]);
   }
 
   private createNavbar() {

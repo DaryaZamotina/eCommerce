@@ -65,7 +65,7 @@ export function createProductCard(
     'btnToCart',
     'btnToCart',
     'productCard',
-    `Add to Cart`,
+    ``,
   );
   btnToCart.createAndAppend();
 

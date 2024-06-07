@@ -4,6 +4,25 @@
     margin: 5em;
 }
 
+.btnToCart {
+    background: url('../images/shopping-cart.png') no-repeat;
+    background-position: center;
+    background-size: 1rem;
+    border-radius: 1em;
+    background-color: #557938;
+    cursor: auto;
+    color: white;
+    margin-left: 35%;
+}
+
+.btnToCart:hover {
+    opacity: 0.8;
+  }
+  
+  .btnToCart:active {
+    transform: scale(0.95);
+  }
+
 .home__section1 {
     margin-left: 5em;
 }

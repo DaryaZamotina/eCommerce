@@ -9,6 +9,4 @@ curl https://api.{region}.commercetools.com/{projectKey}/carts -i \
 DATA
 */
 
-export function createCart() {
-    
-}
+export function createCart() {}

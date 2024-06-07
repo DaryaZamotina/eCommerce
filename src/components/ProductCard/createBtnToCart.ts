@@ -27,9 +27,9 @@ export function createButtonToCart(resultId: string) {
       token = localStorage.getItem('anonym_access_token');
     btnToCart.style.backgroundColor = 'red';
     if (localStorage.getItem('newCart')) {
-        addProductToCart(resultId, token);
+      addProductToCart(resultId, token);
     } else {
-        createCart(resultId, token);
+      createCart(resultId, token);
     }
     e.stopPropagation();
   });

@@ -10,24 +10,23 @@ export function createButtonToCart(resultId: string) {
   btnToCart.id = 'btnToCart';
   container.append(btnToCart);
 
-  /* const btnToCart = new TagCreator(
-        'button',
-        'btnToCart',
-        'btnToCart',
-        `catalogContainer_${resultId}`,
-        ``,
-      );
-    btnToCart.createAndAppend(); */
-
-  //const button = <HTMLButtonElement>document.getElementById("btnToCart");
-
   btnToCart.addEventListener('click', (e) => {
-    //if(this==e.target)
     e.preventDefault();
+
+    let token: string;
+    if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) 
+      token = localStorage.getItem('access_token_for_user');
+      else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) 
+        token = localStorage.getItem("anonym_access_token");
     btnToCart.style.backgroundColor = 'red';
-    //createCart();
-    // e.stopImmediatePropagation();
+    createCart(resultId, token);
     e.stopPropagation();
-    //this.style.backgroundColor = 'red';
+   
   });
 }

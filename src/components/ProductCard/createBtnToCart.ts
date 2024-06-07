@@ -1,6 +1,7 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/products.css';
 import { createCart } from '../../pages/Cart/createCart';
+import { addProductToCart } from '../../pages/Cart/addProductToCart';
 
 export function createButtonToCart(resultId: string) {
   const container = document.getElementById(`catalogContainer_${resultId}`);
@@ -15,18 +16,21 @@ export function createButtonToCart(resultId: string) {
 
     let token: string;
     if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) 
+      localStorage.getItem('access_token_for_user') &&
+      localStorage.getItem('access_token_for_user') !== 'undefined'
+    )
       token = localStorage.getItem('access_token_for_user');
-      else if (
-        localStorage.getItem('anonym_access_token') &&
-        localStorage.getItem('anonym_access_token') !== 'undefined'
-      ) 
-        token = localStorage.getItem("anonym_access_token");
+    else if (
+      localStorage.getItem('anonym_access_token') &&
+      localStorage.getItem('anonym_access_token') !== 'undefined'
+    )
+      token = localStorage.getItem('anonym_access_token');
     btnToCart.style.backgroundColor = 'red';
-    createCart(resultId, token);
+    if (localStorage.getItem('newCart')) {
+        addProductToCart(resultId, token);
+    } else {
+        createCart(resultId, token);
+    }
     e.stopPropagation();
-   
   });
 }

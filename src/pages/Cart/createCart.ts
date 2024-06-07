@@ -1,21 +1,11 @@
-/*
-curl https://api.{region}.commercetools.com/{projectKey}/carts -i \
---header 'Authorization: Bearer ${BEARER_TOKEN}' \
---header 'Content-Type: application/json' \
---data-binary @- << DATA 
-{
-  "currency" : "EUR"
-}
-DATA
-*/
 
 export async function createCart(id: string, token: string) {
-    const urlToEcommForRegistration =
+  const urlToEcommForRegistration =
     'https://api.us-east-2.aws.commercetools.com/jffecommerce/carts';
 
-    let data = JSON.stringify({
-        currency : "EUR"
-    });
+  let data = JSON.stringify({
+    currency: 'EUR',
+  });
 
   async function createCartInfo(url: string) {
     const response = await fetch(url, {
@@ -33,13 +23,11 @@ export async function createCart(id: string, token: string) {
   createCartInfo(urlToEcommForRegistration)
     .then((output) => {
       localStorage.setItem('newCart', output);
-     // let outputObj = JSON.parse(output);
-      
+      // let outputObj = JSON.parse(output);
+
       console.log('newCart: ' + output);
 
-     
       return output;
     })
     .catch((err) => console.log(err + 2));
 }
-

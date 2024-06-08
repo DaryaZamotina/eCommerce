@@ -1,8 +1,10 @@
 export async function addProductToCart(id: string, token: string) {
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
+  
+  let version: number;
 
-  let info = JSON.parse(localStorage.getItem('newCart'));
-  let version: number = info.version;
+    let info = JSON.parse(localStorage.getItem('newCart'));
+    version = info.version;
 
   let data = JSON.stringify({
     version: version,
@@ -32,7 +34,7 @@ export async function addProductToCart(id: string, token: string) {
 
   addProduct(link)
     .then((output) => {
-      localStorage.setItem('addingGood', output);
+      localStorage.setItem('newCart', output);
       // let outputObj = JSON.parse(output);
 
       console.log('addingGood: ' + output);

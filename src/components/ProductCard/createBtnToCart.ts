@@ -33,9 +33,9 @@ export function createButtonToCart(resultId: string) {
 
     if (localStorage.getItem('newCart')) {
       addProductToCart(localStorage.getItem('IDCart'), token);
-      //btnToCart.style.backgroundColor = 'green';
     } else {
       createCart(resultId, token);
+      //addProductToCart(localStorage.getItem('IDCart'), token);
     }
     /*
     if (localStorage.getItem("IDCart")) {

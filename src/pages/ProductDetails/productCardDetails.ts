@@ -61,6 +61,15 @@ export function createProductCard(
   );
   productDescription.createAndAppend();
 
+  const btnToCart = new TagCreator(
+    'button',
+    'btnToCart',
+    'btnToCart',
+    'productCard',
+    ``,
+  );
+  btnToCart.createAndAppend();
+
   let linksForImgs: Array<string> = [];
 
   for (let i = 0; i < categoriesImgs.length; i++) {

@@ -18,7 +18,7 @@ export function openProductCard(
   const additionalVariants = choosenGood.masterData.current.variants;
   const categoriesImgs = choosenVariant.images;
   const price = choosenVariant.prices;
- // localStorage.setItem("resultId", choosenGood.id);
+  // localStorage.setItem("resultId", choosenGood.id);
 
   console.log('price = ' + JSON.stringify(price));
 

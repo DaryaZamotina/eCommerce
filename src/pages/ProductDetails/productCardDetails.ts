@@ -62,7 +62,7 @@ export function createProductCard(
   );
   productDescription.createAndAppend();
 
-  createButtonToCart(localStorage.getItem("idofGood"));
+  createButtonToCart(localStorage.getItem('idofGood'));
 
   let linksForImgs: Array<string> = [];
 

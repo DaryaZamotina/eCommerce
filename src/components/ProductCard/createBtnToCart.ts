@@ -8,12 +8,14 @@ import IResult from './InterfaceProduct';
 export function createButtonToCart(resultId: string) {
   let container;
 
-  if (document.getElementById(`catalogContainer_${resultId}`) !== null ||
-  document.getElementById(`catalogContainer_${resultId}`) !== undefined) {
+  if (
+    document.getElementById(`catalogContainer_${resultId}`) !== null ||
+    document.getElementById(`catalogContainer_${resultId}`) !== undefined
+  ) {
     container = document.getElementById(`catalogContainer_${resultId}`);
-}
-if (document.getElementById("productCard")) {  
-  container = document.getElementById("productCard");
+  }
+  if (document.getElementById('productCard')) {
+    container = document.getElementById('productCard');
   }
 
   const btnToCart = document.createElement('button');
@@ -23,9 +25,9 @@ if (document.getElementById("productCard")) {
 
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
-   // localStorage.setItem('idofGood', `${resultId}`);
-  //  console.log("id = " + localStorage.getItem('idofGood'));
-   //localStorage.setItem('resultId', `${resultId}`);
+    // localStorage.setItem('idofGood', `${resultId}`);
+    //  console.log("id = " + localStorage.getItem('idofGood'));
+    //localStorage.setItem('resultId', `${resultId}`);
 
     let token: string;
     if (

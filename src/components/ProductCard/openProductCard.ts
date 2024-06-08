@@ -66,7 +66,7 @@ export function openProductCard(
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           openAdditionalVariant(additionalVariant);
-          localStorage.setItem("variantOfGood", additionalVariants[j+1])
+          localStorage.setItem('variantOfGood', additionalVariants[j + 1]);
         });
       });
     }

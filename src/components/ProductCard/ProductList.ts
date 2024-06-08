@@ -1,4 +1,5 @@
 import TagCreator from '../../module/tagCreator';
+import '../../../public/assets/css/products.css';
 //import CreateInputForForm from '../creatorInputForForm';
 //import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
@@ -10,6 +11,8 @@ import IResult from './InterfaceProduct';
 import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 import { getSlider } from '../../pages/ProductDetails/slider';
+
+import { createButtonToCart } from './createBtnToCart';
 
 import { getInfoFromEcommByIDofGood } from '../../pages/ProductDetails/getInfoFromEcommByIDofGood';
 import { clearPageContainer } from '../..';
@@ -87,6 +90,8 @@ export default class ProductsCardInCatalog {
       );
       catalogDescription.createAndAppend();
     }
+
+    createButtonToCart(resultId);
 
     const catalogPrice = new TagCreator(
       'div',

@@ -15,6 +15,8 @@ export function createButtonToCart(resultId: string) {
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
 
+    localStorage.setItem("resultId", resultId);
+
     let token: string;
     if (
       localStorage.getItem('access_token_for_user') &&
@@ -30,7 +32,8 @@ export function createButtonToCart(resultId: string) {
     btnToCart.style.backgroundColor = 'red';
 
     if (localStorage.getItem('newCart')) {
-      addProductToCart(localStorage.getItem('IDCart'), resultId, token);
+
+      addProductToCart(localStorage.getItem('IDCart'), token);
       //btnToCart.style.backgroundColor = 'green';
     } else {
       createCart(resultId, token);

@@ -30,12 +30,12 @@ export function createButtonToCart(resultId: string) {
     btnToCart.style.backgroundColor = 'red';
 
     if (localStorage.getItem('newCart')) {
-      addProductToCart(localStorage.getItem("IDCart"), resultId, token);
+      addProductToCart(localStorage.getItem('IDCart'), resultId, token);
       //btnToCart.style.backgroundColor = 'green';
     } else {
       createCart(resultId, token);
     }
-/*
+    /*
     if (localStorage.getItem("IDCart")) {
         let id = localStorage.getItem("IDCart");
         checkCartExistence(id, token);

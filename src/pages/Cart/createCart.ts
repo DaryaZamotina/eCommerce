@@ -22,7 +22,8 @@ export async function createCart(id: string, token: string) {
   createCartInfo(urlToEcommForRegistration)
     .then((output) => {
       localStorage.setItem('newCart', output);
-      // let outputObj = JSON.parse(output);
+      let outputObj = JSON.parse(output);
+      localStorage.setItem('IDCart', outputObj.id);
 
       console.log('newCart: ' + output);
 

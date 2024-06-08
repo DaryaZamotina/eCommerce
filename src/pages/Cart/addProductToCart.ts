@@ -1,9 +1,11 @@
-export async function addProductToCart(id: string, token: string) {
-  const urlToEcommForRegistration =
-    'https://api.us-east-2.aws.commercetools.com/jffecommerce/carts';
+export async function addProductToCart(id: string, product_id: string, token: string) {
+  const link =
+    `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
 
   let data = JSON.stringify({
-    currency: 'EUR',
+    action: 'addLineItem',
+    productId: `${{product_id}}`,
+    quantity: 1,
   });
 
   async function addProduct(url: string) {
@@ -19,14 +21,14 @@ export async function addProductToCart(id: string, token: string) {
     return JSON.stringify(resp);
   }
 
-  addProduct(urlToEcommForRegistration)
+  addProduct(link)
     .then((output) => {
-      localStorage.setItem('newCart', output);
+      localStorage.setItem('addingGood', output);
       // let outputObj = JSON.parse(output);
 
-      console.log('newCart: ' + output);
+      console.log('addingGood: ' + output);
 
       return output;
     })
-    .catch((err) => console.log(err + 2));
+    .catch((err) => console.log(err));
 }

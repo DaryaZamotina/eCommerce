@@ -1,4 +1,4 @@
-export async function addProductToCart(id: string, token: string) {
+export async function addProductToCart(id: string, idGood: string, token: string) {
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
 
   let version: number;
@@ -6,12 +6,25 @@ export async function addProductToCart(id: string, token: string) {
   let info = JSON.parse(localStorage.getItem('newCart'));
   version = info.version;
 
+
+  //let prodID: string;
+
+  /*if (localStorage.getItem('resultId') !== null) {
+    prodID = localStorage.getItem('resultId');
+  } else 
+  /*if (localStorage.getItem("idOfGood") && 
+  localStorage.getItem("idOfGood") !== null && 
+  localStorage.getItem("idOfGood") !== undefined) { */
+   // prodID = localStorage.getItem("idOfGood");
+  //} */
+
   let data = JSON.stringify({
     version: version,
     actions: [
       {
         action: 'addLineItem',
-        productId: localStorage.getItem('resultId'),
+      // productId: localStorage.getItem('idofGood'),
+        productId: idGood, 
         variantId: 1,
         quantity: 1,
       },

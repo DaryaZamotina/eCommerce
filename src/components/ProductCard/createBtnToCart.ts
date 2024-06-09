@@ -8,6 +8,7 @@ import { ICart } from '../../pages/Cart/cartInterface';
 import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 export function createButtonToCart(resultId: string, price?: number) {
+
   let container;
 
   if (
@@ -47,6 +48,9 @@ export function createButtonToCart(resultId: string, price?: number) {
   //-------------
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
+    // localStorage.setItem('idofGood', `${resultId}`);
+    //  console.log("id = " + localStorage.getItem('idofGood'));
+    //localStorage.setItem('resultId', `${resultId}`);
 
     let token: string;
     if (
@@ -85,6 +89,7 @@ export function createButtonToCart(resultId: string, price?: number) {
             infoCheckIsInCart.textContent = 'Already in cart!';
         }
       }
+
     }
 
     e.stopPropagation();

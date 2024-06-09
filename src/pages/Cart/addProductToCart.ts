@@ -39,7 +39,6 @@ export async function addProductToCart(
   addProduct(link)
     .then((output) => {
       localStorage.setItem('newCart', output);
-
       return output;
     })
     .catch((err) => console.log(err));

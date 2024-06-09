@@ -9,16 +9,16 @@ import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 export function createButtonToCart(resultId: string, price?: number) {
 
-  let container;
+  let container: HTMLDivElement;
 
   if (
     document.getElementById(`catalogContainer_${resultId}`) !== null ||
     document.getElementById(`catalogContainer_${resultId}`) !== undefined
   ) {
-    container = document.getElementById(`catalogContainer_${resultId}`);
+    container = <HTMLDivElement>document.getElementById(`catalogContainer_${resultId}`);
   }
   if (document.getElementById('productCard')) {
-    container = document.getElementById('productCard');
+    container = <HTMLDivElement>document.getElementById('productCard');
   }
 
   const btnToCart = document.createElement('button');
@@ -28,6 +28,9 @@ export function createButtonToCart(resultId: string, price?: number) {
 
   let infoCheckIsInCarts =
     container.getElementsByClassName('infoCheckIsInCart');
+
+    let removeLinks =
+    container.getElementsByClassName('removeLink');
 
   //----------------- checking
 
@@ -42,6 +45,9 @@ export function createButtonToCart(resultId: string, price?: number) {
           price == goods[i].price.value.centAmount / 100
         )
           infoCheckIsInCarts[j].textContent = 'Already in cart!';
+
+          let removeLink = document.getElementById(`removeLink _${resultId}`);
+          removeLink.textContent = 'Remove from cart';
       }
     }
   }
@@ -65,10 +71,14 @@ export function createButtonToCart(resultId: string, price?: number) {
       token = localStorage.getItem('anonym_access_token');
 
     btnToCart.style.backgroundColor = 'red';
+
     let infoCheckIsInCart = document.getElementById(
       `infoCheckIsInCart_${resultId}`,
     );
     infoCheckIsInCart.textContent = 'Already in cart!';
+
+    let removeLink = document.getElementById(`removeLink _${resultId}`);
+    removeLink.textContent = 'Remove from cart';
 
     if (localStorage.getItem('newCart')) {
       addProductToCart(localStorage.getItem('IDCart'), `${resultId}`, token);
@@ -76,7 +86,7 @@ export function createButtonToCart(resultId: string, price?: number) {
       createCart(resultId, token);
       checkIsGoodInCart(resultId, price);
 
-      let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+ /*     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
       let goods = cart.lineItems;
 
       for (let j = 0; j < infoCheckIsInCarts.length; j++) {
@@ -85,11 +95,12 @@ export function createButtonToCart(resultId: string, price?: number) {
             goods[i].productId == resultId &&
             price == goods[i].price.value.centAmount / 100
           )
-            // infoCheckIsInCarts[j].textContent = 'Already in cart!';
             infoCheckIsInCart.textContent = 'Already in cart!';
-        }
-      }
 
+            let removeLink = document.getElementById(`removeLink _${resultId}`);
+            removeLink.textContent = 'Remove from cart';
+        }
+      }*/
     }
 
     e.stopPropagation();

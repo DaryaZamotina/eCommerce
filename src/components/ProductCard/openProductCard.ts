@@ -12,16 +12,12 @@ export function openProductCard(
 ) {
   clearPageContainer();
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
-  localStorage.setItem('variantOfGood',"1");
+  localStorage.setItem('variantOfGood', '1');
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
-  console.log('choosenVariants = ' + choosenVariant);
   const additionalVariants = choosenGood.masterData.current.variants;
   const categoriesImgs = choosenVariant.images;
   const price = choosenVariant.prices;
-  // localStorage.setItem("resultId", choosenGood.id);
-
-  console.log('price = ' + JSON.stringify(price));
 
   const priceAmount = price[0].value.centAmount / 100;
   createProductCard(choosenGood, choosenVariant, categoriesImgs);
@@ -68,7 +64,6 @@ export function openProductCard(
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           openAdditionalVariant(additionalVariant);
-          //let num = `${j + 2}`;
           localStorage.setItem('variantOfGood', String(num));
         });
       });

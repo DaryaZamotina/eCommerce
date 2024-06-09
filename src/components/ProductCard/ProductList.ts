@@ -17,6 +17,7 @@ import { createButtonToCart } from './createBtnToCart';
 import { getInfoFromEcommByIDofGood } from '../../pages/ProductDetails/getInfoFromEcommByIDofGood';
 import { clearPageContainer } from '../..';
 import { createProductCard } from '../../pages/ProductDetails/productCardDetails';
+import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 import IResultNew from './InterfaceProductNew';
 
@@ -38,7 +39,7 @@ export default class ProductsCardInCatalog {
   }
 
   public createProductsCardInCatalog() {
-    localStorage.setItem("variantOfGood", String(1));
+    localStorage.setItem('variantOfGood', String(1));
     let result: IResultNew;
     let resultId: string;
     if ('masterData' in this.card) {
@@ -92,8 +93,6 @@ export default class ProductsCardInCatalog {
       catalogDescription.createAndAppend();
     }
 
-    createButtonToCart(resultId);
-
     const catalogPrice = new TagCreator(
       'div',
       'catalogPrice',
@@ -131,6 +130,9 @@ export default class ProductsCardInCatalog {
       );
       catalogPriceTitleOld.createAndAppend();
     }
+
+    createButtonToCart(resultId, price);
+    checkIsGoodInCart(resultId, price);
   }
 
   private openProduct(id: string) {

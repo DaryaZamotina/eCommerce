@@ -26,7 +26,6 @@ export async function addProductToCart(
     actions: [
       {
         action: 'addLineItem',
-        // productId: localStorage.getItem('idofGood'),
         productId: idGood,
         variantId: Number(localStorage.getItem('variantOfGood')),
         quantity: 1,
@@ -51,8 +50,6 @@ export async function addProductToCart(
   addProduct(link)
     .then((output) => {
       localStorage.setItem('newCart', output);
-      // let outputObj = JSON.parse(output);
-
       console.log('addingGood: ' + output);
 
       return output;

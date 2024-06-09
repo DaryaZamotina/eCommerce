@@ -10,7 +10,7 @@
     background-size: 1rem;
     border-radius: 1em;
     background-color: #557938;
-    cursor: auto;
+    cursor: pointer;
     color: white;
     margin-left: 35%;
 
@@ -19,10 +19,22 @@
 .btnToCart:hover {
     opacity: 0.8;
   }
+
+  .btnToCart:disabled {
+    background-color: #bc3a2e;
+  }
   
   .btnToCart:active {
     transform: scale(0.95);
   }
+
+.removeLink {
+    cursor: pointer;
+    color: #bc3a2e;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
 
 .home__section1 {
     margin-left: 5em;
@@ -98,8 +110,8 @@ h4 {
 }
 
 .infoCheckIsInCart {
-    color: red;
+    color: rgb(49, 139, 29);
     font-style: italic;
     font-weight: bold;
-    font-size: 1.8rem;
+    font-size: 1.3rem;
 }

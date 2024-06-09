@@ -8,14 +8,15 @@ import { ICart } from '../../pages/Cart/cartInterface';
 import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 export function createButtonToCart(resultId: string, price?: number) {
-
   let container: HTMLDivElement;
 
   if (
     document.getElementById(`catalogContainer_${resultId}`) !== null ||
     document.getElementById(`catalogContainer_${resultId}`) !== undefined
   ) {
-    container = <HTMLDivElement>document.getElementById(`catalogContainer_${resultId}`);
+    container = <HTMLDivElement>(
+      document.getElementById(`catalogContainer_${resultId}`)
+    );
   }
   if (document.getElementById('productCard')) {
     container = <HTMLDivElement>document.getElementById('productCard');
@@ -26,14 +27,13 @@ export function createButtonToCart(resultId: string, price?: number) {
   btnToCart.id = `btnToCart_${resultId}`;
   container.append(btnToCart);
 
-  let infoCheckIsInCarts =
+ /* let infoCheckIsInCarts =
     container.getElementsByClassName('infoCheckIsInCart');
 
-    let removeLinks =
-    container.getElementsByClassName('removeLink');
+  let removeLinks = container.getElementsByClassName('removeLink');*/
 
   //----------------- checking
-
+/*
   if (localStorage.getItem('newCart')) {
     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
     let goods = cart.lineItems;
@@ -46,11 +46,11 @@ export function createButtonToCart(resultId: string, price?: number) {
         )
           infoCheckIsInCarts[j].textContent = 'Already in cart!';
 
-          let removeLink = document.getElementById(`removeLink _${resultId}`);
-          removeLink.textContent = 'Remove from cart';
+        let removeLink = document.getElementById(`removeLink _${resultId}`);
+        removeLink.textContent = 'Remove from cart';
       }
     }
-  }
+  }*/
   //-------------
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
@@ -70,7 +70,8 @@ export function createButtonToCart(resultId: string, price?: number) {
     )
       token = localStorage.getItem('anonym_access_token');
 
-    btnToCart.style.backgroundColor = 'red';
+    //btnToCart.style.backgroundColor = 'red';
+    btnToCart.disabled = true;
 
     let infoCheckIsInCart = document.getElementById(
       `infoCheckIsInCart_${resultId}`,
@@ -86,7 +87,7 @@ export function createButtonToCart(resultId: string, price?: number) {
       createCart(resultId, token);
       checkIsGoodInCart(resultId, price);
 
- /*     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+      /*     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
       let goods = cart.lineItems;
 
       for (let j = 0; j < infoCheckIsInCarts.length; j++) {

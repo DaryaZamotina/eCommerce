@@ -19,7 +19,7 @@ export function checkIsGoodInCart(resultId: string, price: number) {
   infoCheckIsInCart.textContent = '';
   container.append(infoCheckIsInCart);
 
-  const removeLink = document.createElement("div");
+  const removeLink = document.createElement('div');
   removeLink.className = 'removeLink';
   removeLink.id = `removeLink _${resultId}`;
   removeLink.textContent = '';
@@ -33,13 +33,15 @@ export function checkIsGoodInCart(resultId: string, price: number) {
       if (
         goods[i].productId == resultId &&
         price == goods[i].price.value.centAmount / 100
-      )
+      ) 
+      {
+        removeLink.textContent = 'Remove from cart';
+        infoCheckIsInCart.textContent = 'Already in cart!';
 
-      //console.log(price + "==" + goods[i].price.value.centAmount / 100);
-     { removeLink.textContent = 'Remove from cart';
-        infoCheckIsInCart.textContent = 'Already in cart!';}
-       
-      // removeLink.textContent = 'Remove from cart';
+        let buttonToCart = <HTMLButtonElement>document.getElementById(`btnToCart_${resultId}`);
+        buttonToCart.disabled = true;
+      }
+
     }
   }
 }

@@ -135,8 +135,7 @@ export default class ProductsCardInCatalog {
 
     if (result.masterVariant.prices[0].discounted !== undefined) {
       checkIsGoodInCart(resultId, oldPrice);
-    } else  checkIsGoodInCart(resultId, price);
-
+    } else checkIsGoodInCart(resultId, price);
   }
 
   private openProduct(id: string) {

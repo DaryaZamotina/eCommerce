@@ -32,7 +32,7 @@ export function openProductCard(
   );
   productPrice.createAndAppend();
 
-  checkIsGoodInCart(localStorage.getItem("idofGood"), priceAmount);
+  checkIsGoodInCart(localStorage.getItem('idofGood'), priceAmount);
 
   if (price[0].discounted) {
     const prodPrice = document.getElementById('productPrice');

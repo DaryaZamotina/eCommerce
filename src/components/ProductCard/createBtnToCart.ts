@@ -61,7 +61,9 @@ export function createButtonToCart(resultId: string, price?: number) {
       token = localStorage.getItem('anonym_access_token');
 
     btnToCart.style.backgroundColor = 'red';
-    let infoCheckIsInCart = document.getElementById(`infoCheckIsInCart_${resultId}`);
+    let infoCheckIsInCart = document.getElementById(
+      `infoCheckIsInCart_${resultId}`,
+    );
     infoCheckIsInCart.textContent = 'Already in cart!';
 
     if (localStorage.getItem('newCart')) {
@@ -72,18 +74,17 @@ export function createButtonToCart(resultId: string, price?: number) {
 
       let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
       let goods = cart.lineItems;
-  
+
       for (let j = 0; j < infoCheckIsInCarts.length; j++) {
         for (let i = 0; i < goods.length; i++) {
           if (
             goods[i].productId == resultId &&
             price == goods[i].price.value.centAmount / 100
           )
-           // infoCheckIsInCarts[j].textContent = 'Already in cart!';
+            // infoCheckIsInCarts[j].textContent = 'Already in cart!';
             infoCheckIsInCart.textContent = 'Already in cart!';
         }
       }
-     
     }
 
     e.stopPropagation();

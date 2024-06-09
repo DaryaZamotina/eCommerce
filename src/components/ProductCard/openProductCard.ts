@@ -4,6 +4,7 @@ import MasterData from './masterData';
 import IResult from './InterfaceProduct';
 import TagCreator from '../../module/tagCreator';
 import { openAdditionalVariant } from '../../pages/ProductDetails/openAdditionalVariant';
+import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 export function openProductCard(
   id?: string,
@@ -30,6 +31,8 @@ export function openProductCard(
     `\u20ac ${priceAmount}`,
   );
   productPrice.createAndAppend();
+
+  checkIsGoodInCart(localStorage.getItem("idofGood"), priceAmount);
 
   if (price[0].discounted) {
     const prodPrice = document.getElementById('productPrice');

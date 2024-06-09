@@ -15,7 +15,7 @@ export function checkIsGoodInCart(resultId: string, price: number) {
 
   const infoCheckIsInCart = document.createElement('div');
   infoCheckIsInCart.className = 'infoCheckIsInCart';
-  infoCheckIsInCart.id = 'infoCheckIsInCart';
+  infoCheckIsInCart.id = `infoCheckIsInCart_${resultId}`;
   infoCheckIsInCart.textContent = '';
   container.append(infoCheckIsInCart);
 

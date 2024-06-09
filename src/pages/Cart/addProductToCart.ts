@@ -10,17 +10,6 @@ export async function addProductToCart(
   let info = JSON.parse(localStorage.getItem('newCart'));
   version = info.version;
 
-  //let prodID: string;
-
-  /*if (localStorage.getItem('resultId') !== null) {
-    prodID = localStorage.getItem('resultId');
-  } else 
-  /*if (localStorage.getItem("idOfGood") && 
-  localStorage.getItem("idOfGood") !== null && 
-  localStorage.getItem("idOfGood") !== undefined) { */
-  // prodID = localStorage.getItem("idOfGood");
-  //} */
-
   let data = JSON.stringify({
     version: version,
     actions: [
@@ -50,7 +39,6 @@ export async function addProductToCart(
   addProduct(link)
     .then((output) => {
       localStorage.setItem('newCart', output);
-      console.log('addingGood: ' + output);
 
       return output;
     })

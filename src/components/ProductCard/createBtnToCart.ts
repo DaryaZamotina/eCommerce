@@ -3,9 +3,20 @@ import '../../../public/assets/css/products.css';
 import { createCart } from '../../pages/Cart/createCart';
 import { addProductToCart } from '../../pages/Cart/addProductToCart';
 import { checkCartExistence } from '../../pages/Cart/checkCartExistence';
+import IResult from './InterfaceProduct';
 
 export function createButtonToCart(resultId: string) {
-  const container = document.getElementById(`catalogContainer_${resultId}`);
+  let container;
+
+  if (
+    document.getElementById(`catalogContainer_${resultId}`) !== null ||
+    document.getElementById(`catalogContainer_${resultId}`) !== undefined
+  ) {
+    container = document.getElementById(`catalogContainer_${resultId}`);
+  }
+  if (document.getElementById('productCard')) {
+    container = document.getElementById('productCard');
+  }
 
   const btnToCart = document.createElement('button');
   btnToCart.className = 'btnToCart';
@@ -14,6 +25,9 @@ export function createButtonToCart(resultId: string) {
 
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
+    // localStorage.setItem('idofGood', `${resultId}`);
+    //  console.log("id = " + localStorage.getItem('idofGood'));
+    //localStorage.setItem('resultId', `${resultId}`);
 
     let token: string;
     if (
@@ -30,10 +44,10 @@ export function createButtonToCart(resultId: string) {
     btnToCart.style.backgroundColor = 'red';
 
     if (localStorage.getItem('newCart')) {
-      addProductToCart(localStorage.getItem('IDCart'), resultId, token);
-      //btnToCart.style.backgroundColor = 'green';
+      addProductToCart(localStorage.getItem('IDCart'), `${resultId}`, token);
     } else {
       createCart(resultId, token);
+      //addProductToCart(localStorage.getItem('IDCart'), token);
     }
     /*
     if (localStorage.getItem("IDCart")) {

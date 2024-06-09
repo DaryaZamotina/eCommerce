@@ -8,6 +8,7 @@ import AttributesView from '../../components/ProductCard/attributesView';
 import { pageContainer } from '../..';
 import IVariant from '../../components/ProductCard/InterfaceVariant';
 import ISliderImage from './InterfaceSliderImage';
+import { createButtonToCart } from '../../components/ProductCard/createBtnToCart';
 
 export function createProductCard(
   choosenGood: IResult,
@@ -61,14 +62,7 @@ export function createProductCard(
   );
   productDescription.createAndAppend();
 
-  const btnToCart = new TagCreator(
-    'button',
-    'btnToCart',
-    'btnToCart',
-    'productCard',
-    ``,
-  );
-  btnToCart.createAndAppend();
+  createButtonToCart(localStorage.getItem('idofGood'));
 
   let linksForImgs: Array<string> = [];
 

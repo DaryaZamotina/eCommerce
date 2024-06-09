@@ -18,6 +18,7 @@ export function openProductCard(
   const additionalVariants = choosenGood.masterData.current.variants;
   const categoriesImgs = choosenVariant.images;
   const price = choosenVariant.prices;
+  // localStorage.setItem("resultId", choosenGood.id);
 
   console.log('price = ' + JSON.stringify(price));
 
@@ -65,6 +66,7 @@ export function openProductCard(
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           openAdditionalVariant(additionalVariant);
+          localStorage.setItem('variantOfGood', additionalVariants[j + 1]);
         });
       });
     }

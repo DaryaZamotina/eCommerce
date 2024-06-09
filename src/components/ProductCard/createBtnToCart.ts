@@ -4,8 +4,11 @@ import { createCart } from '../../pages/Cart/createCart';
 import { addProductToCart } from '../../pages/Cart/addProductToCart';
 import { checkCartExistence } from '../../pages/Cart/checkCartExistence';
 import IResult from './InterfaceProduct';
+import { ICart } from '../../pages/Cart/cartInterface';
+import { checkIsGoodInCart } from './infoIsGoodInCart';
 
-export function createButtonToCart(resultId: string) {
+export function createButtonToCart(resultId: string, price?: number) {
+
   let container;
 
   if (
@@ -20,9 +23,29 @@ export function createButtonToCart(resultId: string) {
 
   const btnToCart = document.createElement('button');
   btnToCart.className = 'btnToCart';
-  btnToCart.id = 'btnToCart';
+  btnToCart.id = `btnToCart_${resultId}`;
   container.append(btnToCart);
 
+  let infoCheckIsInCarts =
+    container.getElementsByClassName('infoCheckIsInCart');
+
+  //----------------- checking
+
+  if (localStorage.getItem('newCart')) {
+    let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+    let goods = cart.lineItems;
+
+    for (let j = 0; j < infoCheckIsInCarts.length; j++) {
+      for (let i = 0; i < goods.length; i++) {
+        if (
+          goods[i].productId == resultId &&
+          price == goods[i].price.value.centAmount / 100
+        )
+          infoCheckIsInCarts[j].textContent = 'Already in cart!';
+      }
+    }
+  }
+  //-------------
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
     // localStorage.setItem('idofGood', `${resultId}`);
@@ -42,18 +65,32 @@ export function createButtonToCart(resultId: string) {
       token = localStorage.getItem('anonym_access_token');
 
     btnToCart.style.backgroundColor = 'red';
+    let infoCheckIsInCart = document.getElementById(
+      `infoCheckIsInCart_${resultId}`,
+    );
+    infoCheckIsInCart.textContent = 'Already in cart!';
 
     if (localStorage.getItem('newCart')) {
       addProductToCart(localStorage.getItem('IDCart'), `${resultId}`, token);
     } else {
       createCart(resultId, token);
-      //addProductToCart(localStorage.getItem('IDCart'), token);
+      checkIsGoodInCart(resultId, price);
+
+      let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+      let goods = cart.lineItems;
+
+      for (let j = 0; j < infoCheckIsInCarts.length; j++) {
+        for (let i = 0; i < goods.length; i++) {
+          if (
+            goods[i].productId == resultId &&
+            price == goods[i].price.value.centAmount / 100
+          )
+            // infoCheckIsInCarts[j].textContent = 'Already in cart!';
+            infoCheckIsInCart.textContent = 'Already in cart!';
+        }
+      }
+
     }
-    /*
-    if (localStorage.getItem("IDCart")) {
-        let id = localStorage.getItem("IDCart");
-        checkCartExistence(id, token);
-    } */
 
     e.stopPropagation();
   });

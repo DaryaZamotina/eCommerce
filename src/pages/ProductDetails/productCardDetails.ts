@@ -9,6 +9,8 @@ import { pageContainer } from '../..';
 import IVariant from '../../components/ProductCard/InterfaceVariant';
 import ISliderImage from './InterfaceSliderImage';
 import { createButtonToCart } from '../../components/ProductCard/createBtnToCart';
+import { checkIsGoodInCart } from '../../components/ProductCard/infoIsGoodInCart';
+
 
 export function createProductCard(
   choosenGood: IResult,
@@ -43,7 +45,6 @@ export function createProductCard(
     `${nameProd}`,
   );
   productName.createAndAppend();
-  console.log(`${nameProd}`);
 
   const descriptionProd = choosenGood.masterData.staged.description.en;
   const descriptionString = JSON.stringify(descriptionProd);
@@ -51,7 +52,6 @@ export function createProductCard(
     1,
     descriptionString.length - 2,
   );
-  console.log(descriptionStringWithoutFirstLast);
 
   const productDescription = new TagCreator(
     'div',
@@ -68,10 +68,8 @@ export function createProductCard(
 
   for (let i = 0; i < categoriesImgs.length; i++) {
     let category = categoriesImgs[i];
-    console.log(category['url']);
     linksForImgs[i] = category['url'];
   }
-  console.log(linksForImgs);
 
   localStorage.setItem('currentLinksToImgs', JSON.stringify(linksForImgs));
 

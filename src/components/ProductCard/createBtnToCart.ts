@@ -24,24 +24,26 @@ export function createButtonToCart(resultId: string, price?: number) {
   btnToCart.id = 'btnToCart';
   container.append(btnToCart);
 
-  let infoCheckIsInCarts = container.getElementsByClassName('infoCheckIsInCart');
+  let infoCheckIsInCarts =
+    container.getElementsByClassName('infoCheckIsInCart');
 
   //----------------- checking
- 
-  if (localStorage.getItem("newCart")) {
-    let cart: ICart = JSON.parse(localStorage.getItem("newCart"));
+
+  if (localStorage.getItem('newCart')) {
+    let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
     let goods = cart.lineItems;
 
-    for (let j = 0; j < infoCheckIsInCarts.length; j++){
-    for (let i = 0; i < goods.length; i++){
-     if (goods[i].productId == resultId && 
-        price == (goods[i].price.value.centAmount / 100))
-
-        infoCheckIsInCarts[j].textContent = "Already in cart!";
-     }
+    for (let j = 0; j < infoCheckIsInCarts.length; j++) {
+      for (let i = 0; i < goods.length; i++) {
+        if (
+          goods[i].productId == resultId &&
+          price == goods[i].price.value.centAmount / 100
+        )
+          infoCheckIsInCarts[j].textContent = 'Already in cart!';
+      }
     }
-}
-//-------------
+  }
+  //-------------
   btnToCart.addEventListener('click', (e) => {
     e.preventDefault();
     // localStorage.setItem('idofGood', `${resultId}`);

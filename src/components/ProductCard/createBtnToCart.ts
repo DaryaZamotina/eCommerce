@@ -7,6 +7,7 @@ import IResult from './InterfaceProduct';
 import { ICart } from '../../pages/Cart/cartInterface';
 
 export function createButtonToCart(resultId: string, price?: number) {
+
   let container;
 
   if (

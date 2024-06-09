@@ -50,6 +50,7 @@ export async function addProductToCart(
   addProduct(link)
     .then((output) => {
       localStorage.setItem('newCart', output);
+
       console.log('addingGood: ' + output);
 
       return output;

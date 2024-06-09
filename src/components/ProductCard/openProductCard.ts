@@ -18,6 +18,7 @@ export function openProductCard(
   const additionalVariants = choosenGood.masterData.current.variants;
   const categoriesImgs = choosenVariant.images;
   const price = choosenVariant.prices;
+  // localStorage.setItem("resultId", choosenGood.id);
 
   const priceAmount = price[0].value.centAmount / 100;
   createProductCard(choosenGood, choosenVariant, categoriesImgs);

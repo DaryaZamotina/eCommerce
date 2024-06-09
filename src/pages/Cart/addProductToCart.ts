@@ -28,7 +28,7 @@ export async function addProductToCart(
         action: 'addLineItem',
         // productId: localStorage.getItem('idofGood'),
         productId: idGood,
-        variantId: 1,
+        variantId: Number(localStorage.getItem('variantOfGood')),
         quantity: 1,
       },
     ],

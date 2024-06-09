@@ -38,6 +38,7 @@ export default class ProductsCardInCatalog {
   }
 
   public createProductsCardInCatalog() {
+    localStorage.setItem("variantOfGood", String(1));
     let result: IResultNew;
     let resultId: string;
     if ('masterData' in this.card) {

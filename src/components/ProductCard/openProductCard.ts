@@ -12,6 +12,7 @@ export function openProductCard(
 ) {
   clearPageContainer();
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
+  localStorage.setItem('variantOfGood',"1");
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
   console.log('choosenVariants = ' + choosenVariant);
@@ -51,6 +52,7 @@ export function openProductCard(
 
   if (additionalVariants) {
     for (let j = 0; j < additionalVariants.length; j++) {
+      let num = j + 2;
       const btnToNewVariants = new TagCreator(
         'button',
         'btnToNewVariants',
@@ -66,7 +68,8 @@ export function openProductCard(
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           openAdditionalVariant(additionalVariant);
-          localStorage.setItem('variantOfGood', additionalVariants[j + 1]);
+          //let num = `${j + 2}`;
+          localStorage.setItem('variantOfGood', String(num));
         });
       });
     }

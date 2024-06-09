@@ -35,6 +35,10 @@
     font-weight: bold;
     font-size: 1.8rem;
 }
+.removeLink:hover,
+.removeLink:active {
+    text-decoration: underline;
+}
 
 .home__section1 {
     margin-left: 5em;

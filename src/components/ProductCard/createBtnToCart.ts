@@ -27,13 +27,13 @@ export function createButtonToCart(resultId: string, price?: number) {
   btnToCart.id = `btnToCart_${resultId}`;
   container.append(btnToCart);
 
- /* let infoCheckIsInCarts =
+  /* let infoCheckIsInCarts =
     container.getElementsByClassName('infoCheckIsInCart');
 
   let removeLinks = container.getElementsByClassName('removeLink');*/
 
   //----------------- checking
-/*
+  /*
   if (localStorage.getItem('newCart')) {
     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
     let goods = cart.lineItems;

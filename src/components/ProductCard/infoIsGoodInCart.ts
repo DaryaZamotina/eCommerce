@@ -33,15 +33,15 @@ export function checkIsGoodInCart(resultId: string, price: number) {
       if (
         goods[i].productId == resultId &&
         price == goods[i].price.value.centAmount / 100
-      ) 
-      {
+      ) {
         removeLink.textContent = 'Remove from cart';
         infoCheckIsInCart.textContent = 'Already in cart!';
 
-        let buttonToCart = <HTMLButtonElement>document.getElementById(`btnToCart_${resultId}`);
+        let buttonToCart = <HTMLButtonElement>(
+          document.getElementById(`btnToCart_${resultId}`)
+        );
         buttonToCart.disabled = true;
       }
-
     }
   }
 }

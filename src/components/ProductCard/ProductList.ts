@@ -132,6 +132,7 @@ export default class ProductsCardInCatalog {
     }
 
     createButtonToCart(resultId, price);
+    checkIsGoodInCart(resultId, oldPrice);
     checkIsGoodInCart(resultId, price);
   }
 

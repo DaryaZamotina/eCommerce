@@ -17,7 +17,7 @@ export function checkIsGoodInCart(resultId: string, price: number) {
   infoCheckIsInCart.className = 'infoCheckIsInCart';
   infoCheckIsInCart.id = `infoCheckIsInCart_${resultId}`;
   infoCheckIsInCart.textContent = '';
-  container.append(infoCheckIsInCart);
+  container.prepend(infoCheckIsInCart);
 
   if (localStorage.getItem('newCart')) {
     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));

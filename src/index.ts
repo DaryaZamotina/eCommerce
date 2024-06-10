@@ -22,7 +22,6 @@ import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 
-
 import TagCreator from './module/tagCreator';
 import '../public/assets/css/shoppingCart.css';
 import createShoppingCartPage from './pages/ShoppingCart/createShoppingCartPage';
@@ -249,11 +248,19 @@ receiveAnonymusAccessToken();
 // ---
 
 (function createButtonShoppingCart() {
-  const button = new TagCreator('button', 'buttonShoppingCart', 'buttonShoppingCart', 'body', 'Shopping Cart');
+  const button = new TagCreator(
+    'button',
+    'buttonShoppingCart',
+    'buttonShoppingCart',
+    'body',
+    'Shopping Cart',
+  );
   button.createAndAppend();
-  document.getElementById('buttonShoppingCart').addEventListener('click', () => {
-    createShoppingCartPage();
-  });
+  document
+    .getElementById('buttonShoppingCart')
+    .addEventListener('click', () => {
+      createShoppingCartPage();
+    });
 })();
 
 // ---

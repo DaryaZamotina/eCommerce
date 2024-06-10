@@ -1,4 +1,4 @@
-import CreateCardProduct from "./createCardProduct";
+import CreateCardProduct from './createCardProduct';
 
 export default async function getShoppingCart() {
   let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${localStorage.getItem('IDCart')}`;

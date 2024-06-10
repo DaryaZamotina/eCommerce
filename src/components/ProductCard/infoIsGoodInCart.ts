@@ -45,7 +45,6 @@ export function checkIsGoodInCart(
         let lineItemID: string = goods[i].id;
         let variantOfGood: number = goods[i].variant.id;
         let quantity: number = goods[i].quantity;
-
         let buttonToCart = <HTMLButtonElement>(
           document.getElementById(`btnToCart_${resultId}`)
         );

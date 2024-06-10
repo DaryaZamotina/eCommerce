@@ -85,7 +85,7 @@ export function createButtonToCart(resultId: string, price?: number) {
       addProductToCart(localStorage.getItem('IDCart'), `${resultId}`, token);
     } else {
       createCart(resultId, token);
-      checkIsGoodInCart(resultId, price);
+      checkIsGoodInCart(resultId, price, token);
 
       /*     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
       let goods = cart.lineItems;

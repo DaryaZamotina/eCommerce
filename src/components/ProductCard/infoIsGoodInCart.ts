@@ -1,6 +1,11 @@
 import { ICart } from '../../pages/Cart/cartInterface';
+import { removeProductFromCart } from '../../pages/Cart/removeProductFromCart';
 
-export function checkIsGoodInCart(resultId: string, price: number) {
+export function checkIsGoodInCart(
+  resultId: string,
+  price: number,
+  token?: string,
+) {
   let container;
 
   if (
@@ -37,10 +42,26 @@ export function checkIsGoodInCart(resultId: string, price: number) {
         removeLink.textContent = 'Remove from cart';
         infoCheckIsInCart.textContent = 'Already in cart!';
 
+        let lineItemID: string = goods[i].id;
+        let variantOfGood: number = goods[i].variant.id;
+        let quantity: number = goods[i].quantity;
         let buttonToCart = <HTMLButtonElement>(
           document.getElementById(`btnToCart_${resultId}`)
         );
         buttonToCart.disabled = true;
+
+        removeLink.addEventListener('click', function (e) {
+          removeProductFromCart(
+            localStorage.getItem('IDCart'),
+            `${lineItemID}`,
+            variantOfGood,
+            quantity,
+          );
+          removeLink.remove();
+          infoCheckIsInCart.remove();
+          buttonToCart.disabled = false;
+          e.stopPropagation();
+        });
       }
     }
   }

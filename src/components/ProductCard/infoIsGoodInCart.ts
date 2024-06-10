@@ -1,6 +1,7 @@
 import { ICart } from '../../pages/Cart/cartInterface';
+import { removeProductFromCart } from '../../pages/Cart/removeProductFromCart';
 
-export function checkIsGoodInCart(resultId: string, price: number) {
+export function checkIsGoodInCart(resultId: string, price: number, token?: string) {
   let container;
 
   if (
@@ -41,6 +42,10 @@ export function checkIsGoodInCart(resultId: string, price: number) {
           document.getElementById(`btnToCart_${resultId}`)
         );
         buttonToCart.disabled = true;
+
+        removeLink.addEventListener("click", function() {
+          removeProductFromCart(localStorage.getItem("IDCart"), `${resultId}`);
+        })
       }
     }
   }

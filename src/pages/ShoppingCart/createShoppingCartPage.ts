@@ -1,5 +1,6 @@
 import TagCreator from "../../module/tagCreator";
 import getShoppingCart from "./getShoppingCart";
+import { createRemoveAllBtn } from "./createRemoveAllBtn";
 
 export default function createShoppingCartPage() {
   const container = document.getElementById('pageContainer') as HTMLDivElement;
@@ -15,4 +16,5 @@ export default function createShoppingCartPage() {
   secondContainer.createAndAppend();
 
   getShoppingCart();
+  createRemoveAllBtn();
 }

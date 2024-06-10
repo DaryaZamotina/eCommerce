@@ -1,4 +1,9 @@
-export async function removeProductFromCart(id: string, lineItemId: string, variantOfGood: number, quantity: number) {
+export async function removeProductFromCart(
+  id: string,
+  lineItemId: string,
+  variantOfGood: number,
+  quantity: number,
+) {
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
 
   let version: number;

@@ -52,7 +52,12 @@ export function checkIsGoodInCart(
         buttonToCart.disabled = true;
 
         removeLink.addEventListener('click', function (e) {
-          removeProductFromCart(localStorage.getItem('IDCart'), `${lineItemID}`, variantOfGood, quantity);
+          removeProductFromCart(
+            localStorage.getItem('IDCart'),
+            `${lineItemID}`,
+            variantOfGood,
+            quantity,
+          );
           removeLink.remove();
           infoCheckIsInCart.remove();
           buttonToCart.disabled = false;

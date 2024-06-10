@@ -138,43 +138,51 @@ export default class ProductsCardInCatalog {
     if (result.masterVariant.prices[0].discounted !== undefined) {
       checkIsGoodInCart(resultId, oldPrice);
     } else checkIsGoodInCart(resultId, price);
-  
 
-  if (document.getElementById(`removeLink _${resultId}`) && 
-  document.getElementById(`infoCheckIsInCart _${resultId}`)) {
-    let removeLink = document.getElementById(`removeLink _${resultId}`);
-    let infoCheckIsInCart = document.getElementById(`infoCheckIsInCart _${resultId}`);
+    if (
+      document.getElementById(`removeLink _${resultId}`) &&
+      document.getElementById(`infoCheckIsInCart _${resultId}`)
+    ) {
+      let removeLink = document.getElementById(`removeLink _${resultId}`);
+      let infoCheckIsInCart = document.getElementById(
+        `infoCheckIsInCart _${resultId}`,
+      );
 
-    let buttonToCart = <HTMLButtonElement>(
-      document.getElementById(`btnToCart_${resultId}`)
-    );
+      let buttonToCart = <HTMLButtonElement>(
+        document.getElementById(`btnToCart_${resultId}`)
+      );
 
-    let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
-    let goods = cart.lineItems;
+      let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+      let goods = cart.lineItems;
 
-    for (let i = 0; i < goods.length; i++) {
-      if (
-        goods[i].productId == resultId &&
-        price == goods[i].price.value.centAmount / 100
-      ) {
-        removeLink.textContent = 'Remove from cart';
-        infoCheckIsInCart.textContent = 'Already in cart!';
+      for (let i = 0; i < goods.length; i++) {
+        if (
+          goods[i].productId == resultId &&
+          price == goods[i].price.value.centAmount / 100
+        ) {
+          removeLink.textContent = 'Remove from cart';
+          infoCheckIsInCart.textContent = 'Already in cart!';
 
-        let lineItemID: string = goods[i].id;
-        let variantOfGood: number = goods[i].variant.id;
-        let quantity: number = goods[i].quantity;
+          let lineItemID: string = goods[i].id;
+          let variantOfGood: number = goods[i].variant.id;
+          let quantity: number = goods[i].quantity;
 
-    removeLink.addEventListener('click', function (e) {
-      removeProductFromCart(localStorage.getItem('IDCart'), `${lineItemID}`, variantOfGood, quantity);
-      removeLink.remove();
-      infoCheckIsInCart.remove();
-      buttonToCart.disabled = false;
-      e.stopPropagation();
-    });
+          removeLink.addEventListener('click', function (e) {
+            removeProductFromCart(
+              localStorage.getItem('IDCart'),
+              `${lineItemID}`,
+              variantOfGood,
+              quantity,
+            );
+            removeLink.remove();
+            infoCheckIsInCart.remove();
+            buttonToCart.disabled = false;
+            e.stopPropagation();
+          });
+        }
+      }
+    }
   }
-}
-}
-}
 
   private openProduct(id: string) {
     const card = document.getElementById(id) as HTMLDivElement;

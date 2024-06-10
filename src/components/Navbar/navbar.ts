@@ -146,30 +146,30 @@ export default class Navbar {
       'sign up',
     );
     this.signUpLink = tagCreator.createAndReturn();
-    this.signUpLink.setAttribute('href', '#signin');
+    this.signUpLink.setAttribute('href', '#signup');
 
-    this.signUpLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState(
-        { page: '/#signup' },
-        titlesPages.registrationPage,
-        '#signup',
-      );
-      document.title = titlesPages.registrationPage;
-      clearPageContainer();
+    // this.signUpLink.addEventListener('click', (e) => {
+    //   // e.preventDefault();
+    //   // history.pushState(
+    //   //   { page: '/#signup' },
+    //   //   titlesPages.registrationPage,
+    //   //   '#signup',
+    //   // );
+    //   // document.title = titlesPages.registrationPage;
+    //   // clearPageContainer();
 
-      const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
-      registrationFormDiv.createRegistrationForm();
-      receiveAccessToken();
+    //   // const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
+    //   // registrationFormDiv.createRegistrationForm();
+    //   // receiveAccessToken();
 
-      if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') ||
-        localStorage.getItem('newUser')
-      ) {
-        setHistoryPushStateToHome();
-      }
-    });
+    //   // if (
+    //   //   (localStorage.getItem('access_token_for_user') &&
+    //   //     localStorage.getItem('access_token_for_user') !== 'undefined') ||
+    //   //   localStorage.getItem('newUser')
+    //   // ) {
+    //   //   setHistoryPushStateToHome();
+    //   // }
+    // });
 
     return this.signUpLink;
   }
@@ -185,31 +185,31 @@ export default class Navbar {
     this.signInLink = tagCreator.createAndReturn();
     this.signInLink.setAttribute('href', '#signin');
 
-    this.signInLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
-      document.title = titlesPages.loginPage;
-      clearPageContainer();
+    // this.signInLink.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
+    //   document.title = titlesPages.loginPage;
+    //   clearPageContainer();
 
-      if (
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      ) {
-        const loginFormDiv = new LoginForm('pageContainer', 'log');
-        loginFormDiv.createLoginForm();
-        sendLoginPasswordToLocalStorage();
-        moveToRegistration();
-        moveToMainPage();
-      }
-      if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') ||
-        localStorage.getItem('newUser')
-      ) {
-        e.preventDefault();
-        setHistoryPushStateToHome();
-      }
-    });
+    //   if (
+    //     !localStorage.getItem('access_token_for_user') ||
+    //     localStorage.getItem('access_token_for_user') == 'undefined'
+    //   ) {
+    //     const loginFormDiv = new LoginForm('pageContainer', 'log');
+    //     loginFormDiv.createLoginForm();
+    //     sendLoginPasswordToLocalStorage();
+    //     moveToRegistration();
+    //     moveToMainPage();
+    //   }
+    //   if (
+    //     (localStorage.getItem('access_token_for_user') &&
+    //       localStorage.getItem('access_token_for_user') !== 'undefined') ||
+    //     localStorage.getItem('newUser')
+    //   ) {
+    //     e.preventDefault();
+    //     setHistoryPushStateToHome();
+    //   }
+    // });
 
     return this.signInLink;
   }
@@ -223,16 +223,16 @@ export default class Navbar {
       'to cart',
     );
     this.toCartLink = tagCreator.createAndReturn();
-    this.toCartLink.setAttribute('href', '#');
+    this.toCartLink.setAttribute('href', '#cart');
 
-    this.toCartLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
-      document.title = titlesPages.cartPage;
-      clearPageContainer();
+    // this.toCartLink.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
+    //   document.title = titlesPages.cartPage;
+    //   clearPageContainer();
 
-      pageContainer.getPageContainer().append(cartPage.getCartPage());
-    });
+    //   pageContainer.getPageContainer().append(cartPage.getCartPage());
+    // });
     return this.toCartLink;
   }
 
@@ -245,29 +245,29 @@ export default class Navbar {
       'profile',
     );
     this.userProfileLink = tagCreator.createAndReturn();
-    this.userProfileLink.setAttribute('href', '#');
+    this.userProfileLink.setAttribute('href', '#userprofile');
 
-    this.userProfileLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState(
-        { page: '/#userProfile' },
-        titlesPages.userProfilePage,
-        '#userProfile',
-      );
-      document.title = titlesPages.cartPage;
-      clearPageContainer();
+    // this.userProfileLink.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   history.pushState(
+    //     { page: '/#userProfile' },
+    //     titlesPages.userProfilePage,
+    //     '#userProfile',
+    //   );
+    //   document.title = titlesPages.cartPage;
+    //   clearPageContainer();
 
-      pageContainer
-        .getPageContainer()
-        .append(userProfilePage.getUserProfilePage());
+    //   pageContainer
+    //     .getPageContainer()
+    //     .append(userProfilePage.getUserProfilePage());
 
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
-    });
+    //   if (
+    //     localStorage.getItem('access_token_for_user') &&
+    //     localStorage.getItem('access_token_for_user') !== 'undefined'
+    //   ) {
+    //     getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+    //   } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+    // });
     return this.userProfileLink;
   }
 

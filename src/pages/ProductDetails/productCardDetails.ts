@@ -11,7 +11,6 @@ import ISliderImage from './InterfaceSliderImage';
 import { createButtonToCart } from '../../components/ProductCard/createBtnToCart';
 import { checkIsGoodInCart } from '../../components/ProductCard/infoIsGoodInCart';
 
-
 export function createProductCard(
   choosenGood: IResult,
   choosenVariant: IVariant,

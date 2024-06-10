@@ -8,7 +8,6 @@ import { ICart } from '../../pages/Cart/cartInterface';
 import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 export function createButtonToCart(resultId: string, price?: number) {
-
   let container;
 
   if (
@@ -89,7 +88,6 @@ export function createButtonToCart(resultId: string, price?: number) {
             infoCheckIsInCart.textContent = 'Already in cart!';
         }
       }
-
     }
 
     e.stopPropagation();

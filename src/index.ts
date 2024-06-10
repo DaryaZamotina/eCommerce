@@ -17,7 +17,7 @@ import UserProfilePage from './pages/UserProfile/userProfilePage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
-import { setHistoryPushStateToHome } from './components/Navbar/navbar';
+// import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
@@ -59,7 +59,7 @@ currentHash = getHash();
 export function setRoutingPage() {
   switch (currentHash) {
     case '':
-      history.pushState({ page: '#' }, titlesPages.homePage, '#');
+      // history.pushState({ page: '#' }, titlesPages.homePage, '#');
       document.title = titlesPages.homePage;
       clearPageContainer();
 
@@ -67,47 +67,47 @@ export function setRoutingPage() {
       break;
 
     case 'catalog':
-      history.pushState(
-        { page: '#catalog' },
-        titlesPages.catalogPage,
-        '#catalog',
-      );
+      // history.pushState(
+      //   { page: '#catalog' },
+      //   titlesPages.catalogPage,
+      //   '#catalog',
+      // );
       document.title = titlesPages.catalogPage;
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       catalogPage.sortListener();
 
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('access_token_for_user'),
-        );
-      } else if (
-        localStorage.getItem('anonym_access_token') &&
-        localStorage.getItem('anonym_access_token') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('anonym_access_token'),
-        );
-      } else if (
-        !localStorage.getItem('anonym_access_token') ||
-        localStorage.getItem('anonym_access_token') == 'undefined' ||
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      )
-        receiveAnonymusAccessToken();
+      // if (
+      //   localStorage.getItem('access_token_for_user') &&
+      //   localStorage.getItem('access_token_for_user') !== 'undefined'
+      // ) {
+      //   getProductsListInfoFromEcomm(
+      //     localStorage.getItem('access_token_for_user'),
+      //   );
+      // } else if (
+      //   localStorage.getItem('anonym_access_token') &&
+      //   localStorage.getItem('anonym_access_token') !== 'undefined'
+      // ) {
+      //   getProductsListInfoFromEcomm(
+      //     localStorage.getItem('anonym_access_token'),
+      //   );
+      // } else if (
+      //   !localStorage.getItem('anonym_access_token') ||
+      //   localStorage.getItem('anonym_access_token') == 'undefined' ||
+      //   !localStorage.getItem('access_token_for_user') ||
+      //   localStorage.getItem('access_token_for_user') == 'undefined'
+      // )
+      //   receiveAnonymusAccessToken();
 
       break;
 
     case 'signup':
-      history.pushState(
-        { page: '#signup' },
-        titlesPages.registrationPage,
-        '#signup',
-      );
+      // history.pushState(
+      //   { page: '#signup' },
+      //   titlesPages.registrationPage,
+      //   '#signup',
+      // );
       document.title = titlesPages.registrationPage;
       clearPageContainer();
 
@@ -120,7 +120,7 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        // history.pushState({ page: '#' }, titlesPages.homePage, '#');
         document.title = titlesPages.homePage;
         clearPageContainer();
 
@@ -129,7 +129,7 @@ export function setRoutingPage() {
       break;
 
     case 'signin':
-      history.pushState({ page: '#signin' }, titlesPages.loginPage, '#signin');
+      // history.pushState({ page: '#signin' }, titlesPages.loginPage, '#signin');
       document.title = titlesPages.loginPage;
       clearPageContainer();
 
@@ -149,7 +149,7 @@ export function setRoutingPage() {
         localStorage.getItem('userLogin') &&
         localStorage.getItem('userLogin') !== 'undefined'
       ) {
-        history.pushState({ page: '#' }, titlesPages.homePage, '#');
+        // history.pushState({ page: '#' }, titlesPages.homePage, '#');
         document.title = titlesPages.homePage;
         clearPageContainer();
 
@@ -158,7 +158,7 @@ export function setRoutingPage() {
       break;
 
     case 'cart':
-      history.pushState({ page: '#cart' }, titlesPages.cartPage, '#cart');
+      // history.pushState({ page: '#cart' }, titlesPages.cartPage, '#cart');
       document.title = titlesPages.cartPage;
       clearPageContainer();
 
@@ -168,11 +168,11 @@ export function setRoutingPage() {
     case 'userProfile':
     case 'userprofile':
     case 'profile':
-      history.pushState(
-        { page: '#userProfile' },
-        titlesPages.userProfilePage,
-        '#userProfile',
-      );
+      // history.pushState(
+      //   { page: '#userProfile' },
+      //   titlesPages.userProfilePage,
+      //   '#userProfile',
+      // );
       document.title = titlesPages.userProfilePage;
       clearPageContainer();
 
@@ -193,11 +193,11 @@ export function setRoutingPage() {
           getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
         } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
       } else {
-        history.pushState(
-          { page: '#signin' },
-          titlesPages.loginPage,
-          '#signin',
-        );
+        // history.pushState(
+        //   { page: '#signin' },
+        //   titlesPages.loginPage,
+        //   '#signin',
+        // );
         document.title = titlesPages.loginPage;
         const loginFormDiv = new LoginForm('pageContainer', 'log');
         loginFormDiv.createLoginForm();
@@ -209,11 +209,11 @@ export function setRoutingPage() {
       break;
 
     default:
-      history.pushState(
-        { page: 'notFound' },
-        titlesPages.notFoundPage,
-        `#${currentHash}`,
-      );
+      // history.pushState(
+      //   { page: 'notFound' },
+      //   titlesPages.notFoundPage,
+      //   `#${currentHash}`,
+      // );
       document.title = titlesPages.notFoundPage;
       clearPageContainer();
       pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());

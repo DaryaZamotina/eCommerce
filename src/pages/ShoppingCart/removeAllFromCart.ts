@@ -1,3 +1,1 @@
-export function removeAllFromCart() {
-    
-}
+export function removeAllFromCart() {}

@@ -17,7 +17,13 @@ export function checkIsGoodInCart(resultId: string, price: number) {
   infoCheckIsInCart.className = 'infoCheckIsInCart';
   infoCheckIsInCart.id = `infoCheckIsInCart_${resultId}`;
   infoCheckIsInCart.textContent = '';
-  container.prepend(infoCheckIsInCart);
+  container.append(infoCheckIsInCart);
+
+  const removeLink = document.createElement('div');
+  removeLink.className = 'removeLink';
+  removeLink.id = `removeLink _${resultId}`;
+  removeLink.textContent = '';
+  container.append(removeLink);
 
   if (localStorage.getItem('newCart')) {
     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
@@ -27,8 +33,15 @@ export function checkIsGoodInCart(resultId: string, price: number) {
       if (
         goods[i].productId == resultId &&
         price == goods[i].price.value.centAmount / 100
-      )
+      ) {
+        removeLink.textContent = 'Remove from cart';
         infoCheckIsInCart.textContent = 'Already in cart!';
+
+        let buttonToCart = <HTMLButtonElement>(
+          document.getElementById(`btnToCart_${resultId}`)
+        );
+        buttonToCart.disabled = true;
+      }
     }
   }
 }

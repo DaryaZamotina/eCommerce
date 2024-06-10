@@ -132,8 +132,10 @@ export default class ProductsCardInCatalog {
     }
 
     createButtonToCart(resultId, price);
-    checkIsGoodInCart(resultId, oldPrice);
-    checkIsGoodInCart(resultId, price);
+
+    if (result.masterVariant.prices[0].discounted !== undefined) {
+      checkIsGoodInCart(resultId, oldPrice);
+    } else checkIsGoodInCart(resultId, price);
   }
 
   private openProduct(id: string) {

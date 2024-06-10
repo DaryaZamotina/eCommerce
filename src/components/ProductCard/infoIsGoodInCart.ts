@@ -1,7 +1,11 @@
 import { ICart } from '../../pages/Cart/cartInterface';
 import { removeProductFromCart } from '../../pages/Cart/removeProductFromCart';
 
-export function checkIsGoodInCart(resultId: string, price: number, token?: string) {
+export function checkIsGoodInCart(
+  resultId: string,
+  price: number,
+  token?: string,
+) {
   let container;
 
   if (
@@ -43,9 +47,9 @@ export function checkIsGoodInCart(resultId: string, price: number, token?: strin
         );
         buttonToCart.disabled = true;
 
-        removeLink.addEventListener("click", function() {
-          removeProductFromCart(localStorage.getItem("IDCart"), `${resultId}`);
-        })
+        removeLink.addEventListener('click', function () {
+          removeProductFromCart(localStorage.getItem('IDCart'), `${resultId}`);
+        });
       }
     }
   }

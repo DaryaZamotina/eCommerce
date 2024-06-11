@@ -26,7 +26,7 @@ export default async function fetchProductsSearch() {
     }
 
     const result = await response.json();
-    console.log(result);
+    console.log(`Result fetchProductsSearch: ${result}`);
   } catch (error) {
     console.error('Error fetching products:', error);
   }

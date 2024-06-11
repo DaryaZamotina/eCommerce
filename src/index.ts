@@ -22,7 +22,6 @@ import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 
-
 import TagCreator from './module/tagCreator';
 import '../public/assets/css/shoppingCart.css';
 import createShoppingCartPage from './pages/ShoppingCart/createShoppingCartPage';

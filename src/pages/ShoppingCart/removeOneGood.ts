@@ -1,7 +1,7 @@
 import { ICart } from '../Cart/cartInterface';
 import { removeProductFromCart } from '../Cart/removeProductFromCart';
 
-export function removeOneGoodFromCart(price: number, id: string) {
+export function removeOneGoodFromCart(price?: number, id?: string) {
   const btnRemove = document.getElementById(`buttonDeleteFromCart_${id}`);
 
   let cart: ICart = JSON.parse(localStorage.getItem('newCart'));

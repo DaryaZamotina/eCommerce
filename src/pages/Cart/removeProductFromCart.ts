@@ -10,9 +10,10 @@ export async function removeProductFromCart(
 
   let info = JSON.parse(localStorage.getItem('newCart'));
   version = info.version;
+  localStorage.setItem('versionOfCart', info.version);
 
   let data = JSON.stringify({
-    version: version,
+    version: Number(localStorage.getItem('versionOfCart')),
     actions: [
       {
         action: 'removeLineItem',
@@ -53,6 +54,7 @@ export async function removeProductFromCart(
   removeProduct(link)
     .then((output) => {
       localStorage.setItem('newCart', output);
+      localStorage.setItem('versionOfCart', JSON.parse(output).version);
       return output;
     })
     .catch((err) => console.log(err));

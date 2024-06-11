@@ -19,6 +19,10 @@ import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
 
+import TagCreator from './module/tagCreator';
+import '../public/assets/css/shoppingCart.css';
+import createShoppingCartPage from './pages/ShoppingCart/createShoppingCartPage';
+
 const { body } = document;
 const appContainer = new AppContainer();
 export const pageContainer = new PageContainer();
@@ -170,3 +174,25 @@ window.addEventListener('DOMContentLoaded', () => {
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();
 }
+
+// TODO:
+// Пока что корзина здесь, пока не настроим роутинг
+// ---
+
+(function createButtonShoppingCart() {
+  const button = new TagCreator(
+    'button',
+    'buttonShoppingCart',
+    'buttonShoppingCart',
+    'body',
+    'Shopping Cart',
+  );
+  button.createAndAppend();
+  document
+    .getElementById('buttonShoppingCart')
+    .addEventListener('click', () => {
+      createShoppingCartPage();
+    });
+})();
+
+// ---

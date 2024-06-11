@@ -127,7 +127,7 @@ export default class CreateCardProduct {
     );
     cardProductTotalPrice.createAndAppend();
 
-//-----------------include remove from cart button
+    //-----------------include remove from cart button
     const buttonDeleteFromCart = new TagCreator(
       'button',
       'buttonDeleteFromCart',
@@ -139,7 +139,7 @@ export default class CreateCardProduct {
     buttonDeleteFromCart.createAndAppend();
 
     removeOneGoodFromCart(price, `${elem.id}`);
-    
+
     //-----------------------
   }
 }

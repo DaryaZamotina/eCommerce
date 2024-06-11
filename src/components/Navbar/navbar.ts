@@ -24,6 +24,7 @@ import {
   ifAuthThenDisplayNone,
   ifAnonimThenDisplayNone,
 } from '../../utils/changeSingUpLogoutButtons';
+import createShoppingCartPage from '../../pages/ShoppingCart/createShoppingCartPage';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -229,9 +230,10 @@ export default class Navbar {
       e.preventDefault();
       history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
       document.title = titlesPages.cartPage;
-      clearPageContainer();
+      // clearPageContainer();
 
-      pageContainer.getPageContainer().append(cartPage.getCartPage());
+      // pageContainer.getPageContainer().append(cartPage.getCartPage());
+      createShoppingCartPage();
     });
     return this.toCartLink;
   }

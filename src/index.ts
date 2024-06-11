@@ -165,9 +165,10 @@ export function setRoutingPage() {
     case 'cart':
       history.pushState({ page: '#cart' }, titlesPages.cartPage, '#cart');
       document.title = titlesPages.cartPage;
-      clearPageContainer();
+      // clearPageContainer();
 
-      pageContainer.getPageContainer().append(cartPage.getCartPage());
+      // pageContainer.getPageContainer().append(cartPage.getCartPage());
+      createShoppingCartPage();
       break;
 
     case 'userProfile':
@@ -236,24 +237,16 @@ window.addEventListener('popstate', () => {
   setRoutingPage();
 });
 
-window.addEventListener('DOMContentLoaded', () => {
-  currentHash = getHash();
-  setRoutingPage();
-});
+// TODO:
+// Этот кусок кода вызывает дубликацию слушателей
+// ---
+
+// window.addEventListener('DOMContentLoaded', () => {
+//   currentHash = getHash();
+//   setRoutingPage();
+// });
+
+// ---
 
 // Переместила сюда эту функцию, чтобы анонимный токен был получен всегда в начале работы приложения, а то сейчас он часто идёт после запроса на регистрацию, из-за этого в запросе регистрации возникает ошибка.
 receiveAnonymusAccessToken();
-
-// TODO:
-// Пока что корзина здесь, пока не настроим роутинг
-// ---
-
-(function createButtonShoppingCart() {
-  const button = new TagCreator('button', 'buttonShoppingCart', 'buttonShoppingCart', 'body', 'Shopping Cart');
-  button.createAndAppend();
-  document.getElementById('buttonShoppingCart').addEventListener('click', () => {
-    createShoppingCartPage();
-  });
-})();
-
-// ---

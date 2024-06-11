@@ -1,6 +1,7 @@
 import TagCreator from '../../module/tagCreator';
 import ICardProduct from './interfaceCardProduct';
 import { LineItem } from './interfaceCardProduct';
+import { removeOneGoodFromCart } from './removeOneGood';
 
 export default class CreateCardProduct {
   private data: ICardProduct;
@@ -125,5 +126,20 @@ export default class CreateCardProduct {
       `${elem.totalPrice.centAmount / 100} €`,
     );
     cardProductTotalPrice.createAndAppend();
+
+//-----------------include remove from cart button
+    const buttonDeleteFromCart = new TagCreator(
+      'button',
+      'buttonDeleteFromCart',
+      `buttonDeleteFromCart_${elem.id}`,
+      `cardProductInfo_${elem.id}`,
+      'Remove from Cart',
+    );
+
+    buttonDeleteFromCart.createAndAppend();
+
+    removeOneGoodFromCart(price, `${elem.id}`);
+    
+    //-----------------------
   }
 }

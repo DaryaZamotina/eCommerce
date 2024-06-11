@@ -26,6 +26,7 @@ export async function createCart(id: string, token: string) {
       localStorage.setItem('newCart', output);
       let outputObj = JSON.parse(output);
       localStorage.setItem('IDCart', outputObj.id);
+      localStorage.setItem('versionOfCart', JSON.parse(output).version);
 
       console.log('newCart: ' + output);
       addProductToCart(outputObj.id, id, token);

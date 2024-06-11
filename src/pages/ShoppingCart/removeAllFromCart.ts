@@ -1,9 +1,7 @@
-export async function removeProductFromCart(
-  id: string,
-  lineItemId: string,
-  variantOfGood: number,
-  quantity: number,
-) {
+import { ICart } from '../Cart/cartInterface';
+
+export async function removeAllFromCart() {
+  let id = localStorage.getItem('IDCart');
   const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
 
   let version: number;
@@ -11,19 +9,6 @@ export async function removeProductFromCart(
   let info = JSON.parse(localStorage.getItem('newCart'));
   version = info.version;
   localStorage.setItem('versionOfCart', info.version);
-
-  let data = JSON.stringify({
-    version: Number(localStorage.getItem('versionOfCart')),
-    actions: [
-      {
-        action: 'removeLineItem',
-        lineItemId: lineItemId,
-        variantId: variantOfGood,
-        quantity: quantity,
-      },
-    ],
-  });
-  console.log('data = ' + data);
 
   let token: string;
   if (
@@ -37,6 +22,35 @@ export async function removeProductFromCart(
   )
     token = localStorage.getItem('anonym_access_token');
   console.log('token' + token);
+
+  let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+  let goods = cart.lineItems;
+
+  let arrayData = [];
+
+  for (let i = 0; i < goods.length; i++) {
+    let goods = cart.lineItems;
+    let lineItemID: string = goods[i].id;
+    let variantOfGood: number = goods[i].variant.id;
+    let quantity: number = goods[i].quantity;
+
+    let objectData = {
+      action: 'removeLineItem',
+      lineItemId: lineItemID,
+      variantId: variantOfGood,
+      quantity: quantity,
+    };
+    arrayData.push(objectData);
+
+    const cardProduct = document.getElementById(`cardProduct_${lineItemID}`);
+    cardProduct.remove();
+  }
+
+  let data = JSON.stringify({
+    version: Number(localStorage.getItem('versionOfCart')),
+    actions: arrayData,
+  });
+  console.log('data = ' + data);
 
   async function removeProduct(url: string) {
     const response = await fetch(url, {

@@ -26,7 +26,7 @@ export default interface ICardProduct {
   version: number;
   versionModifiedAt: string;
 }
-  
+
 interface CreatedBy {
   clientId: string;
   isPlatformClient: boolean;
@@ -67,7 +67,7 @@ interface State {
   state: {
     id: string;
     typeId: string;
-  }
+  };
 }
 
 interface TotalPrice {
@@ -80,7 +80,7 @@ interface TotalPrice {
 interface Price {
   discounted?: {
     value: Value;
-  }
+  };
   id: string;
   value: Value;
   key: string;

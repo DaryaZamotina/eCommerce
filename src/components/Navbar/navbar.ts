@@ -131,7 +131,9 @@ export default class Navbar {
         !localStorage.getItem('access_token_for_user') ||
         localStorage.getItem('access_token_for_user') == 'undefined'
       )
-        receiveAnonymusAccessToken();
+        if (!localStorage.getItem('anonym_token_auth')) {
+          receiveAnonymusAccessToken();
+        }
     });
 
     return this.catalogLink;

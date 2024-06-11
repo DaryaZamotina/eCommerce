@@ -40,11 +40,19 @@ export default class RegistrationForm {
     const inputs = new CreateInputForForm(InputsForFormRegistration, this.form);
     inputs.createAndAppend();
 
-    const buttonToSendRegDataToServer = document.getElementById(
-      'registrationForm__button',
-    ) as HTMLButtonElement;
+    // const buttonToSendRegDataToServer = document.getElementById(
+    //   'registrationForm__button',
+    // ) as HTMLButtonElement;
 
-    buttonToSendRegDataToServer.addEventListener('click', function () {
+    // buttonToSendRegDataToServer.addEventListener('click', function () {
+    //   const tokenForAuth = localStorage.getItem('access_token_auth');
+    //   forwardRegDatatoServer(tokenForAuth);
+    // });
+    // moveToLogin();
+    const regForm = document.getElementById('registrationForm');
+
+    regForm.addEventListener('submit', function (e) {
+      e.preventDefault();
       const tokenForAuth = localStorage.getItem('access_token_auth');
       forwardRegDatatoServer(tokenForAuth);
     });

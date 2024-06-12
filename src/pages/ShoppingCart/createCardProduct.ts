@@ -119,14 +119,18 @@ export default class CreateCardProduct {
     );
     cardProductQuantityUpdate.createAndAppend();
 
-    let quantityInput = <HTMLInputElement>document.getElementById(`cardProductQuantityUpdate_${elem.id}`)
-    quantityInput.type = "range";
-    quantityInput.step = "1";
-    quantityInput.min = "0";
-    quantityInput.max = "100";
-    quantityInput.value =  `${elem.quantity}`;
+    let quantityInput = <HTMLInputElement>(
+      document.getElementById(`cardProductQuantityUpdate_${elem.id}`)
+    );
+    quantityInput.type = 'range';
+    quantityInput.step = '1';
+    quantityInput.min = '0';
+    quantityInput.max = '100';
+    quantityInput.value = `${elem.quantity}`;
 
-    let quantityExactValue = document.getElementById(`cardProductQuantity_${elem.id}`);
+    let quantityExactValue = document.getElementById(
+      `cardProductQuantity_${elem.id}`,
+    );
 
     const buttonChangeQuantity = new TagCreator(
       'button',
@@ -137,13 +141,14 @@ export default class CreateCardProduct {
     );
     buttonChangeQuantity.createAndAppend();
 
-    let buttonChange = document.getElementById(`buttonChangeQuantity_${elem.id}`);
+    let buttonChange = document.getElementById(
+      `buttonChangeQuantity_${elem.id}`,
+    );
 
     buttonChange.addEventListener('click', () => {
       quantityExactValue.textContent = `Quantity: ${quantityInput.value}`;
       updateQuantity(elem.id, Number(quantityInput.value));
-    })
-
+    });
 
     const cardProductTitleTotalPrice = new TagCreator(
       'div',

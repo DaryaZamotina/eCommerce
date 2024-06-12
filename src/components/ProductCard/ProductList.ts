@@ -1,4 +1,5 @@
 import TagCreator from '../../module/tagCreator';
+import '../../../public/assets/css/products.css';
 //import CreateInputForForm from '../creatorInputForForm';
 //import InputsForFormLogin from '../../Helpers/Inputs/InputsForFormLogin';
 import '../../../public/assets/css/body.css';
@@ -11,11 +12,16 @@ import { openProductCard } from './openProductCard';
 import MasterData from './masterData';
 import { getSlider } from '../../pages/ProductDetails/slider';
 
+import { createButtonToCart } from './createBtnToCart';
+
 import { getInfoFromEcommByIDofGood } from '../../pages/ProductDetails/getInfoFromEcommByIDofGood';
 import { clearPageContainer } from '../..';
 import { createProductCard } from '../../pages/ProductDetails/productCardDetails';
+import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 import IResultNew from './InterfaceProductNew';
+import { removeProductFromCart } from '../../pages/Cart/removeProductFromCart';
+import { ICart } from '../../pages/Cart/cartInterface';
 
 export function createProductsList(n: number, obj: Array<IResult>) {
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
@@ -35,6 +41,7 @@ export default class ProductsCardInCatalog {
   }
 
   public createProductsCardInCatalog() {
+    localStorage.setItem('variantOfGood', String(1));
     let result: IResultNew;
     let resultId: string;
     if ('masterData' in this.card) {
@@ -124,6 +131,56 @@ export default class ProductsCardInCatalog {
         `${oldPrice} €`,
       );
       catalogPriceTitleOld.createAndAppend();
+    }
+
+    createButtonToCart(resultId, price);
+
+    if (result.masterVariant.prices[0].discounted !== undefined) {
+      checkIsGoodInCart(resultId, oldPrice);
+    } else checkIsGoodInCart(resultId, price);
+
+    if (
+      document.getElementById(`removeLink _${resultId}`) &&
+      document.getElementById(`infoCheckIsInCart _${resultId}`)
+    ) {
+      let removeLink = document.getElementById(`removeLink _${resultId}`);
+      let infoCheckIsInCart = document.getElementById(
+        `infoCheckIsInCart _${resultId}`,
+      );
+
+      let buttonToCart = <HTMLButtonElement>(
+        document.getElementById(`btnToCart_${resultId}`)
+      );
+
+      let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+      let goods = cart.lineItems;
+
+      for (let i = 0; i < goods.length; i++) {
+        if (
+          goods[i].productId == resultId &&
+          price == goods[i].price.value.centAmount / 100
+        ) {
+          removeLink.textContent = 'Remove from cart';
+          infoCheckIsInCart.textContent = 'Already in cart!';
+
+          let lineItemID: string = goods[i].id;
+          let variantOfGood: number = goods[i].variant.id;
+          let quantity: number = goods[i].quantity;
+
+          removeLink.addEventListener('click', function (e) {
+            removeProductFromCart(
+              localStorage.getItem('IDCart'),
+              `${lineItemID}`,
+              variantOfGood,
+              quantity,
+            );
+            removeLink.remove();
+            infoCheckIsInCart.remove();
+            buttonToCart.disabled = false;
+            e.stopPropagation();
+          });
+        }
+      }
     }
   }
 

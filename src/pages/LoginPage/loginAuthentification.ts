@@ -65,13 +65,16 @@ export function sendDataToEComm() {
         header.getNavbar().addOrRemoveLinks();
         // const loginFormDiv = document.getElementById('loginForm');
         // loginFormDiv.remove();
-        createModalWindow('You are successfully authenticated!');
-        const modalWindow = document.getElementById('modalWindow');
-        setTimeout(() => {
-          modalWindow.remove();
-        }, 3000);
-        setRoutingPage();
+        // createModalWindow('You are successfully authenticated!');
+        // const modalWindow = document.getElementById('modalWindow');
+        // setTimeout(() => {
+        //   modalWindow.remove();
+        // }, 3000);
+        // setTimeout(() => {
+        //   modalWindow.remove();
+        // }, 3000);
       }
+      setRoutingPage();
       return info;
     })
     .catch((err) => console.log(err));

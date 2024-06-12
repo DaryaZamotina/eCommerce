@@ -8,19 +8,21 @@ import { sendLoginPasswordToLocalStorage } from './pages/LoginPage/inputsLoginPa
 import {
   moveToRegistration,
   moveToMainPage,
-  directMoveToMainPage,
 } from './pages/LoginPage/buttonsToRegToHome';
 import HomePage from './pages/Home/homePage';
 import CatalogPage from './pages/Catalog/catalogPage';
 import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
+import AboutUsPage from './pages/AboutUs/aboutUsPage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
-import { setHistoryPushStateToHome } from './components/Navbar/navbar';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
-import { getProductsListInfoFromEcomm } from './components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
+
+import TagCreator from './module/tagCreator';
+import '../public/assets/css/shoppingCart.css';
+import createShoppingCartPage from './pages/ShoppingCart/createShoppingCartPage';
 
 const { body } = document;
 const appContainer = new AppContainer();
@@ -31,6 +33,7 @@ export const homePage = new HomePage();
 export const catalogPage = new CatalogPage();
 export const cartPage = new CartPage();
 export const userProfilePage = new UserProfilePage();
+const aboutUsPage = new AboutUsPage();
 export const notFoundPage = new NotFoundPage();
 
 let currentHash = '';
@@ -51,15 +54,15 @@ export function clearPageContainer() {
 
 function getHash() {
   const currentHash = window.location.hash.slice(1);
-  console.log(currentHash);
   return currentHash;
 }
 currentHash = getHash();
 
+const urlOrigin = window.location.origin;
+
 export function setRoutingPage() {
   switch (currentHash) {
     case '':
-      history.pushState({ page: '#' }, titlesPages.homePage, '#');
       document.title = titlesPages.homePage;
       clearPageContainer();
 
@@ -67,47 +70,15 @@ export function setRoutingPage() {
       break;
 
     case 'catalog':
-      history.pushState(
-        { page: '#catalog' },
-        titlesPages.catalogPage,
-        '#catalog',
-      );
       document.title = titlesPages.catalogPage;
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
       catalogPage.sortListener();
 
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('access_token_for_user'),
-        );
-      } else if (
-        localStorage.getItem('anonym_access_token') &&
-        localStorage.getItem('anonym_access_token') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('anonym_access_token'),
-        );
-      } else if (
-        !localStorage.getItem('anonym_access_token') ||
-        localStorage.getItem('anonym_access_token') == 'undefined' ||
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      )
-        receiveAnonymusAccessToken();
-
       break;
 
     case 'signup':
-      history.pushState(
-        { page: '#signup' },
-        titlesPages.registrationPage,
-        '#signup',
-      );
       document.title = titlesPages.registrationPage;
       clearPageContainer();
 
@@ -120,100 +91,73 @@ export function setRoutingPage() {
           localStorage.getItem('access_token_for_user') !== 'undefined') ||
         localStorage.getItem('newUser')
       ) {
-        history.pushState({ page: '#' }, titlesPages.homePage, '#');
-        document.title = titlesPages.homePage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(homePage.getHomePage());
+        window.location.replace(`${urlOrigin}/#`);
       }
       break;
 
     case 'signin':
-      history.pushState({ page: '#signin' }, titlesPages.loginPage, '#signin');
       document.title = titlesPages.loginPage;
-      clearPageContainer();
 
       if (
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
+        !localStorage.getItem('access_token_for_user') &&
+        !localStorage.getItem('userLogin') &&
+        !localStorage.getItem('newUser')
       ) {
+        clearPageContainer();
         const loginFormDiv = new LoginForm('pageContainer', 'log');
         loginFormDiv.createLoginForm();
         sendLoginPasswordToLocalStorage();
         moveToRegistration();
         moveToMainPage();
-      }
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined' &&
-        localStorage.getItem('userLogin') &&
-        localStorage.getItem('userLogin') !== 'undefined'
-      ) {
-        history.pushState({ page: '#' }, titlesPages.homePage, '#');
-        document.title = titlesPages.homePage;
-        clearPageContainer();
-
-        pageContainer.getPageContainer().append(homePage.getHomePage());
+      } else {
+        window.location.replace(`${urlOrigin}/#`);
       }
       break;
 
     case 'cart':
-      history.pushState({ page: '#cart' }, titlesPages.cartPage, '#cart');
       document.title = titlesPages.cartPage;
       clearPageContainer();
 
       pageContainer.getPageContainer().append(cartPage.getCartPage());
       break;
+    case 'aboutus':
+    case 'aboutUs':
+      document.title = titlesPages.aboutUsPage;
+      clearPageContainer();
 
+      pageContainer.getPageContainer().append(aboutUsPage.getAboutUsPage());
+
+      break;
     case 'userProfile':
     case 'userprofile':
     case 'profile':
-      history.pushState(
-        { page: '#userProfile' },
-        titlesPages.userProfilePage,
-        '#userProfile',
-      );
-      document.title = titlesPages.userProfilePage;
-      clearPageContainer();
-
       if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined' &&
-        localStorage.getItem('userLogin') &&
-        localStorage.getItem('userLogin') !== 'undefined'
+        !localStorage.getItem('access_token_for_user') &&
+        !localStorage.getItem('newUser')
       ) {
-        pageContainer
-          .getPageContainer()
-          .append(userProfilePage.getUserProfilePage());
-
+        window.location.replace(`${urlOrigin}/#signin`);
+      } else {
         if (
           localStorage.getItem('access_token_for_user') &&
           localStorage.getItem('access_token_for_user') !== 'undefined'
         ) {
           getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-        } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
-      } else {
-        history.pushState(
-          { page: '#signin' },
-          titlesPages.loginPage,
-          '#signin',
-        );
-        document.title = titlesPages.loginPage;
-        const loginFormDiv = new LoginForm('pageContainer', 'log');
-        loginFormDiv.createLoginForm();
-        sendLoginPasswordToLocalStorage();
-        moveToRegistration();
-        moveToMainPage();
+        } else if (
+          localStorage.getItem('access_token_auth') &&
+          localStorage.getItem('access_token_auth') !== 'undefined'
+        ) {
+          getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+        }
+        document.title = titlesPages.userProfilePage;
+        clearPageContainer();
+        pageContainer
+          .getPageContainer()
+          .append(userProfilePage.getUserProfilePage());
       }
 
       break;
 
     default:
-      history.pushState(
-        { page: 'notFound' },
-        titlesPages.notFoundPage,
-        `#${currentHash}`,
-      );
       document.title = titlesPages.notFoundPage;
       clearPageContainer();
       pageContainer.getPageContainer().append(notFoundPage.getNotFoundPage());
@@ -236,5 +180,28 @@ window.addEventListener('DOMContentLoaded', () => {
   setRoutingPage();
 });
 
-// Переместила сюда эту функцию, чтобы анонимный токен был получен всегда в начале работы приложения, а то сейчас он часто идёт после запроса на регистрацию, из-за этого в запросе регистрации возникает ошибка.
-receiveAnonymusAccessToken();
+if (!localStorage.getItem('anonym_token_auth')) {
+  receiveAnonymusAccessToken();
+}
+
+// TODO:
+// Пока что корзина здесь, пока не настроим роутинг
+// ---
+
+(function createButtonShoppingCart() {
+  const button = new TagCreator(
+    'button',
+    'buttonShoppingCart',
+    'buttonShoppingCart',
+    'body',
+    'Shopping Cart',
+  );
+  button.createAndAppend();
+  document
+    .getElementById('buttonShoppingCart')
+    .addEventListener('click', () => {
+      createShoppingCartPage();
+    });
+})();
+
+// ---

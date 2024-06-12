@@ -28,9 +28,11 @@ export function sendLoginPasswordToLocalStorage() {
     localStorage.setItem('password', inputLoginPassword.value);
   });
 
-  const buttonLogin = <HTMLButtonElement>document.querySelector('.buttonLogin');
+  // const buttonLogin = <HTMLButtonElement>document.querySelector('.buttonLogin');
 
-  buttonLogin.addEventListener('click', function () {
+  const loginForm = document.getElementById('loginForm');
+  loginForm.addEventListener('submit', function (e) {
+    e.preventDefault();
     if (localStorage.getItem('email') && localStorage.getItem('password')) {
       console.log('email = ' + localStorage.getItem('email'));
       console.log('password = ' + localStorage.getItem('password'));

@@ -1,0 +1,104 @@
+.buttonShoppingCart {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 3;
+}
+
+.shoppingCartContainer {
+    display: flex;
+    flex-direction: row;
+}
+
+.shoppingCart_mainContaine {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
+}
+
+.shoppingCart_secondContaine {
+    display: flex;
+    flex-direction: column;
+    width: 20rem;
+}
+
+.cardProduct {
+    display: flex;
+    flex-direction: row;
+    margin: 1rem;
+    padding: 1rem;
+    border: 1px solid gray;
+    border-radius: 1rem;
+}
+
+.cardProductImg {
+    width: 18rem;
+    height: 18rem;
+    background-size: 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.cardProductInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+.cardProductTitlePrice,
+.cardProductQuantity,
+.cardProductTitleTotalPrice {
+    margin-top: 1rem;
+}
+
+.cardProductPrice {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+}
+
+.cardProductPriceOld {
+    margin-left: 1rem;
+    color: gray;
+    text-decoration: line-through;
+}
+
+.cardProductTotalPrice {
+    margin-top: 1rem;
+    color: darkgreen;
+    font-weight: bold;
+}
+
+.buttonRemoveAll {
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 0px solid black;
+    background-image: linear-gradient(to right, #708d58 0%, #2b3b33 51%, #708d58 100%);
+    background-size: 200% auto;
+    background-position: left top;
+    border-color: transparent;
+    transition: all 0.5s;
+    color: white;
+    cursor: pointer;
+}
+
+.buttonRemoveAll:hover {
+background-position: right bottom;
+}
+
+.buttonDeleteFromCart {
+    margin-top: 2rem;
+    border-radius: 0.5rem;
+    outline: none;
+    border: 0px solid black;
+    background-image: linear-gradient(to right, #708d58 0%, #2b3b33 51%, #708d58 100%);
+    background-size: 200% auto;
+    background-position: left top;
+    border-color: transparent;
+    transition: all 0.5s;
+    color: white;
+    cursor: pointer;
+}
+.buttonDeleteFromCart:hover {
+    background-position: right bottom;
+    }

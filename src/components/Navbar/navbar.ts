@@ -1,25 +1,15 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/navbar.css';
 import '../../../public/assets/css/header.css';
-import LoginForm from '../../pages/LoginPage/loginForm';
-import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
-import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
-import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
-import RegistrationForm from '../../pages/Registration/registrationForm';
-import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import {
   clearPageContainer,
   pageContainer,
   homePage,
   catalogPage,
-  cartPage,
-  userProfilePage,
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
-import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
-import { editUserData } from '../../pages/UserProfile/editUserData';
 import {
   ifAuthThenDisplayNone,
   ifAnonimThenDisplayNone,
@@ -40,7 +30,7 @@ export default class Navbar {
 
   private catalogLink: HTMLElement;
 
-  private toCartLink: HTMLElement;
+  private aboutUsLink: HTMLElement;
 
   private userProfileLink: HTMLElement;
 
@@ -52,7 +42,7 @@ export default class Navbar {
     this.catalogLink = this.createCatalogLink();
     this.signUpLink = this.createSignUpLink();
     this.signInLink = this.createSignInLink();
-    this.toCartLink = this.createToCartLink();
+    this.aboutUsLink = this.createAboutUsLink();
     this.userProfileLink = this.createUserProfileLink();
     this.logoutLink = this.createLogoutLink();
     this.addOrRemoveLinks();
@@ -75,8 +65,8 @@ export default class Navbar {
     return this.signInLink;
   }
 
-  public getToCartLink() {
-    return this.toCartLink;
+  public getAboutUsLink() {
+    return this.aboutUsLink;
   }
 
   public getUserProfileLink(): HTMLElement {
@@ -131,7 +121,9 @@ export default class Navbar {
         !localStorage.getItem('access_token_for_user') ||
         localStorage.getItem('access_token_for_user') == 'undefined'
       )
-        receiveAnonymusAccessToken();
+        if (!localStorage.getItem('anonym_token_auth')) {
+          receiveAnonymusAccessToken();
+        }
     });
 
     return this.catalogLink;
@@ -146,30 +138,30 @@ export default class Navbar {
       'sign up',
     );
     this.signUpLink = tagCreator.createAndReturn();
-    this.signUpLink.setAttribute('href', '#signin');
+    this.signUpLink.setAttribute('href', '#signup');
 
-    this.signUpLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState(
-        { page: '/#signup' },
-        titlesPages.registrationPage,
-        '#signup',
-      );
-      document.title = titlesPages.registrationPage;
-      clearPageContainer();
+    // this.signUpLink.addEventListener('click', (e) => {
+    //   // e.preventDefault();
+    //   // history.pushState(
+    //   //   { page: '/#signup' },
+    //   //   titlesPages.registrationPage,
+    //   //   '#signup',
+    //   // );
+    //   // document.title = titlesPages.registrationPage;
+    //   // clearPageContainer();
 
-      const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
-      registrationFormDiv.createRegistrationForm();
-      receiveAccessToken();
+    //   // const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
+    //   // registrationFormDiv.createRegistrationForm();
+    //   // receiveAccessToken();
 
-      if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') ||
-        localStorage.getItem('newUser')
-      ) {
-        setHistoryPushStateToHome();
-      }
-    });
+    //   // if (
+    //   //   (localStorage.getItem('access_token_for_user') &&
+    //   //     localStorage.getItem('access_token_for_user') !== 'undefined') ||
+    //   //   localStorage.getItem('newUser')
+    //   // ) {
+    //   //   setHistoryPushStateToHome();
+    //   // }
+    // });
 
     return this.signUpLink;
   }
@@ -185,55 +177,55 @@ export default class Navbar {
     this.signInLink = tagCreator.createAndReturn();
     this.signInLink.setAttribute('href', '#signin');
 
-    this.signInLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
-      document.title = titlesPages.loginPage;
-      clearPageContainer();
+    // this.signInLink.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
+    //   document.title = titlesPages.loginPage;
+    //   clearPageContainer();
 
-      if (
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      ) {
-        const loginFormDiv = new LoginForm('pageContainer', 'log');
-        loginFormDiv.createLoginForm();
-        sendLoginPasswordToLocalStorage();
-        moveToRegistration();
-        moveToMainPage();
-      }
-      if (
-        (localStorage.getItem('access_token_for_user') &&
-          localStorage.getItem('access_token_for_user') !== 'undefined') ||
-        localStorage.getItem('newUser')
-      ) {
-        e.preventDefault();
-        setHistoryPushStateToHome();
-      }
-    });
+    //   if (
+    //     !localStorage.getItem('access_token_for_user') ||
+    //     localStorage.getItem('access_token_for_user') == 'undefined'
+    //   ) {
+    //     const loginFormDiv = new LoginForm('pageContainer', 'log');
+    //     loginFormDiv.createLoginForm();
+    //     sendLoginPasswordToLocalStorage();
+    //     moveToRegistration();
+    //     moveToMainPage();
+    //   }
+    //   if (
+    //     (localStorage.getItem('access_token_for_user') &&
+    //       localStorage.getItem('access_token_for_user') !== 'undefined') ||
+    //     localStorage.getItem('newUser')
+    //   ) {
+    //     e.preventDefault();
+    //     setHistoryPushStateToHome();
+    //   }
+    // });
 
     return this.signInLink;
   }
 
-  private createToCartLink() {
+  private createAboutUsLink() {
     const tagCreator = new TagCreator(
       'a',
-      'to-cart-link',
-      'toCartLink',
+      'about-us-link',
+      'aboutUsLink',
       '',
-      'to cart',
+      'about us',
     );
-    this.toCartLink = tagCreator.createAndReturn();
-    this.toCartLink.setAttribute('href', '#');
+    this.aboutUsLink = tagCreator.createAndReturn();
+    this.aboutUsLink.setAttribute('href', '#aboutus');
 
-    this.toCartLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
-      document.title = titlesPages.cartPage;
-      clearPageContainer();
+    // this.toCartLink.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
+    //   document.title = titlesPages.cartPage;
+    //   clearPageContainer();
 
-      pageContainer.getPageContainer().append(cartPage.getCartPage());
-    });
-    return this.toCartLink;
+    //   pageContainer.getPageContainer().append(cartPage.getCartPage());
+    // });
+    return this.aboutUsLink;
   }
 
   private createUserProfileLink() {
@@ -245,29 +237,29 @@ export default class Navbar {
       'profile',
     );
     this.userProfileLink = tagCreator.createAndReturn();
-    this.userProfileLink.setAttribute('href', '#');
+    this.userProfileLink.setAttribute('href', '#userprofile');
 
-    this.userProfileLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      history.pushState(
-        { page: '/#userProfile' },
-        titlesPages.userProfilePage,
-        '#userProfile',
-      );
-      document.title = titlesPages.cartPage;
-      clearPageContainer();
+    // this.userProfileLink.addEventListener('click', (e) => {
+    //   e.preventDefault();
+    //   history.pushState(
+    //     { page: '/#userProfile' },
+    //     titlesPages.userProfilePage,
+    //     '#userProfile',
+    //   );
+    //   document.title = titlesPages.cartPage;
+    //   clearPageContainer();
 
-      pageContainer
-        .getPageContainer()
-        .append(userProfilePage.getUserProfilePage());
+    //   pageContainer
+    //     .getPageContainer()
+    //     .append(userProfilePage.getUserProfilePage());
 
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-      } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
-    });
+    //   if (
+    //     localStorage.getItem('access_token_for_user') &&
+    //     localStorage.getItem('access_token_for_user') !== 'undefined'
+    //   ) {
+    //     getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
+    //   } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
+    // });
     return this.userProfileLink;
   }
 
@@ -312,9 +304,9 @@ export default class Navbar {
 
     this.navbar.append(
       this.catalogLink,
+      this.aboutUsLink,
       this.signUpLink,
       this.signInLink,
-      this.toCartLink,
       this.userProfileLink,
       this.logoutLink,
     );

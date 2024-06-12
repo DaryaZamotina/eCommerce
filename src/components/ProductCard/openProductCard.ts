@@ -4,6 +4,7 @@ import MasterData from './masterData';
 import IResult from './InterfaceProduct';
 import TagCreator from '../../module/tagCreator';
 import { openAdditionalVariant } from '../../pages/ProductDetails/openAdditionalVariant';
+import { checkIsGoodInCart } from './infoIsGoodInCart';
 
 export function openProductCard(
   id?: string,
@@ -12,14 +13,13 @@ export function openProductCard(
 ) {
   clearPageContainer();
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
+  localStorage.setItem('variantOfGood', '1');
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
-  console.log('choosenVariants = ' + choosenVariant);
   const additionalVariants = choosenGood.masterData.current.variants;
   const categoriesImgs = choosenVariant.images;
   const price = choosenVariant.prices;
-
-  console.log('price = ' + JSON.stringify(price));
+  // localStorage.setItem("resultId", choosenGood.id);
 
   const priceAmount = price[0].value.centAmount / 100;
   createProductCard(choosenGood, choosenVariant, categoriesImgs);
@@ -32,6 +32,8 @@ export function openProductCard(
     `\u20ac ${priceAmount}`,
   );
   productPrice.createAndAppend();
+
+  checkIsGoodInCart(localStorage.getItem('idofGood'), priceAmount, token);
 
   if (price[0].discounted) {
     const prodPrice = document.getElementById('productPrice');
@@ -50,6 +52,7 @@ export function openProductCard(
 
   if (additionalVariants) {
     for (let j = 0; j < additionalVariants.length; j++) {
+      let num = j + 2;
       const btnToNewVariants = new TagCreator(
         'button',
         'btnToNewVariants',
@@ -65,6 +68,7 @@ export function openProductCard(
       btns.forEach((btn) => {
         btn.addEventListener('click', () => {
           openAdditionalVariant(additionalVariant);
+          localStorage.setItem('variantOfGood', String(num));
         });
       });
     }

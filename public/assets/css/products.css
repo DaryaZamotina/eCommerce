@@ -4,6 +4,42 @@
     margin: 5em;
 }
 
+.btnToCart {
+    background: url('../images/shopping-cart.png') no-repeat;
+    background-position: center;
+    background-size: 1rem;
+    border-radius: 1em;
+    background-color: #557938;
+    cursor: pointer;
+    color: white;
+    margin-left: 35%;
+
+}
+
+.btnToCart:hover {
+    opacity: 0.8;
+  }
+
+  .btnToCart:disabled {
+    background-color: #bc3a2e;
+  }
+  
+  .btnToCart:active {
+    transform: scale(0.95);
+  }
+
+.removeLink {
+    cursor: pointer;
+    color: #bc3a2e;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
+.removeLink:hover,
+.removeLink:active {
+    text-decoration: underline;
+}
+
 .home__section1 {
     margin-left: 5em;
 }
@@ -75,4 +111,11 @@ h4 {
 
 .attribute-title {
     margin-bottom: 20px;
+}
+
+.infoCheckIsInCart {
+    color: rgb(49, 139, 29);
+    font-style: italic;
+    font-weight: bold;
+    font-size: 1.3rem;
 }

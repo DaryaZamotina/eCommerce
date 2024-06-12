@@ -1,30 +1,12 @@
 export function updateQuantity(idGood: string, quantity: number) {
-  let id = localStorage.getItem('IDCart');
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
 
-  let version: number;
+  let buttonChange = document.getElementById(
+    `buttonChangeQuantity_${idGood}`,
+  );
 
-  let info = JSON.parse(localStorage.getItem('newCart'));
-  version = info.version;
-
-  let idOfLineItem: string;
-
-  for (let i = 0; i < info.lineItems.length; i++) {
-    if ((idGood = info.lineItems[i].productId)) {
-      idOfLineItem = info.lineItems[i].id;
-    }
-  }
-
-  let data = JSON.stringify({
-    version: version,
-    actions: [
-      {
-        action: 'changeLineItemQuantity',
-        lineItemId: idOfLineItem,
-        quantity: quantity,
-      },
-    ],
-  });
+  let cardProductQuantity = document.getElementById(
+    `cardProductQuantity_${idGood}`,
+  );
 
   let token: string;
   if (
@@ -37,6 +19,38 @@ export function updateQuantity(idGood: string, quantity: number) {
     localStorage.getItem('anonym_access_token') !== 'undefined'
   )
     token = localStorage.getItem('anonym_access_token');
+
+  let id = localStorage.getItem('IDCart');
+  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
+
+  let version: number;
+
+  let info = JSON.parse(localStorage.getItem('newCart'));
+  version = info.version;
+
+  buttonChange.addEventListener('click', () => {
+   // cardProductQuantity.textContent = `Quantity: ${quantity}`;
+
+  /*let idOfLineItem: string;
+
+  for (let i = 0; i < info.lineItems.length; i++) {
+    if ((idGood = info.lineItems[i].productId)) {
+      console.log("idGood = " + idGood + "info.lineItems[i].productId = " + info.lineItems[i].productId);
+      idOfLineItem = info.lineItems[i].id;
+      console.log("idOfLineItem = " + info.lineItems[i].id);
+    }
+  }*/
+
+  let data = JSON.stringify({
+    version: version,
+    actions: [
+      {
+        action: 'changeLineItemQuantity',
+        lineItemId: idGood,
+        quantity: quantity,
+      },
+    ],
+  });
 
   async function addProduct(url: string) {
     const response = await fetch(url, {
@@ -58,4 +72,5 @@ export function updateQuantity(idGood: string, quantity: number) {
       return output;
     })
     .catch((err) => console.log(err));
+});
 }

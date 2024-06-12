@@ -80,6 +80,8 @@
     transition: all 0.5s;
     color: white;
     cursor: pointer;
+    font-size: .8em;
+    padding: 0.2em;
 }
 
 .buttonRemoveAll:hover {
@@ -99,6 +101,7 @@ background-position: right bottom;
     transition: all 0.5s;
     color: white;
     cursor: pointer;
+    font-size: .8em;
 }
 .buttonDeleteFromCart:hover,
 .buttonChangeQuantity:hover {

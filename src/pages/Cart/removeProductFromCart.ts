@@ -31,12 +31,15 @@ export async function removeProductFromCart(
     localStorage.getItem('access_token_for_user') !== 'undefined'
   )
     token = localStorage.getItem('access_token_for_user');
+  else if (localStorage.getItem("access_token_auth") &&
+    localStorage.getItem("access_token_auth") !== 'undefined') {
+      token = localStorage.getItem("access_token_auth");
+    }
   else if (
     localStorage.getItem('anonym_access_token') &&
     localStorage.getItem('anonym_access_token') !== 'undefined'
   )
     token = localStorage.getItem('anonym_access_token');
-  console.log('token' + token);
 
   async function removeProduct(url: string) {
     const response = await fetch(url, {

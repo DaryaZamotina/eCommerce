@@ -1,6 +1,7 @@
 import { addProductToCart } from './addProductToCart';
 
 export async function createCart(id: string, token: string) {
+
   const urlToEcommForRegistration =
     'https://api.us-east-2.aws.commercetools.com/jffecommerce/carts';
 
@@ -27,8 +28,6 @@ export async function createCart(id: string, token: string) {
       let outputObj = JSON.parse(output);
       localStorage.setItem('IDCart', outputObj.id);
       localStorage.setItem('versionOfCart', JSON.parse(output).version);
-
-      console.log('newCart: ' + output);
       addProductToCart(outputObj.id, id, token);
 
       return output;

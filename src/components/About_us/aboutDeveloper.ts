@@ -1,6 +1,5 @@
-import TagCreator from "../../module/tagCreator";
-import IDeveloper from "../../pages/AboutUs/interfaceDeveloper";
-
+import TagCreator from '../../module/tagCreator';
+import IDeveloper from '../../pages/AboutUs/interfaceDeveloper';
 
 export default class AboutDeveloper {
   private itemAboutDeveloper: HTMLElement;
@@ -14,7 +13,7 @@ export default class AboutDeveloper {
     this.i = i;
     this.itemAboutDeveloper = this.createItemAboutDeveloper();
   }
-  
+
   public getItemAboutDeveloper() {
     return this.itemAboutDeveloper;
   }
@@ -25,8 +24,8 @@ export default class AboutDeveloper {
       'about-us__dev-name',
       `aboutUsDevName${this.infoAboutDevelopers[this.i].name}`,
       '',
-      `${this.infoAboutDevelopers[this.i].name}`
-    )
+      `${this.infoAboutDevelopers[this.i].name}`,
+    );
     return name.createAndReturn();
   }
 
@@ -36,8 +35,8 @@ export default class AboutDeveloper {
       'about-us__dev-role',
       `aboutUsDevRole${this.infoAboutDevelopers[this.i].name}`,
       '',
-      `${this.infoAboutDevelopers[this.i].role}`
-    )
+      `${this.infoAboutDevelopers[this.i].role}`,
+    );
     return role.createAndReturn();
   }
 
@@ -45,10 +44,10 @@ export default class AboutDeveloper {
     const tagPhoto = new TagCreator(
       'img',
       'about-us__dev-photo',
-      `aboutUsDevPhoto${this.infoAboutDevelopers[this.i].name}`
-    )
+      `aboutUsDevPhoto${this.infoAboutDevelopers[this.i].name}`,
+    );
     const photo = tagPhoto.createAndReturn();
-    photo.setAttribute('src', `${this.infoAboutDevelopers[this.i].photo}`)
+    photo.setAttribute('src', `${this.infoAboutDevelopers[this.i].photo}`);
     return photo;
   }
 
@@ -58,8 +57,8 @@ export default class AboutDeveloper {
       'about-us__dev-text-about',
       `aboutUsDevTextAbout${this.infoAboutDevelopers[this.i].name}`,
       '',
-      `${this.infoAboutDevelopers[this.i].about}`
-    )
+      `${this.infoAboutDevelopers[this.i].about}`,
+    );
     return textAbout.createAndReturn();
   }
 
@@ -70,7 +69,12 @@ export default class AboutDeveloper {
       `aboutUsItemAboutDeveloper${this.infoAboutDevelopers[this.i].name}`,
     );
     this.itemAboutDeveloper = tagitemAboutDeveloper.createAndReturn();
-    this.itemAboutDeveloper.append(this.createPhoto(), this.createName(), this.createRole(), this.createTextAbout());
+    this.itemAboutDeveloper.append(
+      this.createPhoto(),
+      this.createName(),
+      this.createRole(),
+      this.createTextAbout(),
+    );
     return this.itemAboutDeveloper;
   }
 }

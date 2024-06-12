@@ -5,7 +5,7 @@ import {
   clearPageContainer,
   pageContainer,
   homePage,
-  catalogPage
+  catalogPage,
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';

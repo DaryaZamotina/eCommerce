@@ -1,10 +1,9 @@
-import TagCreator from "../../module/tagCreator";
-import contentPage from "../../Helpers/aboutUsContent/contentPageAboutUs";
-import AboutDeveloper from "../../components/About_us/aboutDeveloper";
-import infoAboutDevelopers from "../../Helpers/aboutUsContent/infoAboutDevelopers";
-import IDeveloper from "./interfaceDeveloper";
-import '../../../public/assets/css/aboutUsPage.css'
-
+import TagCreator from '../../module/tagCreator';
+import contentPage from '../../Helpers/aboutUsContent/contentPageAboutUs';
+import AboutDeveloper from '../../components/About_us/aboutDeveloper';
+import infoAboutDevelopers from '../../Helpers/aboutUsContent/infoAboutDevelopers';
+import IDeveloper from './interfaceDeveloper';
+import '../../../public/assets/css/aboutUsPage.css';
 
 export default class AboutUsPage {
   private aboutUsPage: HTMLElement;
@@ -26,7 +25,7 @@ export default class AboutUsPage {
       'about-us__title',
       'aboutUsTitle',
       '',
-      `${contentPage.title}`
+      `${contentPage.title}`,
     );
     return titleOfPage.createAndReturn();
   }
@@ -37,7 +36,7 @@ export default class AboutUsPage {
       'about-us__about-team',
       'aboutUsAboutTeam',
       '',
-      `${contentPage.aboutTeam}`
+      `${contentPage.aboutTeam}`,
     );
     return aboutTeam.createAndReturn();
   }
@@ -49,19 +48,19 @@ export default class AboutUsPage {
       'aboutUsDevelopersList',
     );
     this.developersList = tagDevelopersList.createAndReturn();
-    this.insertAboutDeveloperToList(infoAboutDevelopers)
+    this.insertAboutDeveloperToList(infoAboutDevelopers);
     return this.developersList;
   }
-  
+
   private createAboutUsPage() {
-    const tagAboutUsPage = new TagCreator(
-      'section',
-      'about-us',
-      'aboutUs'
-    );
+    const tagAboutUsPage = new TagCreator('section', 'about-us', 'aboutUs');
     this.aboutUsPage = tagAboutUsPage.createAndReturn();
 
-    this.aboutUsPage.append(this.createTitleOfPage(), this.createAboutTeam(), this.createDevelopersList());
+    this.aboutUsPage.append(
+      this.createTitleOfPage(),
+      this.createAboutTeam(),
+      this.createDevelopersList(),
+    );
     return this.aboutUsPage;
   }
 
@@ -69,7 +68,9 @@ export default class AboutUsPage {
     let arrayItemsAboutDevelopers = [];
     for (let i = 0; i < infoAboutDevelopers.length; i++) {
       arrayItemsAboutDevelopers[i] = new AboutDeveloper(infoAboutDevelopers, i);
-      this.developersList.append(arrayItemsAboutDevelopers[i].getItemAboutDeveloper());
+      this.developersList.append(
+        arrayItemsAboutDevelopers[i].getItemAboutDeveloper(),
+      );
     }
     return arrayItemsAboutDevelopers;
   }

@@ -17,11 +17,16 @@ export async function removeAllFromCart() {
   )
     token = localStorage.getItem('access_token_for_user');
   else if (
+    localStorage.getItem('access_token_auth') &&
+    localStorage.getItem('access_token_auth') !== 'undefined'
+  ) {
+    token = localStorage.getItem('access_token_auth');
+  } else if (
     localStorage.getItem('anonym_access_token') &&
     localStorage.getItem('anonym_access_token') !== 'undefined'
   )
     token = localStorage.getItem('anonym_access_token');
-
+    
   let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
   let goods = cart.lineItems;
 

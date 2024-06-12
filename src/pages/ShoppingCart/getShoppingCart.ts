@@ -3,10 +3,28 @@ import CreateCardProduct from './createCardProduct';
 export default async function getShoppingCart() {
   let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${localStorage.getItem('IDCart')}`;
 
+  let token: string;
+  if (
+    localStorage.getItem('access_token_for_user') &&
+    localStorage.getItem('access_token_for_user') !== 'undefined'
+  )
+    token = localStorage.getItem('access_token_for_user');
+  else if (
+    localStorage.getItem('access_token_auth') &&
+    localStorage.getItem('access_token_auth') !== 'undefined'
+  ) {
+    token = localStorage.getItem('access_token_auth');
+  } else if (
+    localStorage.getItem('anonym_access_token') &&
+    localStorage.getItem('anonym_access_token') !== 'undefined'
+  )
+    token = localStorage.getItem('anonym_access_token');
+    
+
   const response = await fetch(link, {
     method: 'GET',
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('anonym_access_token')}`,
+      Authorization: `Bearer ${token}`,
       'Content-Type': 'application/json',
     },
   });
@@ -16,8 +34,6 @@ export default async function getShoppingCart() {
   }
 
   const data = await response.json();
-
-  console.log(data);
 
   const result = new CreateCardProduct(data);
   result.createCard();

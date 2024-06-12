@@ -29,10 +29,21 @@ export default function createShoppingCartPage() {
   );
   secondContainer.createAndAppend();
 
-  const totalCostTitle = new TagCreator('div', 'totalCostTitle', 'totalCostTitle', 'shoppingCart_secondContaine', 'Total Cost:');
+  const totalCostTitle = new TagCreator(
+    'div',
+    'totalCostTitle',
+    'totalCostTitle',
+    'shoppingCart_secondContaine',
+    'Total Cost:',
+  );
   totalCostTitle.createAndAppend();
 
-  const totalCost = new TagCreator('div', 'totalCost', 'totalCost', 'shoppingCart_secondContaine');
+  const totalCost = new TagCreator(
+    'div',
+    'totalCost',
+    'totalCost',
+    'shoppingCart_secondContaine',
+  );
   totalCost.createAndAppend();
 
   getShoppingCart();

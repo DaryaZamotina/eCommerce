@@ -10,11 +10,15 @@ export default class CreateCardProduct {
   }
 
   public createCard() {
-    document.getElementById('totalCost').textContent = `${this.data.totalPrice.centAmount / 100} €`;
+    document.getElementById('totalCost').textContent =
+      `${this.data.totalPrice.centAmount / 100} €`;
 
     this.data.lineItems.forEach((elem) => {
       this.createCardDiv(elem);
     });
+    if (this.data.lineItems.length === 0) {
+      this.emptyMessage();
+    }
   }
 
   private createCardDiv(elem: LineItem) {
@@ -127,5 +131,25 @@ export default class CreateCardProduct {
       `${elem.totalPrice.centAmount / 100} €`,
     );
     cardProductTotalPrice.createAndAppend();
+  }
+
+  private emptyMessage() {
+    const emptyMessageTitle = new TagCreator(
+      'div',
+      'emptyMessageTitle',
+      `emptyMessageTitle`,
+      'shoppingCart_mainContaine',
+      'Your Cart is Empty!'
+    );
+    emptyMessageTitle.createAndAppend();
+
+    const emptyMessage = new TagCreator(
+      'div',
+      'emptyMessage',
+      `emptyMessage`,
+      'shoppingCart_mainContaine',
+      `Looks like you haven't added anything to your cart yet. Let's fix that! Explore our collection of beautiful furniture to find the perfect pieces for your home. Start shopping now and transform your space into a cozy, stylish haven!`
+    );
+    emptyMessage.createAndAppend();
   }
 }

@@ -1,7 +1,6 @@
 import { addProductToCart } from './addProductToCart';
 
 export async function createCart(id: string, token: string) {
-
   const urlToEcommForRegistration =
     'https://api.us-east-2.aws.commercetools.com/jffecommerce/carts';
 

@@ -1,0 +1,45 @@
+@import url("root-variables.css");
+
+.about-us {
+  max-width: 85%;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.about-us__title {
+  text-align: center;
+}
+
+.about-us__about-team {
+  margin: 2rem;
+}
+
+.about-us__developers-list {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.about-us__item-about-developer {
+  border: 1px solid var(--main-dark-color);
+  border-radius: 2rem;
+  padding: 2rem;
+  max-width: 370px;
+}
+
+.about-us__dev-name {
+  display: block;
+  font-size: 2em;
+  font-weight: 800;
+}
+
+.about-us__dev-role {
+  font-size: 1.5em;
+  font-weight: 600;
+}
+
+.about-us__dev-photo {
+  height: 100px;
+  border-radius: 50%;
+}

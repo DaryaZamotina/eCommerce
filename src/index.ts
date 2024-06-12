@@ -13,6 +13,7 @@ import HomePage from './pages/Home/homePage';
 import CatalogPage from './pages/Catalog/catalogPage';
 import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
+import AboutUsPage from './pages/AboutUs/aboutUsPage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
@@ -32,6 +33,7 @@ export const homePage = new HomePage();
 export const catalogPage = new CatalogPage();
 export const cartPage = new CartPage();
 export const userProfilePage = new UserProfilePage();
+const aboutUsPage = new AboutUsPage();
 export const notFoundPage = new NotFoundPage();
 
 let currentHash = '';
@@ -118,7 +120,14 @@ export function setRoutingPage() {
 
       pageContainer.getPageContainer().append(cartPage.getCartPage());
       break;
+    case 'aboutus':
+    case 'aboutUs':
+      document.title = titlesPages.aboutUsPage;
+      clearPageContainer();
 
+      pageContainer.getPageContainer().append(aboutUsPage.getAboutUsPage());
+
+      break;
     case 'userProfile':
     case 'userprofile':
     case 'profile':

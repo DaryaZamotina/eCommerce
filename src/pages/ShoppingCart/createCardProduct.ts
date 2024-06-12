@@ -2,6 +2,8 @@ import TagCreator from '../../module/tagCreator';
 import ICardProduct from './interfaceCardProduct';
 import { LineItem } from './interfaceCardProduct';
 import { removeOneGoodFromCart } from './removeOneGood';
+import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
+import { receiveAnonymusAccessToken } from '../Home/anonymusSessionToken';
 
 export default class CreateCardProduct {
   private data: ICardProduct;
@@ -11,9 +13,18 @@ export default class CreateCardProduct {
   }
 
   public createCard() {
+    document.getElementById('totalCost').textContent =
+    `${this.data.totalPrice.centAmount / 100} €`;
+
+    document.getElementById('shoppingCart_mainContaine').innerHTML = '';
+
     this.data.lineItems.forEach((elem) => {
       this.createCardDiv(elem);
     });
+
+    if (this.data.lineItems.length === 0) {
+      this.emptyMessage();
+    }
   }
 
   private createCardDiv(elem: LineItem) {
@@ -141,5 +152,60 @@ export default class CreateCardProduct {
     removeOneGoodFromCart(price, `${elem.id}`);
 
     //-----------------------
+  }
+
+  private emptyMessage() {
+    const emptyMessageTitle = new TagCreator(
+      'div',
+      'emptyMessageTitle',
+      `emptyMessageTitle`,
+      'shoppingCart_mainContaine',
+      'Your Cart is Empty!'
+    );
+    emptyMessageTitle.createAndAppend();
+
+    const emptyMessage = new TagCreator(
+      'div',
+      'emptyMessage',
+      `emptyMessage`,
+      'shoppingCart_mainContaine',
+      `Looks like you haven't added anything to your cart yet. Let's fix that! Explore our collection of beautiful furniture to find the perfect pieces for your home. Start shopping now and transform your space into a cozy, stylish haven!`
+    );
+    emptyMessage.createAndAppend();
+
+    const emptyMessageLink = new TagCreator(
+      'a',
+      'emptyMessageLink',
+      `emptyMessageLink`,
+      'shoppingCart_mainContaine',
+      'Catalog'
+    );
+    emptyMessageLink.createAndAppend();
+    emptyMessageLink.addAttribute('href', '#catalog');
+    document.getElementById('emptyMessageLink').addEventListener('click', () => {
+      if (
+        localStorage.getItem('access_token_for_user') &&
+        localStorage.getItem('access_token_for_user') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('access_token_for_user'),
+        );
+      } else if (
+        localStorage.getItem('anonym_access_token') &&
+        localStorage.getItem('anonym_access_token') !== 'undefined'
+      ) {
+        getProductsListInfoFromEcomm(
+          localStorage.getItem('anonym_access_token'),
+        );
+      } else if (
+        !localStorage.getItem('anonym_access_token') ||
+        localStorage.getItem('anonym_access_token') == 'undefined' ||
+        !localStorage.getItem('access_token_for_user') ||
+        localStorage.getItem('access_token_for_user') == 'undefined'
+      )
+        if (!localStorage.getItem('anonym_token_auth')) {
+          receiveAnonymusAccessToken();
+        }
+    });
   }
 }

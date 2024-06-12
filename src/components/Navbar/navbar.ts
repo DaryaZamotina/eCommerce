@@ -24,6 +24,7 @@ import {
   ifAuthThenDisplayNone,
   ifAnonimThenDisplayNone,
 } from '../../utils/changeSingUpLogoutButtons';
+import createShoppingCartPage from '../../pages/ShoppingCart/createShoppingCartPage';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');

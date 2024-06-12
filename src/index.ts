@@ -114,9 +114,10 @@ export function setRoutingPage() {
 
     case 'cart':
       document.title = titlesPages.cartPage;
-      clearPageContainer();
+      // clearPageContainer();
 
-      pageContainer.getPageContainer().append(cartPage.getCartPage());
+      // pageContainer.getPageContainer().append(cartPage.getCartPage());
+      createShoppingCartPage();
       break;
 
     case 'userProfile':
@@ -161,15 +162,15 @@ window.addEventListener('hashchange', () => {
   setRoutingPage();
 });
 
-window.addEventListener('popstate', () => {
-  currentHash = getHash();
-  setRoutingPage();
-});
+// window.addEventListener('popstate', () => {
+//   currentHash = getHash();
+//   setRoutingPage();
+// });
 
-window.addEventListener('DOMContentLoaded', () => {
-  currentHash = getHash();
-  setRoutingPage();
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//   currentHash = getHash();
+//   setRoutingPage();
+// });
 
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();
@@ -178,21 +179,5 @@ if (!localStorage.getItem('anonym_token_auth')) {
 // TODO:
 // Пока что корзина здесь, пока не настроим роутинг
 // ---
-
-(function createButtonShoppingCart() {
-  const button = new TagCreator(
-    'button',
-    'buttonShoppingCart',
-    'buttonShoppingCart',
-    'body',
-    'Shopping Cart',
-  );
-  button.createAndAppend();
-  document
-    .getElementById('buttonShoppingCart')
-    .addEventListener('click', () => {
-      createShoppingCartPage();
-    });
-})();
 
 // ---

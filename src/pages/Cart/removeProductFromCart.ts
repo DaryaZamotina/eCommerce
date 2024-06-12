@@ -1,3 +1,5 @@
+import getShoppingCart from "../ShoppingCart/getShoppingCart";
+
 export async function removeProductFromCart(
   id: string,
   lineItemId: string,
@@ -55,6 +57,7 @@ export async function removeProductFromCart(
     .then((output) => {
       localStorage.setItem('newCart', output);
       localStorage.setItem('versionOfCart', JSON.parse(output).version);
+      getShoppingCart();
       return output;
     })
     .catch((err) => console.log(err));

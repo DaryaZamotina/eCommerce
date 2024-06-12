@@ -124,7 +124,7 @@ export default class CreateCardProduct {
     );
     quantityInput.type = 'number';
 
-   /* let quantityExactValue = document.getElementById(
+    /* let quantityExactValue = document.getElementById(
       `cardProductQuantity_${elem.id}`,
     );
 */
@@ -142,12 +142,12 @@ export default class CreateCardProduct {
     );
 
     quantityInput.addEventListener('input', () => {
-      console.log("inputValue = " + Number(quantityInput.value));
+      console.log('inputValue = ' + Number(quantityInput.value));
       cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
       updateQuantity(elem.id, Number(quantityInput.value));
-    })
-    
-/*
+    });
+
+    /*
     let buttonChange = document.getElementById(
       `buttonChangeQuantity_${elem.id}`,
     );

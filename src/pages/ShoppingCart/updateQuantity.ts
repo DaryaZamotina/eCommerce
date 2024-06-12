@@ -1,8 +1,5 @@
 export function updateQuantity(idGood: string, quantity: number) {
-
-  let buttonChange = document.getElementById(
-    `buttonChangeQuantity_${idGood}`,
-  );
+  let buttonChange = document.getElementById(`buttonChangeQuantity_${idGood}`);
 
   let cardProductQuantity = document.getElementById(
     `cardProductQuantity_${idGood}`,
@@ -29,9 +26,9 @@ export function updateQuantity(idGood: string, quantity: number) {
   version = info.version;
 
   buttonChange.addEventListener('click', () => {
-   // cardProductQuantity.textContent = `Quantity: ${quantity}`;
+    // cardProductQuantity.textContent = `Quantity: ${quantity}`;
 
-  /*let idOfLineItem: string;
+    /*let idOfLineItem: string;
 
   for (let i = 0; i < info.lineItems.length; i++) {
     if ((idGood = info.lineItems[i].productId)) {
@@ -41,36 +38,36 @@ export function updateQuantity(idGood: string, quantity: number) {
     }
   }*/
 
-  let data = JSON.stringify({
-    version: version,
-    actions: [
-      {
-        action: 'changeLineItemQuantity',
-        lineItemId: idGood,
-        quantity: quantity,
-      },
-    ],
-  });
-
-  async function addProduct(url: string) {
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
-      },
-      body: data,
+    let data = JSON.stringify({
+      version: version,
+      actions: [
+        {
+          action: 'changeLineItemQuantity',
+          lineItemId: idGood,
+          quantity: quantity,
+        },
+      ],
     });
-    const resp = await response.json();
-    return JSON.stringify(resp);
-  }
 
-  addProduct(link)
-    .then((output) => {
-      localStorage.setItem('newCart', output);
-      localStorage.setItem('versionOfCart', JSON.parse(output).version);
-      return output;
-    })
-    .catch((err) => console.log(err));
-});
+    async function addProduct(url: string) {
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: data,
+      });
+      const resp = await response.json();
+      return JSON.stringify(resp);
+    }
+
+    addProduct(link)
+      .then((output) => {
+        localStorage.setItem('newCart', output);
+        localStorage.setItem('versionOfCart', JSON.parse(output).version);
+        return output;
+      })
+      .catch((err) => console.log(err));
+  });
 }

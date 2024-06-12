@@ -86,7 +86,8 @@
 background-position: right bottom;
 }
 
-.buttonDeleteFromCart {
+.buttonDeleteFromCart,
+.buttonChangeQuantity {
     margin-top: 2rem;
     border-radius: 0.5rem;
     outline: none;
@@ -99,6 +100,7 @@ background-position: right bottom;
     color: white;
     cursor: pointer;
 }
-.buttonDeleteFromCart:hover {
+.buttonDeleteFromCart:hover,
+.buttonChangeQuantity:hover {
     background-position: right bottom;
     }

@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import ICardProduct from './interfaceCardProduct';
 import { LineItem } from './interfaceCardProduct';
 import { removeOneGoodFromCart } from './removeOneGood';
+import { updateQuantity } from './updateQuantity';
 
 export default class CreateCardProduct {
   private data: ICardProduct;
@@ -108,6 +109,41 @@ export default class CreateCardProduct {
       `Quantity: ${elem.quantity}`,
     );
     cardProductQuantity.createAndAppend();
+
+    const cardProductQuantityUpdate = new TagCreator(
+      'input',
+      'cardProductQuantityUpdate',
+      `cardProductQuantityUpdate_${elem.id}`,
+      `cardProductInfo_${elem.id}`,
+      `${elem.quantity}`,
+    );
+    cardProductQuantityUpdate.createAndAppend();
+
+    let quantityInput = <HTMLInputElement>document.getElementById(`cardProductQuantityUpdate_${elem.id}`)
+    quantityInput.type = "range";
+    quantityInput.step = "1";
+    quantityInput.min = "0";
+    quantityInput.max = "100";
+    quantityInput.value =  `${elem.quantity}`;
+
+    let quantityExactValue = document.getElementById(`cardProductQuantity_${elem.id}`);
+
+    const buttonChangeQuantity = new TagCreator(
+      'button',
+      'buttonChangeQuantity',
+      `buttonChangeQuantity_${elem.id}`,
+      `cardProductInfo_${elem.id}`,
+      `Change quantity`,
+    );
+    buttonChangeQuantity.createAndAppend();
+
+    let buttonChange = document.getElementById(`buttonChangeQuantity_${elem.id}`);
+
+    buttonChange.addEventListener('click', () => {
+      quantityExactValue.textContent = `Quantity: ${quantityInput.value}`;
+      updateQuantity(elem.id, Number(quantityInput.value));
+    })
+
 
     const cardProductTitleTotalPrice = new TagCreator(
       'div',

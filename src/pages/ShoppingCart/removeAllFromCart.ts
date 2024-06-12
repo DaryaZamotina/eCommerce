@@ -21,7 +21,6 @@ export async function removeAllFromCart() {
     localStorage.getItem('anonym_access_token') !== 'undefined'
   )
     token = localStorage.getItem('anonym_access_token');
-  console.log('token' + token);
 
   let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
   let goods = cart.lineItems;

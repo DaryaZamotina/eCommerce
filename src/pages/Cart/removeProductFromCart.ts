@@ -1,4 +1,4 @@
-import getShoppingCart from "../ShoppingCart/getShoppingCart";
+import getShoppingCart from '../ShoppingCart/getShoppingCart';
 
 export async function removeProductFromCart(
   id: string,

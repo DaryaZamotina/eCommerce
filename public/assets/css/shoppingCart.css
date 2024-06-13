@@ -118,13 +118,16 @@
     transition: all 0.5s;
     color: white;
     cursor: pointer;
+    font-size: .8em;
+    padding: 0.2em;
 }
 
 .buttonRemoveAll:hover {
     background-position: right bottom;
 }
 
-.buttonDeleteFromCart {
+.buttonDeleteFromCart,
+.buttonChangeQuantity {
     margin-top: 2rem;
     border-radius: 0.5rem;
     outline: none;
@@ -136,8 +139,10 @@
     transition: all 0.5s;
     color: white;
     cursor: pointer;
+    font-size: .8em;
 }
 
-.buttonDeleteFromCart:hover {
+.buttonDeleteFromCart:hover,
+.buttonChangeQuantity:hover {
     background-position: right bottom;
 }

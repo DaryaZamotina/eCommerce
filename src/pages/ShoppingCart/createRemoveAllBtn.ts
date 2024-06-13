@@ -8,7 +8,7 @@ export function createRemoveAllBtn() {
   let buttonRemoveAll = document.createElement('button');
   buttonRemoveAll.className = 'buttonRemoveAll';
   buttonRemoveAll.id = 'buttonRemoveAll';
-  buttonRemoveAll.textContent = 'Clear Shopping Cart';
+  buttonRemoveAll.textContent = 'Remove All';
   container.append(buttonRemoveAll);
 
   buttonRemoveAll.addEventListener('click', function () {

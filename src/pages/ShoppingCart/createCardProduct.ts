@@ -4,6 +4,7 @@ import { LineItem } from './interfaceCardProduct';
 import { removeOneGoodFromCart } from './removeOneGood';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../Home/anonymusSessionToken';
+import { updateQuantity } from './updateQuantity';
 
 export default class CreateCardProduct {
   private data: ICardProduct;
@@ -120,6 +121,53 @@ export default class CreateCardProduct {
     );
     cardProductQuantity.createAndAppend();
 
+    const cardProductQuantityUpdate = new TagCreator(
+      'input',
+      'cardProductQuantityUpdate',
+      `cardProductQuantityUpdate_${elem.id}`,
+      `cardProductInfo_${elem.id}`,
+      ``,
+    );
+    cardProductQuantityUpdate.createAndAppend();
+
+    let quantityInput = <HTMLInputElement>(
+      document.getElementById(`cardProductQuantityUpdate_${elem.id}`)
+    );
+    quantityInput.type = 'number';
+
+    /* let quantityExactValue = document.getElementById(
+      `cardProductQuantity_${elem.id}`,
+    );
+*/
+    const buttonChangeQuantity = new TagCreator(
+      'button',
+      'buttonChangeQuantity',
+      `buttonChangeQuantity_${elem.id}`,
+      `cardProductInfo_${elem.id}`,
+      `Change quantity`,
+    );
+    buttonChangeQuantity.createAndAppend();
+
+    let cardProductQuant = document.getElementById(
+      `cardProductQuantity_${elem.id}`,
+    );
+
+    quantityInput.addEventListener('input', () => {
+      console.log('inputValue = ' + Number(quantityInput.value));
+      cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
+      updateQuantity(elem.id, Number(quantityInput.value));
+    });
+
+    /*
+    let buttonChange = document.getElementById(
+      `buttonChangeQuantity_${elem.id}`,
+    );
+
+    buttonChange.addEventListener('click', () => {
+      quantityExactValue.textContent = `Quantity: ${quantityInput.value}`;
+      updateQuantity(elem.id, Number(quantityInput.value));
+    });*/
+
     const cardProductTitleTotalPrice = new TagCreator(
       'div',
       'cardProductTitleTotalPrice',
@@ -144,7 +192,7 @@ export default class CreateCardProduct {
       'buttonDeleteFromCart',
       `buttonDeleteFromCart_${elem.id}`,
       `cardProductInfo_${elem.id}`,
-      'Remove from Cart',
+      'Remove',
     );
 
     buttonDeleteFromCart.createAndAppend();

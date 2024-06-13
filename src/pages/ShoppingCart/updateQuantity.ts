@@ -26,17 +26,6 @@ export function updateQuantity(idGood: string, quantity: number) {
   version = info.version;
 
   buttonChange.addEventListener('click', () => {
-    // cardProductQuantity.textContent = `Quantity: ${quantity}`;
-
-    /*let idOfLineItem: string;
-
-  for (let i = 0; i < info.lineItems.length; i++) {
-    if ((idGood = info.lineItems[i].productId)) {
-      console.log("idGood = " + idGood + "info.lineItems[i].productId = " + info.lineItems[i].productId);
-      idOfLineItem = info.lineItems[i].id;
-      console.log("idOfLineItem = " + info.lineItems[i].id);
-    }
-  }*/
 
     let data = JSON.stringify({
       version: version,

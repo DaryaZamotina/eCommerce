@@ -10,6 +10,12 @@
     flex-direction: row;
 }
 
+@media (max-width: 786px) {
+    .shoppingCartContainer {
+        flex-direction: column-reverse;
+    }
+}
+
 .shoppingCart_mainContaine {
     display: flex;
     flex-direction: column;
@@ -29,6 +35,12 @@
     padding: 1rem;
     border: 1px solid gray;
     border-radius: 1rem;
+}
+
+@media (max-width: 786px) {
+    .cardProduct {
+        flex-direction: column;
+    }
 }
 
 .cardProductImg {
@@ -68,6 +80,32 @@
     font-weight: bold;
 }
 
+.emptyMessageTitle {
+    margin: 1rem;
+}
+
+.emptyMessage {
+    margin: 1rem;
+    width: 18rem;
+}
+
+.totalCostTitle {
+    margin: 1rem;
+}
+
+.totalCost {
+    margin: 1rem;
+    color: darkgreen;
+}
+
+.emptyMessageLink {
+    margin: 1rem;
+}
+
+.emptyMessageLink:visited {
+    color: darkgreen;
+}
+
 .buttonRemoveAll {
     margin-top: 2rem;
     border-radius: 0.5rem;
@@ -85,7 +123,7 @@
 }
 
 .buttonRemoveAll:hover {
-background-position: right bottom;
+    background-position: right bottom;
 }
 
 .buttonDeleteFromCart,
@@ -103,7 +141,8 @@ background-position: right bottom;
     cursor: pointer;
     font-size: .8em;
 }
+
 .buttonDeleteFromCart:hover,
 .buttonChangeQuantity:hover {
     background-position: right bottom;
-    }
+}

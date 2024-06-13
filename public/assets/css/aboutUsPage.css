@@ -3,43 +3,117 @@
 .about-us {
   max-width: 85%;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 2.8rem;
 }
 
 .about-us__title {
   text-align: center;
+  font-size: 3rem;
 }
 
 .about-us__about-team {
   margin: 2rem;
+  line-height: 200%;
 }
 
 .about-us__developers-list {
   display: flex;
-  gap: 3rem;
+  gap: 2.5rem;
   flex-wrap: wrap;
   justify-content: center;
+  line-height: 200%;
 }
 
 .about-us__item-about-developer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.2rem;
   border: 1px solid var(--main-dark-color);
   border-radius: 2rem;
   padding: 2rem;
-  max-width: 370px;
+  max-width: 450px;
+}
+
+.about-us__dev-name:before {
+  content: '';
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  background-image: url(../images/icon-github.png);
+  background-size: contain;
+  margin-right: 1rem;
 }
 
 .about-us__dev-name {
   display: block;
   font-size: 2em;
   font-weight: 800;
+  color: var(--main-dark-color);
+  text-decoration: none;
+  transition: text-decoration 0.5s;
+}
+
+.about-us__dev-name:hover {
+  text-decoration: underline;
+  transition: 0.5s;
 }
 
 .about-us__dev-role {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
 .about-us__dev-photo {
-  height: 100px;
+  align-self: center;
+  height: 180px;
   border-radius: 50%;
+  border: 1px solid var(--main-pale-gray-color);
+}
+
+.about-us__dev-city {
+  align-self: flex-end;
+}
+
+.about-us__dev-city,
+.about-us__dev-areas-title {
+  font-size: 1.5em;
+  font-weight: 500;
+  color: var(--main-pale-gray-color);
+  text-decoration: underline;
+}
+
+.about-us__dev-areas-title:after {
+  content: ' *';
+}
+
+.about-us__dev-areas {
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.about-us__about-areas:before {
+  content: '*';
+  margin-right: 0.4rem;
+}
+
+.about-us__about-areas {
+  margin-top: 2rem;
+  color: var(--main-pale-gray-color);
+}
+
+.about-us__logo-rss {
+  display: block;
+  margin: 2rem auto 0;
+  width: 200px;
+  border-radius: 50%;
+  background: var(--main-yellow-color);
+  border: 2px solid var(--main-light-green-color);
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+
+.about-us__logo-rss:hover {
+  background: var(--main-dark-yellow-color);
+  transition: 0.5s;
 }

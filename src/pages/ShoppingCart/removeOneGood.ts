@@ -1,5 +1,6 @@
 import { ICart } from '../Cart/cartInterface';
 import { removeProductFromCart } from '../Cart/removeProductFromCart';
+import getShoppingCart from './getShoppingCart';
 
 export function removeOneGoodFromCart(price?: number, id?: string) {
   const btnRemove = document.getElementById(`buttonDeleteFromCart_${id}`);
@@ -26,7 +27,8 @@ export function removeOneGoodFromCart(price?: number, id?: string) {
       quantity,
     );
 
-    const cardProduct = document.getElementById(`cardProduct_${id}`);
-    cardProduct.remove();
+    // const cardProduct = document.getElementById(`cardProduct_${id}`);
+    // cardProduct.remove();
+    // getShoppingCart('totalPrice');
   });
 }

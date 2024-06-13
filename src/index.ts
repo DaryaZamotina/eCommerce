@@ -13,6 +13,7 @@ import HomePage from './pages/Home/homePage';
 import CatalogPage from './pages/Catalog/catalogPage';
 import CartPage from './pages/Cart/cartPage';
 import UserProfilePage from './pages/UserProfile/userProfilePage';
+import AboutUsPage from './pages/AboutUs/aboutUsPage';
 import NotFoundPage from './pages/NotFoundPage/notFoundSection';
 import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
@@ -32,6 +33,7 @@ export const homePage = new HomePage();
 export const catalogPage = new CatalogPage();
 export const cartPage = new CartPage();
 export const userProfilePage = new UserProfilePage();
+const aboutUsPage = new AboutUsPage();
 export const notFoundPage = new NotFoundPage();
 
 let currentHash = '';
@@ -114,11 +116,19 @@ export function setRoutingPage() {
 
     case 'cart':
       document.title = titlesPages.cartPage;
+      // clearPageContainer();
+
+      // pageContainer.getPageContainer().append(cartPage.getCartPage());
+      createShoppingCartPage();
+      break;
+    case 'aboutus':
+    case 'aboutUs':
+      document.title = titlesPages.aboutUsPage;
       clearPageContainer();
 
-      pageContainer.getPageContainer().append(cartPage.getCartPage());
-      break;
+      pageContainer.getPageContainer().append(aboutUsPage.getAboutUsPage());
 
+      break;
     case 'userProfile':
     case 'userprofile':
     case 'profile':
@@ -161,15 +171,15 @@ window.addEventListener('hashchange', () => {
   setRoutingPage();
 });
 
-window.addEventListener('popstate', () => {
-  currentHash = getHash();
-  setRoutingPage();
-});
+// window.addEventListener('popstate', () => {
+//   currentHash = getHash();
+//   setRoutingPage();
+// });
 
-window.addEventListener('DOMContentLoaded', () => {
-  currentHash = getHash();
-  setRoutingPage();
-});
+// window.addEventListener('DOMContentLoaded', () => {
+//   currentHash = getHash();
+//   setRoutingPage();
+// });
 
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();
@@ -178,21 +188,5 @@ if (!localStorage.getItem('anonym_token_auth')) {
 // TODO:
 // Пока что корзина здесь, пока не настроим роутинг
 // ---
-
-(function createButtonShoppingCart() {
-  const button = new TagCreator(
-    'button',
-    'buttonShoppingCart',
-    'buttonShoppingCart',
-    'body',
-    'Shopping Cart',
-  );
-  button.createAndAppend();
-  document
-    .getElementById('buttonShoppingCart')
-    .addEventListener('click', () => {
-      createShoppingCartPage();
-    });
-})();
 
 // ---

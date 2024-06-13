@@ -1,4 +1,5 @@
 import { ICart } from '../Cart/cartInterface';
+import getShoppingCart from './getShoppingCart';
 
 export async function removeAllFromCart() {
   let id = localStorage.getItem('IDCart');
@@ -73,6 +74,7 @@ export async function removeAllFromCart() {
     .then((output) => {
       localStorage.setItem('newCart', output);
       localStorage.setItem('versionOfCart', JSON.parse(output).version);
+      getShoppingCart();
       return output;
     })
     .catch((err) => console.log(err));

@@ -1,37 +1,36 @@
-import { IUser } from "../UserProfile/userInterface";
+import { IUser } from '../UserProfile/userInterface';
 export function addIDofUserToCart(userID: string, versionOfCart?: number) {
+  let token: string;
+  if (
+    localStorage.getItem('access_token_for_user') &&
+    localStorage.getItem('access_token_for_user') !== 'undefined'
+  )
+    token = localStorage.getItem('access_token_for_user');
+  else if (
+    localStorage.getItem('access_token_auth') &&
+    localStorage.getItem('access_token_auth') !== 'undefined'
+  ) {
+    token = localStorage.getItem('access_token_auth');
+  } else if (
+    localStorage.getItem('anonym_access_token') &&
+    localStorage.getItem('anonym_access_token') !== 'undefined'
+  )
+    token = localStorage.getItem('anonym_access_token');
 
-    let token: string;
-    if (
-      localStorage.getItem('access_token_for_user') &&
-      localStorage.getItem('access_token_for_user') !== 'undefined'
-    )
-      token = localStorage.getItem('access_token_for_user');
-    else if (
-      localStorage.getItem('access_token_auth') &&
-      localStorage.getItem('access_token_auth') !== 'undefined'
-    ) {
-      token = localStorage.getItem('access_token_auth');
-    } else if (
-      localStorage.getItem('anonym_access_token') &&
-      localStorage.getItem('anonym_access_token') !== 'undefined'
-    )
-      token = localStorage.getItem('anonym_access_token');
+  let id = localStorage.getItem('IDCart');
 
-    let id = localStorage.getItem("IDCart");
+  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
 
-    const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
+  let version: number;
 
-    let version: number;
+  if (versionOfCart) {
+    version = versionOfCart;
+  } else {
+    let info = JSON.parse(localStorage.getItem('newCart'));
+    version = info.version;
+  }
 
-    if (versionOfCart) {
-        version = versionOfCart;
-    } else {
-        let info = JSON.parse(localStorage.getItem('newCart'));
-        version = info.version;
-    }
-
-    console.log("version = " + version);
+  console.log('version = ' + version);
 
   let data = JSON.stringify({
     version: version,

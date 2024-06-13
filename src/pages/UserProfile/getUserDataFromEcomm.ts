@@ -3,7 +3,6 @@ import { IUser } from './userInterface';
 import { getInfoFromInputs } from './getInfoFromInputs';
 import { addIDofUserToCart } from '../Cart/addIDofUserToCart';
 
-
 export function getUserInfoFromEcomm(token: string) {
   let linkID: string;
 
@@ -29,7 +28,7 @@ export function getUserInfoFromEcomm(token: string) {
         localStorage.setItem('userDetails', info);
         createUserProfile();
 
-      /*  if (localStorage.getItem('newCart')) {
+        /*  if (localStorage.getItem('newCart')) {
           addIDofUserToCart(localStorage.getItem('customerID'));
         } */
 
@@ -41,7 +40,7 @@ export function getUserInfoFromEcomm(token: string) {
       .then((info) => {
         localStorage.setItem('userDetails', info);
 
-       /* if (localStorage.getItem('newCart')) {
+        /* if (localStorage.getItem('newCart')) {
           let user: IUser = JSON.parse(localStorage.getItem('userDetails'));
           let userID = user.id;
           console.log("userID = " + userID);

@@ -50,7 +50,7 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
 
       if (error == undefined) {
         //createModalWindow('Registration completed successfully!');
-        console.log("Registration completed successfully!");
+        console.log('Registration completed successfully!');
         //document.addEventListener('click', handleClickCloseModalWindow);
 
         if (

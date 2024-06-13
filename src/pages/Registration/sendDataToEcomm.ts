@@ -11,6 +11,7 @@ import { setRoutingPage } from '../..';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from '../UserProfile/getUserDataFromEcomm';
 import { header } from '../..';
+import { addIDofUserToCart } from '../Cart/addIDofUserToCart';
 
 export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
@@ -43,10 +44,14 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
 
       console.log('message about error: ' + error);
 
-      if (error == undefined) {
-        createModalWindow('Registration completed successfully!');
+      if (localStorage.getItem('newCart')) {
+        addIDofUserToCart(customerID);
+      }
 
-        document.addEventListener('click', handleClickCloseModalWindow);
+      if (error == undefined) {
+        //createModalWindow('Registration completed successfully!');
+        console.log("Registration completed successfully!");
+        //document.addEventListener('click', handleClickCloseModalWindow);
 
         if (
           localStorage.getItem('newUser') &&
@@ -57,7 +62,7 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
           header.getNavbar().addOrRemoveLinks();
           setRoutingPage();
         }
-      } else if (
+      } /*else if (
         error ==
         'There is already an existing customer with the provided email.'
       ) {
@@ -65,7 +70,7 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
           'There is already an existing customer with the provided data! Please enter the new correct ones or use our login form!',
         );
         document.addEventListener('click', handleClickCloseModalWindow);
-      }
+      } */
       return output;
     })
     .catch((err) => console.log(err + 2));

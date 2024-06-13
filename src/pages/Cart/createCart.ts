@@ -28,7 +28,22 @@ export async function createCart(id: string, token: string) {
       localStorage.setItem('IDCart', outputObj.id);
       localStorage.setItem('versionOfCart', JSON.parse(output).version);
 
-      console.log('newCart: ' + output);
+      let goodsNumber = document.getElementById('goodsNumber');
+
+      if (goodsNumber.style.display = "none") {
+        goodsNumber.style.display = "block";
+      }
+
+      let goodsNumberP = document.getElementById('goodsNumberP');
+      let cart = JSON.parse(localStorage.getItem("newCart"));
+      let numberOfGoods = String(cart.totalLineItemQuantity);
+      goodsNumberP.textContent = numberOfGoods; 
+
+      if (numberOfGoods == "undefined") {
+        let goodsNumber = document.getElementById('goodsNumber');
+        goodsNumber.style.display = "none";
+      }
+
       addProductToCart(outputObj.id, id, token);
 
       return output;

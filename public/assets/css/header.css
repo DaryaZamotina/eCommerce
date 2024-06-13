@@ -52,6 +52,38 @@
   display: none;
 }
 
+.to-cart-link {
+  position: relative;
+}
+.imgToCart{
+  background: url('../images/shopping-cart.png') no-repeat;
+  background-position: center;
+  background-size: 1rem;
+  background-color:#f6faf7;
+  border-radius: 2em;
+}
+
+.goodsNumber {
+  border: 1em solid rgba(43, 59, 51, 0.5);
+  width: 0.8em;
+  height: 0.8em;
+  border-radius: 1em;
+  background-color:  #708d58;
+  color: #f6faf7;
+  text-decoration: none;
+  align-items: center;
+  position: absolute;
+  top: -0.6em;
+  right: -0.6em;
+}
+.goodsNumberP {
+  margin-top: -0.5em;
+  margin-left: -0.2em;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 0.8rem;
+}
+
 @media screen and (max-width: 810px) {
   .burger {
     display: block;

@@ -26,10 +26,7 @@ export function getProductsListInfoFromEcomm(token: string) {
 
       const numberOfGoods = infoJSON.results.length;
 
-      console.log('numberOfGoods = ' + numberOfGoods);
       createProductsList(numberOfGoods, infoJSON.results);
-
-      console.log(infoJSON.results);
 
       return info;
     })

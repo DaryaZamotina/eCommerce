@@ -60,19 +60,19 @@ export async function removeProductFromCart(
 
       let goodsNumber = document.getElementById('goodsNumber');
 
-      if (goodsNumber.style.display = "none") {
-        goodsNumber.style.display = "block";
+      if ((goodsNumber.style.display = 'none')) {
+        goodsNumber.style.display = 'block';
       }
 
       let goodsNumberP = document.getElementById('goodsNumberP');
-      let cart = JSON.parse(localStorage.getItem("newCart"));
+      let cart = JSON.parse(localStorage.getItem('newCart'));
       let numberOfGoods = String(cart.totalLineItemQuantity);
-  
-      goodsNumberP.textContent = numberOfGoods; 
 
-      if (numberOfGoods == "undefined") {
+      goodsNumberP.textContent = numberOfGoods;
+
+      if (numberOfGoods == 'undefined') {
         let goodsNumber = document.getElementById('goodsNumber');
-        goodsNumber.style.display = "none";
+        goodsNumber.style.display = 'none';
       }
 
       getShoppingCart();

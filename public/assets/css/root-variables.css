@@ -1,6 +1,10 @@
 :root {
   --main-dark-color: #2B3B37;
   --main-light-color: #FFFFFF;
+  --main-pale-gray-color: #435353;
+  --main-yellow-color: #f9d91d;
+  --main-dark-yellow-color: #dbaf42;
+  --main-light-green-color: #b2aa3e;
 
   --header-height: 100px;
   --footer-height: 60px;

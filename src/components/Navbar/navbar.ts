@@ -1,25 +1,15 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/navbar.css';
 import '../../../public/assets/css/header.css';
-import LoginForm from '../../pages/LoginPage/loginForm';
-import { sendLoginPasswordToLocalStorage } from '../../pages/LoginPage/inputsLoginPassword';
-import { moveToRegistration } from '../../pages/LoginPage/buttonsToRegToHome';
-import { moveToMainPage } from '../../pages/LoginPage/buttonsToRegToHome';
-import RegistrationForm from '../../pages/Registration/registrationForm';
-import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import {
   clearPageContainer,
   pageContainer,
   homePage,
   catalogPage,
-  cartPage,
-  userProfilePage,
 } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
-import { getUserInfoFromEcomm } from '../../pages/UserProfile/getUserDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
-import { editUserData } from '../../pages/UserProfile/editUserData';
 import {
   ifAuthThenDisplayNone,
   ifAnonimThenDisplayNone,
@@ -41,7 +31,7 @@ export default class Navbar {
 
   private catalogLink: HTMLElement;
 
-  private toCartLink: HTMLElement;
+  private aboutUsLink: HTMLElement;
 
   private userProfileLink: HTMLElement;
 
@@ -53,7 +43,7 @@ export default class Navbar {
     this.catalogLink = this.createCatalogLink();
     this.signUpLink = this.createSignUpLink();
     this.signInLink = this.createSignInLink();
-    this.toCartLink = this.createToCartLink();
+    this.aboutUsLink = this.createAboutUsLink();
     this.userProfileLink = this.createUserProfileLink();
     this.logoutLink = this.createLogoutLink();
     this.addOrRemoveLinks();
@@ -76,8 +66,8 @@ export default class Navbar {
     return this.signInLink;
   }
 
-  public getToCartLink() {
-    return this.toCartLink;
+  public getAboutUsLink() {
+    return this.aboutUsLink;
   }
 
   public getUserProfileLink(): HTMLElement {
@@ -217,16 +207,16 @@ export default class Navbar {
     return this.signInLink;
   }
 
-  private createToCartLink() {
+  private createAboutUsLink() {
     const tagCreator = new TagCreator(
       'a',
-      'to-cart-link',
-      'toCartLink',
+      'about-us-link',
+      'aboutUsLink',
       '',
-      'to cart',
+      'about us',
     );
-    this.toCartLink = tagCreator.createAndReturn();
-    this.toCartLink.setAttribute('href', '#cart');
+    this.aboutUsLink = tagCreator.createAndReturn();
+    this.aboutUsLink.setAttribute('href', '#aboutus');
 
     // this.toCartLink.addEventListener('click', (e) => {
     //   e.preventDefault();
@@ -236,7 +226,7 @@ export default class Navbar {
 
     //   pageContainer.getPageContainer().append(cartPage.getCartPage());
     // });
-    return this.toCartLink;
+    return this.aboutUsLink;
   }
 
   private createUserProfileLink() {
@@ -315,9 +305,9 @@ export default class Navbar {
 
     this.navbar.append(
       this.catalogLink,
+      this.aboutUsLink,
       this.signUpLink,
       this.signInLink,
-      this.toCartLink,
       this.userProfileLink,
       this.logoutLink,
     );

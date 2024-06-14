@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import ICardProduct from './interfaceCardProduct';
 import { LineItem } from './interfaceCardProduct';
 import { removeOneGoodFromCart } from './removeOneGood';
+
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../Home/anonymusSessionToken';
 import { updateQuantity } from './updateQuantity';
@@ -133,12 +134,21 @@ export default class CreateCardProduct {
     let quantityInput = <HTMLInputElement>(
       document.getElementById(`cardProductQuantityUpdate_${elem.id}`)
     );
-    quantityInput.type = 'number';
 
-    /* let quantityExactValue = document.getElementById(
-      `cardProductQuantity_${elem.id}`,
+    quantityInput.type = 'number';
+    // quantityInput.step = "1";
+    quantityInput.min = '1';
+    quantityInput.max = '10';
+
+    const infoError = new TagCreator(
+      'div',
+      'infoError',
+      `infoError_${elem.id}`,
+      `cardProductInfo_${elem.id}`,
+      ' ',
     );
-*/
+    infoError.createAndAppend();
+
     const buttonChangeQuantity = new TagCreator(
       'button',
       'buttonChangeQuantity',
@@ -153,20 +163,23 @@ export default class CreateCardProduct {
     );
 
     quantityInput.addEventListener('input', () => {
-      console.log('inputValue = ' + Number(quantityInput.value));
+      let info = document.getElementById(`infoError_${elem.id}`);
+
+      if (
+        (Number(quantityInput.value) > Number(quantityInput.min) &&
+          Number(quantityInput.value) < Number(quantityInput.max) &&
+          Number.isInteger(Number(quantityInput.value))) ||
+        (quantityInput.value = '')
+      ) {
+        info.textContent = ' ';
+      } else {
+        info.textContent = 'Please enter only positive integer from 1 to 10';
+        info.style.color = 'red';
+      }
+
       cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
       updateQuantity(elem.id, Number(quantityInput.value));
     });
-
-    /*
-    let buttonChange = document.getElementById(
-      `buttonChangeQuantity_${elem.id}`,
-    );
-
-    buttonChange.addEventListener('click', () => {
-      quantityExactValue.textContent = `Quantity: ${quantityInput.value}`;
-      updateQuantity(elem.id, Number(quantityInput.value));
-    });*/
 
     const cardProductTitleTotalPrice = new TagCreator(
       'div',

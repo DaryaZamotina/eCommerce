@@ -25,6 +25,9 @@ export default interface ICardProduct {
   type: string;
   version: number;
   versionModifiedAt: string;
+  discountOnTotalPrice?: {
+    discountedAmount: TotalPrice;
+  };
 }
 
 interface CreatedBy {

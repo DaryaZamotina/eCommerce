@@ -17,6 +17,11 @@ export default class CreateCardProduct {
     document.getElementById('totalCost').textContent =
       `${this.data.totalPrice.centAmount / 100} €`;
 
+    if (this.data.discountOnTotalPrice) {
+      document.getElementById('totalCostOld').textContent =
+      `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
+    }
+
     document.getElementById('shoppingCart_mainContaine').innerHTML = '';
 
     this.data.lineItems.forEach((elem) => {
@@ -176,6 +181,7 @@ export default class CreateCardProduct {
       `Total Price:`,
     );
     cardProductTitleTotalPrice.createAndAppend();
+
 
     const cardProductTotalPrice = new TagCreator(
       'div',

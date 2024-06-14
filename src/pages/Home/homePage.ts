@@ -42,9 +42,27 @@ export default class HomePage {
 
   private createHomePage() {
     const homePageTagCreator = new TagCreator('div', 'home-page', 'homePage');
-    const promocodeTitle = new TagCreator('div', 'homePromocode', 'homePromocode', '', 'Promocode:');
-    const promocode1 = new TagCreator('div', 'homePromocode', 'homePromocode1', '', 'NEWUSER24 -15%');
-    const promocode2 = new TagCreator('div', 'homePromocode', 'homePromocode2', '', 'SUMMER2024 -30 €');
+    const promocodeTitle = new TagCreator(
+      'div',
+      'homePromocode',
+      'homePromocode',
+      '',
+      'Promocode:',
+    );
+    const promocode1 = new TagCreator(
+      'div',
+      'homePromocode',
+      'homePromocode1',
+      '',
+      'NEWUSER24 -15%',
+    );
+    const promocode2 = new TagCreator(
+      'div',
+      'homePromocode',
+      'homePromocode2',
+      '',
+      'SUMMER2024 -30 €',
+    );
     this.homePage = homePageTagCreator.createAndReturn();
     this.homePage.append(this.getSection());
     this.homePage.append(promocodeTitle.createAndReturn());

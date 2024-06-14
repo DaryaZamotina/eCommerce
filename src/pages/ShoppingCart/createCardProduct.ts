@@ -19,7 +19,7 @@ export default class CreateCardProduct {
 
     if (this.data.discountOnTotalPrice) {
       document.getElementById('totalCostOld').textContent =
-      `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
+        `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
     }
 
     document.getElementById('shoppingCart_mainContaine').innerHTML = '';
@@ -181,7 +181,6 @@ export default class CreateCardProduct {
       `Total Price:`,
     );
     cardProductTitleTotalPrice.createAndAppend();
-
 
     const cardProductTotalPrice = new TagCreator(
       'div',

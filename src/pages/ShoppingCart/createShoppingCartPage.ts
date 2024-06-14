@@ -40,7 +40,12 @@ export default function createShoppingCartPage() {
   );
   totalCostTitle.createAndAppend();
 
-  const totalCostContainer = new TagCreator('div', 'totalCostContainer', 'totalCostContainer', 'shoppingCart_secondContaine',);
+  const totalCostContainer = new TagCreator(
+    'div',
+    'totalCostContainer',
+    'totalCostContainer',
+    'shoppingCart_secondContaine',
+  );
   totalCostContainer.createAndAppend();
 
   const totalCost = new TagCreator(
@@ -64,7 +69,7 @@ export default function createShoppingCartPage() {
     'promocodeTitle',
     'promocodeTitle',
     'shoppingCart_secondContaine',
-    'Promocode'
+    'Promocode',
   );
   promocodeTitle.createAndAppend();
 
@@ -82,12 +87,14 @@ export default function createShoppingCartPage() {
     'promocodeButton',
     'promocodeButton',
     'shoppingCart_secondContaine',
-    'Apply'
+    'Apply',
   );
   promocodeButton.createAndAppend();
 
   document.getElementById('promocodeButton').addEventListener('click', () => {
-    const promocodeInput = document.getElementById('promocodeInput') as HTMLInputElement;
+    const promocodeInput = document.getElementById(
+      'promocodeInput',
+    ) as HTMLInputElement;
     getDiscount(promocodeInput.value);
   });
 

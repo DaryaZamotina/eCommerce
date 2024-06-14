@@ -1,32 +1,5 @@
-import getShoppingCart from '../ShoppingCart/getShoppingCart';
-
-export async function removeProductFromCart(
-  id: string,
-  lineItemId: string,
-  variantOfGood: number,
-  quantity: number,
-) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
-
-  let version: number;
-
-  let info = JSON.parse(localStorage.getItem('newCart'));
-  version = info.version;
-  localStorage.setItem('versionOfCart', info.version);
-
-  let data = JSON.stringify({
-    version: Number(localStorage.getItem('versionOfCart')),
-    actions: [
-      {
-        action: 'removeLineItem',
-        lineItemId: lineItemId,
-        variantId: variantOfGood,
-        quantity: quantity,
-      },
-    ],
-  });
-  console.log('data = ' + data);
-
+import { IUser } from '../UserProfile/userInterface';
+export function addIDofUserToCart(userID: string, versionOfCart?: number) {
   let token: string;
   if (
     localStorage.getItem('access_token_for_user') &&
@@ -44,7 +17,33 @@ export async function removeProductFromCart(
   )
     token = localStorage.getItem('anonym_access_token');
 
-  async function removeProduct(url: string) {
+  let id = localStorage.getItem('IDCart');
+
+  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
+
+  let version: number;
+
+  if (versionOfCart) {
+    version = versionOfCart;
+  } else {
+    let info = JSON.parse(localStorage.getItem('newCart'));
+    version = info.version;
+  }
+
+  console.log('version = ' + version);
+
+  let data = JSON.stringify({
+    version: version,
+    actions: [
+      {
+        action: 'setCustomerId',
+        customerId: userID,
+      },
+    ],
+  });
+  console.log('data = ' + data);
+
+  async function addProduct(url: string) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
@@ -57,11 +56,10 @@ export async function removeProductFromCart(
     return JSON.stringify(resp);
   }
 
-  removeProduct(link)
+  addProduct(link)
     .then((output) => {
       localStorage.setItem('newCart', output);
       localStorage.setItem('versionOfCart', JSON.parse(output).version);
-      getShoppingCart();
       return output;
     })
     .catch((err) => console.log(err));

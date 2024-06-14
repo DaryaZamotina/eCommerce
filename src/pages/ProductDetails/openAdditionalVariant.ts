@@ -11,15 +11,11 @@ export function openAdditionalVariant(additionalVariant: IVariant) {
   const choosenGood: IResult = JSON.parse(localStorage.getItem('choosenGood'));
 
   const choosenVariant = choosenGood.masterData.current.masterVariant;
-  //localStorage.setItem("variantOfGood", choosenGood.masterData.current.variants);
 
-  console.log('choosenVariants = ' + choosenVariant);
   const categoriesImgs = additionalVariant.images;
   createProductCard(choosenGood, choosenVariant, categoriesImgs);
 
   const price: Array<IPrices> = additionalVariant.prices;
-
-  console.log('price = ' + JSON.stringify(price));
 
   const priceAmount = price[0].value.centAmount / 100;
 

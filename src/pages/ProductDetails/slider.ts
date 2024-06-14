@@ -30,10 +30,4 @@ export function getSlider() {
   rightButton.addEventListener('click', function () {
     sliderChange(-1);
   });
-
-  /*
-  let time = 5000;
-  setInterval(function () {
-    sliderChange(1);
-  }, time); */
 }

@@ -29,7 +29,7 @@ export function checkIsGoodInCart(
   removeLink.id = `removeLink _${resultId}`;
   removeLink.textContent = '';
   container.append(removeLink);
-
+  
   if (localStorage.getItem('newCart')) {
     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
     let goods = cart.lineItems;
@@ -39,22 +39,7 @@ export function checkIsGoodInCart(
         goods[i].productId == resultId &&
         price == goods[i].price.value.centAmount / 100
       ) {
-        {
-          removeLink.textContent = 'Remove from cart';
-          container.append(removeLink);
-          removeLink.addEventListener('click', function (e) {
-            removeProductFromCart(
-              localStorage.getItem('IDCart'),
-              `${lineItemID}`,
-              variantOfGood,
-              quantity,
-            );
-            removeLink.remove();
-            infoCheckIsInCart.remove();
-            buttonToCart.disabled = false;
-            e.stopPropagation();
-          });
-        }
+        removeLink.textContent = 'Remove from cart';
         infoCheckIsInCart.textContent = 'Already in cart!';
 
         let lineItemID: string = goods[i].id;
@@ -65,7 +50,7 @@ export function checkIsGoodInCart(
         );
         buttonToCart.disabled = true;
 
-        /* removeLink.addEventListener('click', function (e) {
+        removeLink.addEventListener('click', function (e) {
           removeProductFromCart(
             localStorage.getItem('IDCart'),
             `${lineItemID}`,
@@ -76,7 +61,7 @@ export function checkIsGoodInCart(
           infoCheckIsInCart.remove();
           buttonToCart.disabled = false;
           e.stopPropagation();
-        });*/
+        });
       }
     }
   }

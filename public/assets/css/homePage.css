@@ -10,7 +10,8 @@
 }
 
 .home__title,
-.home__section1>a {
+.home__section1>a,
+.homePromocode {
   color: var(--main-dark-color);
   font-size: 200%;
   font-weight: 900;

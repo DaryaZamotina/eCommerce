@@ -11,7 +11,7 @@ export async function addProductToCart(
   version = info.version;
 
   let data = JSON.stringify({
-    version: version,
+    version: Number(localStorage.getItem('versionOfCart')),
     actions: [
       {
         action: 'addLineItem',

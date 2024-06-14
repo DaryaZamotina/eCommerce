@@ -93,9 +93,20 @@
     margin: 1rem;
 }
 
-.totalCost {
+.totalCostContainer {
+    display: flex;
+    flex-direction: row;
     margin: 1rem;
+}
+
+.totalCost {
+    margin-right: 1rem;
     color: darkgreen;
+}
+
+.totalCostOld {
+    color: gray;
+    text-decoration: line-through;
 }
 
 .emptyMessageLink {
@@ -104,6 +115,11 @@
 
 .emptyMessageLink:visited {
     color: darkgreen;
+}
+
+.promocodeInput,
+.promocodeTitle {
+    margin:  0.5rem 1rem 0.5rem 1rem;
 }
 
 .buttonRemoveAll {

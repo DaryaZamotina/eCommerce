@@ -29,7 +29,8 @@
 }
 
 .registrationForm input,
-.loginForm input {
+.loginForm input,
+.promocodeInput {
     height: 2rem;
     margin-bottom: 0.5rem;
     border-radius: 0.5rem;

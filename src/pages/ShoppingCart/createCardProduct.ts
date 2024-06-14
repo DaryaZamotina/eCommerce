@@ -2,7 +2,6 @@ import TagCreator from '../../module/tagCreator';
 import ICardProduct from './interfaceCardProduct';
 import { LineItem } from './interfaceCardProduct';
 import { removeOneGoodFromCart } from './removeOneGood';
-
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../Home/anonymusSessionToken';
 import { updateQuantity } from './updateQuantity';
@@ -17,6 +16,11 @@ export default class CreateCardProduct {
   public createCard() {
     document.getElementById('totalCost').textContent =
       `${this.data.totalPrice.centAmount / 100} €`;
+    
+    if (this.data.discountOnTotalPrice) {
+      document.getElementById('totalCostOld').textContent =
+        `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
+    }
 
     document.getElementById('shoppingCart_mainContaine').innerHTML = '';
 

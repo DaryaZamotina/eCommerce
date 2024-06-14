@@ -12,6 +12,7 @@ import PageContainer from '../../components/PageContainer/pageContainer';
 import { setRoutingPage } from '../..';
 import { createModalWindow } from '../../components/ModalWindow/modalWindow';
 import { header } from '../..';
+import { getUserInfoFromEcomm } from '../UserProfile/getUserDataFromEcomm';
 
 const linkForChecking: string =
   'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
@@ -47,6 +48,8 @@ export function sendDataToEComm() {
       console.log('refresh_token_for_user = ' + infoJSON.refresh_token);
       localStorage.setItem('access_token_for_user', infoJSON.access_token);
       localStorage.setItem('refresh_token_for_user', infoJSON.refresh_token);
+
+      getUserInfoFromEcomm(infoJSON.access_token);
 
       if (infoJSON.statusCode == 400) {
         const error: string = infoJSON.message;

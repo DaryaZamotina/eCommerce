@@ -4,6 +4,8 @@ import {
   newClientForProducts,
   oneMoreClient,
 } from '../Home/anonymusSessionToken';
+import { IUser } from '../UserProfile/userInterface';
+import { addIDofUserToCart } from '../Cart/addIDofUserToCart';
 
 export const projectKey: string = 'jffecommerce';
 
@@ -52,6 +54,7 @@ export function receiveAccessToken() {
       const accessToken = jsonToken.access_token;
       localStorage.setItem('access_token_auth', accessToken);
       console.log('accessToken for authentification = ' + accessToken);
+
       return output;
     })
     .catch((err) => console.log(err));

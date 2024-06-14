@@ -16,7 +16,7 @@ export default class CreateCardProduct {
   public createCard() {
     document.getElementById('totalCost').textContent =
       `${this.data.totalPrice.centAmount / 100} €`;
-
+    
     if (this.data.discountOnTotalPrice) {
       document.getElementById('totalCostOld').textContent =
         `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
@@ -140,10 +140,6 @@ export default class CreateCardProduct {
     );
     quantityInput.type = 'number';
 
-    /* let quantityExactValue = document.getElementById(
-      `cardProductQuantity_${elem.id}`,
-    );
-*/
     const buttonChangeQuantity = new TagCreator(
       'button',
       'buttonChangeQuantity',
@@ -162,16 +158,6 @@ export default class CreateCardProduct {
       cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
       updateQuantity(elem.id, Number(quantityInput.value));
     });
-
-    /*
-    let buttonChange = document.getElementById(
-      `buttonChangeQuantity_${elem.id}`,
-    );
-
-    buttonChange.addEventListener('click', () => {
-      quantityExactValue.textContent = `Quantity: ${quantityInput.value}`;
-      updateQuantity(elem.id, Number(quantityInput.value));
-    });*/
 
     const cardProductTitleTotalPrice = new TagCreator(
       'div',

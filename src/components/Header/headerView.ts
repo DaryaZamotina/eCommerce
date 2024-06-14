@@ -8,6 +8,8 @@ export default class HeaderView {
 
   private navbar: Navbar;
 
+  private toCartLink: HTMLElement;
+
   private burger: HTMLElement;
 
   private firstLine: HTMLElement;
@@ -21,6 +23,7 @@ export default class HeaderView {
   constructor() {
     this.nameOfShop = this.createNameOfShop();
     this.navbar = new Navbar();
+    this.toCartLink = this.createToCartLink();
     this.burger = this.createBurger();
     this.headerWrapper = this.createHeaderWrapper();
     this.header = this.createHeader();
@@ -32,6 +35,10 @@ export default class HeaderView {
 
   public getNavbar(): Navbar {
     return this.navbar;
+  }
+
+  public getToCartLink() {
+    return this.toCartLink;
   }
 
   public getNameOfShop(): HTMLElement {
@@ -54,6 +61,19 @@ export default class HeaderView {
     });
 
     return this.nameOfShop;
+  }
+
+  private createToCartLink() {
+    const tagCreator = new TagCreator(
+      'a',
+      'to-cart-link',
+      'toCartLink',
+      '',
+      'to cart',
+    );
+    this.toCartLink = tagCreator.createAndReturn();
+    this.toCartLink.setAttribute('href', '#cart');
+    return this.toCartLink;
   }
 
   private createBurger() {
@@ -90,6 +110,7 @@ export default class HeaderView {
     this.headerWrapper.append(
       this.nameOfShop,
       this.navbar.getNavbar(),
+      this.toCartLink,
       this.burger,
     );
 
@@ -125,7 +146,7 @@ export default class HeaderView {
         this.navbar.getCatalogLink().contains(e.target as Node) ||
         this.navbar.getSignUpLink().contains(e.target as Node) ||
         this.navbar.getSignInLink().contains(e.target as Node) ||
-        this.navbar.getToCartLink().contains(e.target as Node) ||
+        this.navbar.getAboutUsLink().contains(e.target as Node) ||
         this.navbar.getUserProfileLink().contains(e.target as Node) ||
         this.navbar.getLogoutLink().contains(e.target as Node)
       ) {

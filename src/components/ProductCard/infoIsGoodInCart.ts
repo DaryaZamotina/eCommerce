@@ -29,7 +29,7 @@ export function checkIsGoodInCart(
   removeLink.id = `removeLink _${resultId}`;
   removeLink.textContent = '';
   container.append(removeLink);
-  
+
   if (localStorage.getItem('newCart')) {
     let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
     let goods = cart.lineItems;

@@ -28,10 +28,6 @@ export function getUserInfoFromEcomm(token: string) {
         localStorage.setItem('userDetails', info);
         createUserProfile();
 
-        /*  if (localStorage.getItem('newCart')) {
-          addIDofUserToCart(localStorage.getItem('customerID'));
-        } */
-
         return info;
       })
       .catch((err) => console.log(err.message));
@@ -39,6 +35,9 @@ export function getUserInfoFromEcomm(token: string) {
     getInfo(linkMe)
       .then((info) => {
         localStorage.setItem('userDetails', info);
+        let infoObj = JSON.parse(info);
+        let customerID = infoObj.id;
+        localStorage.setItem('customerID', customerID);
 
         /* if (localStorage.getItem('newCart')) {
           let user: IUser = JSON.parse(localStorage.getItem('userDetails'));

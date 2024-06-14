@@ -27,12 +27,12 @@ export function sendDataToEComm() {
     password: `${passwordLogin}`,
   });
 
-  if (localStorage.getItem("newCart")) {
+  if (localStorage.getItem('newCart')) {
     body = new URLSearchParams({
       grant_type: 'password',
       username: `${emailLogin}`,
       password: `${passwordLogin}`,
-      anonymousCartSignInMode: 'MergeWithExistingCustomerCart'
+      anonymousCartSignInMode: 'MergeWithExistingCustomerCart',
     });
   }
 
@@ -44,7 +44,7 @@ export function sendDataToEComm() {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: body,
- /*     body: new URLSearchParams({
+      /*     body: new URLSearchParams({
         grant_type: 'password',
         username: `${emailLogin}`,
         password: `${passwordLogin}`,

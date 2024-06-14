@@ -41,20 +41,20 @@ export function checkIsGoodInCart(
       ) {
         {
           removeLink.textContent = 'Remove from cart';
-        container.append(removeLink);
-        removeLink.addEventListener('click', function (e) {
-          removeProductFromCart(
-            localStorage.getItem('IDCart'),
-            `${lineItemID}`,
-            variantOfGood,
-            quantity,
-          );
-          removeLink.remove();
-          infoCheckIsInCart.remove();
-          buttonToCart.disabled = false;
-          e.stopPropagation();
-        });
-      }
+          container.append(removeLink);
+          removeLink.addEventListener('click', function (e) {
+            removeProductFromCart(
+              localStorage.getItem('IDCart'),
+              `${lineItemID}`,
+              variantOfGood,
+              quantity,
+            );
+            removeLink.remove();
+            infoCheckIsInCart.remove();
+            buttonToCart.disabled = false;
+            e.stopPropagation();
+          });
+        }
         infoCheckIsInCart.textContent = 'Already in cart!';
 
         let lineItemID: string = goods[i].id;
@@ -65,7 +65,7 @@ export function checkIsGoodInCart(
         );
         buttonToCart.disabled = true;
 
-       /* removeLink.addEventListener('click', function (e) {
+        /* removeLink.addEventListener('click', function (e) {
           removeProductFromCart(
             localStorage.getItem('IDCart'),
             `${lineItemID}`,

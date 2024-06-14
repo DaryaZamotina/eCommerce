@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import ICardProduct from './interfaceCardProduct';
 import { LineItem } from './interfaceCardProduct';
 import { removeOneGoodFromCart } from './removeOneGood';
+
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../Home/anonymusSessionToken';
 import { updateQuantity } from './updateQuantity';

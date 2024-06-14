@@ -23,6 +23,7 @@ export function getProductsListInfoFromEcomm(token: string) {
       const infoJSON = JSON.parse(info);
 
       const numberOfGoods = infoJSON.results.length;
+
       createProductsList(numberOfGoods, infoJSON.results);
 
       return info;

@@ -61,7 +61,26 @@ export async function removeProductFromCart(
     .then((output) => {
       localStorage.setItem('newCart', output);
       localStorage.setItem('versionOfCart', JSON.parse(output).version);
+
+      let goodsNumber = document.getElementById('goodsNumber');
+
+      if ((goodsNumber.style.display = 'none')) {
+        goodsNumber.style.display = 'block';
+      }
+
+      let goodsNumberP = document.getElementById('goodsNumberP');
+      let cart = JSON.parse(localStorage.getItem('newCart'));
+      let numberOfGoods = String(cart.totalLineItemQuantity);
+
+      goodsNumberP.textContent = numberOfGoods;
+
+      if (numberOfGoods == 'undefined') {
+        let goodsNumber = document.getElementById('goodsNumber');
+        goodsNumber.style.display = 'none';
+      }
+
       getShoppingCart();
+
       return output;
     })
     .catch((err) => console.log(err));

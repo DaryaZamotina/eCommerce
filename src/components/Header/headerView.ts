@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import Navbar from '../Navbar/navbar';
 import { setHistoryPushStateToHome } from '../Navbar/navbar';
 import '../../../public/assets/css/header.css';
+import { ICart } from '../../pages/Cart/cartInterface';
 
 export default class HeaderView {
   private nameOfShop: HTMLElement;
@@ -69,10 +70,34 @@ export default class HeaderView {
       'to-cart-link',
       'toCartLink',
       '',
-      'to cart',
+      '',
     );
     this.toCartLink = tagCreator.createAndReturn();
     this.toCartLink.setAttribute('href', '#cart');
+
+    const imgToCart = document.createElement('button');
+    imgToCart.className = 'imgToCart';
+    imgToCart.id = 'imgToCart';
+    this.toCartLink.append(imgToCart);
+
+    const goodsNumber: HTMLDivElement = document.createElement('div');
+    goodsNumber.className = 'goodsNumber';
+    goodsNumber.id = 'goodsNumber';
+    goodsNumber.style.display = 'none';
+    this.toCartLink.append(goodsNumber);
+
+    const goodsNumberP: HTMLElement = document.createElement('p');
+    goodsNumberP.className = 'goodsNumberP';
+    goodsNumberP.id = 'goodsNumberP';
+    goodsNumber.append(goodsNumberP);
+
+    if (localStorage.getItem('newCart')) {
+      goodsNumber.style.display = 'block';
+      let cart: ICart = JSON.parse(localStorage.getItem('newCart'));
+      let numberOfGoods = String(cart.totalLineItemQuantity);
+      goodsNumberP.textContent = numberOfGoods;
+    }
+
     return this.toCartLink;
   }
 

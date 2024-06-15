@@ -5,6 +5,7 @@ import { removeOneGoodFromCart } from './removeOneGood';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { receiveAnonymusAccessToken } from '../Home/anonymusSessionToken';
 import { updateQuantity } from './updateQuantity';
+import spinner from '../../Helpers/spinner';
 
 export default class CreateCardProduct {
   private data: ICardProduct;
@@ -16,7 +17,7 @@ export default class CreateCardProduct {
   public createCard() {
     document.getElementById('totalCost').textContent =
       `${this.data.totalPrice.centAmount / 100} €`;
-    
+
     if (this.data.discountOnTotalPrice) {
       document.getElementById('totalCostOld').textContent =
         `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
@@ -31,6 +32,8 @@ export default class CreateCardProduct {
     if (this.data.lineItems.length === 0) {
       this.emptyMessage();
     }
+
+    spinner(false);
   }
 
   private createCardDiv(elem: LineItem) {

@@ -16,7 +16,7 @@ export default class CreateCardProduct {
   public createCard() {
     document.getElementById('totalCost').textContent =
       `${this.data.totalPrice.centAmount / 100} €`;
-    
+
     if (this.data.discountOnTotalPrice) {
       document.getElementById('totalCostOld').textContent =
         `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
@@ -168,25 +168,27 @@ export default class CreateCardProduct {
 
     quantityInput.addEventListener('input', () => {
       let info = document.getElementById(`infoError_${elem.id}`);
-      let buttonChange = <HTMLButtonElement>document.getElementById(`buttonChangeQuantity_${elem.id}`);
+      let buttonChange = <HTMLButtonElement>(
+        document.getElementById(`buttonChangeQuantity_${elem.id}`)
+      );
 
       if (
-        (Number(quantityInput.value) > Number(quantityInput.min) &&
-          Number(quantityInput.value) < Number(quantityInput.max) &&
-          Number.isInteger(Number(quantityInput.value)))
+        Number(quantityInput.value) > Number(quantityInput.min) &&
+        Number(quantityInput.value) < Number(quantityInput.max) &&
+        Number.isInteger(Number(quantityInput.value))
       ) {
         info.textContent = ' ';
         buttonChange.disabled = false;
-     //   cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
-     //   updateQuantity(elem.id, Number(quantityInput.value));
+        //   cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
+        //   updateQuantity(elem.id, Number(quantityInput.value));
       } else {
         buttonChange.disabled = true;
         info.textContent = 'Please enter only positive integer from 1 to 10';
         info.style.color = 'red';
       }
 
-     cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
-     updateQuantity(elem.id, Number(quantityInput.value));
+      cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
+      updateQuantity(elem.id, Number(quantityInput.value));
     });
 
     const cardProductTitleTotalPrice = new TagCreator(

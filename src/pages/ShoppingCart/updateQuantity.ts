@@ -31,7 +31,6 @@ export function updateQuantity(idGood: string, quantity: number) {
   version = info.version;
 
   buttonChange.addEventListener('click', () => {
-
     let data = JSON.stringify({
       version: version,
       actions: [

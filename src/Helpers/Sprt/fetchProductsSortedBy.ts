@@ -11,6 +11,7 @@ export default async function fetchProductsSortedBy(
     link += metod;
     link += '&limit=30';
   }
+  console.log(sort, metod);
   // let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice"`;
   // link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.name:"collection"&filter.query=variants.attributes.value.key:"Dublin"`;
   const response = await fetch(link, {
@@ -30,6 +31,8 @@ export default async function fetchProductsSortedBy(
   const obj: IResultNew[] = data.results;
 
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
+
+  console.log(2);
 
   if (obj.length > 0) {
     catalogSection.innerHTML = '';

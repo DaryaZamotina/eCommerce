@@ -16,7 +16,7 @@ export default class CreateCardProduct {
   public createCard() {
     document.getElementById('totalCost').textContent =
       `${this.data.totalPrice.centAmount / 100} €`;
-    
+
     if (this.data.discountOnTotalPrice) {
       document.getElementById('totalCostOld').textContent =
         `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;

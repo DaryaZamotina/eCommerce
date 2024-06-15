@@ -78,9 +78,13 @@ export async function removeProductFromCart(
         let goodsNumber = document.getElementById('goodsNumber');
         goodsNumber.style.display = 'none';
       }
-if (document.getElementById('pageContainer').contains(document.getElementById('shoppingCartContainer'))) {
-  getShoppingCart();
-}
+      if (
+        document
+          .getElementById('pageContainer')
+          .contains(document.getElementById('shoppingCartContainer'))
+      ) {
+        getShoppingCart();
+      }
 
       return output;
     })

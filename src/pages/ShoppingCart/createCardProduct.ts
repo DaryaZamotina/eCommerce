@@ -182,16 +182,14 @@ export default class CreateCardProduct {
 
         cardProductQuant.textContent = `Quantity: ${quantityInput.value}`;
 
-      buttonChange.addEventListener('click', () => {
-        updateQuantity(elem.id, Number(quantityInput.value));
-      })
-       
+        buttonChange.addEventListener('click', () => {
+          updateQuantity(elem.id, Number(quantityInput.value));
+        });
       } else {
         buttonChange.disabled = true;
         info.textContent = 'Please enter only positive integer from 1 to 10';
         info.style.color = 'red';
       }
-
     });
 
     const cardProductTitleTotalPrice = new TagCreator(

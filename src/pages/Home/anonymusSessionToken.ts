@@ -63,9 +63,9 @@ export function receiveAnonymusAccessToken() {
       const jsonToken = JSON.parse(output);
       const anonymAccessToken = jsonToken.access_token;
       localStorage.setItem('anonym_access_token', anonymAccessToken);
-      let tokenForGoods = localStorage.getItem('anonym_access_token');
-      getProductsListInfoFromEcomm(tokenForGoods);
-      console.log('anonym_access_token = ' + anonymAccessToken);
+  //    let tokenForGoods = localStorage.getItem('anonym_access_token');
+  //    getProductsListInfoFromEcomm(tokenForGoods);
+   //   console.log('anonym_access_token = ' + anonymAccessToken);
       return output;
     })
     .catch((err) => console.log(err));

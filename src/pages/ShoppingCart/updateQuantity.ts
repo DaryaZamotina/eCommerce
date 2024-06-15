@@ -1,5 +1,5 @@
 export function updateQuantity(idGood: string, quantity: number) {
-  let buttonChange = document.getElementById(`buttonChangeQuantity_${idGood}`);
+  let buttonChange = <HTMLButtonElement>document.getElementById(`buttonChangeQuantity_${idGood}`);
 
   let cardProductQuantity = document.getElementById(
     `cardProductQuantity_${idGood}`,
@@ -29,6 +29,13 @@ export function updateQuantity(idGood: string, quantity: number) {
 
   let info = JSON.parse(localStorage.getItem('newCart'));
   version = info.version;
+
+  let errorInfo = document.getElementById(`infoError_${idGood}`);
+
+ /* if (errorInfo.textContent = 'Please enter only positive integer from 1 to 10') {
+    buttonChange.disabled = true;
+  } else {
+    buttonChange.disabled = false;*/
 
   buttonChange.addEventListener('click', () => {
     let data = JSON.stringify({
@@ -81,3 +88,4 @@ export function updateQuantity(idGood: string, quantity: number) {
       .catch((err) => console.log(err));
   });
 }
+//}

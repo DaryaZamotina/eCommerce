@@ -166,10 +166,10 @@ export function setRoutingPage() {
 }
 setRoutingPage();
 
-// window.addEventListener('hashchange', () => {
-//   currentHash = getHash();
-//   setRoutingPage();
-// });
+window.addEventListener('hashchange', () => {
+  currentHash = getHash();
+  setRoutingPage();
+});
 
 // window.addEventListener('popstate', () => {
 //   currentHash = getHash();

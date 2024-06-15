@@ -3,7 +3,7 @@ import spinner from '../../Helpers/spinner';
 
 export default async function getShoppingCart() {
   spinner(true);
-  
+
   let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${localStorage.getItem('IDCart')}`;
 
   let token: string;

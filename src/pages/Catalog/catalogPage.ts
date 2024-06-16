@@ -3,6 +3,8 @@ import '../../../public/assets/css/catalogPage.css';
 import fetchProductsSortedBy from '../../Helpers/Sprt/fetchProductsSortedBy';
 import fetchProductsSearch from '../../Helpers/Sprt/fetchProductsSearch';
 import categoryList from '../../Helpers/Sprt/categoryList';
+import pagination from '../../components/Pagination/paginationInstance';
+import Pagination from '../../components/Pagination/pagination';
 
 export default class CatalogPage {
   section: HTMLElement;
@@ -10,12 +12,14 @@ export default class CatalogPage {
   catalogPage: HTMLElement;
   category: HTMLElement;
   filter: HTMLElement;
+  pagination: Pagination;
 
   constructor() {
     this.section = this.createSection();
     this.category = this.createCategory();
     this.filter = this.createFilter();
     this.sort = this.createSort();
+    this.pagination = pagination;
     this.catalogPage = this.createCatalogPage();
   }
 
@@ -313,7 +317,7 @@ export default class CatalogPage {
     this.catalogPage.append(this.getCategory());
     this.catalogPage.append(this.getFilter());
     this.catalogPage.append(this.getSort());
-    this.catalogPage.append(this.getSection());
+    this.catalogPage.append(this.getSection(), this.pagination.getPagination());
     return this.catalogPage;
   }
 
@@ -331,7 +335,7 @@ export default class CatalogPage {
 
     let seartText = '';
     let sortCriteria = [
-      { query: `search?${seartText}limit=30` },
+      { query: `search?${seartText}limit=8` },
       { query: `search?${seartText}sort=price`, order: ' asc' },
       { query: `search?${seartText}sort=price`, order: ' desc' },
       { query: `search?${seartText}sort=name.en`, order: ' asc' },
@@ -359,7 +363,7 @@ export default class CatalogPage {
       }
       seartText = `text.en=${input.value}&`;
       sortCriteria = [
-        { query: `search?${seartText}limit=30` },
+        { query: `search?${seartText}limit=8` },
         { query: `search?${seartText}sort=price`, order: ' asc' },
         { query: `search?${seartText}sort=price`, order: ' desc' },
         { query: `search?${seartText}sort=name.en`, order: ' asc' },
@@ -370,7 +374,7 @@ export default class CatalogPage {
     button.addEventListener('click', () => {
       seartText = `text.en=${input.value}&`;
       sortCriteria = [
-        { query: `search?${seartText}limit=30` },
+        { query: `search?${seartText}limit=8` },
         { query: `search?${seartText}sort=price`, order: ' asc' },
         { query: `search?${seartText}sort=price`, order: ' desc' },
         { query: `search?${seartText}sort=name.en`, order: ' asc' },
@@ -435,7 +439,7 @@ export default class CatalogPage {
           break;
       }
       sortCriteria = [
-        { query: `search?${categoryList[`${result}`]}limit=30` },
+        { query: `search?${categoryList[`${result}`]}limit=8` },
         {
           query: `search?${categoryList[`${result}`]}sort=price`,
           order: ' asc',
@@ -480,7 +484,7 @@ export default class CatalogPage {
       ) {
         sortCriteria = [
           {
-            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30`,
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=8`,
           },
           {
             query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
@@ -514,7 +518,7 @@ export default class CatalogPage {
       ) {
         sortCriteria = [
           {
-            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=30`,
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=8`,
           },
           {
             query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,

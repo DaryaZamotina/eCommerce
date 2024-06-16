@@ -23,7 +23,7 @@ import IResultNew from './InterfaceProductNew';
 import { removeProductFromCart } from '../../pages/Cart/removeProductFromCart';
 import { ICart } from '../../pages/Cart/cartInterface';
 
-export function createProductsList(n: number, obj: Array<IResult>) {
+export function createProductsList(obj: Array<IResult>) {
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
   catalogSection.innerHTML = '';
 

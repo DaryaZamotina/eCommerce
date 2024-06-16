@@ -49,13 +49,17 @@ export function createButtonToCart(resultId: string, price?: number) {
 
     btnToCart.disabled = true;
 
-    let infoCheckIsInCart = document.getElementById(
-      `infoCheckIsInCart_${resultId}`,
-    );
-    infoCheckIsInCart.textContent = 'Already in cart!';
+    if (document.getElementById(`infoCheckIsInCart_${resultId}`)) {
+      let infoCheckIsInCart = document.getElementById(
+        `infoCheckIsInCart_${resultId}`,
+      );
+      infoCheckIsInCart.textContent = 'Already in cart!';
+    }
 
-    let removeLink = document.getElementById(`removeLink _${resultId}`);
-    removeLink.textContent = 'Remove from cart';
+    if (document.getElementById(`removeLink _${resultId}`)) {
+      let removeLink = document.getElementById(`removeLink _${resultId}`);
+      removeLink.textContent = 'Remove from cart';
+    }
 
     if (localStorage.getItem('newCart')) {
       addProductToCart(localStorage.getItem('IDCart'), `${resultId}`, token);

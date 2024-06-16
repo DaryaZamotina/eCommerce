@@ -21,6 +21,21 @@ export function sendDataToEComm() {
   const emailLogin: string = localStorage.getItem('email');
   const passwordLogin: string = localStorage.getItem('password');
 
+  let body = new URLSearchParams({
+    grant_type: 'password',
+    username: `${emailLogin}`,
+    password: `${passwordLogin}`,
+  });
+
+  if (localStorage.getItem('newCart')) {
+    body = new URLSearchParams({
+      grant_type: 'password',
+      username: `${emailLogin}`,
+      password: `${passwordLogin}`,
+      anonymousCartSignInMode: 'MergeWithExistingCustomerCart',
+    });
+  }
+
   async function checkPasswordFlowForUser(url: string) {
     const response = await fetch(url, {
       method: 'POST',
@@ -28,12 +43,13 @@ export function sendDataToEComm() {
         Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: new URLSearchParams({
+      body: body,
+      /*     body: new URLSearchParams({
         grant_type: 'password',
         username: `${emailLogin}`,
         password: `${passwordLogin}`,
         //scope: `manage_customers:${projectKey}`,
-      }),
+      }), */
     });
     const resp = await response.json();
     return JSON.stringify(resp);

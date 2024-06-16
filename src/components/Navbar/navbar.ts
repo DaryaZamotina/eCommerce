@@ -121,7 +121,7 @@ export default class Navbar {
         getProductsListInfoFromEcomm(
           localStorage.getItem('anonym_access_token'),
         );
-      } else if (
+      } /*else if (
         !localStorage.getItem('anonym_access_token') ||
         localStorage.getItem('anonym_access_token') == 'undefined' ||
         !localStorage.getItem('access_token_for_user') ||
@@ -129,7 +129,7 @@ export default class Navbar {
       )
         if (!localStorage.getItem('anonym_token_auth')) {
           receiveAnonymusAccessToken();
-        }
+       }*/
     });
 
     return this.catalogLink;

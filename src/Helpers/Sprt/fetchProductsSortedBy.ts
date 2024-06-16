@@ -1,15 +1,31 @@
 import ProductsCardInCatalog from '../../components/ProductCard/ProductList';
 import IResult from '../../components/ProductCard/InterfaceProduct';
 import IResultNew from '../../components/ProductCard/InterfaceProductNew';
+import {
+  setOffsetPagination,
+  setSortPagination,
+  setMethodPagination,
+} from '../../utils/constsForPagination';
+import { displayTotalPages } from '../../utils/countPageForPagination';
 
 export default async function fetchProductsSortedBy(
   sort: string,
-  metod?: string,
+  method?: string,
+  offset?: number,
 ) {
+  setSortPagination(sort);
   let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/${sort}`;
-  if (metod !== undefined) {
-    link += metod;
-    link += '&limit=30';
+  console.log('last link: ' + link);
+  if (method !== undefined) {
+    link += method;
+    link += '&limit=8';
+    setMethodPagination(method);
+    console.log('last link: ' + link);
+  } else if (offset !== undefined) {
+    link += '&limit=8';
+    link += `&offset=${offset}`;
+    setOffsetPagination(offset);
+    console.log('last link: ' + link);
   }
   console.log(sort, metod);
   // let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice"`;
@@ -27,6 +43,11 @@ export default async function fetchProductsSortedBy(
   }
 
   const data = await response.json();
+
+  // For pagination -----
+  displayTotalPages(data.total);
+  // console.log('total number of goods for pagination (fetchProductsSortedBy): ' + data.total);
+  // -----
 
   const obj: IResultNew[] = data.results;
 

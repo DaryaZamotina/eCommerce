@@ -1,9 +1,11 @@
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { createProductsList } from './ProductList';
+import { setTotalNumberOfGoods } from '../../utils/constsForPagination';
+import { displayTotalPages } from '../../utils/countPageForPagination';
 
 export function getProductsListInfoFromEcomm(token: string) {
   const link =
-    'https://api.us-east-2.aws.commercetools.com/jffecommerce/products?limit=30';
+    'https://api.us-east-2.aws.commercetools.com/jffecommerce/products?limit=8';
 
   async function getInfo(url: string) {
     const response = await fetch(url, {
@@ -22,9 +24,14 @@ export function getProductsListInfoFromEcomm(token: string) {
 
       const infoJSON = JSON.parse(info);
 
-      const numberOfGoods = infoJSON.results.length;
+      // const numberOfGoods = infoJSON.results.length;
 
-      createProductsList(numberOfGoods, infoJSON.results);
+      // For pagination -----
+      displayTotalPages(infoJSON.total);
+      // console.log('total number of goods for pagination (getProductsListInfoFromEcomm): ' + infoJSON.total)
+      // -----
+
+      createProductsList(infoJSON.results);
 
       return info;
     })

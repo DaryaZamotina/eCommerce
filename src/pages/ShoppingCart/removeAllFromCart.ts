@@ -96,7 +96,6 @@ export async function removeAllFromCart() {
       return output;
     })
     .catch((err) => {
-
-      console.log(err)
+      console.log(err);
     });
 }

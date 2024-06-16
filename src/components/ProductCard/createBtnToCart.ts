@@ -58,7 +58,7 @@ export function createButtonToCart(resultId: string, price?: number) {
 
     if (document.getElementById(`removeLink _${resultId}`)) {
       let removeLink = document.getElementById(`removeLink _${resultId}`);
-    removeLink.textContent = 'Remove from cart';
+      removeLink.textContent = 'Remove from cart';
     }
 
     if (localStorage.getItem('newCart')) {

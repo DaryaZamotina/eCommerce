@@ -72,7 +72,6 @@ export function updateQuantity(idGood: string, quantity: number) {
       return output;
     })
     .catch((err) => {
-     
-      console.log(err)
+      console.log(err);
     });
 }

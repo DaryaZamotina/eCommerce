@@ -470,17 +470,19 @@ export default class CatalogPage {
     });
 
     filter.addEventListener('click', (event) => {
+      console.log(0);
       const target = event.target as HTMLElement;
       const id = target.id.split('_');
+      console.log(id[2]);
       if (
         id[2] === 'Dublin' ||
-        'Nicole' ||
-        'Ronda' ||
-        'Venice' ||
-        'Paola' ||
-        'Helen' ||
-        'Dallas' ||
-        'Valencia'
+        id[2] === 'Nicole' ||
+        id[2] === 'Ronda' ||
+        id[2] === 'Venice' ||
+        id[2] === 'Paola' ||
+        id[2] === 'Helen' ||
+        id[2] === 'Dallas' ||
+        id[2] === 'Valencia'
       ) {
         sortCriteria = [
           {
@@ -506,15 +508,16 @@ export default class CatalogPage {
         sortButton.forEach((button, index) => {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
+            console.log(1);
             fetchProductsSortedBy(query, order);
           }
         });
       }
       if (
         id[2] === 'interior-center' ||
-        'elbrus-m' ||
-        'stendmebel' ||
-        'nk-furniture'
+        id[2] === 'elbrus-m' ||
+        id[2] === 'stendmebel' ||
+        id[2] === 'nk-furniture'
       ) {
         sortCriteria = [
           {
@@ -540,6 +543,7 @@ export default class CatalogPage {
         sortButton.forEach((button, index) => {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
+            console.log(3);
             fetchProductsSortedBy(query, order);
           }
         });

@@ -35,8 +35,20 @@ export default class HomePage {
     return this.section;
   }
 
+  // Пути прописаны для деплоя. Для локального запуска путь должен быть вида "../public/assets/images/room.webm"
+
   private insertHTMLToHomePage() {
-    this.section.innerHTML = `<h2 class="home__title">WELCOME<br>to our online store<br>JOY.M HOME FURNITURE</h2>`;
+    this.section.innerHTML = `
+      <video playsinline autoplay muted loop poster="./images/room.png">
+        <source src="./images/room.webm" type="video/webm">
+      </video>
+      <h2 class="home__title">
+        WELCOME
+        <br>
+        JOY.M
+        <br>
+        Home Furniture
+      </h2>`;
     this.section.append(navbar.getCatalogLink());
   }
 
@@ -54,14 +66,14 @@ export default class HomePage {
       'homePromocode',
       'homePromocode1',
       '',
-      'NEWUSER24 -15%',
+      'NEWUSER24 - 15%',
     );
     const promocode2 = new TagCreator(
       'div',
       'homePromocode',
       'homePromocode2',
       '',
-      'SUMMER2024 -30 €',
+      'SUMMER2024 - 30€',
     );
     this.homePage = homePageTagCreator.createAndReturn();
     this.homePage.append(this.getSection());

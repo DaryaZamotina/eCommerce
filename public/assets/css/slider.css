@@ -37,6 +37,7 @@
     border: 1px solid #665F55;
     border-radius: 2em;
     position: absolute;
+    width: 80px;
     z-index: 2;
 }
 

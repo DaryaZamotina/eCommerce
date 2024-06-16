@@ -70,10 +70,7 @@ export default class AboutUsPage {
       `aboutUsLogoRSS`,
     );
     const logoRSS = tagLogoRSS.createAndReturn();
-    logoRSS.setAttribute(
-      'src',
-      '../../../public/assets/images/logo-rss-square.png',
-    );
+    logoRSS.setAttribute('src', './images/logo-rss-square.png');
     logoRSS.setAttribute(
       'onclick',
       `window.open('https://rs.school/', '_blank')`,

@@ -5,5 +5,6 @@ export default interface IDeveloper {
   city: string;
   photo: string;
   about: string;
+  education: string;
   areas: string;
 }

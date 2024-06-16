@@ -67,6 +67,11 @@ export function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(homePage.getHomePage());
+      const video = document.querySelector('video');
+      console.log(video);
+      if (video) {
+        video.play();
+      }
       break;
 
     case 'catalog':

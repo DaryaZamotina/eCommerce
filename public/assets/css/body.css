@@ -63,6 +63,6 @@ button  {
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    padding: 40px;
+    padding: 40px calc(3vw + 10px);
     min-height: calc(100dvh - var(--header-height) - (var(--footer-height) - 20px));
 }

@@ -75,6 +75,28 @@ export default class AboutDeveloper {
     return textAbout.createAndReturn();
   }
 
+  private createTitleEducation() {
+    const titleEducation = new TagCreator(
+      'p',
+      'about-us__dev-education-title',
+      `aboutUsDevEducationTitle${this.infoAboutDevelopers[this.i].name}`,
+      '',
+      'Education/work experience',
+    );
+    return titleEducation.createAndReturn();
+  }
+
+  private createEducation() {
+    const education = new TagCreator(
+      'p',
+      'about-us__dev-education',
+      `aboutUsDevEducation${this.infoAboutDevelopers[this.i].name}`,
+      '',
+      `${this.infoAboutDevelopers[this.i].education}`,
+    );
+    return education.createAndReturn();
+  }
+
   private createTitleAreas() {
     const titleAreas = new TagCreator(
       'p',
@@ -110,6 +132,8 @@ export default class AboutDeveloper {
       this.createRole(),
       this.createCity(),
       this.createTextAbout(),
+      this.createTitleEducation(),
+      this.createEducation(),
       this.createTitleAreas(),
       this.createAreas(),
     );

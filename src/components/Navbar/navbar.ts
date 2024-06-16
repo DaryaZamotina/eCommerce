@@ -22,6 +22,11 @@ export function setHistoryPushStateToHome() {
   clearPageContainer();
 
   pageContainer.getPageContainer().append(homePage.getHomePage());
+  const video = document.querySelector('video');
+  console.log(video);
+  if (video) {
+    video.play();
+  }
 }
 
 export default class Navbar {

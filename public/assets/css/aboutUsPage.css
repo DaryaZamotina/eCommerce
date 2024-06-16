@@ -1,9 +1,8 @@
 @import url("root-variables.css");
 
 .about-us {
-  max-width: 85%;
   margin: 0 auto;
-  padding: 2.8rem;
+  padding: 40px calc(3vw + 10px);
 }
 
 .about-us__title {
@@ -12,8 +11,10 @@
 }
 
 .about-us__about-team {
-  margin: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
   line-height: 200%;
+
 }
 
 .about-us__developers-list {
@@ -28,11 +29,17 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 1.2rem;
+  gap: 0.1rem;
   border: 1px solid var(--main-dark-color);
   border-radius: 2rem;
   padding: 2rem;
   max-width: 450px;
+}
+
+@media screen and (width < 850px) {
+  .about-us__item-about-developer {
+    padding: 40px calc(2vw + 10px);
+  }
 }
 
 .about-us__dev-name:before {
@@ -47,7 +54,7 @@
 
 .about-us__dev-name {
   display: block;
-  font-size: 2em;
+  font-size: 2rem;
   font-weight: 800;
   color: var(--main-dark-color);
   text-decoration: none;
@@ -71,8 +78,18 @@
   border: 1px solid var(--main-pale-gray-color);
 }
 
+.about-us__dev-education-title {
+  font-weight: 600;
+}
+
+.about-us__dev-education-title:before {
+  content: "▻";
+  padding-right: 0.1rem;
+}
+
 .about-us__dev-city {
   align-self: flex-end;
+  margin-bottom: 1rem;
 }
 
 .about-us__dev-city,
@@ -81,6 +98,10 @@
   font-weight: 500;
   color: var(--main-pale-gray-color);
   text-decoration: underline;
+}
+
+.about-us__dev-areas-title {
+  margin-top: 1rem;
 }
 
 .about-us__dev-areas-title:after {

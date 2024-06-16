@@ -48,5 +48,7 @@ export async function createCart(id: string, token: string) {
 
       return output;
     })
-    .catch((err) => console.log(err + 2));
+    .catch((err) => {
+      console.log(err);
+    });
 }

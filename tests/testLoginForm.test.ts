@@ -12,9 +12,6 @@ describe('test of LoginPage', () => {
   })
 
   it('test LoginForm', () => {
-    
     expect(LoginForm.length).toEqual(2);
-
   })
-
 })

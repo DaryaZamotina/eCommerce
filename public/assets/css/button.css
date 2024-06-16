@@ -1,0 +1,35 @@
+button {
+    height: 2rem;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+}
+
+.registrationForm__button,
+.buttonLogin,
+.buttonSearch,
+.buttonReset {
+    border-radius: 0.5rem;
+    outline: none;
+    border: 0px solid black;
+    background-image: linear-gradient(to right, #708d58 0%, #2b3b33 51%, #708d58 100%);
+    background-size: 200% auto;
+    background-position: left top;
+    border-color: transparent;
+    transition: all 0.5s;
+    color: white;
+    cursor: pointer;
+}
+
+.registrationForm__button:hover,
+.buttonLogin:hover,
+.buttonSearch:hover,
+.buttonReset:hover {
+    background-position: right bottom;
+}
+
+.registrationForm__button.disabled,
+.buttonLogin.disabled,
+.buttonSearch.disabled {
+    cursor: auto;
+    background-color: rgba(43, 59, 51, 0.5);
+    background-image: none;
+}

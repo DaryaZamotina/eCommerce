@@ -1,0 +1,160 @@
+.registrationForm,
+.loginForm {
+    width: 60%;
+    min-width: 320px;
+    max-width: 700px;
+    margin: 40px auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formTitle,
+.loginFormTitle {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.registrationForm__container,
+.loginForm__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.registrationForm__label,
+.loginForm__label {
+    margin-bottom: 0.5rem;
+}
+
+.registrationForm input,
+.loginForm input {
+    height: 2rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    outline: none;
+    border: 1px solid black;    
+}
+
+.registrationForm input.active,
+.loginForm input.active {
+    border: 1px solid red;
+}
+
+.registrationForm__error {
+    font-size: 0.7rem;
+    color: red;
+    padding-bottom: 1rem;
+}
+
+.selectCountry,
+.selectCountry_option {
+    width: 100%;
+    height: 2.3rem;
+    border-radius: 0.5rem;
+    padding-left: 1rem;
+    outline: none;
+    border: 1px solid black; 
+}
+
+#registrationForm__container_country,
+#registrationForm__container_country_option {
+    padding-bottom: 1.5rem;
+}
+
+.registrationForm__container_link,
+.loginForm__container_link {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem;
+}
+
+.registrationForm__title_link,
+.loginForm__title_link {
+    margin-right: 0.5rem;
+}
+
+.registrationForm__link,
+.registrationForm__link:link,
+.registrationForm__link:visited,
+.registrationForm__link:active,
+.loginForm__link,
+.loginForm__link:link,
+.loginForm__link:visited,
+.loginForm__link:active {
+    color: #2b3b33;
+}
+
+.Shipping,
+.Billing {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.Shipping:before,
+.Shipping:after,
+.Billing:before,
+.Billing:after {
+    content: "";
+    flex-grow: 1;
+    height: 1px;
+    background-color: gray;
+}
+
+.Shipping:before,
+.Billing:before {
+    margin-right: 1rem;
+}
+
+.Shipping:after,
+.Billing:after {
+    margin-left: 1rem;
+}
+
+.containerRadioButton {
+    display: flex;
+    flex-direction: row;
+    align-self: flex-start;
+    height: 2rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.radioButton {
+    height: 2rem;
+    width: 4rem;
+    display: flex;
+    border-radius: 1rem;
+    background-color: gray;
+    margin-right: 1rem;
+    position: relative;
+    transition: background-color 0.3s;
+    cursor: pointer;
+}
+
+.radioButton.active {
+    background-color: #2b3b33;
+}
+
+.radioSwitch {
+    position: absolute;
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: 50%;
+    background-color: white;
+    top: 3px;
+    left: 3px;
+    transition: transform 0.3s;
+}
+
+.radioSwitch.active {
+    transform: translateX(calc(100% + 7px));
+}

@@ -1,0 +1,52 @@
+.user-profile-page {
+    background-color: rgba(0, 255, 242, 0.178);
+  }
+
+  .user-profile__section1 {
+    border: 1ps solid black;
+    width: 25rem;
+  }
+
+  .wrapperProfile, 
+  .wrapperPassword,
+  .wrapperBilAddress,
+  .wrapperShipAddress,
+  .wrapperGeneralData {
+    display: flex;
+    flex-direction: column;
+    border: 0.5rem solid rgba(13, 62, 10, 0.178);
+    border-radius: 1rem;
+    margin: 0.5rem;
+  }
+
+  .h3ShipAddress,
+  .h3BilAddress {
+    border-bottom: 1px solid rgba(13, 62, 10, 0.178);
+    font-weight: bold;
+    font-style: italic;
+  }
+
+  .buttonForChangePassword, 
+  .buttonForChangeAddress,
+  .buttonForChangeGenData {
+    border-radius: 2rem;
+    background-color: rgb(197, 242, 197);
+  }
+ 
+  .buttonForChangePassword:hover, 
+  .buttonForChangeAddress:hover,
+  .buttonForChangeGenData:hover {
+
+    background-color: rgb(110, 152, 110);
+  } 
+
+label,
+button {
+    margin: 0.3rem;
+  }
+
+  label input {
+    float: right;
+  }
+
+  

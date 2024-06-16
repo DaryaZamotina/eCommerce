@@ -57,7 +57,12 @@ export async function addProductToCart(
         goodsNumber.style.display = 'none';
       }
 
+      if (output)
+
       return output;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+
+      console.log(err)
+    });
 }

@@ -181,10 +181,10 @@ window.addEventListener('hashchange', () => {
 //   setRoutingPage();
 // });
 
-// window.addEventListener('DOMContentLoaded', () => {
-//   currentHash = getHash();
-//   setRoutingPage();
-// });
+ window.addEventListener('DOMContentLoaded', () => {
+   currentHash = getHash();
+   setRoutingPage();
+ });
 
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();

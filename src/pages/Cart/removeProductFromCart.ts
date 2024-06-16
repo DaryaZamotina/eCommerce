@@ -88,5 +88,8 @@ export async function removeProductFromCart(
 
       return output;
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+
+      console.log(err)
+    });
 }

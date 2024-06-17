@@ -16,7 +16,6 @@ export function setHistoryPushStateToHome() {
 
   pageContainer.getPageContainer().append(homePage.getHomePage());
   const video = document.querySelector('video');
-  console.log(video);
   if (video) {
     video.play();
   }

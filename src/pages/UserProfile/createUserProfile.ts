@@ -30,8 +30,6 @@ export function createUserProfile() {
   const defaultBilID: string = info.defaultBillingAddressId;
   const bilID: string = info.billingAddressIds[0];
 
-  console.log('defaultBilID vs bilID = ' + defaultBilID + ' vs ' + bilID);
-
   let billingAddress;
   let streetBil: string;
   let cityBil: string;
@@ -49,8 +47,6 @@ export function createUserProfile() {
     defaultShipID = info.defaultShippingAddressId;
     shipID = info.shippingAddressIds[0];
   }
-
-  console.log('defaultShipID vs shipID = ' + defaultShipID + ' vs ' + shipID);
 
   //---------------wrappers ------------
 
@@ -135,7 +131,6 @@ export function createUserProfile() {
 
   inputName.onchange = () => {
     localStorage.setItem('firstName', inputName.value);
-    console.log(inputName.value);
   };
   //-------------
   const labelForSurname: HTMLLabelElement = document.createElement('label');
@@ -150,7 +145,6 @@ export function createUserProfile() {
 
   inputSurname.onchange = () => {
     localStorage.setItem('lastName', inputSurname.value);
-    console.log(inputSurname.value);
   };
   //-------------
   const labelForDateOfBirth: HTMLLabelElement = document.createElement('label');
@@ -165,7 +159,6 @@ export function createUserProfile() {
 
   inputForDateOfBirth.onchange = () => {
     localStorage.setItem('dateOfBirth', inputForDateOfBirth.value);
-    console.log(inputForDateOfBirth.value);
   };
 
   //-------------
@@ -183,7 +176,6 @@ export function createUserProfile() {
   inputForEmail.onchange = () => {
     localStorage.setItem('email', inputForEmail.value);
     validateEmail(inputForEmail.value);
-    console.log(inputForEmail.value);
   };
 
   //-------------

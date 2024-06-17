@@ -65,6 +65,5 @@ export function getInfoFromInputs() {
   } else objGenData['dateOfBirth'] = dateOfBirth; 
  */
 
-  console.log('objGenData = ' + JSON.stringify(objGenData));
   return objGenData;
 }

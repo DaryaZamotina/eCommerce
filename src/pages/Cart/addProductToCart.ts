@@ -21,7 +21,6 @@ export async function addProductToCart(
       },
     ],
   });
-  console.log('data = ' + data);
 
   async function addProduct(url: string) {
     const response = await fetch(url, {

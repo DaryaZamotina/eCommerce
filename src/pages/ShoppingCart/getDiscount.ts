@@ -36,7 +36,6 @@ export default function getDiscount(promocode: string) {
   )
     .then((response) => response.json())
     .then((updatedCart) => {
-      console.log('Updated cart:', updatedCart);
       localStorage.setItem('versionOfCart', updatedCart.version);
       getShoppingCart();
     })

@@ -60,8 +60,6 @@ export function sendDataToEComm() {
       localStorage.setItem('userLogin', info);
 
       const infoJSON = JSON.parse(info);
-      console.log('access_token_for_user = ' + infoJSON.access_token);
-      console.log('refresh_token_for_user = ' + infoJSON.refresh_token);
       localStorage.setItem('access_token_for_user', infoJSON.access_token);
       localStorage.setItem('refresh_token_for_user', infoJSON.refresh_token);
 

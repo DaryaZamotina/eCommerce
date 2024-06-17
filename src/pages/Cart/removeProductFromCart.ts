@@ -25,7 +25,6 @@ export async function removeProductFromCart(
       },
     ],
   });
-  console.log('data = ' + data);
 
   let token: string;
   if (

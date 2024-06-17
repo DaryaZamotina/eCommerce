@@ -1,6 +1,5 @@
 import TagCreator from '../../module/tagCreator';
 import Navbar from '../Navbar/navbar';
-import { setHistoryPushStateToHome } from '../Navbar/navbar';
 import '../../../public/assets/css/header.css';
 import { ICart } from '../../pages/Cart/cartInterface';
 
@@ -56,9 +55,11 @@ export default class HeaderView {
     );
     this.nameOfShop = tagCreator.createAndReturn();
 
+    const urlOrigin = window.location.origin;
+
     this.nameOfShop.addEventListener('click', function (e) {
       e.preventDefault();
-      setHistoryPushStateToHome();
+      window.location.replace(`${urlOrigin}/#`);
     });
 
     return this.nameOfShop;

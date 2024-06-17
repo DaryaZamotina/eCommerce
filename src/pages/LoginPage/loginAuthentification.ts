@@ -5,7 +5,6 @@ import { receiveAccessToken } from '../../pages/LoginPage/loginGetToken';
 import '../../../public/assets/css/body.css';
 import HomePage from '../../pages/Home/homePage';
 import { clearPageContainer } from '../..';
-import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 import { newClientForProducts } from '../Home/anonymusSessionToken';
 import titlesPages from '../../Helpers/documentTitle';
 import PageContainer from '../../components/PageContainer/pageContainer';

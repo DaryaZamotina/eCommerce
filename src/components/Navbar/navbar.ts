@@ -9,18 +9,6 @@ import {
 } from '../../utils/changeSingUpLogoutButtons';
 import { setRoutingPage } from '../..';
 
-export function setHistoryPushStateToHome() {
-  history.pushState({ page: '/#' }, titlesPages.homePage, '#');
-  document.title = titlesPages.homePage;
-  clearPageContainer();
-
-  pageContainer.getPageContainer().append(homePage.getHomePage());
-  const video = document.querySelector('video');
-  if (video) {
-    video.play();
-  }
-}
-
 export default class Navbar {
   private signInLink: HTMLElement;
 
@@ -156,10 +144,8 @@ export default class Navbar {
     this.logoutLink = tagCreator.createAndReturn();
     this.logoutLink.setAttribute('href', '#');
 
-    this.logoutLink.addEventListener('click', (e) => {
-      e.preventDefault();
+    this.logoutLink.addEventListener('click', () => {
       localStorage.clear();
-      setHistoryPushStateToHome();
       this.addOrRemoveLinks();
     });
     return this.logoutLink;

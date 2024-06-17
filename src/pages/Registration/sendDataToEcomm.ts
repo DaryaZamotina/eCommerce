@@ -6,7 +6,6 @@ import {
   handleClickCloseModalWindow,
 } from '../../components/ModalWindow/modalWindow';
 import '../../../public/assets/css/modal.css';
-import { setHistoryPushStateToHome } from '../../components/Navbar/navbar';
 import { setRoutingPage } from '../..';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
 import { getUserInfoFromEcomm } from '../UserProfile/getUserDataFromEcomm';

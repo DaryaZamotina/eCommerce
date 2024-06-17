@@ -44,14 +44,14 @@ export default async function fetchProductsSortedBy(
 
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
 
-  if (obj.length > 0) {
-    if (catalogSection) {
-      catalogSection.innerHTML = '';
+  if (catalogSection) {
+    catalogSection.innerHTML = '';
+    if (obj.length > 0) {
+      obj.forEach((elem) => {
+        const tag = new ProductsCardInCatalog(elem);
+        tag.createProductsCardInCatalog();
+      });
     }
-    obj.forEach((elem) => {
-      const tag = new ProductsCardInCatalog(elem);
-      tag.createProductsCardInCatalog();
-    });
   }
 }
 

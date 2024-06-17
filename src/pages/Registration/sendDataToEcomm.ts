@@ -17,7 +17,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
     'https://api.us-east-2.aws.commercetools.com/jffecommerce/customers';
 
-  console.log(getDataUser());
   const formDataOfNewUser = JSON.stringify(getDataUser());
 
   async function sendNewUserInfo(url: string) {
@@ -39,7 +38,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       let outputObj = JSON.parse(output);
       let error = outputObj.message;
       let customerID = outputObj.customer.id;
-      console.log('customerID = ' + customerID);
       localStorage.setItem('customerID', customerID);
 
       console.log('message about error: ' + error);

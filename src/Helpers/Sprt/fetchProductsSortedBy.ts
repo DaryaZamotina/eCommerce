@@ -19,16 +19,11 @@ export default async function fetchProductsSortedBy(
   if (method !== undefined) {
     link += method;
     setMethodPagination(method);
-    console.log('last link: ' + link);
   } else if (offset !== undefined) {
     link += `&offset=${offset}`;
     setOffsetPagination(offset);
   }
   link += `&limit=${getLimitPagination()}`;
-  console.log('last link: ' + link);
-  console.log('sort ' + sort, 'method ' + method + ', offset ' + offset);
-  // let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice"`;
-  // link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.name:"collection"&filter.query=variants.attributes.value.key:"Dublin"`;
   const response = await fetch(link, {
     method: 'GET',
     headers: {
@@ -49,10 +44,10 @@ export default async function fetchProductsSortedBy(
 
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
 
-  console.log(2);
-
   if (obj.length > 0) {
-    catalogSection.innerHTML = '';
+    if (catalogSection) {
+      catalogSection.innerHTML = '';
+    }
     obj.forEach((elem) => {
       const tag = new ProductsCardInCatalog(elem);
       tag.createProductsCardInCatalog();

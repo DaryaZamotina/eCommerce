@@ -18,8 +18,7 @@ export default class CreateCardProduct {
     const totalCost = document.getElementById('totalCost') as HTMLDivElement;
 
     if (this.data) {
-      totalCost.textContent =
-      `${this.data.totalPrice.centAmount / 100} €`;
+      totalCost.textContent = `${this.data.totalPrice.centAmount / 100} €`;
     } else {
       totalCost.textContent = `0 €`;
     }
@@ -154,7 +153,6 @@ export default class CreateCardProduct {
     );
 
     quantityInput.type = 'number';
-    // quantityInput.step = "1";
     quantityInput.min = '0';
     quantityInput.max = '11';
 

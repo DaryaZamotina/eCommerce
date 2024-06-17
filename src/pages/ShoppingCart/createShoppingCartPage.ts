@@ -100,12 +100,11 @@ export default function createShoppingCartPage() {
   });
 
   if (localStorage.getItem('IDCart') !== null) {
-    console.log(1);
     getShoppingCart();
   } else {
     const result = new CreateCardProduct();
     result.createCard();
   }
-  
+
   createRemoveAllBtn();
 }

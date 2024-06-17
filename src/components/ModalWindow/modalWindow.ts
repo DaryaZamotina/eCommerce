@@ -12,8 +12,6 @@ export function createModalWindow(text: string) {
   );
   modalWindow.createAndAppend();
 
-  // console.log('Why modal window not open???');
-
   const btnCloseModalWindow = new TagCreator(
     'button',
     'btn-close-modal-window',

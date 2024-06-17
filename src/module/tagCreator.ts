@@ -40,7 +40,6 @@ export default class TagCreator {
     element.textContent = this.text || '';
     element.className = this.className;
     element.id = this.id;
-    // console.log(element);
     return element;
   }
 }

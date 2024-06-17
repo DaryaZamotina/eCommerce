@@ -1,3 +1,5 @@
+import getShoppingCart from './getShoppingCart';
+
 export function updateQuantity(idGood: string, quantity: number) {
   let token: string;
   if (
@@ -68,6 +70,8 @@ export function updateQuantity(idGood: string, quantity: number) {
         let goodsNumber = document.getElementById('goodsNumber');
         goodsNumber.style.display = 'none';
       }
+
+      getShoppingCart();
 
       return output;
     })

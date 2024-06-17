@@ -10,26 +10,37 @@ import spinner from '../../Helpers/spinner';
 export default class CreateCardProduct {
   private data: ICardProduct;
 
-  constructor(data: ICardProduct) {
+  constructor(data?: ICardProduct) {
     this.data = data;
   }
 
   public createCard() {
-    document.getElementById('totalCost').textContent =
-      `${this.data.totalPrice.centAmount / 100} €`;
+    const totalCost = document.getElementById('totalCost') as HTMLDivElement;
 
-    if (this.data.discountOnTotalPrice) {
+    if (this.data) {
+      totalCost.textContent =
+      `${this.data.totalPrice.centAmount / 100} €`;
+    } else {
+      totalCost.textContent = `0 €`;
+    }
+
+    if (this.data && this.data.discountOnTotalPrice) {
       document.getElementById('totalCostOld').textContent =
         `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
     }
 
     document.getElementById('shoppingCart_mainContaine').innerHTML = '';
 
-    this.data.lineItems.forEach((elem) => {
-      this.createCardDiv(elem);
-    });
+    if (this.data) {
+      this.data.lineItems.forEach((elem) => {
+        this.createCardDiv(elem);
+      });
+    }
 
-    if (this.data.lineItems.length === 0) {
+    if (
+      localStorage.getItem('IDCart') === null ||
+      this.data.lineItems.length === 0
+    ) {
       this.emptyMessage();
     }
 

@@ -2,6 +2,7 @@ import TagCreator from '../../module/tagCreator';
 import getShoppingCart from './getShoppingCart';
 import { createRemoveAllBtn } from './createRemoveAllBtn';
 import getDiscount from './getDiscount';
+import CreateCardProduct from './createCardProduct';
 
 export default function createShoppingCartPage() {
   const container = document.getElementById('pageContainer') as HTMLDivElement;
@@ -98,6 +99,13 @@ export default function createShoppingCartPage() {
     getDiscount(promocodeInput.value);
   });
 
-  getShoppingCart();
+  if (localStorage.getItem('IDCart') !== null) {
+    console.log(1);
+    getShoppingCart();
+  } else {
+    const result = new CreateCardProduct();
+    result.createCard();
+  }
+  
   createRemoveAllBtn();
 }

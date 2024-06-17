@@ -1,4 +1,4 @@
-import getShoppingCart from "./getShoppingCart";
+import getShoppingCart from './getShoppingCart';
 
 export function updateQuantity(idGood: string, quantity: number) {
   let token: string;

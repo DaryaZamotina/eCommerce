@@ -19,8 +19,6 @@ import titlesPages from './Helpers/documentTitle';
 import { receiveAccessToken } from './pages/LoginPage/loginGetToken';
 import { receiveAnonymusAccessToken } from './pages/Home/anonymusSessionToken';
 import { getUserInfoFromEcomm } from './pages/UserProfile/getUserDataFromEcomm';
-
-import TagCreator from './module/tagCreator';
 import '../public/assets/css/shoppingCart.css';
 import createShoppingCartPage from './pages/ShoppingCart/createShoppingCartPage';
 
@@ -52,6 +50,9 @@ export function clearPageContainer() {
   pageContainer.getPageContainer().innerHTML = '';
 }
 
+pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
+catalogPage.sortListener();
+
 function getHash() {
   const currentHash = window.location.hash.slice(1);
   return currentHash;
@@ -72,6 +73,7 @@ export function setRoutingPage() {
       if (video) {
         video.play();
       }
+
       break;
 
     case 'catalog':
@@ -79,7 +81,7 @@ export function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-      catalogPage.sortListener();
+      document.getElementById('link_catalog_catalog').click();
 
       break;
 
@@ -98,6 +100,7 @@ export function setRoutingPage() {
       ) {
         window.location.replace(`${urlOrigin}/#`);
       }
+
       break;
 
     case 'signin':
@@ -117,6 +120,7 @@ export function setRoutingPage() {
       } else {
         window.location.replace(`${urlOrigin}/#`);
       }
+
       break;
 
     case 'cart':
@@ -125,7 +129,9 @@ export function setRoutingPage() {
 
       // pageContainer.getPageContainer().append(cartPage.getCartPage());
       createShoppingCartPage();
+
       break;
+
     case 'aboutus':
     case 'aboutUs':
       document.title = titlesPages.aboutUsPage;
@@ -134,6 +140,7 @@ export function setRoutingPage() {
       pageContainer.getPageContainer().append(aboutUsPage.getAboutUsPage());
 
       break;
+
     case 'userProfile':
     case 'userprofile':
     case 'profile':
@@ -176,22 +183,6 @@ window.addEventListener('hashchange', () => {
   setRoutingPage();
 });
 
-// window.addEventListener('popstate', () => {
-//   currentHash = getHash();
-//   setRoutingPage();
-// });
-
-window.addEventListener('DOMContentLoaded', () => {
-  currentHash = getHash();
-  setRoutingPage();
-});
-
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();
 }
-
-// TODO:
-// Пока что корзина здесь, пока не настроим роутинг
-// ---
-
-// ---

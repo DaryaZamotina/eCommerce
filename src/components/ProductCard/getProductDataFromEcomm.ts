@@ -1,7 +1,9 @@
 import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
 import { createProductsList } from './ProductList';
-import { setTotalNumberOfGoods } from '../../utils/constsForPagination';
-import { displayTotalPages } from '../../utils/countPageForPagination';
+import {
+  displayTotalPages,
+  resetCounterForPagination,
+} from '../../utils/countPageForPagination';
 
 export function getProductsListInfoFromEcomm(token: string) {
   const link =
@@ -24,12 +26,8 @@ export function getProductsListInfoFromEcomm(token: string) {
 
       const infoJSON = JSON.parse(info);
 
-      // const numberOfGoods = infoJSON.results.length;
-
-      // For pagination -----
       displayTotalPages(infoJSON.total);
-      // console.log('total number of goods for pagination (getProductsListInfoFromEcomm): ' + infoJSON.total)
-      // -----
+      resetCounterForPagination();
 
       createProductsList(infoJSON.results);
 

@@ -1,20 +1,13 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/navbar.css';
 import '../../../public/assets/css/header.css';
-import {
-  clearPageContainer,
-  pageContainer,
-  homePage,
-  catalogPage,
-} from '../..';
+import { clearPageContainer, pageContainer, homePage } from '../..';
 import titlesPages from '../../Helpers/documentTitle';
-import { receiveAnonymusAccessToken } from '../../pages/Home/anonymusSessionToken';
-import { getProductsListInfoFromEcomm } from '../ProductCard/getProductDataFromEcomm';
 import {
   ifAuthThenDisplayNone,
   ifAnonimThenDisplayNone,
 } from '../../utils/changeSingUpLogoutButtons';
-import createShoppingCartPage from '../../pages/ShoppingCart/createShoppingCartPage';
+import { setRoutingPage } from '../..';
 
 export function setHistoryPushStateToHome() {
   history.pushState({ page: '/#' }, titlesPages.homePage, '#');
@@ -94,42 +87,8 @@ export default class Navbar {
     this.catalogLink = tagCreator.createAndReturn();
     this.catalogLink.setAttribute('href', '#catalog');
 
-    this.catalogLink.addEventListener('click', function (e) {
-      e.preventDefault();
-      history.pushState(
-        { page: '/#catalog' },
-        titlesPages.catalogPage,
-        '#catalog',
-      );
-      document.title = titlesPages.catalogPage;
-      clearPageContainer();
-
-      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-      catalogPage.sortListener();
-
-      if (
-        localStorage.getItem('access_token_for_user') &&
-        localStorage.getItem('access_token_for_user') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('access_token_for_user'),
-        );
-      } else if (
-        localStorage.getItem('anonym_access_token') &&
-        localStorage.getItem('anonym_access_token') !== 'undefined'
-      ) {
-        getProductsListInfoFromEcomm(
-          localStorage.getItem('anonym_access_token'),
-        );
-      } /*else if (
-        !localStorage.getItem('anonym_access_token') ||
-        localStorage.getItem('anonym_access_token') == 'undefined' ||
-        !localStorage.getItem('access_token_for_user') ||
-        localStorage.getItem('access_token_for_user') == 'undefined'
-      )
-        if (!localStorage.getItem('anonym_token_auth')) {
-          receiveAnonymusAccessToken();
-       }*/
+    this.catalogLink.addEventListener('click', function () {
+      setRoutingPage();
     });
 
     return this.catalogLink;
@@ -145,30 +104,6 @@ export default class Navbar {
     );
     this.signUpLink = tagCreator.createAndReturn();
     this.signUpLink.setAttribute('href', '#signup');
-
-    // this.signUpLink.addEventListener('click', (e) => {
-    //   // e.preventDefault();
-    //   // history.pushState(
-    //   //   { page: '/#signup' },
-    //   //   titlesPages.registrationPage,
-    //   //   '#signup',
-    //   // );
-    //   // document.title = titlesPages.registrationPage;
-    //   // clearPageContainer();
-
-    //   // const registrationFormDiv = new RegistrationForm('pageContainer', 'reg');
-    //   // registrationFormDiv.createRegistrationForm();
-    //   // receiveAccessToken();
-
-    //   // if (
-    //   //   (localStorage.getItem('access_token_for_user') &&
-    //   //     localStorage.getItem('access_token_for_user') !== 'undefined') ||
-    //   //   localStorage.getItem('newUser')
-    //   // ) {
-    //   //   setHistoryPushStateToHome();
-    //   // }
-    // });
-
     return this.signUpLink;
   }
 
@@ -182,33 +117,6 @@ export default class Navbar {
     );
     this.signInLink = tagCreator.createAndReturn();
     this.signInLink.setAttribute('href', '#signin');
-
-    // this.signInLink.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   history.pushState({ page: '/#signin' }, titlesPages.loginPage, '#signin');
-    //   document.title = titlesPages.loginPage;
-    //   clearPageContainer();
-
-    //   if (
-    //     !localStorage.getItem('access_token_for_user') ||
-    //     localStorage.getItem('access_token_for_user') == 'undefined'
-    //   ) {
-    //     const loginFormDiv = new LoginForm('pageContainer', 'log');
-    //     loginFormDiv.createLoginForm();
-    //     sendLoginPasswordToLocalStorage();
-    //     moveToRegistration();
-    //     moveToMainPage();
-    //   }
-    //   if (
-    //     (localStorage.getItem('access_token_for_user') &&
-    //       localStorage.getItem('access_token_for_user') !== 'undefined') ||
-    //     localStorage.getItem('newUser')
-    //   ) {
-    //     e.preventDefault();
-    //     setHistoryPushStateToHome();
-    //   }
-    // });
-
     return this.signInLink;
   }
 
@@ -222,15 +130,6 @@ export default class Navbar {
     );
     this.aboutUsLink = tagCreator.createAndReturn();
     this.aboutUsLink.setAttribute('href', '#aboutus');
-
-    // this.toCartLink.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   history.pushState({ page: '/#cart' }, titlesPages.cartPage, '#cart');
-    //   document.title = titlesPages.cartPage;
-    //   clearPageContainer();
-
-    //   pageContainer.getPageContainer().append(cartPage.getCartPage());
-    // });
     return this.aboutUsLink;
   }
 
@@ -244,28 +143,6 @@ export default class Navbar {
     );
     this.userProfileLink = tagCreator.createAndReturn();
     this.userProfileLink.setAttribute('href', '#userprofile');
-
-    // this.userProfileLink.addEventListener('click', (e) => {
-    //   e.preventDefault();
-    //   history.pushState(
-    //     { page: '/#userProfile' },
-    //     titlesPages.userProfilePage,
-    //     '#userProfile',
-    //   );
-    //   document.title = titlesPages.cartPage;
-    //   clearPageContainer();
-
-    //   pageContainer
-    //     .getPageContainer()
-    //     .append(userProfilePage.getUserProfilePage());
-
-    //   if (
-    //     localStorage.getItem('access_token_for_user') &&
-    //     localStorage.getItem('access_token_for_user') !== 'undefined'
-    //   ) {
-    //     getUserInfoFromEcomm(localStorage.getItem('access_token_for_user'));
-    //   } else getUserInfoFromEcomm(localStorage.getItem('access_token_auth'));
-    // });
     return this.userProfileLink;
   }
 
@@ -285,16 +162,6 @@ export default class Navbar {
       localStorage.clear();
       setHistoryPushStateToHome();
       this.addOrRemoveLinks();
-
-      /*history.pushState(
-        { page: '/#catalog' },
-        titlesPages.catalogPage,
-        '#catalog',
-      );
-      document.title = titlesPages.catalogPage;
-      clearPageContainer();
-
-      pageContainer.getPageContainer().append(catalogPage.getCatalogPage());*/
     });
     return this.logoutLink;
   }

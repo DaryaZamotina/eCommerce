@@ -1,10 +1,11 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/catalogPage.css';
 import fetchProductsSortedBy from '../../Helpers/Sprt/fetchProductsSortedBy';
-import fetchProductsSearch from '../../Helpers/Sprt/fetchProductsSearch';
+// import fetchProductsSearch from '../../Helpers/Sprt/fetchProductsSearch';
 import categoryList from '../../Helpers/Sprt/categoryList';
 import pagination from '../../components/Pagination/paginationInstance';
 import Pagination from '../../components/Pagination/pagination';
+import { resetCounterForPagination } from '../../utils/countPageForPagination';
 
 export default class CatalogPage {
   section: HTMLElement;
@@ -335,7 +336,7 @@ export default class CatalogPage {
 
     let seartText = '';
     let sortCriteria = [
-      { query: `search?${seartText}limit=8` },
+      { query: `search?${seartText}` },
       { query: `search?${seartText}sort=price`, order: ' asc' },
       { query: `search?${seartText}sort=price`, order: ' desc' },
       { query: `search?${seartText}sort=name.en`, order: ' asc' },
@@ -348,6 +349,7 @@ export default class CatalogPage {
           sortButton.forEach((elem) => elem.classList.remove('active'));
           button.classList.add('active');
           const { query, order } = sortCriteria[index];
+          resetCounterForPagination();
           fetchProductsSortedBy(query, order);
         }
       });
@@ -363,7 +365,7 @@ export default class CatalogPage {
       }
       seartText = `text.en=${input.value}&`;
       sortCriteria = [
-        { query: `search?${seartText}limit=8` },
+        { query: `search?${seartText}` },
         { query: `search?${seartText}sort=price`, order: ' asc' },
         { query: `search?${seartText}sort=price`, order: ' desc' },
         { query: `search?${seartText}sort=name.en`, order: ' asc' },
@@ -374,7 +376,7 @@ export default class CatalogPage {
     button.addEventListener('click', () => {
       seartText = `text.en=${input.value}&`;
       sortCriteria = [
-        { query: `search?${seartText}limit=8` },
+        { query: `search?${seartText}` },
         { query: `search?${seartText}sort=price`, order: ' asc' },
         { query: `search?${seartText}sort=price`, order: ' desc' },
         { query: `search?${seartText}sort=name.en`, order: ' asc' },
@@ -383,6 +385,7 @@ export default class CatalogPage {
       sortButton.forEach((button, index) => {
         if (button.classList.contains('active')) {
           const { query, order } = sortCriteria[index];
+          resetCounterForPagination();
           fetchProductsSortedBy(query, order);
         }
       });
@@ -439,7 +442,7 @@ export default class CatalogPage {
           break;
       }
       sortCriteria = [
-        { query: `search?${categoryList[`${result}`]}limit=8` },
+        { query: `search?${categoryList[`${result}`]}` },
         {
           query: `search?${categoryList[`${result}`]}sort=price`,
           order: ' asc',
@@ -463,6 +466,7 @@ export default class CatalogPage {
         sortButton.forEach((button, index) => {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
+            resetCounterForPagination();
             fetchProductsSortedBy(query, order);
           }
         });
@@ -486,7 +490,7 @@ export default class CatalogPage {
       ) {
         sortCriteria = [
           {
-            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=8`,
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"`,
           },
           {
             query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
@@ -509,6 +513,7 @@ export default class CatalogPage {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
             console.log(1);
+            resetCounterForPagination();
             fetchProductsSortedBy(query, order);
           }
         });
@@ -521,7 +526,7 @@ export default class CatalogPage {
       ) {
         sortCriteria = [
           {
-            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&limit=8`,
+            query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"`,
           },
           {
             query: `search?filter.query=variants.attributes.${id[1]}.key:"${id[2]}"&sort=price`,
@@ -544,6 +549,7 @@ export default class CatalogPage {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
             console.log(3);
+            resetCounterForPagination();
             fetchProductsSortedBy(query, order);
           }
         });

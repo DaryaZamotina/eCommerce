@@ -1,1 +1,10 @@
 @import url("root-variables.css");
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin: 20px auto 40px;
+  font-size: 150%;
+}

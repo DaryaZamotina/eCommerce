@@ -1,4 +1,8 @@
 import TagCreator from '../../module/tagCreator';
+import {
+  handleClickPrevButton,
+  handleClickNextButton,
+} from '../../utils/countPageForPagination';
 
 export default class Pagination {
   private currentPageHTML: HTMLElement;
@@ -43,8 +47,6 @@ export default class Pagination {
       'span',
       'pagination__current-page',
       'paginationCurrentPage',
-      '',
-      '1',
     );
     this.currentPageHTML = tagCreator.createAndReturn();
     return this.currentPageHTML;
@@ -81,6 +83,7 @@ export default class Pagination {
       'prev',
     );
     this.prevButton = tagButton.createAndReturn();
+    this.prevButton.addEventListener('click', () => handleClickPrevButton());
     return this.prevButton;
   }
 
@@ -93,6 +96,7 @@ export default class Pagination {
       'next',
     );
     this.nextButton = tagButton.createAndReturn();
+    this.nextButton.addEventListener('click', () => handleClickNextButton());
     return this.nextButton;
   }
 

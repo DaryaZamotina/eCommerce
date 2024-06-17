@@ -14,7 +14,7 @@ Our goal is to create a user-friendly online shopping platform that offers a var
 - Git | GitHub
 
 ## Deployment
-The application is in progress. Deployment will be available soon.
+[https://just-for-fun-ecommerce-final.netlify.app/#catalog](https://just-for-fun-ecommerce-final.netlify.app/#catalog)
 
 ## Development Setup
 ### To install the dependencies:
@@ -56,3 +56,4 @@ npm run test
 |[**Alison-Web**](https://github.com/alison-web)|[**Valeria310**](https://github.com/valeria310)|
 
 ## Licensing
+MIT

@@ -20,3 +20,12 @@ function countTotalNumberOfPages(): void {
 function drawTotalNumberOfPages(): void {
   pagination.getTotalNumberOfPageHTML().textContent = `${getTotalNumberOfPages()}`;
 }
+
+export function handleClickPrevButton() {
+  // fetchProductsSortedBy()
+}
+
+export function handleClickNextButton() {
+  // fetchProductsSortedBy
+}
+// const currentPage = Math.ceil((offset + 1) / limit);

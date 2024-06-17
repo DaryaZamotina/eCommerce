@@ -10,24 +10,25 @@ import { displayTotalPages } from '../../utils/countPageForPagination';
 
 export default async function fetchProductsSortedBy(
   sort: string,
-  method?: string,
+  method: string,
   offset?: number,
 ) {
   setSortPagination(sort);
   let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/${sort}`;
   console.log('last link: ' + link);
+  console.log('method ' + method + ', offset ' + offset);
   if (method !== undefined) {
     link += method;
     link += '&limit=8';
     setMethodPagination(method);
     console.log('last link: ' + link);
-  } else if (offset !== undefined) {
+  } else if (offset !== undefined && offset !== 0) {
     link += '&limit=8';
     link += `&offset=${offset}`;
     setOffsetPagination(offset);
     console.log('last link: ' + link);
   }
-  console.log(sort, metod);
+  console.log(sort, method);
   // let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice"`;
   // link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.name:"collection"&filter.query=variants.attributes.value.key:"Dublin"`;
   const response = await fetch(link, {

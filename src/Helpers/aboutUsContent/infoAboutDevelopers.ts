@@ -32,7 +32,7 @@ export default [
     city: 'Rostov-on-Don',
     photo: './images/alisa.jpg',
     about:
-      'The main economic specialist and creative designer of our team! Her attention to details and pursuit for excellence do our project better and better with each code reveiew. Idea of our best furniture shop also belongs to her as well as logo you look for when visit our site.',
+      'The main economic specialist and creative designer of our team! Her attention to details and pursuit for excellence do our project better and better with each code review. Idea of our best furniture shop also belongs to her as well as logo you look for when visit our site.',
     education:
       'Alisa holds a postgraduate degree from the Rostov Conservatory, where she also worked as an accompanist prior to taking maternity leave.',
     areas:

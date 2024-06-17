@@ -1,5 +1,5 @@
-let _sortPagination: string = '';
-let _methodPagination: string = '';
+let _sortPagination: string | undefined = undefined;
+let _methodPagination: string | undefined = undefined;
 let _offsetPagination: number = 0;
 let _totalNumberOfGoods: number = 0;
 let _totalNumberOfPages: number = 0;

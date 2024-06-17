@@ -7,7 +7,9 @@ button {
 .buttonLogin,
 .buttonSearch,
 .buttonReset,
-.promocodeButton {
+.promocodeButton,
+.pagination__prev-button,
+.pagination__next-button {
     border-radius: 0.5rem;
     outline: none;
     border: 0px solid black;
@@ -18,6 +20,11 @@ button {
     transition: all 0.5s;
     color: white;
     cursor: pointer;
+}
+
+.pagination__prev-button[disabled],
+.pagination__next-button[disabled] {
+    background-image: linear-gradient(to right, #919291 0%, #3e3f3f 51%, #909090 100%);
 }
 
 .registrationForm__button:hover,

@@ -7,6 +7,7 @@ import {
   setMethodPagination,
 } from '../../utils/constsForPagination';
 import { displayTotalPages } from '../../utils/countPageForPagination';
+import { getLimitPagination } from '../../utils/constsForPagination';
 
 export default async function fetchProductsSortedBy(
   sort: string,
@@ -15,20 +16,17 @@ export default async function fetchProductsSortedBy(
 ) {
   setSortPagination(sort);
   let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/${sort}`;
-  console.log('last link: ' + link);
-  console.log('method ' + method + ', offset ' + offset);
   if (method !== undefined) {
     link += method;
-    link += '&limit=8';
     setMethodPagination(method);
     console.log('last link: ' + link);
-  } else if (offset !== undefined && offset !== 0) {
-    link += '&limit=8';
+  } else if (offset !== undefined) {
     link += `&offset=${offset}`;
     setOffsetPagination(offset);
-    console.log('last link: ' + link);
   }
-  console.log(sort, method);
+  link += `&limit=${getLimitPagination()}`;
+  console.log('last link: ' + link);
+  console.log('sort ' + sort, 'method ' + method + ', offset ' + offset);
   // let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice"`;
   // link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.name:"collection"&filter.query=variants.attributes.value.key:"Dublin"`;
   const response = await fetch(link, {
@@ -45,10 +43,7 @@ export default async function fetchProductsSortedBy(
 
   const data = await response.json();
 
-  // For pagination -----
   displayTotalPages(data.total);
-  // console.log('total number of goods for pagination (fetchProductsSortedBy): ' + data.total);
-  // -----
 
   const obj: IResultNew[] = data.results;
 

@@ -47,8 +47,6 @@ export default class Pagination {
       'span',
       'pagination__current-page',
       'paginationCurrentPage',
-      '',
-      '1',
     );
     this.currentPageHTML = tagCreator.createAndReturn();
     return this.currentPageHTML;

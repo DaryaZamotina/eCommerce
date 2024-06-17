@@ -1,7 +1,9 @@
 let _sortPagination: string | undefined = undefined;
 let _methodPagination: string | undefined = undefined;
-let _offsetPagination: number = 0;
+let _offsetPagination: number | undefined = 0;
+let _limitPagination: number = 8;
 let _totalNumberOfGoods: number = 0;
+let _currentPage: number = 1;
 let _totalNumberOfPages: number = 0;
 
 export function getSortPagination(): string {
@@ -28,12 +30,24 @@ export function setOffsetPagination(value: number): void {
   _offsetPagination = value;
 }
 
+export function getLimitPagination(): number {
+  return _limitPagination;
+}
+
 export function getTotalNumberOfGoods(): number {
   return _totalNumberOfGoods;
 }
 
 export function setTotalNumberOfGoods(value: number): void {
   _totalNumberOfGoods = value;
+}
+
+export function getCurrentPage(): number {
+  return _currentPage;
+}
+
+export function setCurrentPage(value: number): void {
+  _currentPage = value;
 }
 
 export function getTotalNumberOfPages(): number {

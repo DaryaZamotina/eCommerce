@@ -29,7 +29,10 @@ export default class CreateCardProduct {
       this.createCardDiv(elem);
     });
 
-    if (this.data.lineItems.length === 0) {
+    if (
+      this.data.lineItems.length === 0 ||
+      localStorage.getItem('IDCart') === undefined
+    ) {
       this.emptyMessage();
     }
 

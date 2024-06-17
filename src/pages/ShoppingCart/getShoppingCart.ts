@@ -23,6 +23,7 @@ export default async function getShoppingCart() {
   )
     token = localStorage.getItem('anonym_access_token');
 
+  
   const response = await fetch(link, {
     method: 'GET',
     headers: {

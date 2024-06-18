@@ -27,7 +27,6 @@ export function createProductsList(obj: Array<IResult>) {
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
   if (catalogSection) {
     catalogSection.innerHTML = '';
-
     obj.forEach((elem) => {
       const tag = new ProductsCardInCatalog(elem);
       tag.createProductsCardInCatalog();

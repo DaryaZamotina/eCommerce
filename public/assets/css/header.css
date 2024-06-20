@@ -57,10 +57,16 @@
 }
 .imgToCart{
   background: url('../images/shopping-cart.png') no-repeat;
-  background-position: center;
+  background-position: 41% 51%;
   background-size: 1rem;
   background-color:#f6faf7;
   border-radius: 2em;
+  transition: background-color 0.5s;
+  cursor: pointer;
+}
+.imgToCart:hover {
+  background-color:#c8d5bd;
+  transition: 0.5s;
 }
 
 .goodsNumber {

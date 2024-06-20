@@ -53,7 +53,6 @@ export function receiveAccessToken() {
       const jsonToken = JSON.parse(output);
       const accessToken = jsonToken.access_token;
       localStorage.setItem('access_token_auth', accessToken);
-      console.log('accessToken for authentification = ' + accessToken);
 
       return output;
     })

@@ -474,10 +474,8 @@ export default class CatalogPage {
     });
 
     filter.addEventListener('click', (event) => {
-      console.log(0);
       const target = event.target as HTMLElement;
       const id = target.id.split('_');
-      console.log(id[2]);
       if (
         id[2] === 'Dublin' ||
         id[2] === 'Nicole' ||
@@ -512,7 +510,6 @@ export default class CatalogPage {
         sortButton.forEach((button, index) => {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
-            console.log(1);
             resetCounterForPagination();
             fetchProductsSortedBy(query, order);
           }
@@ -548,7 +545,6 @@ export default class CatalogPage {
         sortButton.forEach((button, index) => {
           if (button.classList.contains('active')) {
             const { query, order } = sortCriteria[index];
-            console.log(3);
             resetCounterForPagination();
             fetchProductsSortedBy(query, order);
           }

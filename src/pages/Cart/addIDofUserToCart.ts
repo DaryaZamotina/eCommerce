@@ -30,8 +30,6 @@ export function addIDofUserToCart(userID: string, versionOfCart?: number) {
     version = info.version;
   }
 
-  console.log('version = ' + version);
-
   let data = JSON.stringify({
     version: version,
     actions: [
@@ -41,7 +39,6 @@ export function addIDofUserToCart(userID: string, versionOfCart?: number) {
       },
     ],
   });
-  console.log('data = ' + data);
 
   async function addProduct(url: string) {
     const response = await fetch(url, {

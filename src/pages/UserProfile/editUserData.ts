@@ -79,7 +79,6 @@ export function editUserData(token: string) {
   postInfo(link)
     .then((info) => {
       localStorage.setItem('userDetails', info);
-      console.log('userDetails = ' + info);
       const infoJSON = JSON.parse(info);
 
       return info;

@@ -4,7 +4,6 @@ import '../../../public/assets/css/body.css';
 import { moveToRegistration } from './buttonsToRegToHome';
 
 const keyOfAPIClient = testAPIclient.getKeyOfClient();
-console.log('keyOfAPIClient = ' + keyOfAPIClient);
 
 export function sendLoginPasswordToLocalStorage() {
   const messageAboutError: HTMLElement =
@@ -34,8 +33,6 @@ export function sendLoginPasswordToLocalStorage() {
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();
     if (localStorage.getItem('email') && localStorage.getItem('password')) {
-      console.log('email = ' + localStorage.getItem('email'));
-      console.log('password = ' + localStorage.getItem('password'));
       sendDataToEComm();
     }
   });

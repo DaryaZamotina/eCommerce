@@ -15,32 +15,34 @@ export default class CreateCardProduct {
   }
 
   public createCard() {
-    const totalCost = document.getElementById('totalCost') as HTMLDivElement;
+    if (document.getElementById('totalCost') as HTMLDivElement) {
+      const totalCost = document.getElementById('totalCost') as HTMLDivElement;
 
-    if (this.data) {
-      totalCost.textContent = `${this.data.totalPrice.centAmount / 100} €`;
-    } else {
-      totalCost.textContent = `0 €`;
-    }
+      if (this.data) {
+        totalCost.textContent = `${this.data.totalPrice.centAmount / 100} €`;
+      } else {
+        totalCost.textContent = `0 €`;
+      }
 
-    if (this.data && this.data.discountOnTotalPrice) {
-      document.getElementById('totalCostOld').textContent =
-        `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
-    }
+      if (this.data && this.data.discountOnTotalPrice) {
+        document.getElementById('totalCostOld').textContent =
+          `${(this.data.totalPrice.centAmount + this.data.discountOnTotalPrice.discountedAmount.centAmount) / 100} €`;
+      }
 
-    document.getElementById('shoppingCart_mainContaine').innerHTML = '';
+      document.getElementById('shoppingCart_mainContaine').innerHTML = '';
 
-    if (this.data) {
-      this.data.lineItems.forEach((elem) => {
-        this.createCardDiv(elem);
-      });
-    }
+      if (this.data) {
+        this.data.lineItems.forEach((elem) => {
+          this.createCardDiv(elem);
+        });
+      }
 
-    if (
-      localStorage.getItem('IDCart') === null ||
-      this.data.lineItems.length === 0
-    ) {
-      this.emptyMessage();
+      if (
+        localStorage.getItem('IDCart') === null ||
+        this.data.lineItems.length === 0
+      ) {
+        this.emptyMessage();
+      }
     }
 
     spinner(false);

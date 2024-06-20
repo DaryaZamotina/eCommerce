@@ -70,6 +70,7 @@ export function updateQuantity(idGood: string, quantity: number) {
         let goodsNumber = document.getElementById('goodsNumber');
         goodsNumber.style.display = 'none';
       }
+      getShoppingCart();
 
       getShoppingCart();
 

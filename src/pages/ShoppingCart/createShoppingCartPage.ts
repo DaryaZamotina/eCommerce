@@ -105,6 +105,5 @@ export default function createShoppingCartPage() {
     const result = new CreateCardProduct();
     result.createCard();
   }
-
   createRemoveAllBtn();
 }

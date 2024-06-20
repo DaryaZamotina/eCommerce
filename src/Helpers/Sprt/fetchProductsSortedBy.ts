@@ -54,16 +54,3 @@ export default async function fetchProductsSortedBy(
     });
   }
 }
-
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=variants.attributes.collection.key:"Venice";
-
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=categories.id:"950ea710-9576-4fa2-8b58-9a7cd2df6a5a"&sort=name.en asc
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?filter.query=categories.id:"e9d069eb-6d49-4c02-a2a3-b826a9b1851b","6d27bebe-8118-4149-a30a-9a23b3859c6d"&sort=name.en asc
-
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/?limit=30
-
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?sort=name.en asc
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?sort=name.en desc
-
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?sort=price asc
-//https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/search?sort=price desc

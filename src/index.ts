@@ -50,6 +50,7 @@ export function clearPageContainer() {
   pageContainer.getPageContainer().innerHTML = '';
 }
 
+
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();
 }
@@ -85,12 +86,8 @@ export function setRoutingPage() {
       clearPageContainer();
 
       pageContainer.getPageContainer().append(catalogPage.getCatalogPage());
-      setTimeout(() => {
-        const catalogContainer = document.querySelector('.catalog__container');
-        if (catalogContainer === null) {
-          resetFilterButton.click();
-        }
-      }, 2000);
+
+      document.getElementById('link_catalog_catalog').click();
 
       break;
 

@@ -40,8 +40,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
       let customerID = outputObj.customer.id;
       localStorage.setItem('customerID', customerID);
 
-      console.log('message about error: ' + error);
-
       if (localStorage.getItem('newCart')) {
         addIDofUserToCart(customerID);
       }

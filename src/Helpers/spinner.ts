@@ -14,6 +14,6 @@ export default function spinner(value: boolean) {
     spinnerBody.createAndAppend();
     spinner.createAndAppend();
   } else {
-    document.getElementById('spinnerBody').remove();
+    document.getElementById('spinnerBody')?.remove();
   }
 }

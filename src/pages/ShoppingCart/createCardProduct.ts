@@ -155,7 +155,6 @@ export default class CreateCardProduct {
     );
 
     quantityInput.type = 'number';
-    // quantityInput.step = "1";
     quantityInput.min = '0';
     quantityInput.max = '11';
 

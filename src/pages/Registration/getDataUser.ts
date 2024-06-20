@@ -4,7 +4,6 @@ export default function getDataUser() {
   const country_option = document.getElementById(
     'selectCountry_option',
   ) as HTMLSelectElement;
-  console.log(arrInputs[4].value);
   let obj: UserObj = {
     email: arrInputs[0].value,
     password: arrInputs[1].value,

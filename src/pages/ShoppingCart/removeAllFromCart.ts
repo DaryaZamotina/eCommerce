@@ -55,7 +55,6 @@ export async function removeAllFromCart() {
     version: Number(localStorage.getItem('versionOfCart')),
     actions: arrayData,
   });
-  console.log('data = ' + data);
 
   async function removeProduct(url: string) {
     const response = await fetch(url, {

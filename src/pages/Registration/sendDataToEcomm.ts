@@ -17,7 +17,6 @@ export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
     'https://api.us-east-2.aws.commercetools.com/jffecommerce/customers';
 
-  console.log(getDataUser());
   const formDataOfNewUser = JSON.stringify(getDataUser());
 
   async function sendNewUserInfo(url: string) {

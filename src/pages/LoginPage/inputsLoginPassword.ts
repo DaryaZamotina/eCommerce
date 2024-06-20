@@ -27,8 +27,6 @@ export function sendLoginPasswordToLocalStorage() {
     localStorage.setItem('password', inputLoginPassword.value);
   });
 
-  // const buttonLogin = <HTMLButtonElement>document.querySelector('.buttonLogin');
-
   const loginForm = document.getElementById('loginForm');
   loginForm.addEventListener('submit', function (e) {
     e.preventDefault();

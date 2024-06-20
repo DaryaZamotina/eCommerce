@@ -1,7 +1,6 @@
 import TagCreator from '../../module/tagCreator';
 import '../../../public/assets/css/catalogPage.css';
 import fetchProductsSortedBy from '../../Helpers/Sprt/fetchProductsSortedBy';
-// import fetchProductsSearch from '../../Helpers/Sprt/fetchProductsSearch';
 import categoryList from '../../Helpers/Sprt/categoryList';
 import pagination from '../../components/Pagination/paginationInstance';
 import Pagination from '../../components/Pagination/pagination';

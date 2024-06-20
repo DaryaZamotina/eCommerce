@@ -33,7 +33,6 @@ export function receiveAccessToken() {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        // Authorization: `Basic ${oneMoreClient.getKeyOfClient()}`,
         Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
       },
       body: new URLSearchParams({

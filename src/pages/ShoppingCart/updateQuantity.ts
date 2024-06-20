@@ -72,6 +72,8 @@ export function updateQuantity(idGood: string, quantity: number) {
       }
       getShoppingCart();
 
+      getShoppingCart();
+
       return output;
     })
     .catch((err) => {

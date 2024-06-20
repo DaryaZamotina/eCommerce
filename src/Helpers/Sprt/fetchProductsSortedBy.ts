@@ -45,10 +45,10 @@ export default async function fetchProductsSortedBy(
   const catalogSection: HTMLElement = document.getElementById('catalogSection');
 
   if (obj.length > 0) {
-   // catalogSection.innerHTML = '';
-   if (catalogSection) {
-    catalogSection.innerHTML = '';
-  }
+    // catalogSection.innerHTML = '';
+    if (catalogSection) {
+      catalogSection.innerHTML = '';
+    }
     obj.forEach((elem) => {
       const tag = new ProductsCardInCatalog(elem);
       tag.createProductsCardInCatalog();

@@ -71,7 +71,7 @@ export function updateQuantity(idGood: string, quantity: number) {
         goodsNumber.style.display = 'none';
       }
       getShoppingCart();
-      
+
       return output;
     })
     .catch((err) => {

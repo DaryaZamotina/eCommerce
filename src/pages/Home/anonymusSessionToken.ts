@@ -1,7 +1,8 @@
 import '../../../public/assets/css/body.css';
 //import { projectKey } from '../LoginPage/loginGetToken';
 import { getProductsListInfoFromEcomm } from '../../components/ProductCard/getProductDataFromEcomm';
-const projectKey: string = 'jffecommerce';
+import { newClientJune } from '../LoginPage/loginGetToken';
+const projectKey: string = 'jffstore';
 
 //const api = `https://auth.us-east-2.aws.commercetools.com/oauth/token`;
 const api = `https://auth.us-east-2.aws.commercetools.com/oauth/${projectKey}/anonymous/token`;
@@ -45,7 +46,7 @@ export function receiveAnonymusAccessToken() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
+        Authorization: `Basic ${newClientJune.getKeyOfClient()}`,
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',

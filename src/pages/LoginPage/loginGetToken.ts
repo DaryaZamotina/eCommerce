@@ -7,7 +7,7 @@ import {
 import { IUser } from '../UserProfile/userInterface';
 import { addIDofUserToCart } from '../Cart/addIDofUserToCart';
 
-export const projectKey: string = 'jffecommerce';
+export const projectKey: string = 'jffstore';
 
 interface APIclient {
   clientID: string;
@@ -27,18 +27,27 @@ export const testAPIclient: APIclient = {
   },
 };
 
+export const newClientJune: APIclient = {
+  clientID: '4uIIJd6QQ__dbyg-QxfDbLIf',
+  clientSecret: 'aYej4RLeuIRaexlTi7rrpaQ1FT0w95na',
+
+  getKeyOfClient(): string {
+    return btoa(`${this.clientID}:${this.clientSecret}`);
+  },
+};
+
 export function receiveAccessToken() {
   async function getDataToken(url: string) {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/x-www-form-urlencoded',
-        Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
+        Authorization: `Basic ${newClientJune.getKeyOfClient()}`,
       },
       body: new URLSearchParams({
         grant_type: 'client_credentials',
-        client_id: newClientForProducts.clientID,
-        client_secret: newClientForProducts.clientSecret,
+        client_id: newClientJune.clientID,
+        client_secret: newClientJune.clientSecret,
         //scope: `manage_customers:${projectKey}`,
       }),
     });

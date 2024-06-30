@@ -19,7 +19,7 @@ export function addIDofUserToCart(userID: string, versionOfCart?: number) {
 
   let id = localStorage.getItem('IDCart');
 
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
+  const link = `https://api.us-east-2.aws.commercetools.com/jffstore/carts/${id}`;
 
   let version: number;
 

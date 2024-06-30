@@ -4,7 +4,7 @@ import { IUser } from './userInterface';
 
 export function editPassword(token: string) {
   const index = localStorage.getItem('customerID');
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/password`;
+  const link = `https://api.us-east-2.aws.commercetools.com/jffstore/customers/password`;
 
   let info: IUser = JSON.parse(localStorage.getItem('userDetails'));
   let version = info.version;

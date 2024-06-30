@@ -15,7 +15,7 @@ import { addIDofUserToCart } from '../Cart/addIDofUserToCart';
 
 export async function forwardRegDatatoServer(accessTokenForAuth: string) {
   const urlToEcommForRegistration =
-    'https://api.us-east-2.aws.commercetools.com/jffecommerce/customers';
+    'https://api.us-east-2.aws.commercetools.com/jffstore/customers';
 
   const formDataOfNewUser = JSON.stringify(getDataUser());
 

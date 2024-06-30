@@ -24,7 +24,7 @@ export default function getDiscount(promocode: string) {
   };
 
   fetch(
-    `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${localStorage.getItem('IDCart')}`,
+    `https://api.us-east-2.aws.commercetools.com/jffstore/carts/${localStorage.getItem('IDCart')}`,
     {
       method: 'POST',
       headers: {

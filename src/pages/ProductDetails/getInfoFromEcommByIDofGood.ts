@@ -3,7 +3,7 @@ import { clearPageContainer } from '../..';
 import { openProductCard } from '../../components/ProductCard/openProductCard';
 
 export function getInfoFromEcommByIDofGood(id: string, token: string) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/products/${id}`;
+  const link = `https://api.us-east-2.aws.commercetools.com/jffstore/products/${id}`;
 
   async function getInfo(url: string) {
     const response = await fetch(url, {

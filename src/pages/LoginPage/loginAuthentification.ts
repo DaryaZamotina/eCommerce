@@ -13,9 +13,10 @@ import { setRoutingPage } from '../..';
 import { createModalWindow } from '../../components/ModalWindow/modalWindow';
 import { header } from '../..';
 import { getUserInfoFromEcomm } from '../UserProfile/getUserDataFromEcomm';
+import { newClientJune } from './loginGetToken';
 
 const linkForChecking: string =
-  'https://auth.us-east-2.aws.commercetools.com/oauth/jffecommerce/customers/token';
+  'https://auth.us-east-2.aws.commercetools.com/oauth/jffstore/customers/token';
 
 export function sendDataToEComm() {
   const emailLogin: string = localStorage.getItem('email');
@@ -40,7 +41,7 @@ export function sendDataToEComm() {
     const response = await fetch(url, {
       method: 'POST',
       headers: {
-        Authorization: `Basic ${newClientForProducts.getKeyOfClient()}`,
+        Authorization: `Basic ${newClientJune.getKeyOfClient()}`,
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: body,

@@ -3,7 +3,7 @@ export async function addProductToCart(
   idGood: string,
   token: string,
 ) {
-  const link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/carts/${id}`;
+  const link = `https://api.us-east-2.aws.commercetools.com/jffstore/carts/${id}`;
 
   let version: number;
 

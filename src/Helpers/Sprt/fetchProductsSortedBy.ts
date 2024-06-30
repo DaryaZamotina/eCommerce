@@ -15,7 +15,7 @@ export default async function fetchProductsSortedBy(
   offset?: number,
 ) {
   setSortPagination(sort);
-  let link = `https://api.us-east-2.aws.commercetools.com/jffecommerce/product-projections/${sort}`;
+  let link = `https://api.us-east-2.aws.commercetools.com/jffstore/product-projections/${sort}`;
   if (method !== undefined) {
     link += method;
     setMethodPagination(method);

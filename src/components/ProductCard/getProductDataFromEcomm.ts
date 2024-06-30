@@ -7,7 +7,7 @@ import {
 
 export function getProductsListInfoFromEcomm(token: string) {
   const link =
-    'https://api.us-east-2.aws.commercetools.com/jffecommerce/products?limit=8';
+    'https://api.us-east-2.aws.commercetools.com/jffstore/products?limit=8';
 
   async function getInfo(url: string) {
     const response = await fetch(url, {

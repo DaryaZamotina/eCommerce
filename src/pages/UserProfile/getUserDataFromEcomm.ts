@@ -6,7 +6,7 @@ import { addIDofUserToCart } from '../Cart/addIDofUserToCart';
 export function getUserInfoFromEcomm(token: string) {
   let linkID: string;
 
-  const linkMe = `https://api.us-east-2.aws.commercetools.com/jffecommerce/me`;
+  const linkMe = `https://api.us-east-2.aws.commercetools.com/jffstore/me`;
 
   async function getInfo(url: string) {
     const response = await fetch(url, {
@@ -21,7 +21,7 @@ export function getUserInfoFromEcomm(token: string) {
 
   if (localStorage.getItem('customerID')) {
     let id = localStorage.getItem('customerID');
-    linkID = `https://api.us-east-2.aws.commercetools.com/jffecommerce/customers/${id}`;
+    linkID = `https://api.us-east-2.aws.commercetools.com/jffstore/customers/${id}`;
 
     getInfo(linkID)
       .then((info) => {

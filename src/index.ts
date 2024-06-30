@@ -50,7 +50,6 @@ export function clearPageContainer() {
   pageContainer.getPageContainer().innerHTML = '';
 }
 
-
 if (!localStorage.getItem('anonym_token_auth')) {
   receiveAnonymusAccessToken();
 }
